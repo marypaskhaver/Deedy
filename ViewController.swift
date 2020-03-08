@@ -19,13 +19,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var sections = [MonthSection]()
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var totalDeedsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
      
         deeds = [Deed(withDesc: "Helped Mom"), Deed(withDesc: "Cooked")]
-        loadSections()
+        updateSections()
     }
     
     @IBAction func cancel(segue: UIStoryboardSegue) {
@@ -37,7 +38,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let newDeed = Deed(withDesc: deedDetailVC.deed.description)
         
         deeds.append(newDeed)
-        loadSections()
+        updateSections()
         
         tableView.reloadData()
     }
@@ -45,14 +46,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
     {
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            print(deeds.count)
             self.sections[indexPath.section].deeds.remove(at: indexPath.row)
+           
             deeds.remove(at: indexPath.row)
-            print(deeds.count)
+            updateDeedsLabel()
             
             if self.sections[indexPath.section].deeds.count == 0 {
                 self.sections.remove(at: indexPath.section)
-                loadSections()
+                updateSections()
             }
             
             tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -98,7 +99,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return dateFormatter.string(from: date)
     }
     
-    func loadSections() {
+    func updateSections() {
         let groups = Dictionary(grouping: self.deeds) { (deed) in
             return firstDayOfMonth(date: deed.date)
         }
@@ -106,8 +107,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.sections = groups.map { (key, values) in
             return MonthSection(month: key, deeds: values)
         }
+        
+        updateDeedsLabel()
     }
     
-    
+    func updateDeedsLabel() {
+        totalDeedsLabel.text? = String(deeds.count)
+    }
     
 }
