@@ -10,11 +10,6 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    struct MonthSection {
-        var month: Date
-        var deeds: [Deed]
-    }
-    
     var deeds = [Deed]()
     var sections = [MonthSection]()
     
@@ -81,12 +76,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
-    private func firstDayOfMonth(date: Date) -> Date {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month], from: date)
-        return calendar.date(from: components)!
-    }
-    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if (self.sections.isEmpty) {
             return ""
@@ -100,13 +89,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func updateSections() {
-        let groups = Dictionary(grouping: self.deeds) { (deed) in
-            return firstDayOfMonth(date: deed.date)
-        }
-        
-        self.sections = groups.map { (key, values) in
-            return MonthSection(month: key, deeds: values)
-        }
+        self.sections = MonthSection.group(deeds: self.deeds)
         
         updateDeedsLabel()
     }
