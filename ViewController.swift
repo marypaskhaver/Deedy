@@ -19,8 +19,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-     
-        deeds = [Deed(withDesc: "Helped Mom"), Deed(withDesc: "Cooked")]
+        
+                deeds = []
+//        deeds = [Deed(withDesc: "Helped Mom"), Deed(withDesc: "Cooked")]
+        
         updateSections()
     }
     
@@ -38,23 +40,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
-    {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
             self.sections[indexPath.section].deeds.remove(at: indexPath.row)
-           
+            
             deeds.remove(at: indexPath.row)
             updateDeedsLabel()
-            
+
             if self.sections[indexPath.section].deeds.count == 0 {
                 self.sections.remove(at: indexPath.section)
+                tableView.deleteSections([indexPath.section], with: .automatic)
+
                 updateSections()
+            } else {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
             }
             
-            tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         
-        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -78,9 +85,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if (self.sections.isEmpty) {
+            print("Empty")
             return ""
         }
-
+        
         let section = self.sections[section]
         let date = section.month
         let dateFormatter = DateFormatter()
@@ -90,7 +98,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func updateSections() {
         self.sections = MonthSection.group(deeds: self.deeds)
-        
+        self.sections.sort { (lhs, rhs) in lhs.month < rhs.month }
         updateDeedsLabel()
     }
     
