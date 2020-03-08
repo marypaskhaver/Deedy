@@ -20,8 +20,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-                deeds = []
-//        deeds = [Deed(withDesc: "Helped Mom"), Deed(withDesc: "Cooked")]
+        deeds = []
+        //        deeds = [Deed(withDesc: "Helped Mom"), Deed(withDesc: "Cooked")]
+        //        deeds[0].date -= 1000000
         
         updateSections()
     }
@@ -50,18 +51,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             deeds.remove(at: indexPath.row)
             updateDeedsLabel()
-
+            
             if self.sections[indexPath.section].deeds.count == 0 {
                 self.sections.remove(at: indexPath.section)
                 tableView.deleteSections([indexPath.section], with: .automatic)
-
+                
                 updateSections()
             } else {
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
-            
         }
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,11 +83,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if (self.sections.isEmpty) {
-            print("Empty")
-            return ""
-        }
-        
         let section = self.sections[section]
         let date = section.month
         let dateFormatter = DateFormatter()
