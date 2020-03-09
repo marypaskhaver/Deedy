@@ -12,7 +12,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var deeds = [Deed]()
     var sections = [MonthSection]()
+    let dateFormatter = DateFormatter()
     
+//    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalDeedsLabel: UILabel!
     
@@ -25,6 +27,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //        deeds[0].date -= 1000000
         
         updateSections()
+        dateFormatter.dateFormat = "MMMM yyyy"
     }
     
     @IBAction func cancel(segue: UIStoryboardSegue) {
@@ -32,13 +35,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func done(segue: UIStoryboardSegue) {
-        let deedDetailVC = segue.source as! DeedDetailViewController
-        let newDeed = Deed(withDesc: deedDetailVC.deed.description)
-        
-        deeds.append(newDeed)
-        updateSections()
-        
-        tableView.reloadData()
+        if (segue.identifier == "doneAddingSegue") {
+            let deedDetailVC = segue.source as! DeedDetailViewController
+            let newDeed = Deed(withDesc: deedDetailVC.deed.description)
+            
+            deeds.append(newDeed)
+            updateSections()
+            
+            tableView.reloadData()
+        } else if (segue.identifier == "doneSortingSegue") {
+            // Add func to change MonthSections to other class
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -85,8 +92,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = self.sections[section]
         let date = section.month
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM yyyy"
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "MMMM yyyy"
         return dateFormatter.string(from: date)
     }
     
