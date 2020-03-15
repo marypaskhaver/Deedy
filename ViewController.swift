@@ -12,28 +12,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var deeds = [Deed]()
     var sections = [MonthSection]()
-    let dateFormatter = DateFormatter()
+    static var timeSection: String = "Month"
+    static let dateFormatter = DateFormatter()
     
-//    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalDeedsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+                
         deeds = []
-        //        deeds = [Deed(withDesc: "Helped Mom"), Deed(withDesc: "Cooked")]
-        //        deeds[0].date -= 1000000
-        
         updateSections()
-        dateFormatter.dateFormat = "MMMM yyyy"
+        ViewController.dateFormatter.dateFormat = "MMMM yyyy"
     }
     
     @IBAction func cancel(segue: UIStoryboardSegue) {
         
     }
     
+    // Add deed
     @IBAction func done(segue: UIStoryboardSegue) {
         if (segue.identifier == "doneAddingSegue") {
             let deedDetailVC = segue.source as! DeedDetailViewController
@@ -45,6 +43,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             tableView.reloadData()
         } else if (segue.identifier == "doneSortingSegue") {
             // Add func to change MonthSections to other class
+            updateSections()
+            tableView.reloadData()
         }
     }
     
@@ -91,20 +91,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = self.sections[section]
-        let date = section.month
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "MMMM yyyy"
-        return dateFormatter.string(from: date)
+        let date = section.date
+        return ViewController.dateFormatter.string(from: date)
+    }
+    
+    func splitSections() {
+        if (ViewController.timeSection == "Day") {
+            self.sections = DaySection.group(deeds: self.deeds)
+        } else if (ViewController.timeSection == "Month") {
+            self.sections = MonthSection.group(deeds: self.deeds)
+        }
+        
+        self.sections.sort { (lhs, rhs) in lhs.date < rhs.date }
     }
     
     func updateSections() {
-        self.sections = MonthSection.group(deeds: self.deeds)
-        self.sections.sort { (lhs, rhs) in lhs.month < rhs.month }
+        splitSections()
         updateDeedsLabel()
     }
     
     func updateDeedsLabel() {
         totalDeedsLabel.text? = String(deeds.count)
+    }
+    
+    static func changeDateFormatter(toOrderBy dateFormat: String, timeSection: String) {
+        dateFormatter.dateFormat = dateFormat
+        ViewController.timeSection = timeSection
     }
     
 }
