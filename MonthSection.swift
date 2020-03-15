@@ -8,16 +8,16 @@
 
 import Foundation
 
-struct MonthSection {
-    var month: Date
+struct MonthSection: TimeSection {
+    var date: Date
     var deeds: [Deed]
     
-    static func group(deeds : [Deed]) -> [MonthSection] {
+    static func group(deeds: [Deed]) -> [TimeSection] {
         let groups = Dictionary(grouping: deeds) { (deed) -> Date in
             return firstDayOfMonth(date: deed.date)
         }
         
-        return groups.map(MonthSection.init(month:deeds:))
+        return groups.map(MonthSection.init(date:deeds:))
     }
     
     private static func firstDayOfMonth(date: Date) -> Date {
