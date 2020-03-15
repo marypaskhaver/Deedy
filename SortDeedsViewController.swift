@@ -36,6 +36,28 @@ class SortDeedsViewController: UIViewController, PickerViewProtocol {
     
     func pickerDidSelectRow(selectedRowValue: String) {
         pickerListItem = selectedRowValue
+        
+        var dateFormat: String
+        
+        switch pickerListItem {
+        case "Day":
+                dateFormat = "dd MMMM yyyy" // Move these to xSection classes?
+                break
+            case "Week":
+                dateFormat = "dd MMMM yyyy"
+                break
+            case "Month":
+                dateFormat = "MMMM yyyy"
+                break
+            case "Year":
+                dateFormat = "yyyy"
+                break
+            default:
+                //Month
+                dateFormat = "MMMM yyyy"
+        }
+        
+        ViewController.changeDateFormatter(toOrderBy: dateFormat, timeSection: pickerListItem)
     }
     
     // Do any additional setup after loading the view.
