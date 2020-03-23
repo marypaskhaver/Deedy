@@ -13,21 +13,59 @@ import XCTest
 class Good_Deed_CounterTests: XCTestCase {
     var vc: ViewController!
     var sdvc: SortDeedsViewController!
+    var ddvc: DeedDetailViewController!
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         super.setUp()
+        
+        let bundle = Bundle(for: self.classForCoder)
 
-        self.vc = ViewController()
-        vc.loadView()
-
-        sdvc = SortDeedsViewController()
-        sdvc.loadView()
+        let storyboard = UIStoryboard(name: "Main", bundle: bundle)
+        self.vc = storyboard.instantiateViewController(identifier: "ViewController") as ViewController
+        self.sdvc = storyboard.instantiateViewController(identifier: "SortDeedsViewController") as SortDeedsViewController
+        self.ddvc = storyboard.instantiateViewController(identifier: "DeedDetailViewController") as DeedDetailViewController
+        
+        vc.loadViewIfNeeded()
+        sdvc.loadViewIfNeeded()
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+    }
+    
+    func testAddingDeed() {
+        let deedCountBeforeAdding = vc.deeds.count
+        
+        ddvc.deed = Deed(withDesc: "A")
+        vc.done(segue: UIStoryboardSegue(identifier: "doneAddingSegue", source: ddvc, destination: vc))
+        
+        XCTAssertEqual(deedCountBeforeAdding + 1, vc.deeds.count)
+    }
+    
+    func testDeletingDeed() {
+        // Add deed
+        vc.deeds = [Deed(withDesc: "A")]
+        vc.updateSections()
+        
+        let deedCountBeforeAdding = vc.deeds.count
+
+        let indexPath = IndexPath(row: 0, section: 0)
+
+        vc.tableView(vc.tableView, commit: .delete, forRowAt: indexPath)
+                
+        XCTAssertEqual(deedCountBeforeAdding - 1, vc.deeds.count)
+    }
+    
+    func testSectionDeedsEqualToVCDeeds() {
+        var sumDeeds = 0
+        
+        for section in vc.sections {
+            sumDeeds += section.deeds.count
+        }
+
+        XCTAssertEqual(vc.deeds.count, sumDeeds)
     }
     
     func testDeedsSortedByDay() {
@@ -45,7 +83,7 @@ class Good_Deed_CounterTests: XCTestCase {
         vc.deeds[2].date = day2!
         
         sdvc.pickerDidSelectRow(selectedRowValue: "Day") // Should call changeDateFormatter func in ViewController]
-        vc.splitSections()
+        vc.done(segue: UIStoryboardSegue(identifier: "doneSortingSegue", source: sdvc, destination: vc)) // Calls updateSections
                         
         XCTAssert((vc.sections as Any) is [DaySection])
         
@@ -54,14 +92,12 @@ class Good_Deed_CounterTests: XCTestCase {
         XCTAssertFalse(vc.sections.count == 1)
     }
     
-    
     func testDeedsSortedByMonth() {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy"
         
         let month1 = formatter.date(from: "3/10/2020")
         let month2 = formatter.date(from: "4/10/2020")
-
 
         // All have the same date
         vc.deeds = [Deed(withDesc: "A"), Deed(withDesc: "B"), Deed(withDesc: "C")]
@@ -71,9 +107,7 @@ class Good_Deed_CounterTests: XCTestCase {
         vc.deeds[2].date = month2!
 
         sdvc.pickerDidSelectRow(selectedRowValue: "Month") // Should call changeDateFormatter func in ViewController]
-        vc.splitSections()
-
-        print(vc.sections.count)
+        vc.done(segue: UIStoryboardSegue(identifier: "doneSortingSegue", source: sdvc, destination: vc)) // Calls updateSections
 
         XCTAssert((vc.sections as Any) is [MonthSection])
 
@@ -83,7 +117,6 @@ class Good_Deed_CounterTests: XCTestCase {
     }
     
     func testIfDeedsDisplayInTableView() {
-        
         if !vc.deeds.isEmpty {
             XCTAssertTrue(vc.tableView.numberOfSections > 0)
         }
