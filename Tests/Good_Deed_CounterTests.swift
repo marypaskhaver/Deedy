@@ -68,6 +68,15 @@ class Good_Deed_CounterTests: XCTestCase {
         XCTAssertEqual(vc.deeds.count, sumDeeds)
     }
     
+    // Unfinished
+    func testDeedLabelUpdates() {
+        XCTAssert(vc.totalDeedsLabel != nil)
+        
+        XCTAssert(vc.totalDeedsLabel.text != nil)
+        
+        XCTAssertEqual(vc.totalDeedsLabel.text, String(vc.deeds.count))
+    }
+    
     func testDeedsSortedByDay() {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy"
@@ -78,9 +87,33 @@ class Good_Deed_CounterTests: XCTestCase {
         // All have the same date
         vc.deeds = [Deed(withDesc: "A"), Deed(withDesc: "B"), Deed(withDesc: "C")]
         
-        vc.deeds[0].date = day1! // Bad practice, using for the moment
+        vc.deeds[0].date = day1! 
         vc.deeds[1].date = day1!
         vc.deeds[2].date = day2!
+        
+        sdvc.pickerDidSelectRow(selectedRowValue: "Day") // Should call changeDateFormatter func in ViewController]
+        vc.done(segue: UIStoryboardSegue(identifier: "doneSortingSegue", source: sdvc, destination: vc)) // Calls updateSections
+                        
+        XCTAssert((vc.sections as Any) is [DaySection])
+        
+        XCTAssertFalse(vc.sections.count == 0)
+        XCTAssertTrue(vc.sections.count == 2)
+        XCTAssertFalse(vc.sections.count == 1)
+    }
+    
+    func testDeedsSortedByWeek() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        
+        let week1 = formatter.date(from: "3/8/2020")
+        let week2 = formatter.date(from: "3/15/2020")
+        
+        // All have the same date
+        vc.deeds = [Deed(withDesc: "A"), Deed(withDesc: "B"), Deed(withDesc: "C")]
+        
+        vc.deeds[0].date = week1!
+        vc.deeds[1].date = week1!
+        vc.deeds[2].date = week2!
         
         sdvc.pickerDidSelectRow(selectedRowValue: "Day") // Should call changeDateFormatter func in ViewController]
         vc.done(segue: UIStoryboardSegue(identifier: "doneSortingSegue", source: sdvc, destination: vc)) // Calls updateSections
@@ -102,7 +135,7 @@ class Good_Deed_CounterTests: XCTestCase {
         // All have the same date
         vc.deeds = [Deed(withDesc: "A"), Deed(withDesc: "B"), Deed(withDesc: "C")]
 
-        vc.deeds[0].date = month1! // Bad practice, using for the moment
+        vc.deeds[0].date = month1!
         vc.deeds[1].date = month1!
         vc.deeds[2].date = month2!
 
@@ -111,6 +144,30 @@ class Good_Deed_CounterTests: XCTestCase {
 
         XCTAssert((vc.sections as Any) is [MonthSection])
 
+        XCTAssertFalse(vc.sections.count == 0)
+        XCTAssertTrue(vc.sections.count == 2)
+        XCTAssertFalse(vc.sections.count == 1)
+    }
+    
+    func testDeedsSortedByYear() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        
+        let year1 = formatter.date(from: "3/8/2020")
+        let year2 = formatter.date(from: "3/8/2021")
+        
+        // All have the same date
+        vc.deeds = [Deed(withDesc: "A"), Deed(withDesc: "B"), Deed(withDesc: "C")]
+        
+        vc.deeds[0].date = year1! =
+        vc.deeds[1].date = year1!
+        vc.deeds[2].date = year2!
+        
+        sdvc.pickerDidSelectRow(selectedRowValue: "Day") // Should call changeDateFormatter func in ViewController]
+        vc.done(segue: UIStoryboardSegue(identifier: "doneSortingSegue", source: sdvc, destination: vc)) // Calls updateSections
+                        
+        XCTAssert((vc.sections as Any) is [DaySection])
+        
         XCTAssertFalse(vc.sections.count == 0)
         XCTAssertTrue(vc.sections.count == 2)
         XCTAssertFalse(vc.sections.count == 1)
