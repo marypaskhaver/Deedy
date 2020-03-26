@@ -11,8 +11,9 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var deeds = [Deed]()
-    var sections = [MonthSection]()
+    var sections = [TimeSection]()
     static var timeSection: String = "Month"
+
     static let dateFormatter = DateFormatter()
     
     @IBOutlet weak var tableView: UITableView!
@@ -25,27 +26,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         deeds = []
         updateSections()
         ViewController.dateFormatter.dateFormat = "MMMM yyyy"
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100
+        tableView.tableFooterView = UIView()
     }
     
     @IBAction func cancel(segue: UIStoryboardSegue) {
-        
+
     }
     
     // Add deed
     @IBAction func done(segue: UIStoryboardSegue) {
+        let _ = self.view
+        
         if (segue.identifier == "doneAddingSegue") {
             let deedDetailVC = segue.source as! DeedDetailViewController
             let newDeed = Deed(withDesc: deedDetailVC.deed.description)
             
             deeds.append(newDeed)
-            updateSections()
-            
-            tableView.reloadData()
         } else if (segue.identifier == "doneSortingSegue") {
-            // Add func to change MonthSections to other class
-            updateSections()
-            tableView.reloadData()
+            
         }
+        
+        updateSections()
+        tableView.reloadData()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -80,11 +84,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "deedCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "deedCell", for: indexPath) as! DeedTableViewCell
         
         let section = self.sections[indexPath.section]
         let deed = section.deeds[indexPath.row]
-        cell.textLabel?.text = deed.description
+        
+        cell.deedDescriptionLabel.text = deed.description
         
         return cell
     }
@@ -92,14 +97,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = self.sections[section]
         let date = section.date
+        
+        if (ViewController.timeSection == "Week") {
+            return "Week of " + ViewController.dateFormatter.string(from: date);
+        }
+        
         return ViewController.dateFormatter.string(from: date)
     }
     
     func splitSections() {
         if (ViewController.timeSection == "Day") {
             self.sections = DaySection.group(deeds: self.deeds)
+        } else if (ViewController.timeSection == "Week") {
+            self.sections = WeekSection.group(deeds: self.deeds)
         } else if (ViewController.timeSection == "Month") {
             self.sections = MonthSection.group(deeds: self.deeds)
+        } else if (ViewController.timeSection == "Year") {
+            self.sections = YearSection.group(deeds: self.deeds)
         }
         
         self.sections.sort { (lhs, rhs) in lhs.date < rhs.date }
@@ -111,7 +125,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func updateDeedsLabel() {
-        totalDeedsLabel.text? = String(deeds.count)
+        totalDeedsLabel.text = String(deeds.count)
     }
     
     static func changeDateFormatter(toOrderBy dateFormat: String, timeSection: String) {
