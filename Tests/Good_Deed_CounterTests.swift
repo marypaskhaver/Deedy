@@ -46,16 +46,21 @@ class Good_Deed_CounterTests: XCTestCase {
     
     func testDeletingDeed() {
         // Add deed
-        vc.deeds = [Deed(withDesc: "A")]
-        vc.updateSections()
+        let deedsArr = [Deed(withDesc: "A"), Deed(withDesc: "B")]
         
-        let deedCountBeforeAdding = vc.deeds.count
-
+        for deed in deedsArr {
+            ddvc.deed = deed
+            vc.done(segue: UIStoryboardSegue(identifier: "doneAddingSegue", source: ddvc, destination: vc))
+        }
+        
+        XCTAssertEqual(vc.sections.count, 1)
+        XCTAssertEqual(vc.deeds.count, 2)
+        
         let indexPath = IndexPath(row: 0, section: 0)
 
         vc.tableView(vc.tableView, commit: .delete, forRowAt: indexPath)
-                
-        XCTAssertEqual(deedCountBeforeAdding - 1, vc.deeds.count)
+
+        XCTAssertEqual(vc.deeds.count, 1)
     }
     
     func testSectionDeedsEqualToVCDeeds() {
@@ -87,7 +92,7 @@ class Good_Deed_CounterTests: XCTestCase {
         // All have the same date
         vc.deeds = [Deed(withDesc: "A"), Deed(withDesc: "B"), Deed(withDesc: "C")]
         
-        vc.deeds[0].date = day1! 
+        vc.deeds[0].date = day1! // Bad practice, using for the moment
         vc.deeds[1].date = day1!
         vc.deeds[2].date = day2!
         
@@ -111,7 +116,7 @@ class Good_Deed_CounterTests: XCTestCase {
         // All have the same date
         vc.deeds = [Deed(withDesc: "A"), Deed(withDesc: "B"), Deed(withDesc: "C")]
         
-        vc.deeds[0].date = week1!
+        vc.deeds[0].date = week1! // Bad practice, using for the moment
         vc.deeds[1].date = week1!
         vc.deeds[2].date = week2!
         
@@ -135,7 +140,7 @@ class Good_Deed_CounterTests: XCTestCase {
         // All have the same date
         vc.deeds = [Deed(withDesc: "A"), Deed(withDesc: "B"), Deed(withDesc: "C")]
 
-        vc.deeds[0].date = month1!
+        vc.deeds[0].date = month1! // Bad practice, using for the moment
         vc.deeds[1].date = month1!
         vc.deeds[2].date = month2!
 
@@ -159,7 +164,7 @@ class Good_Deed_CounterTests: XCTestCase {
         // All have the same date
         vc.deeds = [Deed(withDesc: "A"), Deed(withDesc: "B"), Deed(withDesc: "C")]
         
-        vc.deeds[0].date = year1! =
+        vc.deeds[0].date = year1! // Bad practice, using for the moment
         vc.deeds[1].date = year1!
         vc.deeds[2].date = year2!
         
