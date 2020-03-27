@@ -73,13 +73,14 @@ class Good_Deed_CounterTests: XCTestCase {
         XCTAssertEqual(vc.deeds.count, sumDeeds)
     }
     
-    // Unfinished
     func testDeedLabelUpdates() {
         XCTAssert(vc.totalDeedsLabel != nil)
-        
         XCTAssert(vc.totalDeedsLabel.text != nil)
         
-        XCTAssertEqual(vc.totalDeedsLabel.text, String(vc.deeds.count))
+        ddvc.deed = Deed(withDesc: "A")
+        vc.done(segue: UIStoryboardSegue(identifier: "doneAddingSegue", source: ddvc, destination: vc))
+        
+        XCTAssertEqual(vc.totalDeedsLabel.text, String(1))
     }
     
     func testDeedsSortedByDay() {
