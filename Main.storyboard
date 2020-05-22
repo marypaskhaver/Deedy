@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="e7V-Iz-VCq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B7m-uT-Zll">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -10,7 +10,7 @@
         <!--Good Deeds-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,17 +20,34 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="deedCell" id="Qlm-T5-C0S">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="deedCell" id="Qlm-T5-C0S" customClass="DeedTableViewCell" customModule="Good_Deed_Counter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qlm-T5-C0S" id="qnL-ks-HWZ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY9-jS-oI8">
+                                                    <rect key="frame" x="20" y="8" width="0.0" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bY9-jS-oI8" firstAttribute="top" secondItem="qnL-ks-HWZ" secondAttribute="top" constant="8" id="NOB-dG-ut8"/>
+                                                <constraint firstItem="bY9-jS-oI8" firstAttribute="leading" secondItem="qnL-ks-HWZ" secondAttribute="leading" constant="20" id="mRx-Gj-76g"/>
+                                                <constraint firstAttribute="trailing" secondItem="bY9-jS-oI8" secondAttribute="trailing" constant="20" id="r0Q-t7-i1l"/>
+                                                <constraint firstAttribute="bottom" secondItem="bY9-jS-oI8" secondAttribute="bottom" constant="8" id="reQ-re-9Rn"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="deedDescriptionLabel" destination="bY9-jS-oI8" id="O1v-gx-uiH"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="xT0-Q4-Paz"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="rdl-CI-Bpc"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="PTW-r6-8dN"/>
                                 </connections>
                             </tableView>
@@ -66,17 +83,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="RdT-sR-3dH" id="RK6-eV-AvL"/>
-                        <outlet property="totalDeedsLabel" destination="Jyh-Dt-k60" id="trB-wC-h5o"/>
+                        <outlet property="totalDeedsLabel" destination="Jyh-Dt-k60" id="HOZ-he-1o9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1041" y="-17"/>
+            <point key="canvasLocation" x="1949.2753623188407" y="-17.410714285714285"/>
         </scene>
         <!--Deed Detail View Controller-->
         <scene sceneID="EcN-cb-k0X">
             <objects>
-                <viewController id="qtO-fu-afV" customClass="DeedDetailViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeedDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qtO-fu-afV" customClass="DeedDetailViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KPT-vk-VUY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -88,7 +105,7 @@
                                     <navigationItem title="Add Deed" id="DlW-IQ-D3R">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="zuI-6U-ZNx">
                                             <connections>
-                                                <segue destination="Ssg-tT-qLL" kind="unwind" identifier="cancelSegue" unwindAction="cancelWithSegue:" id="A0B-Ie-SWo"/>
+                                                <segue destination="Ssg-tT-qLL" kind="unwind" identifier="cancelAddingSegue" unwindAction="cancelWithSegue:" id="A0B-Ie-SWo"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="deK-za-Rll">
@@ -99,29 +116,31 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mcA-3z-1lo">
-                                <rect key="frame" x="20" y="131" width="374" height="34"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rLu-ZJ-lvd">
+                                <rect key="frame" x="20" y="134" width="374" height="323"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="3zD-6i-eDU"/>
                     </view>
                     <connections>
-                        <outlet property="deedTF" destination="mcA-3z-1lo" id="LKH-hf-zZv"/>
+                        <outlet property="deedTF" destination="rLu-ZJ-lvd" id="wfQ-VI-g9b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ulo-aS-4Hj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Ssg-tT-qLL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1816" y="-17"/>
+            <point key="canvasLocation" x="2726.0869565217395" y="-17.410714285714285"/>
         </scene>
         <!--Sort Deeds View Controller-->
         <scene sceneID="YBQ-iH-2RQ">
             <objects>
-                <viewController id="JQq-ye-dkL" customClass="SortDeedsViewController" customModule="Good_Deed_Counter" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SortDeedsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JQq-ye-dkL" customClass="SortDeedsViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AuG-Jw-0U7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -165,12 +184,13 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mxz-1z-Rfg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="FOE-QD-DSM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1851" y="701"/>
+            <point key="canvasLocation" x="3671.0144927536235" y="700.44642857142856"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Your Impact-->
         <scene sceneID="Rea-SN-Xii">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="e7V-Iz-VCq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Your Impact" image="person" catalog="system" id="L2r-sX-z2H"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gV2-QW-RAS">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -183,7 +203,66 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V02-ws-VOV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1170" y="-17"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="gzt-CZ-ffz">
+            <objects>
+                <viewController id="R99-Bz-ESd" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pjP-LZ-YkC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="G5z-ig-BAm"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6Ke-lD-6NR"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wJa-HE-g9f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2117" y="713"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="EtV-Cb-oYd">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="B7m-uT-Zll" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JJT-Qk-wxy">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="agl-bF-jft" kind="relationship" relationship="viewControllers" id="ksZ-Ra-Ure"/>
+                        <segue destination="e7V-Iz-VCq" kind="relationship" relationship="viewControllers" id="69V-5A-6fl"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ogn-aM-w3U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
+        <!--Global-->
+        <scene sceneID="cks-EM-cMB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="agl-bF-jft" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Global" image="globe" catalog="system" id="HQJ-V3-JqO"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="csn-h4-p3T">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="R99-Bz-ESd" kind="relationship" relationship="rootViewController" id="gui-B8-snu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qjz-Sy-g3m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1192.753623188406" y="637.5"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="globe" catalog="system" width="64" height="60"/>
+        <image name="person" catalog="system" width="64" height="58"/>
+    </resources>
 </document>
