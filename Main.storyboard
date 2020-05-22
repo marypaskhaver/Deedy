@@ -88,7 +88,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1949.2753623188407" y="-17.410714285714285"/>
+            <point key="canvasLocation" x="1938" y="-168"/>
         </scene>
         <!--Deed Detail View Controller-->
         <scene sceneID="EcN-cb-k0X">
@@ -135,7 +135,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ulo-aS-4Hj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Ssg-tT-qLL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2726.0869565217395" y="-17.410714285714285"/>
+            <point key="canvasLocation" x="2784" y="198"/>
         </scene>
         <!--Sort Deeds View Controller-->
         <scene sceneID="YBQ-iH-2RQ">
@@ -184,7 +184,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mxz-1z-Rfg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="FOE-QD-DSM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3671.0144927536235" y="700.44642857142856"/>
+            <point key="canvasLocation" x="2784" y="-462"/>
         </scene>
         <!--Your Impact-->
         <scene sceneID="Rea-SN-Xii">
@@ -205,22 +205,34 @@
             </objects>
             <point key="canvasLocation" x="1170" y="-17"/>
         </scene>
-        <!--View Controller-->
+        <!--Global View Controller-->
         <scene sceneID="gzt-CZ-ffz">
             <objects>
-                <viewController id="R99-Bz-ESd" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GlobalViewController" id="R99-Bz-ESd" customClass="GlobalViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pjP-LZ-YkC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVg-gj-lhC">
+                                <rect key="frame" x="33" y="261" width="349" height="118"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="G5z-ig-BAm"/>
                     </view>
                     <navigationItem key="navigationItem" id="6Ke-lD-6NR"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="globalTotalDeedsLabel" destination="kVg-gj-lhC" id="IPB-gf-k5f"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wJa-HE-g9f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2117" y="713"/>
+            <point key="canvasLocation" x="1937.68115942029" y="637.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="EtV-Cb-oYd">
@@ -228,6 +240,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="B7m-uT-Zll" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JJT-Qk-wxy">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -262,7 +275,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="globe" catalog="system" width="64" height="60"/>
-        <image name="person" catalog="system" width="64" height="58"/>
+        <image name="globe" catalog="system" width="32" height="32"/>
+        <image name="person" catalog="system" width="32" height="32"/>
     </resources>
 </document>
