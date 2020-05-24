@@ -10,49 +10,63 @@ import UIKit
 
 class GlobalViewController: UIViewController {
 
-    @IBOutlet weak var globalTotalDeedsLabel: UILabel!
+    @IBOutlet weak var truncatedNumberOfGlobalDeeds: UILabel!
+    @IBOutlet weak var numeralOfGlobalDeeds: UILabel!
+    static var totalDeeds: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        //Fetch from database?
     }
     
-    func formatPoints(num: Double) -> String {
+    static func add1ToTotalDeeds() {
+        totalDeeds += 1
+        
+        // Write to database
+    }
+    
+    func formatPoints(num: Double) -> [String] {
         let thousandNum = num / 1000
         let millionNum = num / 1000000
+        let billionNum = num / 1000000000
         
         if num >= 1000 && num < 1000000 {
             if (floor(thousandNum) == thousandNum){
-                return("\(Int(thousandNum))k")
+                return ["\(Int(thousandNum))", "thousand"]
             }
             
-            return("\(thousandNum.truncate(places: 2))k")
+            return ["\(thousandNum.truncate(places: 2))", "thousand"]
         }
         
-        //Used to be num > 1000000
-        if num >= 1000000 {
-//            if (floor(millionNum) == millionNum) {
-//                return("\(Int(thousandNum))k")
-//            }
-            
+        if num >= 1000000 && num < 1000000000 {
             if (floor(millionNum) == millionNum) {
-                return("\(Int(millionNum))M")
+                return ["\(Int(millionNum))", "million"]
             }
                         
-            return ("\(millionNum.truncate(places: 2))M")
-        } else {
-            if (floor(num) == num) {
-                return ("\(Int(num))")
+            return ["\(millionNum.truncate(places: 2))", "million"]
+        }
+        
+        if num >= 1000000000 {
+            if (floor(billionNum) == billionNum) {
+                return ["\(Int(billionNum))", "billion"]
             }
             
-            return ("\(num.truncate(places: 2))")
+            return ["\(billionNum.truncate(places: 2))", "billion"]
+        }
+            
+        else {
+            if (floor(num) == num) {
+                return ["\(Int(num))", ""]
+            }
+            
+            return ["\(num.truncate(places: 2))", ""]
         }
     }
 }
 
-extension Double
-{
+extension Double {
     func truncate(places: Int) -> Double {
         return Double(floor(pow(10.0, Double(places)) * self) / pow(10.0, Double(places)))
     }
