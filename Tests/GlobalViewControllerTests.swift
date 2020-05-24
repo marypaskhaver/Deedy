@@ -21,17 +21,21 @@ class GlobalViewControllerTests: XCTestCase {
     }
     
     func testNumbersFormatProperly() {
-        XCTAssert(gvc.formatPoints(num: 123) == "123")
+        XCTAssert(gvc.formatPoints(num: 123) == ["123", ""])
         
-        XCTAssert(gvc.formatPoints(num: 1000) == "1k")
-        XCTAssert(gvc.formatPoints(num: 6789) == "6.78k")
-        XCTAssert(gvc.formatPoints(num: 9999) == "9.99k")
+        XCTAssert(gvc.formatPoints(num: 1000) == ["1", "thousand"])
+        XCTAssert(gvc.formatPoints(num: 6789) == ["6.78", "thousand"])
+        XCTAssert(gvc.formatPoints(num: 9999) == ["9.99", "thousand"])
         
-        XCTAssert(gvc.formatPoints(num: 1000000) == "1M")
-        XCTAssert(gvc.formatPoints(num: 1100000) == "1.1M")
-        XCTAssert(gvc.formatPoints(num: 1120000) == "1.12M")
-        XCTAssert(gvc.formatPoints(num: 1239999) == "1.23M")
-        XCTAssert(gvc.formatPoints(num: 1240000) == "1.24M")
+        XCTAssert(gvc.formatPoints(num: 1000000) == ["1", "million"])
+        XCTAssert(gvc.formatPoints(num: 1100000) == ["1.1", "million"])
+        XCTAssert(gvc.formatPoints(num: 1120000) == ["1.12", "million"])
+        XCTAssert(gvc.formatPoints(num: 1239999) == ["1.23", "million"])
+        XCTAssert(gvc.formatPoints(num: 1240000) == ["1.24", "million"])
+        
+        XCTAssert(gvc.formatPoints(num: 1000000000) == ["1", "billion"])
+        XCTAssert(gvc.formatPoints(num: 1239000999) == ["1.23", "billion"])
+        XCTAssert(gvc.formatPoints(num: 1240000000) == ["1.24", "billion"])
     }
 
     override func tearDown() {
