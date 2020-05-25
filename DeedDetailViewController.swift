@@ -25,7 +25,7 @@ class DeedDetailViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "doneAddingSegue" {
-            deed = Deed(withDesc: deedTF.text!)
+            deed = Deed(withDesc: deedTF.text!.trimmingCharacters(in: .whitespacesAndNewlines))
         }
     }
     
@@ -33,7 +33,7 @@ class DeedDetailViewController: UIViewController {
         if (identifier == "doneAddingSegue") {
             let possibleDeed = Deed(withDesc: deedTF.text!)
             
-            if (possibleDeed.description.trimmingCharacters(in: .whitespaces).isEmpty)  {
+            if (possibleDeed.description.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)  {
                 self.performSegue(withIdentifier: "cancelAddingSegue", sender: Any?.self)
                 return false
             }
