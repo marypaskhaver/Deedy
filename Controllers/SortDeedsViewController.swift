@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SortDeedsViewController: UIViewController, PickerViewProtocol {
+class SortDeedsViewController: UIViewController {
     
     var pickerListItem: String!
     var pickerItems: [String]!
@@ -34,13 +34,23 @@ class SortDeedsViewController: UIViewController, PickerViewProtocol {
         myPickerView.propertyThatReferencesThisViewController = self
     }
     
+    // Do any additional setup after loading the view.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "doneSortingSegue" {
+            
+        }
+    }
+    
+}
+
+extension SortDeedsViewController: PickerViewProtocol {
     func pickerDidSelectRow(selectedRowValue: String) {
         pickerListItem = selectedRowValue
         
         var dateFormat: String
         
         switch pickerListItem {
-        case "Day":
+            case "Day":
                 dateFormat = "dd MMMM yyyy" // Move these to xSection classes?
                 break
             case "Week":
@@ -59,12 +69,4 @@ class SortDeedsViewController: UIViewController, PickerViewProtocol {
         
         ViewController.changeDateFormatter(toOrderBy: dateFormat, timeSection: pickerListItem)
     }
-    
-    // Do any additional setup after loading the view.
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "sortSegue" {
-            
-        }
-    }
-    
 }
