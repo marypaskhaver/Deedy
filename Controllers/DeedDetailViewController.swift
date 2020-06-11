@@ -11,9 +11,7 @@ import UIKit
 class DeedDetailViewController: UIViewController {
 
     @IBOutlet weak var deedTF: UITextView!
-    
-    var deed: Deed!
-    
+       
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,15 +23,14 @@ class DeedDetailViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "doneAddingSegue" {
-            deed = Deed(withDesc: deedTF.text!.trimmingCharacters(in: .whitespacesAndNewlines))
+            deedTF.text = deedTF.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         }
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (identifier == "doneAddingSegue") {
-            let possibleDeed = Deed(withDesc: deedTF.text!)
             
-            if (possibleDeed.description.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)  {
+            if (deedTF.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)  {
                 self.performSegue(withIdentifier: "cancelAddingSegue", sender: Any?.self)
                 return false
             }
