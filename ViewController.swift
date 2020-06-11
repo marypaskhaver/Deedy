@@ -7,32 +7,41 @@
 //
 
 import UIKit
+import CoreData
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController {
     
     var deeds = [Deed]()
     var sections = [TimeSection]()
     static var timeSection: String = "Month"
-
+    
     static let dateFormatter = DateFormatter()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalDeedsLabel: UILabel!
+
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-                
+        
         deeds = []
         updateSections()
         ViewController.dateFormatter.dateFormat = "MMMM yyyy"
+        
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView()
+        
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+
+        loadItems()
     }
     
+    // MARK: - Segue methods
     @IBAction func cancel(segue: UIStoryboardSegue) {
-
+        
     }
     
     // Add deed
@@ -41,70 +50,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if (segue.identifier == "doneAddingSegue") {
             let deedDetailVC = segue.source as! DeedDetailViewController
-            let newDeed = Deed(withDesc: deedDetailVC.deed.description)
+
+            let context = self.context
             
+            let newDeed = Deed(context: context)
+            newDeed.title = deedDetailVC.deedTF.text
+            newDeed.date = Date()
+                                                        
             deeds.append(newDeed)
         } else if (segue.identifier == "doneSortingSegue") {
             
         }
         
-        updateSections()
-        tableView.reloadData()
+        self.saveItems()
+
+        // Add update GlobalViewController here
+        GlobalViewController.add1ToTotalDeeds()
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            self.sections[indexPath.section].deeds.remove(at: indexPath.row)
-            
-            deeds.remove(at: indexPath.row)
-            updateDeedsLabel()
-            
-            if self.sections[indexPath.section].deeds.count == 0 {
-                self.sections.remove(at: indexPath.section)
-                tableView.deleteSections([indexPath.section], with: .automatic)
-                
-                updateSections()
-            } else {
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            }
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (self.sections.isEmpty) {
-            return 0
-        }
-        
-        let section = self.sections[section]
-        return section.deeds.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "deedCell", for: indexPath) as! DeedTableViewCell
-        
-        let section = self.sections[indexPath.section]
-        let deed = section.deeds[indexPath.row]
-        
-        cell.deedDescriptionLabel.text = deed.description
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let section = self.sections[section]
-        let date = section.date
-        
-        if (ViewController.timeSection == "Week") {
-            return "Week of " + ViewController.dateFormatter.string(from: date);
-        }
-        
-        return ViewController.dateFormatter.string(from: date)
-    }
-    
+    // MARK: - Updating Sections and Labels
     func splitSections() {
         if (ViewController.timeSection == "Day") {
             self.sections = DaySection.group(deeds: self.deeds)
@@ -133,4 +97,91 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ViewController.timeSection = timeSection
     }
     
+    //MARK: - Model Manipulation Methods
+    func saveItems() {
+        updateSections()
+        
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    // Provides default value if no request is sent
+    func loadItems(with request: NSFetchRequest<Deed> = Deed.fetchRequest()) {
+        do {
+            deeds = try context.fetch(request)
+            updateSections()
+        } catch {
+            print("Error fetching data from context \(error)")
+        }
+    }
+    
+}
+
+// MARK: - TableView Delegate Methods
+extension ViewController: UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
+    
+    // Delete deed
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCell.EditingStyle.delete) {
+            self.sections[indexPath.section].deeds.remove(at: indexPath.row)
+            
+            context.delete(deeds[indexPath.row])
+            deeds.remove(at: indexPath.row)
+            
+            if self.sections[indexPath.section].deeds.count == 0 {
+                self.sections.remove(at: indexPath.section)
+                
+                tableView.deleteSections([indexPath.section], with: .automatic)
+                
+                updateSections()
+            } else {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                updateDeedsLabel()
+            }
+        }
+        
+        saveItems()
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let section = self.sections[section]
+        let date = section.date
+        
+        if (ViewController.timeSection == "Week") {
+            return "Week of " + ViewController.dateFormatter.string(from: date);
+        }
+        
+        return ViewController.dateFormatter.string(from: date)
+    }
+}
+
+// MARK: - TableView DataSource Methods
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (self.sections.isEmpty) {
+            return 0
+        }
+        
+        let section = self.sections[section]
+        return section.deeds.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "deedCell", for: indexPath) as! DeedTableViewCell
+        
+        let section = self.sections[indexPath.section]
+        let deed = section.deeds[indexPath.row]
+        
+        cell.deedDescriptionLabel.text = deed.title
+        
+        return cell
+    }
 }
