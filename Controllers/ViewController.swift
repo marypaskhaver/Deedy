@@ -118,6 +118,8 @@ class ViewController: UIViewController {
         } catch {
             print("Error fetching data from context \(error)")
         }
+        
+        tableView.reloadData()
     }
     
 }
@@ -183,5 +185,36 @@ extension ViewController: UITableViewDataSource {
         cell.deedDescriptionLabel.text = deed.title
         
         return cell
+    }
+}
+
+// MARK: - Search bar methods
+extension ViewController: UISearchBarDelegate {
+    
+    // Query CoreData database
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request : NSFetchRequest<Deed> = Deed.fetchRequest()
+        
+        // We need to query/filter what's in our database-- can be done with an NSPredicate
+        // The [cd] makes the search case and diacritic insensitive
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        loadItems(with: request)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadItems()
+            
+            // Multiple threads/stuffs are happening when we try to de-activate the searchBar.
+            // We need to get to the main queue (where UI elements are updated) to dismiss the searchBar while background tasks are being completed.
+            // Thus: Use DispatchQueue, which manages execution of work items
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
     }
 }
