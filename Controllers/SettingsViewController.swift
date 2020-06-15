@@ -8,19 +8,24 @@
 
 import UIKit
 
+let defaults = UserDefaults.standard
+
 class SettingsViewController: UIViewController {
-    
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
     
     // Default -- a light blue
-    static var themeColor = UIColor(red: 114 / 255.0, green: 207 / 255.0, blue: 250 / 255.0, alpha: 1.0)
+    static var navBarColor = UIColor(red: 114 / 255.0, green: 207 / 255.0, blue: 250 / 255.0, alpha: 1.0)
+    static var navBarTextColor = UIColor(red: 255 / 255.0, green: 255 / 255.0, blue: 255 / 255.0, alpha: 1.0)
     
+    let navBarColorUserDefaultsKey = "navBarColor"
+    let navBarTextColorUserDefaultsKey = "navBarTextColor"
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        loadColorTheme()
     }
 
     @IBAction func redSliderChanged(_ sender: UISlider) {
@@ -38,13 +43,21 @@ class SettingsViewController: UIViewController {
     func getUIColorFromSliders() -> UIColor {
         let color = UIColor(red: CGFloat(redSlider.value / 255.0), green: CGFloat(greenSlider.value / 255.0), blue: CGFloat(blueSlider.value / 255.0), alpha: CGFloat(1.0))
         
-        UINavigationBar.appearance().barTintColor = color
+        changeNavBarColorToColor(color: color)
         
         changeTextColorIfNeeded()
-        
-        SettingsViewController.themeColor = color
+                
+        saveColorTheme()
         
         return color
+    }
+    
+    // MARK: - Change app color theme
+
+    func changeNavBarColorToColor(color: UIColor) {
+        navigationController?.navigationBar.barTintColor = color
+        UINavigationBar.appearance().barTintColor = color
+        SettingsViewController.navBarColor = color
     }
     
     func changeTextColorIfNeeded() {
@@ -68,5 +81,62 @@ class SettingsViewController: UIViewController {
         
         // Change all nav bars' items' colors
         UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: color], for: .normal)
+        
+        SettingsViewController.navBarTextColor = color
     }
+    
+    // MARK: - Model Manipulation Methods
+    func saveColorTheme() {
+        defaults.set(redSlider.value, forKey: "redSliderValue")
+        defaults.set(greenSlider.value, forKey: "greenSliderValue")
+        defaults.set(blueSlider.value, forKey: "blueSliderValue")
+        
+        defaults.set(SettingsViewController.navBarColor, forKey: "navBarColor")
+        defaults.set(SettingsViewController.navBarTextColor, forKey: "navBarTextColor")
+    }
+    
+    func loadColorTheme() {
+        if let rsv = defaults.object(forKey: "redSliderValue") {
+            redSlider.value = rsv as! Float
+        }
+        
+        if let gsv = defaults.object(forKey: "greenSliderValue") {
+            greenSlider.value = gsv as! Float
+        }
+        
+        if let bsv = defaults.object(forKey: "blueSliderValue") {
+            blueSlider.value = bsv as! Float
+        }
+        
+        navigationController?.navigationBar.barTintColor = getUIColorFromSliders()
+    }
+}
+
+// MARK: - UserDefaults methods
+
+extension UserDefaults {
+
+    func color(forKey key: String) -> UIColor? {
+        guard let colorData = data(forKey: key) else { return nil }
+
+        do {
+            return try NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData)
+        } catch let error {
+            print("color error \(error.localizedDescription)")
+            return nil
+        }
+
+    }
+
+    func set(_ value: UIColor?, forKey key: String) {
+        guard let color = value else { return }
+        
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: color, requiringSecureCoding: false)
+            set(data, forKey: key)
+        } catch let error {
+            print("error color key data not saved \(error.localizedDescription)")
+        }
+    }
+
 }
