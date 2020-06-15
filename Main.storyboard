@@ -81,14 +81,14 @@
                         <barButtonItem key="leftBarButtonItem" title="Sort" id="9a1-gm-XPd">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="JQq-ye-dkL" kind="presentation" identifier="" id="ZAf-9L-4dX"/>
+                                <segue destination="bgc-uv-MS5" kind="presentation" identifier="" id="ZAf-9L-4dX"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="vGB-HI-XFI">
+                        <barButtonItem key="rightBarButtonItem" title="+" id="vGB-HI-XFI">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addDeed:" destination="BYZ-38-t0r" id="Qcg-r8-ocJ"/>
-                                <segue destination="qtO-fu-afV" kind="presentation" id="96U-sG-5Sx"/>
+                                <segue destination="Idm-YJ-Dal" kind="presentation" id="96U-sG-5Sx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -99,7 +99,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1938" y="-168"/>
+            <point key="canvasLocation" x="1938" y="-17"/>
         </scene>
         <!--Deed Detail View Controller-->
         <scene sceneID="EcN-cb-k0X">
@@ -109,17 +109,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CRX-lV-pGb">
+                            <navigationBar opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CRX-lV-pGb">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Add Deed" id="DlW-IQ-D3R">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="zuI-6U-ZNx">
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
                                                 <segue destination="Ssg-tT-qLL" kind="unwind" identifier="cancelAddingSegue" unwindAction="cancelWithSegue:" id="A0B-Ie-SWo"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="deK-za-Rll">
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
                                                 <segue destination="Ssg-tT-qLL" kind="unwind" identifier="doneAddingSegue" unwindAction="doneWithSegue:" id="bdz-Ba-5va"/>
                                             </connections>
@@ -139,6 +141,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="3zD-6i-eDU"/>
                     </view>
+                    <navigationItem key="navigationItem" id="YXC-bS-eMZ"/>
                     <connections>
                         <outlet property="deedTF" destination="rLu-ZJ-lvd" id="wfQ-VI-g9b"/>
                     </connections>
@@ -146,7 +149,7 @@
                 <exit id="Ssg-tT-qLL" userLabel="Exit" sceneMemberID="exit"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ulo-aS-4Hj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2784" y="198"/>
+            <point key="canvasLocation" x="3602.898550724638" y="253.79464285714283"/>
         </scene>
         <!--Sort Deeds View Controller-->
         <scene sceneID="YBQ-iH-2RQ">
@@ -188,6 +191,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="sGd-v6-OAX"/>
                     </view>
+                    <navigationItem key="navigationItem" id="PJy-gF-tbU"/>
                     <connections>
                         <outlet property="interfacePickerView" destination="mYR-dD-AA0" id="2Xd-D1-GDn"/>
                     </connections>
@@ -195,7 +199,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mxz-1z-Rfg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="FOE-QD-DSM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2784" y="-462"/>
+            <point key="canvasLocation" x="3602.898550724638" y="-390.40178571428572"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="d1L-JH-n42">
+            <objects>
+                <viewController id="dfk-rK-XUr" customClass="SettingsViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="skF-eo-G7G">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="250" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="VPB-qN-2uF">
+                                <rect key="frame" x="33" y="458" width="341" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="blueSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="wKc-pW-dWm"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="207" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="uAG-aC-vWs">
+                                <rect key="frame" x="33" y="409" width="339" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="greenSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="DLG-wM-mad"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="114" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="H02-ha-Lt9">
+                                <rect key="frame" x="33" y="363" width="339" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="redSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="QBE-xS-Dvx"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="bvn-DT-1X8"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="4uS-lj-R2z"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="blueSlider" destination="VPB-qN-2uF" id="lF4-0K-D92"/>
+                        <outlet property="greenSlider" destination="uAG-aC-vWs" id="NUB-Vy-iOM"/>
+                        <outlet property="redSlider" destination="H02-ha-Lt9" id="ed2-oY-zUj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yqU-wF-C3G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1937.68115942029" y="-664.28571428571422"/>
         </scene>
         <!--Your Impact-->
         <scene sceneID="Rea-SN-Xii">
@@ -291,6 +342,7 @@
                     <connections>
                         <segue destination="agl-bF-jft" kind="relationship" relationship="viewControllers" id="ksZ-Ra-Ure"/>
                         <segue destination="e7V-Iz-VCq" kind="relationship" relationship="viewControllers" id="69V-5A-6fl"/>
+                        <segue destination="LXN-IU-Zcs" kind="relationship" relationship="viewControllers" id="rdj-DF-tgB"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogn-aM-w3U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -321,9 +373,69 @@
             </objects>
             <point key="canvasLocation" x="1192.753623188406" y="637.5"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="D0V-oB-lb1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LXN-IU-Zcs" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="wrench" catalog="system" id="GXD-u0-BQg"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Npq-cn-Oyn">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dfk-rK-XUr" kind="relationship" relationship="rootViewController" id="hCU-5m-Vk3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8HJ-en-enE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1170" y="-664"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="PM6-9U-LKG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Idm-YJ-Dal" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yqa-Lt-sXh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qtO-fu-afV" kind="relationship" relationship="rootViewController" id="U2b-bL-OWL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="okV-X1-01w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2692.753623188406" y="253.79464285714283"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dHf-xj-O4H">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bgc-uv-MS5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7o1-N6-Gex">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="JQq-ye-dkL" kind="relationship" relationship="rootViewController" id="Rui-H6-9gZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8hG-Iy-pp2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2692.753623188406" y="-390.40178571428572"/>
+        </scene>
     </scenes>
     <resources>
         <image name="globe" catalog="system" width="64" height="60"/>
         <image name="person" catalog="system" width="64" height="58"/>
+        <image name="wrench" catalog="system" width="64" height="60"/>
     </resources>
 </document>
