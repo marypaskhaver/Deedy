@@ -30,6 +30,10 @@ class ViewController: UIViewController {
         updateSections()
         ViewController.dateFormatter.dateFormat = "MMMM yyyy"
         
+        let font = UIFont.systemFont(ofSize: 28)
+
+        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
+        
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView()
