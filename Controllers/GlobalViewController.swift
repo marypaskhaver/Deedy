@@ -29,11 +29,11 @@ class GlobalViewController: UIViewController {
         }
         
         if let navBarTextColor = defaults.color(forKey: "navBarTextColor") {
-            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navBarTextColor]
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navBarTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
 
-            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: navBarTextColor]
+            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: navBarTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
             
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: navBarTextColor], for: .normal)
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: navBarTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)], for: .normal)
         }
     }
     
