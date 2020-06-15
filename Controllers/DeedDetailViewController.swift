@@ -11,7 +11,7 @@ import UIKit
 class DeedDetailViewController: UIViewController {
 
     @IBOutlet weak var deedTF: UITextView!
-       
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,6 +19,7 @@ class DeedDetailViewController: UIViewController {
         deedTF.layer.borderWidth = 1
         deedTF.layer.cornerRadius = 8
         deedTF.layer.borderColor = UIColor.gray.cgColor
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
