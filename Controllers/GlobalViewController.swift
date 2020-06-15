@@ -19,16 +19,21 @@ class GlobalViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         //Fetch from database, then adjust labels
-        changeAppColor()
+        changeAppColor()        
     }
     
     func changeAppColor() {
         if let navBarColor = defaults.color(forKey: "navBarColor") {
             navigationController?.navigationBar.barTintColor = navBarColor
+            UINavigationBar.appearance().barTintColor = navBarColor
         }
         
         if let navBarTextColor = defaults.color(forKey: "navBarTextColor") {
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navBarTextColor]
+
+            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: navBarTextColor]
+            
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: navBarTextColor], for: .normal)
         }
     }
     
