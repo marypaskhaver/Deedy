@@ -32,12 +32,25 @@ class SortDeedsViewController: UIViewController {
         interfacePickerView.delegate = myPickerView
         interfacePickerView.dataSource = myPickerView
         myPickerView.propertyThatReferencesThisViewController = self
+        
+        changeAppColor()
     }
     
     // Do any additional setup after loading the view.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "doneSortingSegue" {
             
+        }
+    }
+    
+    func changeAppColor() {
+        if let navBarColor = defaults.color(forKey: "navBarColor") {
+            navigationController?.navigationBar.barTintColor = navBarColor
+        }
+        
+        if let navBarTextColor = defaults.color(forKey: "navBarTextColor") {
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navBarTextColor]
+            navigationItem.rightBarButtonItem?.tintColor = navBarTextColor 
         }
     }
     
@@ -69,4 +82,5 @@ extension SortDeedsViewController: PickerViewProtocol {
         
         ViewController.changeDateFormatter(toOrderBy: dateFormat, timeSection: pickerListItem)
     }
+
 }
