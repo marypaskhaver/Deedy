@@ -25,7 +25,6 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        loadColorTheme()
     }
 
     @IBAction func redSliderChanged(_ sender: UISlider) {
@@ -74,13 +73,13 @@ class SettingsViewController: UIViewController {
     
     func changeNavBarTextAndItemsToColor(color: UIColor) {
         // Change this nav bar's text color
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: color]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
         
         // Change all nav bars' text color
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: color]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
         
         // Change all nav bars' items' colors
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: color], for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)], for: .normal)
         
         SettingsViewController.navBarTextColor = color
     }
