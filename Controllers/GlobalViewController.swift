@@ -18,7 +18,18 @@ class GlobalViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //Fetch from database?
+        //Fetch from database, then adjust labels
+        changeAppColor()
+    }
+    
+    func changeAppColor() {
+        if let navBarColor = defaults.color(forKey: "navBarColor") {
+            navigationController?.navigationBar.barTintColor = navBarColor
+        }
+        
+        if let navBarTextColor = defaults.color(forKey: "navBarTextColor") {
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navBarTextColor]
+        }
     }
     
     static func add1ToTotalDeeds() {
