@@ -28,7 +28,7 @@ class ChallengesViewController: UIViewController {
         
         revealDailyGoalRelatedItemsIfNeeded()
         
-        // Save dailyGoal # in CoreData
+        setProgressViewValue()
         saveDailyGoalValue()
     }
     
@@ -41,7 +41,14 @@ class ChallengesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         setDeedsDoneToday()
-        print(deedsDoneToday)
+        setProgressViewValue()
+    }
+    
+    func setProgressViewValue() {
+        if (dailyChallenge.dailyGoal != 0) {
+            let progress = Float(deedsDoneToday) / Float(dailyChallenge.dailyGoal)
+            dailyGoalProgressView.setProgress(progress, animated: true)
+        }
     }
     
     func setDeedsDoneToday() {
@@ -127,7 +134,9 @@ extension ChallengesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as! ChallengeTableViewCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as! ChallengeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "deedCell", for: indexPath) as! DeedTableViewCell
+
         
         return cell
     }
