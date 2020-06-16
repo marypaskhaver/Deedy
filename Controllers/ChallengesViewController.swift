@@ -19,6 +19,7 @@ class ChallengesViewController: UIViewController {
     @IBOutlet weak var labelSayingStreak: UILabel!
     
     var dailyChallenge: DailyChallenge = DailyChallenge(context: context)
+    var deedsDoneToday: Int = 0
     
     @IBAction func stepperValueChanged(_ sender: Any) {
         dailyChallenge.dailyGoal = Int32(Int(stepper.value))
@@ -36,6 +37,33 @@ class ChallengesViewController: UIViewController {
 
         loadDailyGoalValue()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setDeedsDoneToday()
+        print(deedsDoneToday)
+    }
+    
+    func setDeedsDoneToday() {
+        do {
+            let request: NSFetchRequest<Deed> = Deed.fetchRequest()
+            var calendar = Calendar.current
+            calendar.timeZone = NSTimeZone.local
+
+            // Get today's beginning & end
+            let dateFrom = calendar.startOfDay(for: Date())
+            let dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom)
+           
+            // Set predicate as date being today's date
+            let fromPredicate = NSPredicate(format: "date >= %@", dateFrom as NSDate)
+            let toPredicate = NSPredicate(format: "date < %@", dateTo as! NSDate)
+            let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
+            request.predicate = datePredicate
+            
+            deedsDoneToday = try context.fetch(request).count
+        } catch {
+            print("Error fetching data from context \(error)")
+        }
     }
     
     func revealDailyGoalRelatedItemsIfNeeded() {
@@ -69,6 +97,7 @@ class ChallengesViewController: UIViewController {
 
         do {
             let fetchedRequest = try context.fetch(request)
+            
             dailyChallenge.dailyGoal = fetchedRequest[0].dailyGoal
 
             stepper.value = Double(dailyChallenge.dailyGoal)
@@ -98,7 +127,7 @@ extension ChallengesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as! ChallengeTableViewCell
+       let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as! ChallengeTableViewCell
         
         return cell
     }
