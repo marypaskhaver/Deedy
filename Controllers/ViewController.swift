@@ -39,8 +39,9 @@ class ViewController: UIViewController {
         tableView.tableFooterView = UIView()
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-
+                
         loadItems()
+        sortItemsFromSavedData()
     }
     
     // MARK: - Segue methods
@@ -72,7 +73,7 @@ class ViewController: UIViewController {
         GlobalViewController.add1ToTotalDeeds()
     }
     
-    // MARK: - Updating Sections and Labels
+    // MARK: - Updating/Sorting Sections and Labels
     func splitSections() {
         if (ViewController.timeSection == "Day") {
             self.sections = DaySection.group(deeds: self.deeds)
@@ -97,8 +98,20 @@ class ViewController: UIViewController {
     }
     
     static func changeDateFormatter(toOrderBy dateFormat: String, timeSection: String) {
-        dateFormatter.dateFormat = dateFormat
+        ViewController.dateFormatter.dateFormat = dateFormat
         ViewController.timeSection = timeSection
+    }
+    
+    func sortItemsFromSavedData() {
+        if let dateFormat = defaults.string(forKey: "dateFormat") {
+            ViewController.dateFormatter.dateFormat = dateFormat
+        }
+        
+        if let timeSection = defaults.string(forKey: "timeSection") {
+            ViewController.timeSection = timeSection
+        }
+        
+        updateSections()
     }
     
     //MARK: - Model Manipulation Methods
@@ -125,7 +138,6 @@ class ViewController: UIViewController {
         
         tableView.reloadData()
     }
-    
 }
 
 // MARK: - TableView Delegate Methods
