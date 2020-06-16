@@ -19,6 +19,7 @@ class ChallengesViewController: UIViewController {
     
     var dailyGoal = 0
 
+    
     // To do: create a Challenge item and make it work like a Deed. Use CoreData to save its completeness? Good luck!
     // Make user able to set daily challenge
     @IBAction func stepperValueChanged(_ sender: Any) {
@@ -26,28 +27,28 @@ class ChallengesViewController: UIViewController {
         dailyGoalStepperLabel.text = String(dailyGoal)
         
         if (dailyGoal > 0) {
-            dailyGoalProgressView.isHidden = false
-            dailyGoalStreakLabel.isHidden = false
-            labelSayingStreak.isHidden = false
+            revealDailyGoalRelatedItems(bool: false)
             tableView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
-
         } else { // If daily goals are set to 0, remove daily goal-related items from screen
-            dailyGoalProgressView.isHidden = true
-            dailyGoalStreakLabel.isHidden = true
-            labelSayingStreak.isHidden = true
+            revealDailyGoalRelatedItems(bool: true)
             tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
         
         // Save dailyGoal # in CoreData
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         stepperValueChanged(UIStepper())
 
         // Do any additional setup after loading the view.
+    }
+    
+    func revealDailyGoalRelatedItems(bool: Bool) {
+        dailyGoalProgressView.isHidden = bool
+        dailyGoalStreakLabel.isHidden = bool
+        labelSayingStreak.isHidden = bool
     }
 }
 
@@ -56,6 +57,7 @@ extension ChallengesViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+
 }
 
 // MARK: - TableView DataSource Methods
