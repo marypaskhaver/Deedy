@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ChallengesViewController: UIViewController {
 
@@ -17,32 +18,34 @@ class ChallengesViewController: UIViewController {
     @IBOutlet weak var dailyGoalStreakLabel: UILabel!
     @IBOutlet weak var labelSayingStreak: UILabel!
     
-    var dailyGoal = 0
-
+    var dailyChallenge: DailyChallenge = DailyChallenge(context: context)
     
-    // To do: create a Challenge item and make it work like a Deed. Use CoreData to save its completeness? Good luck!
-    // Make user able to set daily challenge
     @IBAction func stepperValueChanged(_ sender: Any) {
-        dailyGoal = Int(stepper.value)
-        dailyGoalStepperLabel.text = String(dailyGoal)
+        dailyChallenge.dailyGoal = Int32(Int(stepper.value))
+        dailyChallenge.date = Date()
+        dailyGoalStepperLabel.text = String(dailyChallenge.dailyGoal)
         
-        if (dailyGoal > 0) {
+        revealDailyGoalRelatedItemsIfNeeded()
+        
+        // Save dailyGoal # in CoreData
+        saveDailyGoalValue()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        loadDailyGoalValue()
+        // Do any additional setup after loading the view.
+    }
+    
+    func revealDailyGoalRelatedItemsIfNeeded() {
+        if (dailyChallenge.dailyGoal > 0) {
             revealDailyGoalRelatedItems(bool: false)
             tableView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
         } else { // If daily goals are set to 0, remove daily goal-related items from screen
             revealDailyGoalRelatedItems(bool: true)
             tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
-        
-        // Save dailyGoal # in CoreData
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        stepperValueChanged(UIStepper())
-
-        // Do any additional setup after loading the view.
     }
     
     func revealDailyGoalRelatedItems(bool: Bool) {
@@ -50,7 +53,34 @@ class ChallengesViewController: UIViewController {
         dailyGoalStreakLabel.isHidden = bool
         labelSayingStreak.isHidden = bool
     }
+    
+    // MARK: - Model Manipulation Methods
+    func saveDailyGoalValue() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+    }
+    
+    func loadDailyGoalValue() {
+        let request : NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(DailyChallenge.date), ascending: false)]
+
+        do {
+            let fetchedRequest = try context.fetch(request)
+            dailyChallenge.dailyGoal = fetchedRequest[0].dailyGoal
+
+            stepper.value = Double(dailyChallenge.dailyGoal)
+            dailyGoalStepperLabel.text = String(dailyChallenge.dailyGoal)
+            revealDailyGoalRelatedItemsIfNeeded()
+        } catch {
+            print("Error fetching data from context \(error)")
+        }
+    }
+    
 }
+
 
 // MARK: - TableView Delegate Methods
 extension ChallengesViewController: UITableViewDelegate {
