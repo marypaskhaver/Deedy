@@ -60,7 +60,7 @@ class ViewController: UIViewController {
             newDeed.title = deedDetailVC.deedTF.text
             newDeed.date = Date()
                                                         
-            deeds.append(newDeed)
+            deeds.insert(newDeed, at: 0)
         } else if (segue.identifier == "doneSortingSegue") {
             
         }
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
             self.sections = YearSection.group(deeds: self.deeds)
         }
         
-        self.sections.sort { (lhs, rhs) in lhs.date < rhs.date }
+        self.sections.sort { (lhs, rhs) in lhs.date > rhs.date }
     }
     
     func updateSections() {
