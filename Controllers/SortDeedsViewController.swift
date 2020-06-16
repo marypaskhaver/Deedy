@@ -71,6 +71,12 @@ extension SortDeedsViewController: PickerViewProtocol {
         }
         
         ViewController.changeDateFormatter(toOrderBy: dateFormat, timeSection: pickerListItem)
+        saveSortDetails(forDateFormat: dateFormat, timeSection: pickerListItem)
+    }
+    
+    func saveSortDetails(forDateFormat dateFormat: String, timeSection timeSection: String) {
+        defaults.set(dateFormat, forKey: "dateFormat")
+        defaults.set(timeSection, forKey: "timeSection")
     }
 
 }
