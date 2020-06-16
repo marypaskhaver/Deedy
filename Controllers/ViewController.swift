@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
 class ViewController: UIViewController {
     
     var deeds = [Deed]()
@@ -19,8 +21,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalDeedsLabel: UILabel!
-
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView()
         
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+//        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
                 
         loadDeeds()
         sortDeedsFromSavedData()
@@ -55,8 +55,6 @@ class ViewController: UIViewController {
         
         if (segue.identifier == "doneAddingSegue") {
             let deedDetailVC = segue.source as! DeedDetailViewController
-
-            let context = self.context
             
             let newDeed = Deed(context: context)
             newDeed.title = deedDetailVC.deedTF.text
