@@ -40,8 +40,8 @@ class ViewController: UIViewController {
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
                 
-        loadItems()
-        sortItemsFromSavedData()
+        loadDeeds()
+        sortDeedsFromSavedData()
     }
     
     // MARK: - Segue methods
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
             
         }
         
-        self.saveItems()
+        self.saveDeeds()
 
         // Add update GlobalViewController here
         GlobalViewController.add1ToTotalDeeds()
@@ -102,7 +102,7 @@ class ViewController: UIViewController {
         ViewController.timeSection = timeSection
     }
     
-    func sortItemsFromSavedData() {
+    func sortDeedsFromSavedData() {
         if let dateFormat = defaults.string(forKey: "dateFormat") {
             ViewController.dateFormatter.dateFormat = dateFormat
         }
@@ -115,7 +115,7 @@ class ViewController: UIViewController {
     }
     
     //MARK: - Model Manipulation Methods
-    func saveItems() {
+    func saveDeeds() {
         updateSections()
         
         do {
@@ -128,7 +128,7 @@ class ViewController: UIViewController {
     }
     
     // Provides default value if no request is sent
-    func loadItems(with request: NSFetchRequest<Deed> = Deed.fetchRequest()) {
+    func loadDeeds(with request: NSFetchRequest<Deed> = Deed.fetchRequest()) {
         do {
             deeds = try context.fetch(request)
             updateSections()
@@ -166,7 +166,7 @@ extension ViewController: UITableViewDelegate {
             }
         }
         
-        saveItems()
+        saveDeeds()
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -217,12 +217,12 @@ extension ViewController: UISearchBarDelegate {
         
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         
-        loadItems(with: request)
+        loadDeeds(with: request)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
-            loadItems()
+            loadDeeds()
             
             // Multiple threads/stuffs are happening when we try to de-activate the searchBar.
             // We need to get to the main queue (where UI elements are updated) to dismiss the searchBar while background tasks are being completed.
