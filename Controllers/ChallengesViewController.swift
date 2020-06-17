@@ -128,6 +128,11 @@ extension ChallengesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Achievements"
     }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        header.textLabel?.textAlignment = NSTextAlignment.center
+    }
 
 }
 
@@ -142,9 +147,11 @@ extension ChallengesViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as! ChallengeTableViewCell
         
         cell.challengeDescriptionLabel.text = "Hello"
-
+        
         return cell
     }
+    
+    
 }
 
 
