@@ -59,7 +59,7 @@ class ViewController: UIViewController {
             let newDeed = Deed(context: context)
             newDeed.title = deedDetailVC.deedTF.text
             newDeed.date = Date()
-                                                        
+                                       
             deeds.insert(newDeed, at: 0)
         } else if (segue.identifier == "doneSortingSegue") {
             
@@ -197,6 +197,7 @@ extension ViewController: UITableViewDataSource {
         let deed = section.deeds[indexPath.row]
         
         cell.deedDescriptionLabel.text = deed.title
+        cell.deedDescriptionLabel.font = UIFont.systemFont(ofSize: 22)
         
         return cell
     }
