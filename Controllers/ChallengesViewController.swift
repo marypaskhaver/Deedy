@@ -35,6 +35,7 @@ class ChallengesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        dailyGoalProgressView.transform = CGAffineTransform(scaleX: 1.0, y: 2.0)
         loadDailyGoalValue()
         // Do any additional setup after loading the view.
     }
@@ -75,15 +76,15 @@ class ChallengesViewController: UIViewController {
     
     func revealDailyGoalRelatedItemsIfNeeded() {
         if (dailyChallenge.dailyGoal > 0) {
-            revealDailyGoalRelatedItems(bool: false)
+            hideDailyGoalRelatedItems(bool: false)
             tableView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
         } else { // If daily goals are set to 0, remove daily goal-related items from screen
-            revealDailyGoalRelatedItems(bool: true)
+            hideDailyGoalRelatedItems(bool: true)
             tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
     
-    func revealDailyGoalRelatedItems(bool: Bool) {
+    func hideDailyGoalRelatedItems(bool: Bool) {
         dailyGoalProgressView.isHidden = bool
         dailyGoalStreakLabel.isHidden = bool
         labelSayingStreak.isHidden = bool
