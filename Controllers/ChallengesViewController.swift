@@ -34,6 +34,10 @@ class ChallengesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100
+        tableView.tableFooterView = UIView()
 
         dailyGoalProgressView.transform = CGAffineTransform(scaleX: 1.0, y: 2.0)
         loadDailyGoalValue()
