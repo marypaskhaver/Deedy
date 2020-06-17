@@ -147,9 +147,9 @@ extension ViewController: UITableViewDelegate {
     // Delete deed
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            self.sections[indexPath.section].deeds.remove(at: indexPath.row)
             
             context.delete(deeds[indexPath.row])
+            self.sections[indexPath.section].deeds.remove(at: indexPath.row)
             deeds.remove(at: indexPath.row)
             
             if self.sections[indexPath.section].deeds.count == 0 {
