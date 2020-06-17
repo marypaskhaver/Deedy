@@ -50,7 +50,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="deedDescriptionLabel" destination="bY9-jS-oI8" id="O1v-gx-uiH"/>
+                                            <outlet property="deedDescriptionLabel" destination="bY9-jS-oI8" id="b7O-9Y-41H"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -181,9 +181,9 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="sort deeds by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4kJ-ku-LO0">
-                                <rect key="frame" x="143" y="198" width="129" height="27"/>
+                                <rect key="frame" x="131" y="198" width="152" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -342,6 +342,7 @@
                     <connections>
                         <segue destination="agl-bF-jft" kind="relationship" relationship="viewControllers" id="ksZ-Ra-Ure"/>
                         <segue destination="e7V-Iz-VCq" kind="relationship" relationship="viewControllers" id="69V-5A-6fl"/>
+                        <segue destination="r06-th-YJb" kind="relationship" relationship="viewControllers" id="M1I-Fz-soe"/>
                         <segue destination="LXN-IU-Zcs" kind="relationship" relationship="viewControllers" id="rdj-DF-tgB"/>
                     </connections>
                 </tabBarController>
@@ -372,6 +373,86 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qjz-Sy-g3m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1192.753623188406" y="637.5"/>
+        </scene>
+        <!--Challenges-->
+        <scene sceneID="Rlw-wa-eBa">
+            <objects>
+                <viewController id="1zG-BV-JIP" customClass="ChallengesViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E6K-LM-Wg1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zwu-jo-YRK">
+                                <rect key="frame" x="0.0" y="236" width="414" height="660"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeCell" id="6nP-8T-7Si">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6nP-8T-7Si" id="5rm-qx-rSD">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="rmo-W3-PIF">
+                                <rect key="frame" x="280" y="182" width="94" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="stepperValueChanged:" destination="1zG-BV-JIP" eventType="valueChanged" id="HPR-5d-l35"/>
+                                </connections>
+                            </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2V-5J-VQr">
+                                <rect key="frame" x="201" y="182" width="61" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mpm-Gm-9Aq">
+                                <rect key="frame" x="70" y="145" width="275" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Streak:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljz-B7-EPS">
+                                <rect key="frame" x="82" y="248" width="121" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amA-te-Ctr">
+                                <rect key="frame" x="224" y="248" width="81" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Daily challenge: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNy-2w-7BC">
+                                <rect key="frame" x="52" y="182" width="125" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="jx1-Lw-i2M"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Challenges" id="hCe-Ce-nGV"/>
+                    <connections>
+                        <outlet property="dailyGoalProgressView" destination="Mpm-Gm-9Aq" id="m1Q-Aw-xwv"/>
+                        <outlet property="dailyGoalStepperLabel" destination="q2V-5J-VQr" id="lvb-ZN-R25"/>
+                        <outlet property="dailyGoalStreakLabel" destination="amA-te-Ctr" id="o2S-tN-SKC"/>
+                        <outlet property="labelSayingStreak" destination="ljz-B7-EPS" id="Efo-dF-0bd"/>
+                        <outlet property="stepper" destination="rmo-W3-PIF" id="X2E-f6-gcY"/>
+                        <outlet property="tableView" destination="zwu-jo-YRK" id="bYv-eZ-qYv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZsA-Z7-KeZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1498.5507246376812" y="1322.5446428571429"/>
         </scene>
         <!--Settings-->
         <scene sceneID="D0V-oB-lb1">
@@ -432,10 +513,31 @@
             </objects>
             <point key="canvasLocation" x="2692.753623188406" y="-390.40178571428572"/>
         </scene>
+        <!--Challenges-->
+        <scene sceneID="gj5-93-tA4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="r06-th-YJb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Challenges" image="star" catalog="system" id="nuE-c2-fzs"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3ms-qv-ohR">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1zG-BV-JIP" kind="relationship" relationship="rootViewController" id="SEJ-HX-Z5y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L7v-7F-t4k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="755" y="1323"/>
+        </scene>
     </scenes>
     <resources>
         <image name="globe" catalog="system" width="64" height="60"/>
         <image name="person" catalog="system" width="64" height="58"/>
+        <image name="star" catalog="system" width="64" height="58"/>
         <image name="wrench" catalog="system" width="64" height="60"/>
     </resources>
 </document>
