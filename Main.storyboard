@@ -210,14 +210,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="250" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="VPB-qN-2uF">
-                                <rect key="frame" x="33" y="458" width="341" height="30"/>
+                                <rect key="frame" x="33" y="503" width="341" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="blueSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="wKc-pW-dWm"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="207" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="uAG-aC-vWs">
-                                <rect key="frame" x="33" y="409" width="339" height="30"/>
+                                <rect key="frame" x="31" y="433" width="339" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
@@ -232,6 +232,22 @@
                                     <action selector="redSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="QBE-xS-Dvx"/>
                                 </connections>
                             </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Change app theme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WC6-qq-akK">
+                                <rect key="frame" x="33" y="263" width="337" height="78"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-wo-DIy">
+                                <rect key="frame" x="104" y="603" width="195" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Reset to default blue"/>
+                                <connections>
+                                    <action selector="resetButtonPressed:" destination="dfk-rK-XUr" eventType="touchUpInside" id="HEL-PM-b8l"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="bvn-DT-1X8"/>
@@ -242,6 +258,7 @@
                         <outlet property="blueSlider" destination="VPB-qN-2uF" id="lF4-0K-D92"/>
                         <outlet property="greenSlider" destination="uAG-aC-vWs" id="NUB-Vy-iOM"/>
                         <outlet property="redSlider" destination="H02-ha-Lt9" id="ed2-oY-zUj"/>
+                        <outlet property="resetButton" destination="wrl-wo-DIy" id="L07-cx-17e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yqU-wF-C3G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
