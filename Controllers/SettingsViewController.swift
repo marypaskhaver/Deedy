@@ -13,11 +13,12 @@ let defaults = UserDefaults.standard
 class SettingsViewController: UIViewController {
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
-    @IBOutlet weak var blueSlider: UISlider!
+    @IBOutlet weak var blueSlider: UISlider! 
+    @IBOutlet weak var resetButton: UIButton!
     
     // Default -- a light blue
-    static var navBarColor = UIColor(red: 114 / 255.0, green: 207 / 255.0, blue: 250 / 255.0, alpha: 1.0)
-    static var navBarTextColor = UIColor(red: 255 / 255.0, green: 255 / 255.0, blue: 255 / 255.0, alpha: 1.0)
+    static var navBarColor = UIColor(red: 114 / 255.0, green: 200 / 255.0, blue: 250 / 255.0, alpha: 1.0)
+    static var navBarTextColor = UIColor.white
     
     let navBarColorUserDefaultsKey = "navBarColor"
     let navBarTextColorUserDefaultsKey = "navBarTextColor"
@@ -49,6 +50,16 @@ class SettingsViewController: UIViewController {
         saveColorTheme()
         
         return color
+    }
+    
+    @IBAction func resetButtonPressed(_ sender: Any) {
+        redSlider.value = 114
+        greenSlider.value = 200
+        blueSlider.value = 250
+        
+        changeNavBarColorToColor(color: SettingsViewController.navBarColor)
+        changeTextColorIfNeeded()
+        saveColorTheme()
     }
     
     // MARK: - Change app color theme
