@@ -197,7 +197,6 @@ extension ViewController: UITableViewDataSource {
         let deed = section.deeds[indexPath.row]
         
         cell.deedDescriptionLabel.text = deed.title
-        cell.deedDescriptionLabel.font = UIFont.systemFont(ofSize: 22)
         
         return cell
     }
