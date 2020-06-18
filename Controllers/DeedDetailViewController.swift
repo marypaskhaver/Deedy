@@ -19,6 +19,7 @@ class DeedDetailViewController: UIViewController {
         deedTF.layer.borderWidth = 1
         deedTF.layer.cornerRadius = 8
         deedTF.layer.borderColor = UIColor.gray.cgColor
+        
         navigationController?.navigationBar.shadowImage = UIImage()
     }
     
@@ -30,7 +31,6 @@ class DeedDetailViewController: UIViewController {
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (identifier == "doneAddingSegue") {
-            
             if (deedTF.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)  {
                 self.performSegue(withIdentifier: "cancelAddingSegue", sender: Any?.self)
                 return false
