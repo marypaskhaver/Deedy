@@ -177,6 +177,10 @@ extension ViewController: UITableViewDelegate {
         
         return ViewController.dateFormatter.string(from: date)
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 // MARK: - TableView DataSource Methods
