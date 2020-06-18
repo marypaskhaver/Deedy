@@ -11,7 +11,7 @@ import UIKit
 class ChallengeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var challengeDescriptionLabel: UILabel!
-    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var subtitleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
