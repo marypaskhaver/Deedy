@@ -218,14 +218,21 @@ extension ChallengesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as! ChallengeTableViewCell
+    
+        let achievement = achievements[indexPath.row]
         
-        let progress = Float(achievements[indexPath.row].goalNumber) / Float(totalDeedsDone)
+        let progress = Float(achievement.goalNumber) / Float(totalDeedsDone)
         
-        cell.challengeDescriptionLabel.text = achievements[indexPath.row].title
-        cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievements[indexPath.row].goalNumber)"
+        cell.challengeDescriptionLabel.text = achievement.title
+        
+        if (totalDeedsDone >= achievement.goalNumber) {
+            cell.subtitleLabel.text = "\(achievement.goalNumber) / \(achievement.goalNumber)"
+        } else {
+            cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievements[indexPath.row].goalNumber)"
+        }
+    
                 
         return cell
     }
-    
-    
+        
 }
