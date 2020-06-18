@@ -60,7 +60,7 @@ class ViewController: UIViewController {
             newDeed.title = deedDetailVC.deedTF.text
             newDeed.date = Date()
                                        
-            deeds.insert(newDeed, at: 0)
+            deeds.insert(newDeed, at: 0)            
         } else if (segue.identifier == "doneSortingSegue") {
             
         }
@@ -149,8 +149,8 @@ extension ViewController: UITableViewDelegate {
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
             
             context.delete(deeds[indexPath.row])
-            self.sections[indexPath.section].deeds.remove(at: indexPath.row)
             deeds.remove(at: indexPath.row)
+            sections[indexPath.section].deeds.remove(at: indexPath.row)
             
             if self.sections[indexPath.section].deeds.count == 0 {
                 self.sections.remove(at: indexPath.section)
