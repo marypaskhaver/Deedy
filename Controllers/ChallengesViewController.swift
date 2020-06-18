@@ -22,6 +22,8 @@ class ChallengesViewController: UIViewController {
     var deedsDoneToday: Int = 0
     var achievements = [Achievement]()
     
+    var totalDeedsDone: Int = 0
+    
     @IBAction func stepperValueChanged(_ sender: Any) {
         dailyChallenge.dailyGoal = Int32(Int(stepper.value))
         dailyChallenge.date = Date()
@@ -34,7 +36,7 @@ class ChallengesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView()
@@ -53,6 +55,23 @@ class ChallengesViewController: UIViewController {
     }
     
     func loadAchievements() {
+        let request: NSFetchRequest<Achievement> = Achievement.fetchRequest()
+        
+        do {
+            achievements = try context.fetch(request)
+            
+            // If no achievements have been saved before
+            if (achievements.count == 0) {
+                createAchievements()
+            }
+        } catch {
+            print("Error fetching data from context \(error)")
+        }
+        
+        tableView.reloadData()
+    }
+    
+    func createAchievements() {
         let titlesAndNumbers = [
             ["Complete 5 deeds", 5],
             ["Complete 10 deeds", 10],
@@ -70,7 +89,6 @@ class ChallengesViewController: UIViewController {
             newAchievement.isDone = false
             achievements.append(newAchievement)
         }
-        
     }
     
     // MARK: - Manipulating Progress Views and Daily Challenge Items
@@ -165,6 +183,10 @@ extension ChallengesViewController: UITableViewDelegate {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.textLabel?.textAlignment = NSTextAlignment.center
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
 }
 
@@ -177,8 +199,11 @@ extension ChallengesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as! ChallengeTableViewCell
         
-        cell.challengeDescriptionLabel.text = achievements[indexPath.row].title
+        let progress = Float(achievements[indexPath.row].goalNumber) / Float(totalDeedsDone)
         
+        cell.challengeDescriptionLabel.text = achievements[indexPath.row].title
+        cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievements[indexPath.row].goalNumber)"
+                
         return cell
     }
     
