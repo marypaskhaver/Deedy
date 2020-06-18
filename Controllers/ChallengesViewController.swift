@@ -31,7 +31,7 @@ class ChallengesViewController: UIViewController {
         
         revealDailyGoalRelatedItemsIfNeeded()
         
-        saveDailyGoalValue()
+        saveGoalsAndAchievements()
     }
     
     override func viewDidLoad() {
@@ -54,6 +54,7 @@ class ChallengesViewController: UIViewController {
         setProgressViewValue()
     }
     
+    //MARK: - Loading and Creating Achievements
     func loadAchievements() {
         let request: NSFetchRequest<Achievement> = Achievement.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "goalNumber", ascending: true)]
@@ -143,7 +144,7 @@ class ChallengesViewController: UIViewController {
     }
     
     // MARK: - Model Manipulation Methods
-    func saveDailyGoalValue() {
+    func saveGoalsAndAchievements() {
         do {
             try context.save()
         } catch {
