@@ -67,6 +67,7 @@ class ChallengesViewController: UIViewController {
             let newAchievement = Achievement(context: context)
             newAchievement.title = (titleAndNumber[0] as! String)
             newAchievement.goalNumber = Int32((titleAndNumber[1] as! Int))
+            newAchievement.isDone = false
             achievements.append(newAchievement)
         }
         
