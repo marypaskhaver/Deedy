@@ -228,6 +228,7 @@ extension ChallengesViewController: UITableViewDataSource {
         if (totalDeedsDone >= achievement.goalNumber) {
             cell.subtitleLabel.text = "\(achievement.goalNumber) / \(achievement.goalNumber)"
             cell.subtitleLabel.textColor = UIColor(red: 26 / 255.0, green: 145 / 255.0, blue: 0 / 255.0, alpha: 1.0)
+            achievement.isDone = true
         } else {
             cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievements[indexPath.row].goalNumber)"
         }
