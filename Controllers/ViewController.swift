@@ -26,7 +26,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        deeds = []
         updateSections()
         ViewController.dateFormatter.dateFormat = "MMMM yyyy"
         
@@ -60,13 +59,13 @@ class ViewController: UIViewController {
             newDeed.title = deedDetailVC.deedTF.text
             newDeed.date = Date()
                                        
-            deeds.insert(newDeed, at: 0)            
+            deeds.insert(newDeed, at: 0)
         } else if (segue.identifier == "doneSortingSegue") {
             
         }
         
         self.saveDeeds()
-
+        
         // Add update GlobalViewController here
         GlobalViewController.add1ToTotalDeeds()
     }
@@ -74,13 +73,13 @@ class ViewController: UIViewController {
     // MARK: - Updating/Sorting Sections and Labels
     func splitSections() {
         if (ViewController.timeSection == "Day") {
-            self.sections = DaySection.group(deeds: self.deeds)
+            self.sections = DaySection.group(deeds: deeds)
         } else if (ViewController.timeSection == "Week") {
-            self.sections = WeekSection.group(deeds: self.deeds)
+            self.sections = WeekSection.group(deeds: deeds)
         } else if (ViewController.timeSection == "Month") {
-            self.sections = MonthSection.group(deeds: self.deeds)
+            self.sections = MonthSection.group(deeds: deeds)
         } else if (ViewController.timeSection == "Year") {
-            self.sections = YearSection.group(deeds: self.deeds)
+            self.sections = YearSection.group(deeds: deeds)
         }
         
         self.sections.sort { (lhs, rhs) in lhs.date > rhs.date }
@@ -142,29 +141,6 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
-    }
-    
-    // Delete deed
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            
-            context.delete(deeds[indexPath.row])
-            deeds.remove(at: indexPath.row)
-            sections[indexPath.section].deeds.remove(at: indexPath.row)
-            
-            if self.sections[indexPath.section].deeds.count == 0 {
-                self.sections.remove(at: indexPath.section)
-                
-                tableView.deleteSections([indexPath.section], with: .automatic)
-                
-                updateSections()
-            } else {
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                updateDeedsLabel()
-            }
-        }
-        
-        saveDeeds()
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
