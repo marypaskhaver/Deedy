@@ -20,6 +20,7 @@ class ChallengesViewController: UIViewController {
     
     var dailyChallenge: DailyChallenge = DailyChallenge(context: context)
     var deedsDoneToday: Int = 0
+    var achievements = [Achievement]()
     
     @IBAction func stepperValueChanged(_ sender: Any) {
         dailyChallenge.dailyGoal = Int32(Int(stepper.value))
@@ -28,7 +29,6 @@ class ChallengesViewController: UIViewController {
         
         revealDailyGoalRelatedItemsIfNeeded()
         
-        setProgressViewValue()
         saveDailyGoalValue()
     }
     
@@ -38,8 +38,11 @@ class ChallengesViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView()
+        
+        loadAchievements()
 
         dailyGoalProgressView.transform = CGAffineTransform(scaleX: 1.0, y: 2.0)
+
         loadDailyGoalValue()
         // Do any additional setup after loading the view.
     }
@@ -48,6 +51,28 @@ class ChallengesViewController: UIViewController {
         setDeedsDoneToday()
         setProgressViewValue()
     }
+    
+    func loadAchievements() {
+        let titlesAndNumbers = [
+            ["Complete 5 deeds", 5],
+            ["Complete 10 deeds", 10],
+            ["Complete 25 deeds", 25],
+            ["Complete 50 deeds", 50],
+            ["Complete 75 deeds", 75],
+            ["Complete 100 deeds", 100],
+            ["Complete 200 deeds", 200],
+        ]
+        
+        for titleAndNumber in titlesAndNumbers {
+            let newAchievement = Achievement(context: context)
+            newAchievement.title = (titleAndNumber[0] as! String)
+            newAchievement.goalNumber = Int32((titleAndNumber[1] as! Int))
+            achievements.append(newAchievement)
+        }
+        
+    }
+    
+    // MARK: - Manipulating Progress Views and Daily Challenge Items
     
     func setProgressViewValue() {
         if (dailyChallenge.dailyGoal != 0) {
@@ -86,6 +111,8 @@ class ChallengesViewController: UIViewController {
             hideDailyGoalRelatedItems(bool: true)
             tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
+        
+        setProgressViewValue()
     }
     
     func hideDailyGoalRelatedItems(bool: Bool) {
@@ -143,14 +170,13 @@ extension ChallengesViewController: UITableViewDelegate {
 // MARK: - TableView DataSource Methods
 extension ChallengesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return challenges.count
-        return 1
+        return achievements.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as! ChallengeTableViewCell
         
-        cell.challengeDescriptionLabel.text = "Hello"
+        cell.challengeDescriptionLabel.text = achievements[indexPath.row].title
         
         return cell
     }
