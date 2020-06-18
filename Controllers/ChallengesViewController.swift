@@ -56,6 +56,7 @@ class ChallengesViewController: UIViewController {
     
     func loadAchievements() {
         let request: NSFetchRequest<Achievement> = Achievement.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "goalNumber", ascending: true)]
         
         do {
             achievements = try context.fetch(request)
@@ -64,6 +65,7 @@ class ChallengesViewController: UIViewController {
             if (achievements.count == 0) {
                 createAchievements()
             }
+            
         } catch {
             print("Error fetching data from context \(error)")
         }
@@ -209,5 +211,3 @@ extension ChallengesViewController: UITableViewDataSource {
     
     
 }
-
-
