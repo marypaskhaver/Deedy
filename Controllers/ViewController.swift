@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalDeedsLabel: UILabel!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -54,11 +54,11 @@ class ViewController: UIViewController {
         
         if (segue.identifier == "doneAddingSegue") {
             let deedDetailVC = segue.source as! DeedDetailViewController
-            
+                
             let newDeed = Deed(context: context)
             newDeed.title = deedDetailVC.deedTF.text
             newDeed.date = Date()
-                                       
+
             deeds.insert(newDeed, at: 0)
         } else if (segue.identifier == "doneSortingSegue") {
             
@@ -143,6 +143,20 @@ extension ViewController: UITableViewDelegate {
         return sections.count
     }
     
+    // Edit deed
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let contextItem = UIContextualAction(style: .normal, title: "Edit") {  (contextualAction, view, boolValue) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            // Code to edit item here
+        }
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+
+        return swipeActions
+    }
+
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = self.sections[section]
         let date = section.date
@@ -157,6 +171,7 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
 }
 
 // MARK: - TableView DataSource Methods
