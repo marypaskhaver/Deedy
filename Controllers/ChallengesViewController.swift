@@ -41,17 +41,34 @@ class ChallengesViewController: UIViewController {
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView()
         
+        setTotalDeedsDone()
+        
         loadAchievements()
 
         dailyGoalProgressView.transform = CGAffineTransform(scaleX: 1.0, y: 2.0)
 
         loadDailyGoalValue()
         // Do any additional setup after loading the view.
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setDeedsDoneToday()
         setProgressViewValue()
+        
+        setTotalDeedsDone()
+    }
+    
+    func setTotalDeedsDone() {
+        let request: NSFetchRequest<Deed> = Deed.fetchRequest()
+        
+        do {
+            self.totalDeedsDone = try context.fetch(request).count
+        } catch {
+            print("Error fetching data from context \(error)")
+        }
+        
+        tableView.reloadData()
     }
     
     //MARK: - Loading and Creating Achievements
@@ -61,7 +78,7 @@ class ChallengesViewController: UIViewController {
         
         do {
             achievements = try context.fetch(request)
-            
+
             // If no achievements have been saved before
             if (achievements.count == 0) {
                 createAchievements()
