@@ -36,7 +36,7 @@ class ChallengesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        // Do any additional setup after loading the view.
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView()
@@ -48,13 +48,11 @@ class ChallengesViewController: UIViewController {
         dailyGoalProgressView.transform = CGAffineTransform(scaleX: 1.0, y: 2.0)
 
         loadDailyGoalValue()
-        // Do any additional setup after loading the view.
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setDeedsDoneToday()
-        setProgressViewValue()
+        setDailyGoalProgressViewValue()
         
         setTotalDeedsDone()
     }
@@ -113,7 +111,7 @@ class ChallengesViewController: UIViewController {
     
     // MARK: - Manipulating Progress Views and Daily Challenge Items
     
-    func setProgressViewValue() {
+    func setDailyGoalProgressViewValue() {
         if (dailyChallenge.dailyGoal != 0) {
             let progress = Float(deedsDoneToday) / Float(dailyChallenge.dailyGoal)
             dailyGoalProgressView.setProgress(progress, animated: true)
@@ -151,7 +149,7 @@ class ChallengesViewController: UIViewController {
             tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
         
-        setProgressViewValue()
+        setDailyGoalProgressViewValue()
     }
     
     func hideDailyGoalRelatedItems(bool: Bool) {
