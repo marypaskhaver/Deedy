@@ -231,7 +231,6 @@ extension ChallengesViewController: UITableViewDataSource {
         } else {
             cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievements[indexPath.row].goalNumber)"
         }
-    
                 
         return cell
     }
