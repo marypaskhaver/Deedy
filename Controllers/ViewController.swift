@@ -200,10 +200,14 @@ extension ViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.textLabel?.font = UIFont.systemFont(ofSize: 22)
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
     }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+       let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+       header.textLabel?.font = UIFont.systemFont(ofSize: 22)
+   }
     
 }
 
@@ -225,7 +229,7 @@ extension ViewController: UITableViewDataSource {
         let deed = section.deeds[indexPath.row]
         
         cell.deedDescriptionLabel.text = deed.title
-        
+                
         return cell
     }
 }
