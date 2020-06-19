@@ -159,6 +159,8 @@ extension ViewController: UITableViewDelegate {
             self.editedIndexPath = indexPath
         }
         
+        contextItem.backgroundColor = UIColor.systemTeal
+
         let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
 
         return swipeActions
