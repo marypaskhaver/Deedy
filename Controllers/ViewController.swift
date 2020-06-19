@@ -128,7 +128,9 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
     }
     
     // Provides default value if no request is sent
-    func loadDeeds(with request: NSFetchRequest<Deed> = Deed.fetchRequest()) {        
+    func loadDeeds(with request: NSFetchRequest<Deed> = Deed.fetchRequest()) {
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        
         do {
             deeds = try context.fetch(request)
             updateSections()
