@@ -228,8 +228,16 @@ class ChallengesViewController: UIViewController {
     
     // MARK: - Model Manipulation Methods
     func saveGoalsAndAchievements() {
-        print("Saving everything")
+
         do {
+            if dailyChallenge.date == nil {
+                dailyChallenge.date = Date()
+            }
+            
+            if streak.date == nil {
+                streak.date = Date()
+            }
+            
             try context.save()
         } catch {
             print("Error saving context \(error)")
