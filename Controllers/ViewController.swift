@@ -161,12 +161,14 @@ extension ViewController: UITableViewDelegate {
             self.navigationController?.present(evc, animated: true)
             
             self.editedIndexPath = indexPath
+            
+            tableView.reloadData()
         }
-        
+                
         contextItem.backgroundColor = UIColor(red: 0 / 255.0, green: 148 / 255.0, blue: 206 / 255.0, alpha: 1.0)
 
         let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
-
+        
         return swipeActions
     }
     
