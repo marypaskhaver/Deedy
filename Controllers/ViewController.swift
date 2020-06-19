@@ -11,7 +11,7 @@ import CoreData
 
 let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, DataEnteredDelegateProtocol {
     
     var deeds = [Deed]()
     var sections = [TimeSection]()
@@ -21,7 +21,10 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalDeedsLabel: UILabel!
-        
+    
+    var editedDeedText: String = ""
+    var editedIndexPath: IndexPath! = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -54,11 +57,11 @@ class ViewController: UIViewController {
         
         if (segue.identifier == "doneAddingSegue") {
             let deedDetailVC = segue.source as! DeedDetailViewController
-                
+            
             let newDeed = Deed(context: context)
             newDeed.title = deedDetailVC.deedTF.text
             newDeed.date = Date()
-
+                                       
             deeds.insert(newDeed, at: 0)
         } else if (segue.identifier == "doneSortingSegue") {
             
@@ -148,12 +151,29 @@ extension ViewController: UITableViewDelegate {
         
         let contextItem = UIContextualAction(style: .normal, title: "Edit") {  (contextualAction, view, boolValue) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            // Code to edit item here
+            let evc = storyboard.instantiateViewController(withIdentifier: "EditDeedViewController") as! EditDeedViewController
+            evc.delegate = self
+            
+            self.navigationController?.present(evc, animated: true)
+            
+            self.editedIndexPath = indexPath
         }
         
         let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
 
         return swipeActions
+    }
+    
+    func userEditedDeed(newDeedTitle: String) {
+        editedDeedText = newDeedTitle
+        
+        deeds[editedIndexPath.row].title = editedDeedText
+
+        editedDeedText = ""
+        editedIndexPath = nil
+        
+        saveDeeds()
+        tableView.reloadData()
     }
 
     
