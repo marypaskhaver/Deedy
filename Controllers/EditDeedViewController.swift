@@ -18,10 +18,22 @@ class EditDeedViewController: UIViewController {
     
     var delegate: DataEnteredDelegateProtocol? = nil
     var oldText: String = ""
+    @IBOutlet weak var invalidInputWarningLabel: UILabel!
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
-        delegate?.userEditedDeed(newDeedTitle: textView.text)
-        self.presentingViewController?.dismiss(animated: true, completion:nil)
+        let trimmedText: String = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        
+        if (trimmedText.count == 0) {
+            invalidInputWarningLabel.isHidden = false
+        } else {
+            delegate?.userEditedDeed(newDeedTitle: trimmedText)
+            presentingViewController?.dismiss(animated: true, completion:nil)
+        }
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        presentingViewController?.dismiss(animated: true, completion:nil)
     }
     
     override func viewDidLoad() {
@@ -32,6 +44,7 @@ class EditDeedViewController: UIViewController {
         textView.layer.borderColor = UIColor.gray.cgColor
         
         textView.text = oldText
+        invalidInputWarningLabel.isHidden = true
     }
 
 }
