@@ -24,7 +24,7 @@ class ChallengesViewController: UIViewController {
     var achievements = [Achievement]()
     
     var totalDeedsDone: Int = 0
-    
+
     @IBAction func stepperValueChanged(_ sender: Any) {
         dailyChallenge.dailyGoal = Int32(stepper.value)
         dailyChallenge.date = Date()
@@ -207,14 +207,16 @@ class ChallengesViewController: UIViewController {
             print("Error fetching data from context \(error)")
         }
     }
-    
-    func revealDailyGoalRelatedItemsIfNeeded() {
+
+    // Change tableView frame and animate?
+    func revealDailyGoalRelatedItemsIfNeeded() {        
         if (dailyChallenge.dailyGoal > 0) {
             hideDailyGoalRelatedItems(bool: false)
-            tableView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
+            
+            tableView.frame = CGRect(x: 0, y: originalTableViewYPos + 108, width: tableView.frame.width, height: tableView.frame.height)
         } else { // If daily goals are set to 0, remove daily goal-related items from screen
             hideDailyGoalRelatedItems(bool: true)
-            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            tableView.frame = CGRect(x: 0, y: originalTableViewYPos, width: CGFloat(tableView.frame.width), height: CGFloat(tableView.frame.height))
         }
         
         setDailyGoalProgressViewValue()
