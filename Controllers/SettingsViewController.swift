@@ -59,7 +59,7 @@ class SettingsViewController: UIViewController {
         greenSlider.value = 200
         blueSlider.value = 250
         
-        changeNavBarColorToColor(color: SettingsViewController.navBarColor)
+        changeNavBarColorToColor(color: getUIColorFromSliders())
         changeTextColorIfNeeded()
         saveColorTheme()
     }
