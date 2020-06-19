@@ -59,7 +59,7 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
             let deedDetailVC = segue.source as! DeedDetailViewController
             
             let newDeed = Deed(context: context)
-            newDeed.title = deedDetailVC.deedTF.text
+            newDeed.title = deedDetailVC.textView.text
             newDeed.date = Date()
                                        
             deeds.insert(newDeed, at: 0)
