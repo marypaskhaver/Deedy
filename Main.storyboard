@@ -35,19 +35,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY9-jS-oI8">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY9-jS-oI8">
                                                     <rect key="frame" x="20" y="8" width="374" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="bY9-jS-oI8" firstAttribute="top" secondItem="qnL-ks-HWZ" secondAttribute="top" constant="8" id="NOB-dG-ut8"/>
-                                                <constraint firstItem="bY9-jS-oI8" firstAttribute="leading" secondItem="qnL-ks-HWZ" secondAttribute="leading" constant="20" id="mRx-Gj-76g"/>
-                                                <constraint firstAttribute="trailing" secondItem="bY9-jS-oI8" secondAttribute="trailing" constant="20" id="r0Q-t7-i1l"/>
-                                                <constraint firstAttribute="bottom" secondItem="bY9-jS-oI8" secondAttribute="bottom" constant="8" id="reQ-re-9Rn"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="deedDescriptionLabel" destination="bY9-jS-oI8" id="BZb-tU-5Jd"/>
@@ -99,7 +94,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1938" y="-17"/>
+            <point key="canvasLocation" x="1937.68115942029" y="-17.410714285714285"/>
         </scene>
         <!--Deed Detail View Controller-->
         <scene sceneID="EcN-cb-k0X">
@@ -150,6 +145,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ulo-aS-4Hj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3602.898550724638" y="253.79464285714283"/>
+        </scene>
+        <!--Edit Deed View Controller-->
+        <scene sceneID="ZRp-Qo-RRf">
+            <objects>
+                <viewController storyboardIdentifier="EditDeedViewController" id="tQX-D5-bfJ" customClass="EditDeedViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="USf-d2-9PL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Yw-Rm-JlE">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LD1-xx-jru">
+                                <rect key="frame" x="20" y="148" width="374" height="323"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HCf-Yg-a7j">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Edit Deed" id="2UX-Ss-IkO">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="oz3-9Z-d8A">
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="doneButtonPressed:" destination="tQX-D5-bfJ" id="IRv-Q8-M90"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="W0h-ja-2WO"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="AU2-og-9wZ"/>
+                    <connections>
+                        <outlet property="textView" destination="LD1-xx-jru" id="XxS-vr-zBe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pHv-WJ-3At" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5276.811594202899" y="256.47321428571428"/>
         </scene>
         <!--Sort Deeds View Controller-->
         <scene sceneID="YBQ-iH-2RQ">
@@ -573,6 +615,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L7v-7F-t4k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="755" y="1323"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="s85-yD-eiv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KEH-1e-Ydw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jbt-WV-Sfy">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tQX-D5-bfJ" kind="relationship" relationship="rootViewController" id="pTa-Gd-3OE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="REl-IL-CUh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4366.666666666667" y="256.47321428571428"/>
         </scene>
     </scenes>
     <resources>
