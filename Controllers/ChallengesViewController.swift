@@ -53,10 +53,6 @@ class ChallengesViewController: UIViewController {
         
         loadStreak()
         
-        // Find out the last time the user created a deed, so get array of most recent deeds and pick the topmost's date
-        // Check if that date was only 1 day ago/yesterday
-        // If that deed was done yesterday AND the total deeds done that day was >= dailyChallenge.dailyGoal, add one to the streakLabel and save it.
-        // You're going to have to perhaps make a new CoreData entity for the int in the streakLabel
         if totalDeedsDone > 0 {
             updateStreak()
         }
@@ -94,7 +90,7 @@ class ChallengesViewController: UIViewController {
             streak.date = Date()
             
             dailyGoalStreakLabel.text = String(streak.daysKept)
-            revealDailyGoalRelatedItemsIfNeeded() 
+            revealDailyGoalRelatedItemsIfNeeded()
         } catch {
             print("Error fetching data from context \(error)")
         }
