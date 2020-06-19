@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        changeAppColor()
         return true
     }
 
@@ -53,5 +55,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                }
            }
        }
+    
+    //MARK: - Change app color theme
+    
+    func changeAppColor() {
+        if let navBarColor = defaults.color(forKey: "navBarColor") {
+            UINavigationBar.appearance().barTintColor = navBarColor
+        }
+
+        if let navBarTextColor = defaults.color(forKey: "navBarTextColor") {
+            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: navBarTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
+
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: navBarTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)], for: .normal)
+        }
+    }
 
 }
