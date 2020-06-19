@@ -209,7 +209,9 @@ class ChallengesViewController: UIViewController {
     }
 
     // Change tableView frame and animate?
-    func revealDailyGoalRelatedItemsIfNeeded() {        
+    func revealDailyGoalRelatedItemsIfNeeded() {
+        let originalTableViewYPos: CGFloat = 236
+        
         if (dailyChallenge.dailyGoal > 0) {
             hideDailyGoalRelatedItems(bool: false)
             
