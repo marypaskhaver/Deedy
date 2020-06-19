@@ -221,11 +221,9 @@ extension ChallengesViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as! ChallengeTableViewCell
     
         let achievement = achievements[indexPath.row]
-        
-        let progress = Float(achievement.goalNumber) / Float(totalDeedsDone)
-        
+                
         cell.challengeDescriptionLabel.text = achievement.title
-        
+
         if (totalDeedsDone >= achievement.goalNumber) {
             cell.subtitleLabel.text = "\(achievement.goalNumber) / \(achievement.goalNumber)"
             cell.subtitleLabel.textColor = UIColor(red: 26 / 255.0, green: 145 / 255.0, blue: 0 / 255.0, alpha: 1.0)
