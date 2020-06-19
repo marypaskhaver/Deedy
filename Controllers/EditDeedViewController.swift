@@ -15,7 +15,9 @@ protocol DataEnteredDelegateProtocol {
 class EditDeedViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
+    
     var delegate: DataEnteredDelegateProtocol? = nil
+    var oldText: String = ""
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         delegate?.userEditedDeed(newDeedTitle: textView.text)
@@ -28,6 +30,8 @@ class EditDeedViewController: UIViewController {
         textView.layer.borderWidth = 1
         textView.layer.cornerRadius = 8
         textView.layer.borderColor = UIColor.gray.cgColor
+        
+        textView.text = oldText
     }
 
 }
