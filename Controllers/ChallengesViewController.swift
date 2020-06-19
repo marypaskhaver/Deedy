@@ -27,6 +27,7 @@ class ChallengesViewController: UIViewController {
     @IBAction func stepperValueChanged(_ sender: Any) {
         dailyChallenge.dailyGoal = Int32(stepper.value)
         dailyChallenge.date = Date()
+        
         dailyGoalStepperLabel.text = String(dailyChallenge.dailyGoal)
         
         revealDailyGoalRelatedItemsIfNeeded()
@@ -48,10 +49,19 @@ class ChallengesViewController: UIViewController {
         dailyGoalProgressView.transform = CGAffineTransform(scaleX: 1.0, y: 2.0)
 
         loadDailyGoalValue()
+        
+        // Find out the last time the user created a deed, so get array of most recent deeds and pick the topmost's date
+        // Check if that date was only 1 day ago/yesterday
+        // If that deed was done yesterday AND the total deeds done that day was >= dailyChallenge.dailyGoal, add one to the streakLabel and save it.
+        // You're going to have to perhaps make a new CoreData entity for the int in the streakLabel
+        if totalDeedsDone > 0 {
+            getMostRecentDeedsDone()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setDeedsDoneToday()
+        setCountOfDeedsDoneToday()
+
         setDailyGoalProgressViewValue()
         
         setTotalDeedsDone()
@@ -67,6 +77,47 @@ class ChallengesViewController: UIViewController {
         }
         
         tableView.reloadData()
+    }
+    
+    // MARK: - Updating Daily Streak
+    func getMostRecentDeedsDone() {
+        do {
+            let request: NSFetchRequest<Deed> = Deed.fetchRequest()
+            request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+
+            var calendar = Calendar.current
+            calendar.timeZone = NSTimeZone.local
+            
+            // Include deeds only done before today
+            let predicate = NSPredicate(format: "date < %@", calendar.startOfDay(for: Date()) as NSDate)
+            
+            request.predicate = predicate
+
+            var arrayOfDeedsDone = try context.fetch(request)
+            
+            if (arrayOfDeedsDone.count == 0) {
+                print("No deeds completed before today")
+                return
+            }
+            
+            // This date will be the date of the most recent deed before today
+            var dateMostRecentDeedDone = arrayOfDeedsDone[0].date!
+            dateMostRecentDeedDone = calendar.startOfDay(for: dateMostRecentDeedDone)
+
+            
+            // Create CoreData entity for streak #
+            // Check if deed was done yesterday-- if it was: add to streak w/ if statement below, else: set streak to zero, then save everything
+            
+            arrayOfDeedsDone = arrayOfDeedsDone.filter{ $0.date! >= dateMostRecentDeedDone }
+            print("Count of array of deeds from most recent day (NOT INC TODAY): \(arrayOfDeedsDone.count)")
+            
+            if (arrayOfDeedsDone.count >= dailyChallenge.dailyGoal) {
+                // Because nothing was saved w/ CoreData, this would only stay at 1
+                print("The streak should be increased")
+            }
+        } catch {
+            print("Error fetching data from context \(error)")
+        }
     }
     
     //MARK: - Loading and Creating Achievements
@@ -112,13 +163,13 @@ class ChallengesViewController: UIViewController {
     // MARK: - Manipulating Progress Views and Daily Challenge Items
     
     func setDailyGoalProgressViewValue() {
-        if (dailyChallenge.dailyGoal != 0) {
+        if (dailyChallenge.dailyGoal > 0) {
             let progress = Float(deedsDoneToday) / Float(dailyChallenge.dailyGoal)
             dailyGoalProgressView.setProgress(progress, animated: true)
         }
     }
     
-    func setDeedsDoneToday() {
+    func setCountOfDeedsDoneToday() {
         do {
             let request: NSFetchRequest<Deed> = Deed.fetchRequest()
             var calendar = Calendar.current
@@ -160,6 +211,7 @@ class ChallengesViewController: UIViewController {
     
     // MARK: - Model Manipulation Methods
     func saveGoalsAndAchievements() {
+        print("Saving everything")
         do {
             try context.save()
         } catch {
@@ -169,13 +221,14 @@ class ChallengesViewController: UIViewController {
     
     func loadDailyGoalValue() {
         let request : NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(DailyChallenge.date), ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
 
         do {
             let fetchedRequest = try context.fetch(request)
-            
+                    
             dailyChallenge.dailyGoal = fetchedRequest[0].dailyGoal
-
+            dailyChallenge.date = Date()
+                
             stepper.value = Double(dailyChallenge.dailyGoal)
             dailyGoalStepperLabel.text = String(dailyChallenge.dailyGoal)
             revealDailyGoalRelatedItemsIfNeeded()
