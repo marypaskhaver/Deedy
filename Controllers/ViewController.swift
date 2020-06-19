@@ -128,7 +128,7 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
     }
     
     // Provides default value if no request is sent
-    func loadDeeds(with request: NSFetchRequest<Deed> = Deed.fetchRequest()) {
+    func loadDeeds(with request: NSFetchRequest<Deed> = Deed.fetchRequest()) {        
         do {
             deeds = try context.fetch(request)
             updateSections()
@@ -154,12 +154,14 @@ extension ViewController: UITableViewDelegate {
             let evc = storyboard.instantiateViewController(withIdentifier: "EditDeedViewController") as! EditDeedViewController
             evc.delegate = self
             
+            evc.oldText = self.deeds[indexPath.row].title!
+            
             self.navigationController?.present(evc, animated: true)
             
             self.editedIndexPath = indexPath
         }
         
-        contextItem.backgroundColor = UIColor.systemTeal
+        contextItem.backgroundColor = UIColor(red: 0 / 255.0, green: 148 / 255.0, blue: 206 / 255.0, alpha: 1.0)
 
         let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
 
