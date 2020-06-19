@@ -19,6 +19,7 @@ class ChallengesViewController: UIViewController {
     @IBOutlet weak var labelSayingStreak: UILabel!
     
     var dailyChallenge: DailyChallenge = DailyChallenge(context: context)
+    var streak: Streak = Streak(context: context)
     var deedsDoneToday: Int = 0
     var achievements = [Achievement]()
     
@@ -50,6 +51,8 @@ class ChallengesViewController: UIViewController {
 
         loadDailyGoalValue()
         
+        loadStreak()
+        
         // Find out the last time the user created a deed, so get array of most recent deeds and pick the topmost's date
         // Check if that date was only 1 day ago/yesterday
         // If that deed was done yesterday AND the total deeds done that day was >= dailyChallenge.dailyGoal, add one to the streakLabel and save it.
@@ -80,9 +83,25 @@ class ChallengesViewController: UIViewController {
     }
     
     // MARK: - Updating Daily Streak
+    func loadStreak() {
+        let request : NSFetchRequest<Streak> = Streak.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+
+        do {
+            let fetchedRequest = try context.fetch(request)
+                    
+            streak.daysKept = fetchedRequest[0].dailyGoal
+            streak.date = Date()
+            
+            dailyGoalStreakLabel.text = String(streak.daysKept)
+            revealDailyGoalRelatedItemsIfNeeded() 
+        } catch {
+            print("Error fetching data from context \(error)")
+        }
+    }
+    
     func updateStreak() {
         do {
-            // Fix this: Get # of deeds done yesterday
             let request: NSFetchRequest<Deed> = Deed.fetchRequest()
             request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
 
