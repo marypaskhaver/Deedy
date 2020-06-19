@@ -55,7 +55,7 @@ class ChallengesViewController: UIViewController {
         // If that deed was done yesterday AND the total deeds done that day was >= dailyChallenge.dailyGoal, add one to the streakLabel and save it.
         // You're going to have to perhaps make a new CoreData entity for the int in the streakLabel
         if totalDeedsDone > 0 {
-            getMostRecentDeedsDone()
+            updateStreak()
         }
     }
     
@@ -80,7 +80,7 @@ class ChallengesViewController: UIViewController {
     }
     
     // MARK: - Updating Daily Streak
-    func getMostRecentDeedsDone() {
+    func updateStreak() {
         do {
             // Fix this: Get # of deeds done yesterday
             let request: NSFetchRequest<Deed> = Deed.fetchRequest()
