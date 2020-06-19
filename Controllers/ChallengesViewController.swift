@@ -82,6 +82,7 @@ class ChallengesViewController: UIViewController {
     // MARK: - Updating Daily Streak
     func getMostRecentDeedsDone() {
         do {
+            // Fix this: Get # of deeds done yesterday
             let request: NSFetchRequest<Deed> = Deed.fetchRequest()
             request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
 
@@ -89,32 +90,31 @@ class ChallengesViewController: UIViewController {
             calendar.timeZone = NSTimeZone.local
             
             // Include deeds only done before today
-            let predicate = NSPredicate(format: "date < %@", calendar.startOfDay(for: Date()) as NSDate)
-            
-            request.predicate = predicate
+            let today = calendar.startOfDay(for: Date())
+            let yesterday = calendar.date(byAdding: .day, value: -1, to: today)
 
-            var arrayOfDeedsDone = try context.fetch(request)
+             // Set predicate as date being today's date
+            let fromPredicate = NSPredicate(format: "date >= %@", yesterday as! NSDate)
+            let toPredicate = NSPredicate(format: "date < %@", today as! NSDate)
             
-            if (arrayOfDeedsDone.count == 0) {
-                print("No deeds completed before today")
-                return
-            }
-            
-            // This date will be the date of the most recent deed before today
-            var dateMostRecentDeedDone = arrayOfDeedsDone[0].date!
-            dateMostRecentDeedDone = calendar.startOfDay(for: dateMostRecentDeedDone)
-
-            
+            let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
+            request.predicate = datePredicate
+             
+            let arrayOfDeedsDoneYesterday = try context.fetch(request)
+            print("amount of deeds done yesterday: \(arrayOfDeedsDoneYesterday.count)")
             // Create CoreData entity for streak #
             // Check if deed was done yesterday-- if it was: add to streak w/ if statement below, else: set streak to zero, then save everything
-            
-            arrayOfDeedsDone = arrayOfDeedsDone.filter{ $0.date! >= dateMostRecentDeedDone }
-            print("Count of array of deeds from most recent day (NOT INC TODAY): \(arrayOfDeedsDone.count)")
-            
-            if (arrayOfDeedsDone.count >= dailyChallenge.dailyGoal) {
-                // Because nothing was saved w/ CoreData, this would only stay at 1
-                print("The streak should be increased")
+            if (arrayOfDeedsDoneYesterday.count == 0) {
+                print("No deeds completed yesterday, streak should be set to zero")
+                //Reset streak label to zero here and save
+                return
+            } else {
+                if (arrayOfDeedsDoneYesterday.count >= dailyChallenge.dailyGoal) {
+                    // Because nothing was saved w/ CoreData, this would only stay at 1
+                    print("The streak should be increased")
+                }
             }
+            
         } catch {
             print("Error fetching data from context \(error)")
         }
