@@ -25,7 +25,7 @@ class ChallengesViewController: UIViewController {
     var totalDeedsDone: Int = 0
     
     @IBAction func stepperValueChanged(_ sender: Any) {
-        dailyChallenge.dailyGoal = Int32(Int(stepper.value))
+        dailyChallenge.dailyGoal = Int32(stepper.value)
         dailyChallenge.date = Date()
         dailyGoalStepperLabel.text = String(dailyChallenge.dailyGoal)
         
@@ -232,7 +232,7 @@ extension ChallengesViewController: UITableViewDataSource {
             cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievements[indexPath.row].goalNumber)"
         }
                 
-        return cell
+        return cell 
     }
     
 }
