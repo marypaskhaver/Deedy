@@ -18,6 +18,6 @@ extension DailyChallenge {
     }
 
     @NSManaged public var dailyGoal: Int32
-    @NSManaged public var date: Date
+    @NSManaged public var date: Date?
 
 }
