@@ -86,7 +86,7 @@ class ChallengesViewController: UIViewController {
         do {
             let fetchedRequest = try context.fetch(request)
                     
-            streak.daysKept = fetchedRequest[0].dailyGoal
+            streak.daysKept = fetchedRequest[0].daysKept
             streak.date = Date()
             
             dailyGoalStreakLabel.text = String(streak.daysKept)
@@ -117,16 +117,25 @@ class ChallengesViewController: UIViewController {
              
             let arrayOfDeedsDoneYesterday = try context.fetch(request)
             print("amount of deeds done yesterday: \(arrayOfDeedsDoneYesterday.count)")
-            // Create CoreData entity for streak #
+          
             // Check if deed was done yesterday-- if it was: add to streak w/ if statement below, else: set streak to zero, then save everything
             if (arrayOfDeedsDoneYesterday.count == 0) {
                 print("No deeds completed yesterday, streak should be set to zero")
                 //Reset streak label and count to zero here and save
+                streak.daysKept = 0
+                streak.date = Date()
+                dailyGoalStreakLabel.text = String(streak.daysKept)
+                
                 return
             } else {
                 if (arrayOfDeedsDoneYesterday.count >= dailyChallenge.dailyGoal) {
                     // Inc streak count by 1 and save, change coreLabel
                     print("The streak should be increased")
+                    
+                    streak.daysKept += 1
+                    streak.date = Date()
+                    dailyGoalStreakLabel.text = String(streak.daysKept)
+                    ("The streak has been increased to \(streak.daysKept)") 
                 }
             }
             
