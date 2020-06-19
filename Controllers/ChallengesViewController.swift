@@ -106,11 +106,11 @@ class ChallengesViewController: UIViewController {
             // Check if deed was done yesterday-- if it was: add to streak w/ if statement below, else: set streak to zero, then save everything
             if (arrayOfDeedsDoneYesterday.count == 0) {
                 print("No deeds completed yesterday, streak should be set to zero")
-                //Reset streak label to zero here and save
+                //Reset streak label and count to zero here and save
                 return
             } else {
                 if (arrayOfDeedsDoneYesterday.count >= dailyChallenge.dailyGoal) {
-                    // Because nothing was saved w/ CoreData, this would only stay at 1
+                    // Inc streak count by 1 and save, change coreLabel
                     print("The streak should be increased")
                 }
             }
