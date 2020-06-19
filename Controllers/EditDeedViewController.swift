@@ -16,13 +16,9 @@ class EditDeedViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
     var delegate: DataEnteredDelegateProtocol? = nil
-    var doneButtonWasPressed = false
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
-        print("done button pressed (received in EditDeedViewController)")
         delegate?.userEditedDeed(newDeedTitle: textView.text)
-        print("told delegate")
-        doneButtonWasPressed = true
         self.presentingViewController?.dismiss(animated: true, completion:nil)
     }
     
