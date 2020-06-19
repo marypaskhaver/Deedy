@@ -10,8 +10,12 @@ import UIKit
 
 class GlobalViewController: UIViewController {
 
+    // A number, ex: 1.2
     @IBOutlet weak var truncatedNumberOfGlobalDeeds: UILabel!
+    
+    // Ex: million, thousand
     @IBOutlet weak var numeralOfGlobalDeeds: UILabel!
+    
     static var totalDeeds: Int = 0
     
     override func viewDidLoad() {
@@ -19,22 +23,6 @@ class GlobalViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         //Fetch from database, then adjust labels
-        changeAppColor()        
-    }
-    
-    func changeAppColor() {
-        if let navBarColor = defaults.color(forKey: "navBarColor") {
-            navigationController?.navigationBar.barTintColor = navBarColor
-            UINavigationBar.appearance().barTintColor = navBarColor
-        }
-        
-        if let navBarTextColor = defaults.color(forKey: "navBarTextColor") {
-            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navBarTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
-
-            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: navBarTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
-            
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: navBarTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)], for: .normal)
-        }
     }
     
     static func add1ToTotalDeeds() {
