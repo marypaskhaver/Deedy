@@ -53,8 +53,12 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
         if let navBarColor = defaults.color(forKey: "navBarColor") {
             var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
             navBarColor.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-
-            view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b * 1.8, alpha: a)
+            
+            if b > 0.75 {
+                view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b, alpha: a)
+            } else {
+                view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b * 1.8, alpha: a)
+            }
         }
     }
     
