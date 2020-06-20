@@ -21,6 +21,7 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalDeedsLabel: UILabel!
+    @IBOutlet weak var topView: UIView!
     
     var editedDeedText: String = ""
     var editedIndexPath: IndexPath! = nil
@@ -44,6 +45,17 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
                 
         loadDeeds()
         sortDeedsFromSavedData()
+        
+        topView.backgroundColor = UIColor.white
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let navBarColor = defaults.color(forKey: "navBarColor") {
+            var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+            navBarColor.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
+
+            view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b * 1.8, alpha: a)
+        }
     }
     
     // MARK: - Segue methods
