@@ -18,6 +18,7 @@ class ChallengesViewController: UIViewController {
     @IBOutlet weak var dailyGoalStreakLabel: UILabel!
     @IBOutlet weak var labelSayingStreak: UILabel!
     @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
     
     var dailyChallenge: DailyChallenge = DailyChallenge(context: context)
     var streak: Streak = Streak(context: context)
@@ -225,14 +226,22 @@ class ChallengesViewController: UIViewController {
     // Change tableView frame and animate?
     func revealDailyGoalRelatedItemsIfNeeded() {
         let originalTableViewYPos: CGFloat = 236
-        
+                
         if (dailyChallenge.dailyGoal > 0) {
+            print("Showing items and moving tableView down")
             hideDailyGoalRelatedItems(bool: false)
             
-            tableView.frame = CGRect(x: 0, y: originalTableViewYPos + 108, width: tableView.frame.width, height: tableView.frame.height)
+            tableView.frame = CGRect(x: 0, y: originalTableViewYPos + 109, width: tableView.frame.width, height: tableView.frame.height)
+            if tableViewTopConstraint.constant == -109 {
+                tableViewTopConstraint.constant = 0
+            }            
         } else { // If daily goals are set to 0, remove daily goal-related items from screen
             hideDailyGoalRelatedItems(bool: true)
             tableView.frame = CGRect(x: 0, y: originalTableViewYPos, width: CGFloat(tableView.frame.width), height: CGFloat(tableView.frame.height))
+            
+            if tableViewTopConstraint.constant == 0 {
+                tableViewTopConstraint.constant = -109
+            }
         }
         
         setDailyGoalProgressViewValue()
