@@ -73,9 +73,9 @@ class SettingsViewController: UIViewController {
     }
     
     func changeTextColorIfNeeded() {
-        var sum: Int = redSlider.value >= 230 ? 1 : 0
-        sum += greenSlider.value >= 230 ? 1 : 0
-        sum += blueSlider.value >= 230 ? 1 : 0
+        var sum: Int = redSlider.value >= 225 ? 1 : 0
+        sum += greenSlider.value >= 225 ? 1 : 0
+        sum += blueSlider.value >= 225 ? 1 : 0
 
         if (sum >= 2) {
             changeNavBarTextAndItemsToColor(color: UIColor.black)
