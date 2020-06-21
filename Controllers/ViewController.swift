@@ -240,9 +240,11 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let whiteRoundedViewTag = 1
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "deedCell", for: indexPath) as! DeedTableViewCell
         
-        cell.contentView.viewWithTag(1)?.removeFromSuperview()
+        cell.contentView.viewWithTag(whiteRoundedViewTag)?.removeFromSuperview()
         
         let section = self.sections[indexPath.section]
         let deed = section.deeds[indexPath.row]
@@ -259,14 +261,18 @@ extension ViewController: UITableViewDataSource {
         whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
         whiteRoundedView.layer.shadowOpacity = 0.2
         
-        whiteRoundedView.tag = 1;
+        whiteRoundedView.tag = whiteRoundedViewTag;
         
         cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubviewToBack(whiteRoundedView)
                         
         return cell
     }
-   
+    
+    // Animate cells here
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+    }
 }
 
 
