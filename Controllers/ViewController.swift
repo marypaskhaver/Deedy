@@ -44,7 +44,7 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
 //        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
                 
         loadDeeds()
-        sortDeedsFromSavedData()
+        sortDeedsFromSavedData() 
         
         topView.backgroundColor = UIColor.white
     }
@@ -177,7 +177,8 @@ extension ViewController: UITableViewDelegate {
             self.navigationController?.present(evc, animated: true)
             
             self.editedIndexPath = indexPath
-            
+
+            // Remove this if you use certain animations
             tableView.reloadData()
         }
                 
@@ -241,6 +242,8 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "deedCell", for: indexPath) as! DeedTableViewCell
         
+        cell.contentView.viewWithTag(1)?.removeFromSuperview()
+        
         let section = self.sections[indexPath.section]
         let deed = section.deeds[indexPath.row]
         
@@ -255,13 +258,17 @@ extension ViewController: UITableViewDataSource {
         whiteRoundedView.layer.cornerRadius = 8.0
         whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
         whiteRoundedView.layer.shadowOpacity = 0.2
-
+        
+        whiteRoundedView.tag = 1;
+        
         cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubviewToBack(whiteRoundedView)
-                
+                        
         return cell
     }
+   
 }
+
 
 // MARK: - Search bar methods
 extension ViewController: UISearchBarDelegate {
