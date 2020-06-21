@@ -89,6 +89,10 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
         GlobalViewController.add1ToTotalDeeds()
     }
     
+    @IBAction func scrollUpButtonPressed(_ sender: UIBarButtonItem) {
+        print("Scroll up!")
+    }
+    
     // MARK: - Updating/Sorting Sections and Labels
     func splitSections() {
         if (ViewController.timeSection == "Day") {
