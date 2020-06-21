@@ -275,13 +275,11 @@ extension ViewController: UITableViewDataSource {
     
     // Animate cells here
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.transform = CGAffineTransform(translationX: 0, y: cell.frame.height)
+        cell.transform = CGAffineTransform(translationX: tableView.bounds.width, y: 0)
 
         UIView.animate(
             withDuration: 1,
-            delay: 0.09 * Double(indexPath.row),
-            usingSpringWithDamping: 0.4,
-            initialSpringVelocity: 0.1,
+            delay: 0.1 * Double(indexPath.row),
             options: [.curveEaseInOut],
             animations: {
                 cell.transform = CGAffineTransform(translationX: 0, y: 0)
