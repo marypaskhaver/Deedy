@@ -254,10 +254,13 @@ extension ViewController: UITableViewDataSource {
         let deed = section.deeds[indexPath.row]
         
         cell.deedDescriptionLabel.text = deed.title
+        cell.deedDescriptionLabel.sizeToFit()
         
         cell.contentView.backgroundColor = UIColor.clear
         
-        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 10, width: self.view.frame.size.width - 20, height: cell.contentView.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize).height - 20))
+        let a = cell.deedDescriptionLabel.frame.height + 20
+                
+        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 10, width: self.view.frame.size.width - 20, height: a))
         
         whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
         whiteRoundedView.layer.masksToBounds = false
@@ -269,7 +272,7 @@ extension ViewController: UITableViewDataSource {
         
         cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubviewToBack(whiteRoundedView)
-                        
+                                
         return cell
     }
     
