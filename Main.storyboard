@@ -474,16 +474,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3iE-4K-WjQ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="344"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zwu-jo-YRK">
                                 <rect key="frame" x="0.0" y="236" width="414" height="665"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeCell" textLabel="TmJ-0Y-5Y9" detailTextLabel="4PN-Ca-5im" rowHeight="91" style="IBUITableViewCellStyleValue1" id="bkt-IQ-viI" customClass="ChallengeTableViewCell" customModule="Good_Deed_Counter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="91"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeCell" textLabel="TmJ-0Y-5Y9" detailTextLabel="4PN-Ca-5im" rowHeight="92" style="IBUITableViewCellStyleValue1" id="bkt-IQ-viI" customClass="ChallengeTableViewCell" customModule="Good_Deed_Counter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bkt-IQ-viI" id="8gS-da-4lj">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="91"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="92"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TmJ-0Y-5Y9">
@@ -564,6 +569,7 @@
                         <outlet property="labelSayingStreak" destination="ljz-B7-EPS" id="Efo-dF-0bd"/>
                         <outlet property="stepper" destination="rmo-W3-PIF" id="X2E-f6-gcY"/>
                         <outlet property="tableView" destination="zwu-jo-YRK" id="bYv-eZ-qYv"/>
+                        <outlet property="topView" destination="3iE-4K-WjQ" id="r24-2M-a6J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZsA-Z7-KeZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
