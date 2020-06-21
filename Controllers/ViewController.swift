@@ -53,7 +53,7 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
         if let navBarColor = defaults.color(forKey: "navBarColor") {
             var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
             navBarColor.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-            
+
             if b > 0.75 {
                 view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b, alpha: a)
             } else {
@@ -144,7 +144,6 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
             print("Error saving context \(error)")
         }
         
-        self.tableView.reloadData()
     }
     
     // Provides default value if no request is sent
@@ -199,6 +198,7 @@ extension ViewController: UITableViewDelegate {
         editedIndexPath = nil
         
         saveDeeds()
+        
         tableView.reloadData()
     }
 
