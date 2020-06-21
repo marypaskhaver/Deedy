@@ -90,7 +90,7 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
     }
     
     @IBAction func scrollUpButtonPressed(_ sender: UIBarButtonItem) {
-        print("Scroll up!")
+        tableView.setContentOffset(.zero, animated: true)
     }
     
     // MARK: - Updating/Sorting Sections and Labels
