@@ -17,6 +17,7 @@ class ChallengesViewController: UIViewController {
     @IBOutlet weak var dailyGoalProgressView: UIProgressView!
     @IBOutlet weak var dailyGoalStreakLabel: UILabel!
     @IBOutlet weak var labelSayingStreak: UILabel!
+    @IBOutlet weak var topView: UIView!
     
     var dailyChallenge: DailyChallenge = DailyChallenge(context: context)
     var streak: Streak = Streak(context: context)
@@ -56,6 +57,8 @@ class ChallengesViewController: UIViewController {
         if totalDeedsDone > 0 {
             updateStreak()
         }
+        
+        topView.backgroundColor = UIColor.white
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,6 +67,17 @@ class ChallengesViewController: UIViewController {
         setDailyGoalProgressViewValue()
         
         setTotalDeedsDone()
+        
+        if let navBarColor = defaults.color(forKey: "navBarColor") {
+            var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+            navBarColor.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
+
+            if b > 0.75 {
+                view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b, alpha: a)
+            } else {
+                view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b * 1.8, alpha: a)
+            }
+        }
     }
     
     func setTotalDeedsDone() {
@@ -291,7 +305,7 @@ extension ChallengesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
+    } 
 
 }
 
@@ -302,6 +316,8 @@ extension ChallengesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let whiteRoundedViewTag = 1
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as! ChallengeTableViewCell
     
         let achievement = achievements[indexPath.row]
@@ -315,6 +331,23 @@ extension ChallengesViewController: UITableViewDataSource {
         } else {
             cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievements[indexPath.row].goalNumber)"
         }
+        
+        cell.contentView.backgroundColor = UIColor.clear
+        
+        let a = cell.challengeDescriptionLabel.frame.height + 14
+                
+        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 10, width: self.view.frame.size.width - 20, height: a))
+        
+        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
+        whiteRoundedView.layer.masksToBounds = false
+        whiteRoundedView.layer.cornerRadius = 8.0
+        whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        whiteRoundedView.layer.shadowOpacity = 0.2
+        
+        whiteRoundedView.tag = whiteRoundedViewTag;
+        
+        cell.contentView.addSubview(whiteRoundedView)
+        cell.contentView.sendSubviewToBack(whiteRoundedView)
                 
         return cell 
     }
