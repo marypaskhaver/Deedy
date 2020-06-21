@@ -105,7 +105,6 @@ class ChallengesViewController: UIViewController {
             streak.date = Date()
             
             dailyGoalStreakLabel.text = String(streak.daysKept)
-            revealDailyGoalRelatedItemsIfNeeded()
         } catch {
             print("Error fetching data from context \(error)")
         }
@@ -226,22 +225,24 @@ class ChallengesViewController: UIViewController {
     // Change tableView frame and animate?
     func revealDailyGoalRelatedItemsIfNeeded() {
         let originalTableViewYPos: CGFloat = 236
-                
+        let originalTopViewHeight: CGFloat = 257
+        
         if (dailyChallenge.dailyGoal > 0) {
-            print("Showing items and moving tableView down")
             hideDailyGoalRelatedItems(bool: false)
             
             tableView.frame = CGRect(x: 0, y: originalTableViewYPos + 109, width: tableView.frame.width, height: tableView.frame.height)
+            
             if tableViewTopConstraint.constant == -109 {
                 tableViewTopConstraint.constant = 0
-            }            
+            }
+            
+            topView.frame = CGRect(x: topView.frame.origin.x, y: topView.frame.origin.y, width: topView.frame.width, height: originalTopViewHeight)
+
         } else { // If daily goals are set to 0, remove daily goal-related items from screen
             hideDailyGoalRelatedItems(bool: true)
             tableView.frame = CGRect(x: 0, y: originalTableViewYPos, width: CGFloat(tableView.frame.width), height: CGFloat(tableView.frame.height))
             
-            if tableViewTopConstraint.constant == 0 {
-                tableViewTopConstraint.constant = -109
-            }
+            topView.frame = CGRect(x: topView.frame.origin.x, y: topView.frame.origin.y, width: topView.frame.width, height: originalTopViewHeight - 109)
         }
         
         setDailyGoalProgressViewValue()
