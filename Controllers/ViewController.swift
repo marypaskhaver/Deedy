@@ -181,9 +181,6 @@ extension ViewController: UITableViewDelegate {
             self.navigationController?.present(evc, animated: true)
             
             self.editedIndexPath = indexPath
-
-            // Remove this if you use certain animations
-            tableView.reloadData()
         }
                 
         contextItem.backgroundColor = UIColor(red: 0 / 255.0, green: 148 / 255.0, blue: 206 / 255.0, alpha: 1.0)
@@ -278,7 +275,17 @@ extension ViewController: UITableViewDataSource {
     
     // Animate cells here
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
+        cell.transform = CGAffineTransform(translationX: 0, y: cell.frame.height)
+
+        UIView.animate(
+            withDuration: 1,
+            delay: 0.09 * Double(indexPath.row),
+            usingSpringWithDamping: 0.4,
+            initialSpringVelocity: 0.1,
+            options: [.curveEaseInOut],
+            animations: {
+                cell.transform = CGAffineTransform(translationX: 0, y: 0)
+        })
     }
 }
 
