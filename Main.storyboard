@@ -18,7 +18,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RdT-sR-3dH">
                                 <rect key="frame" x="0.0" y="214" width="414" height="648"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="PED-gR-Uvz">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -59,6 +59,11 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="PTW-r6-8dN"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IQx-fm-4T2">
+                                <rect key="frame" x="0.0" y="88" width="414" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jyh-Dt-k60">
                                 <rect key="frame" x="146" y="112" width="108" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -84,16 +89,25 @@
                                 <segue destination="bgc-uv-MS5" kind="presentation" identifier="" id="ZAf-9L-4dX"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="+" id="vGB-HI-XFI">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="addDeed:" destination="BYZ-38-t0r" id="Qcg-r8-ocJ"/>
-                                <segue destination="Idm-YJ-Dal" kind="presentation" id="96U-sG-5Sx"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="+" id="vGB-HI-XFI">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="addDeed:" destination="BYZ-38-t0r" id="Qcg-r8-ocJ"/>
+                                    <segue destination="Idm-YJ-Dal" kind="presentation" id="96U-sG-5Sx"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="↑" id="hxh-3n-Hjz">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="scrollUpButtonPressed:" destination="BYZ-38-t0r" id="kOi-DE-Eyv"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="RdT-sR-3dH" id="RK6-eV-AvL"/>
+                        <outlet property="topView" destination="IQx-fm-4T2" id="7FJ-yW-XPq"/>
                         <outlet property="totalDeedsLabel" destination="Jyh-Dt-k60" id="HOZ-he-1o9"/>
                     </connections>
                 </viewController>
