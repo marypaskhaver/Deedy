@@ -15,6 +15,7 @@ protocol DataEnteredDelegateProtocol {
 class EditDeedViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var topView: UIView!
     
     var delegate: DataEnteredDelegateProtocol? = nil
     var oldText: String = ""
@@ -39,6 +40,10 @@ class EditDeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if let navBarColor = defaults.color(forKey: "navBarColor") {
+            topView.backgroundColor = navBarColor
+        }
+        
         textView.layer.borderWidth = 1
         textView.layer.cornerRadius = 8
         textView.layer.borderColor = UIColor.gray.cgColor
