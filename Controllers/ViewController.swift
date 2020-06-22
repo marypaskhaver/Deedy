@@ -45,10 +45,10 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
                 
         loadDeeds()
         sortDeedsFromSavedData()
+                
+        let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.size.height
         
-        
-        // Deprecated, new code doesn't work-- maybe try in custom class?
-        topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.height, width: topView.frame.width, height: topView.frame.height)
+        topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + statusBarHeight!, width: topView.frame.width, height: topView.frame.height)
         topView.backgroundColor = UIColor.white
     }
     
