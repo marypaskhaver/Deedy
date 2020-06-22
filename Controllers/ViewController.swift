@@ -48,7 +48,7 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
                 
         let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.size.height
         
-        topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + statusBarHeight!, width: topView.frame.width, height: topView.frame.height)
+        topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: topView.frame.height)
         topView.backgroundColor = UIColor.white
     }
     
