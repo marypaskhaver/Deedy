@@ -335,6 +335,18 @@ extension ChallengesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.transform = CGAffineTransform(translationX: tableView.bounds.width, y: 0)
+
+        UIView.animate(
+            withDuration: 1,
+            delay: 0.1 * Double(indexPath.row),
+            options: [.curveEaseInOut],
+            animations: {
+                cell.transform = CGAffineTransform(translationX: 0, y: 0)
+        })
+    }
 
 }
 
@@ -352,7 +364,7 @@ extension ChallengesViewController: UITableViewDataSource {
         let achievement = achievements[indexPath.row]
                 
         cell.challengeDescriptionLabel.text = achievement.title
-
+        
         if (totalDeedsDone >= achievement.goalNumber) {
             cell.subtitleLabel.text = "\(achievement.goalNumber) / \(achievement.goalNumber)"
             cell.subtitleLabel.textColor = UIColor(red: 26 / 255.0, green: 145 / 255.0, blue: 0 / 255.0, alpha: 1.0)
@@ -360,10 +372,12 @@ extension ChallengesViewController: UITableViewDataSource {
         } else {
             cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievements[indexPath.row].goalNumber)"
         }
-                
+        
+        cell.subtitleLabel.sizeToFit()
+        
         cell.contentView.backgroundColor = UIColor.clear
         
-        let a = cell.challengeDescriptionLabel.frame.height + 14
+        let a = cell.challengeDescriptionLabel.frame.height + cell.subtitleLabel.frame.height + 10
                 
         let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 10, width: self.view.frame.size.width - 20, height: a))
         
