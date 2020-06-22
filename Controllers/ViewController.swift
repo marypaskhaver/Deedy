@@ -44,8 +44,11 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
 //        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
                 
         loadDeeds()
-        sortDeedsFromSavedData() 
+        sortDeedsFromSavedData()
         
+        
+        // Deprecated, new code doesn't work-- maybe try in custom class?
+        topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.height, width: topView.frame.width, height: topView.frame.height)
         topView.backgroundColor = UIColor.white
     }
     
