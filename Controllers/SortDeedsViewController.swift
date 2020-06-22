@@ -34,7 +34,6 @@ class SortDeedsViewController: UIViewController {
         myPickerView.propertyThatReferencesThisViewController = self
         
         navigationController?.navigationBar.shadowImage = UIImage()
-
     }
     
     // Do any additional setup after loading the view.
@@ -74,7 +73,7 @@ extension SortDeedsViewController: PickerViewProtocol {
         saveSortDetails(forDateFormat: dateFormat, timeSection: pickerListItem)
     }
     
-    func saveSortDetails(forDateFormat dateFormat: String, timeSection timeSection: String) {
+    func saveSortDetails(forDateFormat dateFormat: String, timeSection: String) {
         defaults.set(dateFormat, forKey: "dateFormat")
         defaults.set(timeSection, forKey: "timeSection")
     }
