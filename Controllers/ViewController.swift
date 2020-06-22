@@ -89,7 +89,7 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
         self.saveDeeds()
         
         // Add update GlobalViewController here
-        GlobalViewController.add1ToTotalDeeds()
+        tableView.reloadData()
     }
     
     @IBAction func scrollUpButtonPressed(_ sender: UIBarButtonItem) {
