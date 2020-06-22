@@ -376,9 +376,9 @@ extension ChallengesViewController: UITableViewDataSource {
         
         cell.contentView.backgroundColor = UIColor.clear
         
-        let a = cell.challengeDescriptionLabel.frame.height + cell.subtitleLabel.frame.height + 10
+        let whiteRoundedViewHeight = cell.challengeDescriptionLabel.frame.height + cell.subtitleLabel.frame.height
                 
-        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 10, width: self.view.frame.size.width - 20, height: a))
+        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 10, width: self.view.frame.size.width - 20, height: whiteRoundedViewHeight - 18))
         
         whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
         whiteRoundedView.layer.masksToBounds = false
