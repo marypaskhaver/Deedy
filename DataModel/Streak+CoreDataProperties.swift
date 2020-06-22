@@ -17,7 +17,8 @@ extension Streak {
         return NSFetchRequest<Streak>(entityName: "Streak")
     }
 
-    @NSManaged public var daysKept: Int32
     @NSManaged public var date: Date?
+    @NSManaged public var wasUpdatedToday: Bool
+    @NSManaged public var daysKept: Int32
 
 }
