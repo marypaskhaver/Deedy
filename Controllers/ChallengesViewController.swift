@@ -24,7 +24,6 @@ class ChallengesViewController: UIViewController {
     var streak: Streak = Streak(context: context)
     var deedsDoneToday: Int = 0
     var achievements = [Achievement]()
-    
     var totalDeedsDone: Int = 0
 
     @IBAction func stepperValueChanged(_ sender: Any) {
@@ -53,12 +52,14 @@ class ChallengesViewController: UIViewController {
 
         loadDailyGoalValue()
         
+        // Load up previous streak data for use in updateStreak method
         loadStreak()
         
-        if totalDeedsDone > 0 {
+        // Update streak-- inc. or dec. count.
+        if totalDeedsDone > 0 && !streak.wasUpdatedToday {
             updateStreak()
         }
-        
+
         topView.backgroundColor = UIColor.white
     }
     
@@ -102,8 +103,17 @@ class ChallengesViewController: UIViewController {
             let fetchedRequest = try context.fetch(request)
                     
             streak.daysKept = fetchedRequest[0].daysKept
-            streak.date = Date()
+            streak.date = fetchedRequest[0].date
             
+            // Set wasUpdatedToday to false if the streak's previous date was before today
+            if Calendar.current.isDateInToday(streak.date!) {
+                streak.wasUpdatedToday = true
+            } else {
+                streak.wasUpdatedToday = false
+            }
+            
+            streak.date = Date()
+
             dailyGoalStreakLabel.text = String(streak.daysKept)
         } catch {
             print("Error fetching data from context \(error)")
@@ -134,6 +144,7 @@ class ChallengesViewController: UIViewController {
             // Check if deed was done yesterday-- if it was: add to streak w/ if statement below, else: set streak to zero, then save everything
             if (arrayOfDeedsDoneYesterday.count == 0) {
                 streak.daysKept = 0
+                
                 streak.date = Date()
                 dailyGoalStreakLabel.text = String(streak.daysKept)
                 
@@ -141,11 +152,14 @@ class ChallengesViewController: UIViewController {
             } else {
                 if (arrayOfDeedsDoneYesterday.count >= dailyChallenge.dailyGoal) {
                     streak.daysKept += 1
+                    
                     streak.date = Date()
                     dailyGoalStreakLabel.text = String(streak.daysKept)
                 }
             }
             
+            streak.wasUpdatedToday = true
+                        
         } catch {
             print("Error fetching data from context \(error)")
         }
@@ -231,18 +245,23 @@ class ChallengesViewController: UIViewController {
             hideDailyGoalRelatedItems(bool: false)
             
             tableView.frame = CGRect(x: 0, y: originalTableViewYPos + 109, width: tableView.frame.width, height: tableView.frame.height)
-            
-            if tableViewTopConstraint.constant == -109 {
+                        
+            if tableViewTopConstraint.constant < 0 {
                 tableViewTopConstraint.constant = 0
             }
             
-            topView.frame = CGRect(x: topView.frame.origin.x, y: topView.frame.origin.y, width: topView.frame.width, height: originalTopViewHeight)
+            topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)!, width: topView.frame.width, height: originalTopViewHeight)
 
         } else { // If daily goals are set to 0, remove daily goal-related items from screen
+            print(tableViewTopConstraint.constant)
+
             hideDailyGoalRelatedItems(bool: true)
-            tableView.frame = CGRect(x: 0, y: originalTableViewYPos, width: CGFloat(tableView.frame.width), height: CGFloat(tableView.frame.height))
             
-            topView.frame = CGRect(x: topView.frame.origin.x, y: topView.frame.origin.y, width: topView.frame.width, height: originalTopViewHeight - 109)
+            topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)!, width: topView.frame.width, height: originalTopViewHeight - 109)
+
+            tableViewTopConstraint.constant = 0
+
+            tableView.frame = CGRect(x: 0, y: originalTableViewYPos, width: CGFloat(tableView.frame.width), height: CGFloat(tableView.frame.height))
         }
         
         setDailyGoalProgressViewValue()
@@ -315,7 +334,7 @@ extension ChallengesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    } 
+    }
 
 }
 
@@ -341,7 +360,7 @@ extension ChallengesViewController: UITableViewDataSource {
         } else {
             cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievements[indexPath.row].goalNumber)"
         }
-        
+                
         cell.contentView.backgroundColor = UIColor.clear
         
         let a = cell.challengeDescriptionLabel.frame.height + 14
@@ -358,8 +377,8 @@ extension ChallengesViewController: UITableViewDataSource {
         
         cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubviewToBack(whiteRoundedView)
-                
-        return cell 
+                        
+        return cell
     }
     
 }
