@@ -251,12 +251,12 @@ class ChallengesViewController: UIViewController {
                 tableViewTopConstraint.constant = 0
             }
             
-            topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: topView.frame.width, height: originalTopViewHeight)
+            topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: originalTopViewHeight)
 
         } else { // If daily goals are set to 0, remove daily goal-related items from screen
             hideDailyGoalRelatedItems(bool: true)
             
-            topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: topView.frame.width, height: originalTopViewHeight - 109)
+            topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: originalTopViewHeight - 109)
 
             tableViewTopConstraint.constant = 0
 
