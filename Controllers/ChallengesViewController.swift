@@ -37,6 +37,10 @@ class ChallengesViewController: UIViewController {
         saveGoalsAndAchievements()
     }
     
+    @IBAction func scrollUpButtonPressed(_ sender: UIBarButtonItem) {
+        tableView.setContentOffset(.zero, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -389,7 +393,7 @@ extension ChallengesViewController: UITableViewDataSource {
         whiteRoundedView.tag = whiteRoundedViewTag;
         
         cell.contentView.addSubview(whiteRoundedView)
-        cell.contentView.sendSubviewToBack(whiteRoundedView)
+        cell.contentView.sendSubviewToBack(whiteRoundedView) 
                         
         return cell
     }
