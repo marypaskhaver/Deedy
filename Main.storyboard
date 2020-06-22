@@ -58,8 +58,9 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="PTW-r6-8dN"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IQx-fm-4T2">
+                            <view contentMode="scaleToFill" id="IQx-fm-4T2">
                                 <rect key="frame" x="0.0" y="88" width="414" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="THx-Xf-HLA">
@@ -310,33 +311,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="116" translatesAutoresizingMaskIntoConstraints="NO" id="bps-6Y-Fjf">
-                                <rect key="frame" x="35" y="249" width="365" height="378.5"/>
+                                <rect key="frame" x="35" y="249" width="369" height="378.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="Zga-OD-37s">
-                                        <rect key="frame" x="0.0" y="0.0" width="365" height="223.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="369" height="223.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change app theme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WC6-qq-akK">
-                                                <rect key="frame" x="0.0" y="0.0" width="365" height="31.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="369" height="31.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="114" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="H02-ha-Lt9">
-                                                <rect key="frame" x="-2" y="65.5" width="369" height="31"/>
+                                                <rect key="frame" x="-2" y="65.5" width="373" height="31"/>
                                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="redSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="QBE-xS-Dvx"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="207" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="uAG-aC-vWs">
-                                                <rect key="frame" x="-2" y="129.5" width="369" height="31"/>
+                                                <rect key="frame" x="-2" y="129.5" width="373" height="31"/>
                                                 <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="greenSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="DLG-wM-mad"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="250" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="VPB-qN-2uF">
-                                                <rect key="frame" x="-2" y="193.5" width="369" height="31"/>
+                                                <rect key="frame" x="-2" y="193.5" width="373" height="31"/>
                                                 <connections>
                                                     <action selector="blueSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="wKc-pW-dWm"/>
                                                 </connections>
@@ -344,7 +345,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-wo-DIy">
-                                        <rect key="frame" x="85" y="339.5" width="195" height="39"/>
+                                        <rect key="frame" x="87" y="339.5" width="195" height="39"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Reset to default blue"/>
                                         <connections>
