@@ -258,9 +258,9 @@ extension ViewController: UITableViewDataSource {
         
         cell.contentView.backgroundColor = UIColor.clear
         
-        let a = cell.deedDescriptionLabel.frame.height + 20
+        let whiteRoundedViewHeight = cell.deedDescriptionLabel.frame.height + 20
                 
-        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 10, width: self.view.frame.size.width - 20, height: a))
+        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 10, width: self.view.frame.size.width - 20, height: whiteRoundedViewHeight))
         
         whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
         whiteRoundedView.layer.masksToBounds = false
