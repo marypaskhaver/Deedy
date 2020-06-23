@@ -240,7 +240,7 @@ class ChallengesViewController: UIViewController {
            
             // Set predicate as date being today's date
             let fromPredicate = NSPredicate(format: "date >= %@", dateFrom as NSDate)
-            let toPredicate = NSPredicate(format: "date < %@", dateTo as! NSDate)
+            let toPredicate = NSPredicate(format: "date < %@", dateTo! as NSDate)
             let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
             request.predicate = datePredicate
             
