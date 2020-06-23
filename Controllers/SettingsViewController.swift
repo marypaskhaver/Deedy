@@ -55,6 +55,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func resetButtonPressed(_ sender: Any) {
+        // Default light blue
         redSlider.value = 114
         greenSlider.value = 200
         blueSlider.value = 250
