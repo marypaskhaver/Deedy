@@ -25,6 +25,8 @@ class ChallengesViewController: UIViewController {
     var deedsDoneToday: Int = 0
     var achievements = [Achievement]()
     var totalDeedsDone: Int = 0
+    
+    let headerFont = UIFont.systemFont(ofSize: 22)
 
     @IBAction func stepperValueChanged(_ sender: Any) {
         dailyChallenge.dailyGoal = Int32(stepper.value)
@@ -333,11 +335,11 @@ extension ChallengesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.textLabel?.textAlignment = NSTextAlignment.center
-        header.textLabel?.font = UIFont.systemFont(ofSize: 22)
+        header.textLabel?.font = headerFont 
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return headerFont.pointSize + 18
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
