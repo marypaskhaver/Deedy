@@ -182,7 +182,7 @@ class ChallengesViewController: UIViewController {
     //MARK: - Loading and Creating Achievements
     func loadAchievements() {
         let request: NSFetchRequest<Achievement> = Achievement.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "goalNumber", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true), NSSortDescriptor(key: "goalNumber", ascending: true)]
         
         do {
             achievements = try context.fetch(request)
@@ -200,21 +200,41 @@ class ChallengesViewController: UIViewController {
     }
     
     func createAchievements() {
-        let titlesAndNumbers = [
+        let goalAchievements = [
             ["Complete 5 deeds", 5],
             ["Complete 10 deeds", 10],
             ["Complete 25 deeds", 25],
             ["Complete 50 deeds", 50],
             ["Complete 75 deeds", 75],
             ["Complete 100 deeds", 100],
-            ["Complete 200 deeds", 200],
+            ["Complete 200 deeds", 200]
         ]
         
-        for titleAndNumber in titlesAndNumbers {
+        let streakAchievements = [
+            ["Reach your daily challenge goals for 1 day in a row", 1],
+            ["Reach your daily challenge goals for 5 days in a row", 5],
+            ["Reach your daily challenge goals for 10 days in a row", 10],
+            ["Reach your daily challenge goals for 15 days in a row", 15],
+            ["Reach your daily challenge goals for 30 days in a row", 30],
+        ]
+        
+        for titleAndNumber in goalAchievements {
             let newAchievement = Achievement(context: context)
+            
             newAchievement.title = (titleAndNumber[0] as! String)
             newAchievement.goalNumber = Int32((titleAndNumber[1] as! Int))
             newAchievement.isDone = false
+            
+            achievements.append(newAchievement)
+        }
+        
+        for titleAndNumber in streakAchievements {
+            let newAchievement = StreakAchievement(context: context)
+            
+            newAchievement.title = (titleAndNumber[0] as! String)
+            newAchievement.goalNumber = Int32((titleAndNumber[1] as! Int))
+            newAchievement.isDone = false
+            
             achievements.append(newAchievement)
         }
     }
