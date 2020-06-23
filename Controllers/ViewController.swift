@@ -46,7 +46,7 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
         loadDeeds()
         sortDeedsFromSavedData()
                 
-        let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.size.height
+        let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height
         
         topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: topView.frame.height)
         topView.backgroundColor = UIColor.white
@@ -260,7 +260,7 @@ extension ViewController: UITableViewDataSource {
         
         let whiteRoundedViewHeight = cell.deedDescriptionLabel.frame.height + 20
                 
-        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 10, width: self.view.frame.size.width - 20, height: whiteRoundedViewHeight))
+        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: whiteRoundedViewHeight))
         
         whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
         whiteRoundedView.layer.masksToBounds = false
