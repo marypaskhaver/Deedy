@@ -26,6 +26,8 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
     var editedDeedText: String = ""
     var editedIndexPath: IndexPath! = nil
     
+    let headerFont = UIFont.systemFont(ofSize: 22)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -184,7 +186,8 @@ extension ViewController: UITableViewDelegate {
             
             self.editedIndexPath = indexPath
         }
-                
+        
+        // Green
         contextItem.backgroundColor = UIColor(red: 0 / 255.0, green: 148 / 255.0, blue: 206 / 255.0, alpha: 1.0)
 
         let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
@@ -222,12 +225,12 @@ extension ViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return headerFont.pointSize + 18
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-       header.textLabel?.font = UIFont.systemFont(ofSize: 22)
+       header.textLabel?.font = headerFont
    }
     
 }
