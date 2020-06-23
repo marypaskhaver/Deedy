@@ -18,22 +18,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let current = UNUserNotificationCenter.current()
+        let center = UNUserNotificationCenter.current()
 
-        current.getNotificationSettings(completionHandler: { (settings) in
+        center.getNotificationSettings(completionHandler: { (settings) in
             if settings.authorizationStatus == .notDetermined {
-                current.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
                     if granted {
-                        print("Yay!")
+
                     } else {
-                        print("Phooey.")
+
                     }
                 }
             } else if settings.authorizationStatus == .denied {
-                print("Notifs disabled")
-            } else if settings.authorizationStatus == .authorized {
-                print("Notifs enabled")
 
+            } else if settings.authorizationStatus == .authorized {
+                center.removeAllPendingNotificationRequests()
+                center.removeAllDeliveredNotifications()
+                
+                let randomQuote = TextFileReader().returnRandomLineFromFile(withName: "quotes")
+                
+                var dateComponents = DateComponents()
+                dateComponents.hour = 9 // At 9:00 every morning
+                
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+
+                let content = UNMutableNotificationContent()
+                content.title = "Quote of the Day"
+                content.body = randomQuote
+                content.sound = UNNotificationSound.default
+                
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                
+                center.add(request)
             }
         })
         
