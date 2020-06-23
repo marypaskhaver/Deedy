@@ -110,7 +110,10 @@ class ChallengesViewController: UIViewController {
             streak.date = fetchedRequest[0].date
             
             // Set wasUpdatedToday to false if the streak's previous date was before today
-            if Calendar.current.isDateInToday(streak.date!) {
+            var calendar = Calendar.current
+            calendar.timeZone = NSTimeZone.local
+            
+            if calendar.isDateInToday(streak.date!) {
                 streak.wasUpdatedToday = true
             } else {
                 streak.wasUpdatedToday = false
@@ -137,8 +140,8 @@ class ChallengesViewController: UIViewController {
             let yesterday = calendar.date(byAdding: .day, value: -1, to: today)
 
              // Set predicate as date being today's date
-            let fromPredicate = NSPredicate(format: "date >= %@", yesterday as! NSDate)
-            let toPredicate = NSPredicate(format: "date < %@", today as! NSDate)
+            let fromPredicate = NSPredicate(format: "date >= %@", yesterday! as NSDate)
+            let toPredicate = NSPredicate(format: "date < %@", today as NSDate)
             
             let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
             request.predicate = datePredicate
