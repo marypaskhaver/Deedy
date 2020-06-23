@@ -12,13 +12,18 @@ import CoreData
 class ChallengesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
+
     @IBOutlet weak var stepper: UIStepper!
+    
     @IBOutlet weak var dailyGoalStepperLabel: UILabel!
     @IBOutlet weak var dailyGoalProgressView: UIProgressView!
+    
     @IBOutlet weak var dailyGoalStreakLabel: UILabel!
     @IBOutlet weak var labelSayingStreak: UILabel!
+    @IBOutlet weak var labelSayingDays: UILabel!
+    
     @IBOutlet weak var topView: UIView!
-    @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
     
     var dailyChallenge: DailyChallenge = DailyChallenge(context: context)
     var streak: Streak = Streak(context: context)
@@ -281,6 +286,7 @@ class ChallengesViewController: UIViewController {
         dailyGoalProgressView.isHidden = bool
         dailyGoalStreakLabel.isHidden = bool
         labelSayingStreak.isHidden = bool
+        labelSayingDays.isHidden = bool
     }
     
     // MARK: - Model Manipulation Methods
