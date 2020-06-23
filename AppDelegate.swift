@@ -17,6 +17,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let current = UNUserNotificationCenter.current()
+
+        current.getNotificationSettings(completionHandler: { (settings) in
+            if settings.authorizationStatus == .notDetermined {
+                current.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                    if granted {
+                        print("Yay!")
+                    } else {
+                        print("Phooey.")
+                    }
+                }
+            } else if settings.authorizationStatus == .denied {
+                print("Notifs disabled")
+            } else if settings.authorizationStatus == .authorized {
+                print("Notifs enabled")
+
+            }
+        })
+        
+        
         // Override point for customization after application launch.
         changeAppColor()
         return true
