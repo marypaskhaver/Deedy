@@ -338,47 +338,47 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="bps-6Y-Fjf">
-                                <rect key="frame" x="14" y="240.5" width="386" height="415.5"/>
+                                <rect key="frame" x="10" y="240.5" width="394" height="415.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="7E7-cN-ppn">
-                                        <rect key="frame" x="36" y="0.0" width="314" height="31"/>
+                                        <rect key="frame" x="44" y="0.0" width="306" height="31"/>
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fiA-g5-p9y">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toggle notifications" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xnf-t0-dyn">
-                                                <rect key="frame" x="88" y="0.0" width="226" height="31"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                <rect key="frame" x="88" y="0.0" width="218" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Zga-OD-37s">
-                                        <rect key="frame" x="0.0" y="85" width="386" height="241.5"/>
+                                        <rect key="frame" x="0.0" y="85" width="394" height="241.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change app theme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WC6-qq-akK">
-                                                <rect key="frame" x="0.0" y="0.0" width="386" height="31.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="31.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="114" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="H02-ha-Lt9">
-                                                <rect key="frame" x="-2" y="71.5" width="390" height="31"/>
+                                                <rect key="frame" x="-2" y="71.5" width="398" height="31"/>
                                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="redSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="QBE-xS-Dvx"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="207" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="uAG-aC-vWs">
-                                                <rect key="frame" x="-2" y="141.5" width="390" height="31"/>
+                                                <rect key="frame" x="-2" y="141.5" width="398" height="31"/>
                                                 <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="greenSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="DLG-wM-mad"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="250" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="VPB-qN-2uF">
-                                                <rect key="frame" x="-2" y="211.5" width="390" height="31"/>
+                                                <rect key="frame" x="-2" y="211.5" width="398" height="31"/>
                                                 <connections>
                                                     <action selector="blueSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="wKc-pW-dWm"/>
                                                 </connections>
@@ -386,7 +386,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-wo-DIy">
-                                        <rect key="frame" x="95.5" y="376.5" width="195" height="39"/>
+                                        <rect key="frame" x="99.5" y="376.5" width="195" height="39"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Reset to default blue"/>
                                         <connections>
