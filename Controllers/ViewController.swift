@@ -50,7 +50,10 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
                 
         let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height
         
-        topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: topView.frame.height)
+        if (navigationController?.navigationBar.frame.height) != nil {
+            topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: topView.frame.height)
+        }
+        
         topView.backgroundColor = UIColor.white
     }
     
