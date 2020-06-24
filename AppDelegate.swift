@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         let center = UNUserNotificationCenter.current()
 
         center.getNotificationSettings(completionHandler: { (settings) in
@@ -52,7 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 center.add(request)
             }
         })
-        
         
         // Override point for customization after application launch.
         changeAppColor()
