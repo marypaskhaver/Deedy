@@ -55,6 +55,10 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
         }
         
         topView.backgroundColor = UIColor.white
+        
+        if self.traitCollection.userInterfaceStyle == .dark {
+            topView.backgroundColor = UIColor.black
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -280,6 +284,11 @@ extension ViewController: UITableViewDataSource {
         let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: whiteRoundedViewHeight))
         
         whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
+        
+        if self.traitCollection.userInterfaceStyle == .dark {
+            whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.0, 0.0, 0.0, 0.9])
+        }
+        
         whiteRoundedView.layer.masksToBounds = false
         whiteRoundedView.layer.cornerRadius = 8.0
         whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
