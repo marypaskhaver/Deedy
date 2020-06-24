@@ -224,16 +224,18 @@ class ChallengesViewController: UIViewController {
             newAchievement.title = (titleAndNumber[0] as! String)
             newAchievement.goalNumber = Int32((titleAndNumber[1] as! Int))
             newAchievement.isDone = false
+            newAchievement.identifier = "deedAchievement"
             
             achievements.append(newAchievement)
         }
         
         for titleAndNumber in streakAchievements {
-            let newAchievement = StreakAchievement(context: context)
+            let newAchievement = Achievement(context: context)
             
             newAchievement.title = (titleAndNumber[0] as! String)
             newAchievement.goalNumber = Int32((titleAndNumber[1] as! Int))
             newAchievement.isDone = false
+            newAchievement.identifier = "streakAchievement"
             
             achievements.append(newAchievement)
         }
@@ -401,12 +403,23 @@ extension ChallengesViewController: UITableViewDataSource {
                 
         cell.challengeDescriptionLabel.text = achievement.title
         
-        if (totalDeedsDone >= achievement.goalNumber) {
-            cell.subtitleLabel.text = "\(achievement.goalNumber) / \(achievement.goalNumber)"
-            cell.subtitleLabel.textColor = UIColor(red: 26 / 255.0, green: 145 / 255.0, blue: 0 / 255.0, alpha: 1.0)
-            achievement.isDone = true
-        } else {
-            cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievements[indexPath.row].goalNumber)"
+        if achievement.identifier == "goalAchievement" {
+            if (totalDeedsDone >= achievement.goalNumber) {
+                cell.subtitleLabel.text = "\(achievement.goalNumber) / \(achievement.goalNumber)"
+                cell.subtitleLabel.textColor = UIColor(red: 26 / 255.0, green: 145 / 255.0, blue: 0 / 255.0, alpha: 1.0)
+                achievement.isDone = true
+            } else {
+                cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievements[indexPath.row].goalNumber)"
+            }
+            
+        } else if achievement.identifier == "streakAchievement" {
+            if (streak.daysKept >= achievement.goalNumber) {
+                cell.subtitleLabel.text = "\(streak.daysKept) / \(achievement.goalNumber)"
+                cell.subtitleLabel.textColor = UIColor(red: 26 / 255.0, green: 145 / 255.0, blue: 0 / 255.0, alpha: 1.0)
+                achievement.isDone = true
+            } else {
+                cell.subtitleLabel.text = "\(streak.daysKept)) / \(achievements[indexPath.row].goalNumber)"
+            }
         }
         
         cell.subtitleLabel.sizeToFit()
