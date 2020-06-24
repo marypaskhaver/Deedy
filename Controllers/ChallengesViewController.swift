@@ -308,15 +308,18 @@ class ChallengesViewController: UIViewController {
                 tableViewTopConstraint.constant = 0
             }
             
-            topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: originalTopViewHeight)
-
+            if (navigationController?.navigationBar.frame.height) != nil {
+                topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: originalTopViewHeight)
+            }
         } else { // If daily goals are set to 0, remove daily goal-related items from screen
             hideDailyGoalRelatedItems(bool: true)
             
-            topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: originalTopViewHeight - amountToMoveTableViewUpOrDownBy)
+            if (navigationController?.navigationBar.frame.height) != nil {
+                topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: originalTopViewHeight - amountToMoveTableViewUpOrDownBy)
+            }
 
             tableViewTopConstraint.constant = 0
-
+            
             tableView.frame = CGRect(x: 0, y: originalTableViewYPos, width: CGFloat(tableView.frame.width), height: CGFloat(tableView.frame.height))
         }
         
