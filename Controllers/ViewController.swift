@@ -11,7 +11,7 @@ import CoreData
 
 let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
-class ViewController: UIViewController, DataEnteredDelegateProtocol {
+class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     var deeds = [Deed]()
     var sections = [TimeSection]()
