@@ -32,7 +32,6 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        updateSections()
         ViewController.dateFormatter.dateFormat = "MMMM yyyy"
         
         let font = UIFont.systemFont(ofSize: 28)
@@ -47,6 +46,7 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
                 
         loadDeeds()
         sortDeedsFromSavedData()
+        updateSections()
                 
         let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height
         
@@ -59,6 +59,17 @@ class ViewController: UIViewController, DataEnteredDelegateProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         if let navBarColor = defaults.color(forKey: "navBarColor") {
+            var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+            navBarColor.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
+
+            if b > 0.75 {
+                view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b, alpha: a)
+            } else {
+                view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b * 1.8, alpha: a)
+            }
+        } else {
+            let navBarColor = SettingsViewController.navBarColor
+            
             var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
             navBarColor.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
 
