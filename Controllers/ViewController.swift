@@ -287,6 +287,8 @@ extension ViewController: UITableViewDataSource {
         
         if self.traitCollection.userInterfaceStyle == .dark {
             whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.0, 0.0, 0.0, 0.9])
+            whiteRoundedView.layer.borderWidth = 1
+            whiteRoundedView.layer.borderColor = UIColor.white.cgColor
         }
         
         whiteRoundedView.layer.masksToBounds = false
