@@ -201,7 +201,7 @@ class ChallengesViewController: UIViewController {
     //MARK: - Loading and Creating Achievements
     func loadAchievements() {
         let request: NSFetchRequest<Achievement> = Achievement.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true), NSSortDescriptor(key: "goalNumber", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))]
         
         do {
             achievements = try context.fetch(request)
