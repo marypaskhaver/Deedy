@@ -17,7 +17,8 @@ extension Achievement {
         return NSFetchRequest<Achievement>(entityName: "Achievement")
     }
 
-    @NSManaged public var title: String?
+    @NSManaged public var title: String
+    @NSManaged public var identifier: String
     @NSManaged public var goalNumber: Int32
     @NSManaged public var isDone: Bool
 
