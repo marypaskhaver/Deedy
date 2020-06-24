@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol DataEnteredDelegateProtocol {
+protocol DeedEditedDelegateProtocol {
     func userEditedDeed(newDeedTitle: String)
 }
 
@@ -17,7 +17,7 @@ class EditDeedViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var topView: UIView!
     
-    var delegate: DataEnteredDelegateProtocol? = nil
+    var delegate: DeedEditedDelegateProtocol? = nil
     var oldText: String = ""
     @IBOutlet weak var invalidInputWarningLabel: UILabel!
     
@@ -49,6 +49,7 @@ class EditDeedViewController: UIViewController {
         textView.layer.borderColor = UIColor.gray.cgColor
         
         textView.text = oldText
+        
         invalidInputWarningLabel.isHidden = true
     }
 
