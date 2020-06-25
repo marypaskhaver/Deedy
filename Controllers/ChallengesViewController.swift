@@ -219,7 +219,7 @@ class ChallengesViewController: UIViewController {
     }
     
     func createAchievements() {
-        let goalAchievements = [
+        let deedAchievements = [
             ["Complete 5 deeds", 5],
             ["Complete 10 deeds", 10],
             ["Complete 25 deeds", 25],
@@ -237,24 +237,19 @@ class ChallengesViewController: UIViewController {
             ["Hit your streak for 30 days", 30],
         ]
         
-        for titleAndNumber in goalAchievements {
+        addToAchievementsArray(fromArray: [[deedAchievements]], withIdentifier: "deedAchievement")
+
+        addToAchievementsArray(fromArray: [[streakAchievements]], withIdentifier: "streakAchievement")
+    }
+    
+    func addToAchievementsArray(fromArray titlesAndNumbers: [[Any]], withIdentifier identifier: String) {
+        for titleAndNumber in titlesAndNumbers {
             let newAchievement = Achievement(context: context)
             
             newAchievement.title = (titleAndNumber[0] as! String)
             newAchievement.goalNumber = Int32((titleAndNumber[1] as! Int))
             newAchievement.isDone = false
-            newAchievement.identifier = "deedAchievement"
-            
-            achievements.append(newAchievement)
-        }
-        
-        for titleAndNumber in streakAchievements {
-            let newAchievement = Achievement(context: context)
-            
-            newAchievement.title = (titleAndNumber[0] as! String)
-            newAchievement.goalNumber = Int32((titleAndNumber[1] as! Int))
-            newAchievement.isDone = false
-            newAchievement.identifier = "streakAchievement"
+            newAchievement.identifier = identifier
             
             achievements.append(newAchievement)
         }
