@@ -8,16 +8,16 @@
 
 import Foundation
 
-class StreakAchievements {
+class StreakAchievements: AchievementProtocol {
     
-    static let streakAchievements = [
-        ["Hit your streak for 1 day", 1],
-        ["Hit your streak for 5 days", 5],
-        ["Hit your streak for 10 days", 10],
-        ["Hit your streak for 15 days", 15],
-        ["Hit your streak for 30 days", 30],
+    static var achievements: [Dictionary<String, Int>] = [
+        ["Hit your streak for 1 day" : 1],
+        ["Hit your streak for 5 days" : 5],
+        ["Hit your streak for 10 days" : 10],
+        ["Hit your streak for 15 days" : 15],
+        ["Hit your streak for 30 days" : 30],
     ]
     
-    static let streakAchievementIdentifier = "streakAchievement"
+    static var identifier: String = "streakAchievement"
     
 }
