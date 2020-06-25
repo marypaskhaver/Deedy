@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 
 class ChallengesViewController: UIViewController {
-
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
 
@@ -25,8 +24,10 @@ class ChallengesViewController: UIViewController {
     
     @IBOutlet weak var topView: TopView!
     
-    var dailyChallenge: DailyChallenge = DailyChallenge(context: context)
-    var streak: Streak = Streak(context: context)
+    // Unwrap safely somehow? Later?
+    var dailyChallenge: DailyChallenge = cdm.insertDailyChallenge(dailyGoal: 0, date: Date())!
+    var streak: Streak = cdm.insertStreak(daysKept: 0, wasUpdatedToday: false, date: Date())!
+    
     var deedsDoneToday: Int = 0
     var achievements = [Achievement]()
     var totalDeedsDone: Int = 0
@@ -103,13 +104,7 @@ class ChallengesViewController: UIViewController {
     }
     
     func setTotalDeedsDone() {
-        let request: NSFetchRequest<Deed> = Deed.fetchRequest()
-        
-        do {
-            self.totalDeedsDone = try context.fetch(request).count
-        } catch {
-            print("Error fetching data from context \(error)")
-        }
+        self.totalDeedsDone = cdm.fetchDeeds().count
         
         tableView.reloadData()
     }
@@ -119,77 +114,69 @@ class ChallengesViewController: UIViewController {
         let request : NSFetchRequest<Streak> = Streak.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
 
-        do {
-            let fetchedRequest = try context.fetch(request)
-                    
-            streak.daysKept = fetchedRequest[0].daysKept
-            streak.date = fetchedRequest[0].date
+        let fetchedRequest = cdm.fetchStreaks(with: request)
             
-            if streak.date == nil {
-                streak.date = Date()
-            }
-            
-            // Set wasUpdatedToday to false if the streak's previous date was before today
-            var calendar = Calendar.current
-            calendar.timeZone = NSTimeZone.local
-            
-            if calendar.isDateInToday(streak.date!) {
-                streak.wasUpdatedToday = true
-            } else {
-                streak.wasUpdatedToday = false
-            }
-            
+        streak.daysKept = fetchedRequest[0].daysKept
+        streak.date = fetchedRequest[0].date
+        
+        if streak.date == nil {
             streak.date = Date()
-
-            dailyGoalStreakLabel.text = String(streak.daysKept)
-        } catch {
-            print("Error fetching data from context \(error)")
         }
+        
+        // Set wasUpdatedToday to false if the streak's previous date was before today
+        var calendar = Calendar.current
+        calendar.timeZone = NSTimeZone.local
+        
+        if calendar.isDateInToday(streak.date!) {
+            streak.wasUpdatedToday = true
+        } else {
+            streak.wasUpdatedToday = false
+        }
+        
+        streak.date = Date()
+
+        dailyGoalStreakLabel.text = String(streak.daysKept)
     }
     
     func updateStreak() {
-        do {
-            let request: NSFetchRequest<Deed> = Deed.fetchRequest()
-            request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        let request: NSFetchRequest<Deed> = Deed.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
 
-            var calendar = Calendar.current
-            calendar.timeZone = NSTimeZone.local
-            
-            // Include deeds only done before today
-            let today = calendar.startOfDay(for: Date())
-            let yesterday = calendar.date(byAdding: .day, value: -1, to: today)
+        var calendar = Calendar.current
+        calendar.timeZone = NSTimeZone.local
+        
+        // Include deeds only done before today
+        let today = calendar.startOfDay(for: Date())
+        let yesterday = calendar.date(byAdding: .day, value: -1, to: today)
 
-             // Set predicate as date being today's date
-            let fromPredicate = NSPredicate(format: "date >= %@", yesterday! as NSDate)
-            let toPredicate = NSPredicate(format: "date < %@", today as NSDate)
+         // Set predicate as date being today's date
+        let fromPredicate = NSPredicate(format: "date >= %@", yesterday! as NSDate)
+        let toPredicate = NSPredicate(format: "date < %@", today as NSDate)
+        
+        let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
+        request.predicate = datePredicate
+         
+        let arrayOfDeedsDoneYesterday = cdm.fetchDeeds(with: request)
+//            let arrayOfDeedsDoneYesterday = try context.fetch(request)
+      
+        // Check if deed was done yesterday-- if it was: add to streak w/ if statement below, else: set streak to zero, then save everything
+        if (arrayOfDeedsDoneYesterday.count == 0) {
+            streak.daysKept = 0
             
-            let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
-            request.predicate = datePredicate
-             
-            let arrayOfDeedsDoneYesterday = try context.fetch(request)
-          
-            // Check if deed was done yesterday-- if it was: add to streak w/ if statement below, else: set streak to zero, then save everything
-            if (arrayOfDeedsDoneYesterday.count == 0) {
-                streak.daysKept = 0
+            streak.date = Date()
+            dailyGoalStreakLabel.text = String(streak.daysKept)
+            
+            return
+        } else {
+            if (arrayOfDeedsDoneYesterday.count >= dailyChallenge.dailyGoal) {
+                streak.daysKept += 1
                 
                 streak.date = Date()
                 dailyGoalStreakLabel.text = String(streak.daysKept)
-                
-                return
-            } else {
-                if (arrayOfDeedsDoneYesterday.count >= dailyChallenge.dailyGoal) {
-                    streak.daysKept += 1
-                    
-                    streak.date = Date()
-                    dailyGoalStreakLabel.text = String(streak.daysKept)
-                }
             }
-            
-            streak.wasUpdatedToday = true
-                        
-        } catch {
-            print("Error fetching data from context \(error)")
         }
+            
+        streak.wasUpdatedToday = true
     }
     
     //MARK: - Loading and Creating Achievements
@@ -197,18 +184,13 @@ class ChallengesViewController: UIViewController {
         let request: NSFetchRequest<Achievement> = Achievement.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))]
         
-        do {
-            achievements = try context.fetch(request)
+        achievements = cdm.fetchAchievements(with: request)
 
-            // If no achievements have been saved before
-            if (achievements.count == 0) {
-                createAchievements()
-            }
-            
-        } catch {
-            print("Error fetching data from context \(error)")
+        // If no achievements have been saved before
+        if (achievements.count == 0) {
+            createAchievements()
         }
-        
+    
         tableView.reloadData()
     }
     
@@ -224,14 +206,14 @@ class ChallengesViewController: UIViewController {
         
         for titleAndNumberDictionary in titlesAndNumbers {
             for (key, value) in titleAndNumberDictionary {
-                let newAchievement = Achievement(context: context)
+                let title = key
+                let identifier = identifier
+                let goalNumber = Int32(value)
                 
-                newAchievement.title = key
-                newAchievement.goalNumber = Int32(value)
-                newAchievement.isDone = false
-                newAchievement.identifier = identifier
-
-                achievements.append(newAchievement)
+                let newAchievement = cdm.insertAchievement(title: title, identifier: identifier, goalNumber: goalNumber, isDone: false)
+                
+                // Unwrap safely at some point
+                achievements.append(newAchievement!)
             }
         }
     }
@@ -246,25 +228,21 @@ class ChallengesViewController: UIViewController {
     }
     
     func setCountOfDeedsDoneToday() {
-        do {
-            let request: NSFetchRequest<Deed> = Deed.fetchRequest()
-            var calendar = Calendar.current
-            calendar.timeZone = NSTimeZone.local
+        let request: NSFetchRequest<Deed> = Deed.fetchRequest()
+        var calendar = Calendar.current
+        calendar.timeZone = NSTimeZone.local
 
-            // Get today's beginning & end
-            let dateFrom = calendar.startOfDay(for: Date())
-            let dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom)
-           
-            // Set predicate as date being today's date
-            let fromPredicate = NSPredicate(format: "date >= %@", dateFrom as NSDate)
-            let toPredicate = NSPredicate(format: "date < %@", dateTo! as NSDate)
-            let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
-            request.predicate = datePredicate
+        // Get today's beginning & end
+        let dateFrom = calendar.startOfDay(for: Date())
+        let dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom)
+       
+        // Set predicate as date being today's date
+        let fromPredicate = NSPredicate(format: "date >= %@", dateFrom as NSDate)
+        let toPredicate = NSPredicate(format: "date < %@", dateTo! as NSDate)
+        let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
+        request.predicate = datePredicate
             
-            deedsDoneToday = try context.fetch(request).count
-        } catch {
-            print("Error fetching data from context \(error)")
-        }
+        deedsDoneToday = cdm.fetchDeeds(with: request).count
     }
 
     func revealDailyGoalRelatedItemsIfNeeded() {
@@ -314,37 +292,36 @@ class ChallengesViewController: UIViewController {
     // MARK: - Model Manipulation Methods
     func saveGoalsAndAchievements() {
 
-        do {
-            if dailyChallenge.date == nil {
-                dailyChallenge.date = Date()
-            }
-            
-            if streak.date == nil {
-                streak.date = Date()
-            }
-            
-            try context.save()
-        } catch {
-            print("Error saving context \(error)")
+        if dailyChallenge.date == nil {
+            dailyChallenge.date = Date()
         }
+        
+        if streak.date == nil {
+            streak.date = Date()
+        }
+
+        cdm.save()
     }
     
     func loadDailyGoalValue() {
         let request : NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
 
-        do {
-            let fetchedRequest = try context.fetch(request)
-                    
+
+        let fetchedRequest = cdm.fetchDailyChallenges(with: request)
+            
+        if fetchedRequest.count == 0 {
+            dailyChallenge.dailyGoal = 0
+            dailyChallenge.date = Date()
+            saveGoalsAndAchievements()
+        } else {
             dailyChallenge.dailyGoal = fetchedRequest[0].dailyGoal
             dailyChallenge.date = Date()
-                
-            stepper.value = Double(dailyChallenge.dailyGoal)
-            dailyGoalStepperLabel.text = String(dailyChallenge.dailyGoal)
-            revealDailyGoalRelatedItemsIfNeeded()
-        } catch {
-            print("Error fetching data from context \(error)")
         }
+                
+        stepper.value = Double(dailyChallenge.dailyGoal)
+        dailyGoalStepperLabel.text = String(dailyChallenge.dailyGoal)
+        revealDailyGoalRelatedItemsIfNeeded()
     }
     
 }
