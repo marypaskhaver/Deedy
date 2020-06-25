@@ -9,7 +9,8 @@
 import UIKit
 import CoreData
 
-let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+let cdm = CoreDataManager()
 
 class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
@@ -27,11 +28,10 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     var editedIndexPath: IndexPath! = nil
     
     let headerFont = UIFont.systemFont(ofSize: 22)
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-                
         ViewController.dateFormatter.dateFormat = "MMMM yyyy"
         
         let font = UIFont.systemFont(ofSize: 28)
@@ -86,11 +86,10 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         if (segue.identifier == "doneAddingSegue") {
             let deedDetailVC = segue.source as! DeedDetailViewController
             
-            let newDeed = Deed(context: context)
-            newDeed.title = deedDetailVC.textView.text
-            newDeed.date = Date()
-                                       
-            deeds.insert(newDeed, at: 0)
+            let newDeed = cdm.insertDeed(title: deedDetailVC.textView.text, date: Date())
+            
+            // Will crash if newDeed is nil/not inserted properly, etc
+            deeds.insert(newDeed!, at: 0)
         } else if (segue.identifier == "doneSortingSegue") {
             
         }
@@ -152,25 +151,16 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     //MARK: - Model Manipulation Methods
     func saveDeeds() {
-        do {
-            try context.save()
-        } catch {
-            print("Error saving context \(error)")
-        }
-        
+        cdm.save()
     }
     
     // Provides default value if no request is sent
     func loadDeeds(with request: NSFetchRequest<Deed> = Deed.fetchRequest()) {
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-        
-        do {
-            deeds = try context.fetch(request)
-            updateSections()
-        } catch {
-            print("Error fetching data from context \(error)")
-        }
-        
+
+        deeds = cdm.fetchDeeds(with: request)
+        updateSections()
+
         tableView.reloadData()
     }
 }
