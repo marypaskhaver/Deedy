@@ -272,7 +272,7 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let whiteRoundedViewTag = 1
+        let whiteRoundedViewTag = WhiteRoundedView.tag
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "deedCell", for: indexPath) as! DeedTableViewCell
         
@@ -283,12 +283,10 @@ extension ViewController: UITableViewDataSource {
         
         cell.deedDescriptionLabel.text = deed.title
         cell.deedDescriptionLabel.sizeToFit()
-                
+        
         let whiteRoundedViewHeight = cell.deedDescriptionLabel.frame.height + 20
                 
         let whiteRoundedView = WhiteRoundedView(frameToDisplay: CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: whiteRoundedViewHeight))
-        
-        whiteRoundedView.tag = whiteRoundedViewTag;
         
         cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubviewToBack(whiteRoundedView)
