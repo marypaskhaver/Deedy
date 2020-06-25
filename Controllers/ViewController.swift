@@ -21,7 +21,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalDeedsLabel: UILabel!
-    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var topView: TopView!
     
     var editedDeedText: String = ""
     var editedIndexPath: IndexPath! = nil
@@ -52,12 +52,6 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         
         if (navigationController?.navigationBar.frame.height) != nil {
             topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: topView.frame.height)
-        }
-        
-        topView.backgroundColor = UIColor.white
-        
-        if self.traitCollection.userInterfaceStyle == .dark {
-            topView.backgroundColor = UIColor.black
         }
     }
     
