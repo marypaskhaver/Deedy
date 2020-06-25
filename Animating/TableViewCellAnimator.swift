@@ -11,7 +11,7 @@ import UIKit
 
 typealias TableViewCellAnimation = (UITableViewCell, IndexPath, UITableView) -> Void
 
-final class Animator {
+final class TableViewCellAnimator {
     private var hasAnimatedAllCells = false
     private let animation: TableViewCellAnimation
 
