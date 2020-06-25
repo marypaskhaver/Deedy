@@ -106,7 +106,8 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
             
         }
         
-        self.saveDeeds()
+        saveDeeds()
+        updateSections()
         
         // Add update GlobalViewController here
         tableView.reloadData()
@@ -166,8 +167,6 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     //MARK: - Model Manipulation Methods
     func saveDeeds() {
-        updateSections()
-        
         do {
             try context.save()
         } catch {
@@ -229,6 +228,7 @@ extension ViewController: UITableViewDelegate {
         editedIndexPath = nil
         
         saveDeeds()
+        updateSections()
         
         tableView.reloadData()
     }
