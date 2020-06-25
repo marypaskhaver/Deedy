@@ -283,9 +283,7 @@ extension ViewController: UITableViewDataSource {
         
         cell.deedDescriptionLabel.text = deed.title
         cell.deedDescriptionLabel.sizeToFit()
-        
-        cell.contentView.backgroundColor = UIColor.clear
-        
+                
         let whiteRoundedViewHeight = cell.deedDescriptionLabel.frame.height + 20
                 
         let whiteRoundedView = WhiteRoundedView(frameToDisplay: CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: whiteRoundedViewHeight))
