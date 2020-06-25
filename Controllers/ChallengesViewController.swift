@@ -444,23 +444,10 @@ extension ChallengesViewController: UITableViewDataSource {
         cell.contentView.backgroundColor = UIColor.clear
         
         let whiteRoundedViewHeight = cell.challengeDescriptionLabel.frame.height + cell.subtitleLabel.frame.height
-                
-        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: whiteRoundedViewHeight - 18))
+   
+        let whiteRoundedView = WhiteRoundedView(frameToDisplay: CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: whiteRoundedViewHeight - 18))
         
-        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
-        
-        if self.traitCollection.userInterfaceStyle == .dark {
-            whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.0, 0.0, 0.0, 0.9])
-            whiteRoundedView.layer.borderWidth = 1
-            whiteRoundedView.layer.borderColor = UIColor.white.cgColor
-        }
-        
-        whiteRoundedView.layer.masksToBounds = false
-        whiteRoundedView.layer.cornerRadius = 8.0
-        whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        whiteRoundedView.layer.shadowOpacity = 0.2
-        
-        whiteRoundedView.tag = whiteRoundedViewTag;
+        whiteRoundedView.tag = whiteRoundedViewTag
         
         cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubviewToBack(whiteRoundedView) 
