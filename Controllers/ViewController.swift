@@ -288,20 +288,7 @@ extension ViewController: UITableViewDataSource {
         
         let whiteRoundedViewHeight = cell.deedDescriptionLabel.frame.height + 20
                 
-        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: whiteRoundedViewHeight))
-        
-        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
-        
-        if self.traitCollection.userInterfaceStyle == .dark {
-            whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.0, 0.0, 0.0, 0.9])
-            whiteRoundedView.layer.borderWidth = 1
-            whiteRoundedView.layer.borderColor = UIColor.white.cgColor
-        }
-        
-        whiteRoundedView.layer.masksToBounds = false
-        whiteRoundedView.layer.cornerRadius = 8.0
-        whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        whiteRoundedView.layer.shadowOpacity = 0.2
+        let whiteRoundedView = WhiteRoundedView(frameToDisplay: CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: whiteRoundedViewHeight))
         
         whiteRoundedView.tag = whiteRoundedViewTag;
         
