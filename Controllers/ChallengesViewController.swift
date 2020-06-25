@@ -422,14 +422,14 @@ extension ChallengesViewController: UITableViewDataSource {
         
         if achievement.identifier == "deedAchievement" {
             if (totalDeedsDone >= achievement.goalNumber) {
-                markAchievementDoneAndSetCellText(to: "\(achievement.goalNumber) / \(achievement.goalNumber)", forCell: cell, forAchievement: achievement)
+                markAchievementDoneAndSetCellTextToProgress(forCell: cell, forAchievement: achievement)
             } else {
                 cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievements[indexPath.row].goalNumber)"
             }
             
         } else if achievement.identifier == "streakAchievement" {
             if (streak.daysKept >= achievement.goalNumber) {
-                markAchievementDoneAndSetCellText(to: "\(achievement.goalNumber) / \(achievement.goalNumber)", forCell: cell, forAchievement: achievement)
+                markAchievementDoneAndSetCellTextToProgress(forCell: cell, forAchievement: achievement)
             } else {
                 cell.subtitleLabel.text = "\(streak.daysKept) / \(achievements[indexPath.row].goalNumber)"
             }
@@ -449,8 +449,8 @@ extension ChallengesViewController: UITableViewDataSource {
         return cell
     }
     
-    func markAchievementDoneAndSetCellText(to text: String, forCell cell: ChallengeTableViewCell, forAchievement ach: Achievement) {
-        cell.setSubtitleTextIfAchievementCompleted(to: text)
+    func markAchievementDoneAndSetCellTextToProgress(forCell cell: ChallengeTableViewCell, forAchievement ach: Achievement) {
+        cell.setSubtitleTextIfAchievementCompleted(to: "\(ach.goalNumber) / \(ach.goalNumber)")
         ach.isDone = true
     }
     
