@@ -23,7 +23,7 @@ class ChallengesViewController: UIViewController {
     @IBOutlet weak var labelSayingStreak: UILabel!
     @IBOutlet weak var labelSayingDays: UILabel!
     
-    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var topView: TopView!
     
     var dailyChallenge: DailyChallenge = DailyChallenge(context: context)
     var streak: Streak = Streak(context: context)
@@ -69,12 +69,6 @@ class ChallengesViewController: UIViewController {
         // Update streak-- inc. or dec. count.
         if totalDeedsDone > 0 && !streak.wasUpdatedToday {
             updateStreak()
-        }
-
-        topView.backgroundColor = UIColor.white
-        
-        if self.traitCollection.userInterfaceStyle == .dark {
-            topView.backgroundColor = UIColor.black
         }
     }
     
