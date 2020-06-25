@@ -10,17 +10,12 @@ import UIKit
 
 class DeedDetailViewController: UIViewController {
 
-    @IBOutlet weak var textView: UITextView!
-//    weak var delegate: DataEnteredDelegate? = nil
+    @IBOutlet weak var textView: TextViewForDeedEntry!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        textView.layer.borderWidth = 1
-        textView.layer.cornerRadius = 8
-        textView.layer.borderColor = UIColor.gray.cgColor
-
         navigationController?.navigationBar.shadowImage = UIImage()
     }
     
