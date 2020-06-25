@@ -14,7 +14,7 @@ protocol DeedEditedDelegateProtocol {
 
 class EditDeedViewController: UIViewController {
 
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textView: TextViewForDeedEntry!
     @IBOutlet weak var topView: UIView!
     
     var delegate: DeedEditedDelegateProtocol? = nil
@@ -43,10 +43,6 @@ class EditDeedViewController: UIViewController {
         if let navBarColor = defaults.color(forKey: "navBarColor") {
             topView.backgroundColor = navBarColor
         }
-        
-        textView.layer.borderWidth = 1
-        textView.layer.cornerRadius = 8
-        textView.layer.borderColor = UIColor.gray.cgColor
         
         textView.text = oldText
         
