@@ -10,6 +10,8 @@ import UIKit
 
 class WhiteRoundedView: UIView {
     
+    static var tag = 1
+    
     init(frameToDisplay: CGRect) {
         super.init(frame: frameToDisplay)
 
@@ -27,7 +29,7 @@ class WhiteRoundedView: UIView {
         self.layer.shadowOpacity = 0.2
         
         // Store in some sort of Constant class
-//        self.tag = 1
+        self.tag = WhiteRoundedView.tag
     }
 
     required init?(coder aDecoder: NSCoder) {
