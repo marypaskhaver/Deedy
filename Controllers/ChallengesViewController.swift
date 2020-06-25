@@ -410,14 +410,14 @@ extension ChallengesViewController: UITableViewDataSource {
             if (totalDeedsDone >= achievement.goalNumber) {
                 markAchievementDoneAndSetCellSubtitleText(forCell: cell, forAchievement: achievement)
             } else {
-                cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievements[indexPath.row].goalNumber)"
+                cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievement.goalNumber)"
             }
             
         } else if achievement.identifier == StreakAchievements.streakAchievementIdentifier {
             if (streak.daysKept >= achievement.goalNumber) {
                 markAchievementDoneAndSetCellSubtitleText(forCell: cell, forAchievement: achievement)
             } else {
-                cell.subtitleLabel.text = "\(streak.daysKept) / \(achievements[indexPath.row].goalNumber)"
+                cell.subtitleLabel.text = "\(streak.daysKept) / \(achievement.goalNumber)"
             }
         }
         
