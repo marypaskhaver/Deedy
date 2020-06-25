@@ -130,14 +130,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     }
     
     func updateDeedsLabel() {
-        UIView.animate(withDuration: 0.4, animations: { () -> Void in
-            self.totalDeedsLabel.transform = .init(scaleX: 1.25, y: 1.25)
-        }) { (finished: Bool) -> Void in
-            self.totalDeedsLabel.text = String(self.deeds.count)
-            UIView.animate(withDuration: 0.4, animations: { () -> Void in
-                self.totalDeedsLabel.transform = .identity
-            })
-        }
+        Animations.changeLabelNumberWithPop(forLabel: totalDeedsLabel, withNewNumber: deeds.count, duration: 0.4)
     }
     
     static func changeDateFormatter(toOrderBy dateFormat: String, timeSection: String) {
