@@ -107,14 +107,18 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     // MARK: - Updating/Sorting Sections and Labels
     func splitSections() {
-        if (ViewController.timeSection == "Day") {
-            self.sections = DaySection.group(deeds: deeds)
-        } else if (ViewController.timeSection == "Week") {
-            self.sections = WeekSection.group(deeds: deeds)
-        } else if (ViewController.timeSection == "Month") {
-            self.sections = MonthSection.group(deeds: deeds)
-        } else if (ViewController.timeSection == "Year") {
-            self.sections = YearSection.group(deeds: deeds)
+        
+        switch ViewController.timeSection {
+            case "Day":
+                self.sections = DaySection.group(deeds: deeds)
+            case "Week":
+                self.sections = WeekSection.group(deeds: deeds)
+            case "Month":
+                self.sections = MonthSection.group(deeds: deeds)
+            case "Year":
+                self.sections = YearSection.group(deeds: deeds)
+            default:
+                self.sections = MonthSection.group(deeds: deeds)
         }
         
         self.sections.sort { (lhs, rhs) in lhs.date > rhs.date }
