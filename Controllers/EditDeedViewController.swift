@@ -24,7 +24,6 @@ class EditDeedViewController: UIViewController {
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         let trimmedText: String = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        
         if (trimmedText.count == 0) {
             invalidInputWarningLabel.isHidden = false
         } else {
