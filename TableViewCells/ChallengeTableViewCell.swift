@@ -25,5 +25,11 @@ class ChallengeTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func setSubtitleTextIfAchievementCompleted(to text: String) {
+        self.subtitleLabel.text = text
+        self.subtitleLabel.textColor = UIColor(red: 26 / 255.0, green: 145 / 255.0, blue: 0 / 255.0, alpha: 1.0)
+        
+    }
 
 }
