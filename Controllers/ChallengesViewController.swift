@@ -440,9 +440,7 @@ extension ChallengesViewController: UITableViewDataSource {
         }
         
         cell.subtitleLabel.sizeToFit()
-        
-        cell.contentView.backgroundColor = UIColor.clear
-        
+                
         let whiteRoundedViewHeight = cell.challengeDescriptionLabel.frame.height + cell.subtitleLabel.frame.height
    
         let whiteRoundedView = WhiteRoundedView(frameToDisplay: CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: whiteRoundedViewHeight - 18))
