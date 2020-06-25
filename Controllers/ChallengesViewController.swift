@@ -289,10 +289,10 @@ class ChallengesViewController: UIViewController {
     // Change tableView frame and animate?
     func revealDailyGoalRelatedItemsIfNeeded() {
         let originalTableViewYPos: CGFloat = 0.263 * self.view.frame.height
-        let amountToMoveTableViewDownBy = 0.122 * self.view.frame.height
+        let amountToMoveTableViewDownBy = -0.122 * self.view.frame.height
         let originalTopViewHeight: CGFloat = self.view.frame.height / 4.0
         
-        let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height
+//        let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height
         
         if (dailyChallenge.dailyGoal > 0) {
             hideDailyGoalRelatedItems(bool: false)
@@ -303,15 +303,11 @@ class ChallengesViewController: UIViewController {
                 tableViewTopConstraint.constant = 0
             }
             
-            if (navigationController?.navigationBar.frame.height) != nil {
-                topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: originalTopViewHeight)
-            }
+            moveTopViewFrame(toHeight: originalTopViewHeight)
         } else { // If daily goals are set to 0, remove daily goal-related items from screen
             hideDailyGoalRelatedItems(bool: true)
             
-            if (navigationController?.navigationBar.frame.height) != nil {
-                topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: originalTopViewHeight - amountToMoveTableViewDownBy)
-            }
+            moveTopViewFrame(toHeight: originalTopViewHeight + amountToMoveTableViewDownBy)
 
             tableViewTopConstraint.constant = 0
             
@@ -319,6 +315,14 @@ class ChallengesViewController: UIViewController {
         }
         
         setDailyGoalProgressViewValue()
+    }
+    
+    func moveTopViewFrame(toHeight height: CGFloat) {
+        let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height
+        
+        if (navigationController?.navigationBar.frame.height) != nil {
+            topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: CGFloat(self.view.frame.width), height: height)
+        }
     }
     
     func hideDailyGoalRelatedItems(bool: Bool) {
