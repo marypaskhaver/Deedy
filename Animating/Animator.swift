@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-typealias Animation = (UITableViewCell, IndexPath, UITableView) -> Void
+typealias TableViewCellAnimation = (UITableViewCell, IndexPath, UITableView) -> Void
 
 final class Animator {
     private var hasAnimatedAllCells = false
-    private let animation: Animation
+    private let animation: TableViewCellAnimation
 
-    init(animation: @escaping Animation) {
+    init(animation: @escaping TableViewCellAnimation) {
         self.animation = animation
     }
 
