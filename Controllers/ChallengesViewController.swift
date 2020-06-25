@@ -294,7 +294,7 @@ class ChallengesViewController: UIViewController {
     // Change tableView frame and animate?
     func revealDailyGoalRelatedItemsIfNeeded() {
         let originalTableViewYPos: CGFloat = 0.263 * self.view.frame.height
-        let amountToMoveTableViewUpOrDownBy = 0.122 * self.view.frame.height
+        let amountToMoveTableViewDownBy = 0.122 * self.view.frame.height
         let originalTopViewHeight: CGFloat = self.view.frame.height / 4.0
         
         let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height
@@ -302,7 +302,7 @@ class ChallengesViewController: UIViewController {
         if (dailyChallenge.dailyGoal > 0) {
             hideDailyGoalRelatedItems(bool: false)
             
-            tableView.frame = CGRect(x: 0, y: originalTableViewYPos + amountToMoveTableViewUpOrDownBy, width: tableView.frame.width, height: tableView.frame.height)
+            tableView.frame = CGRect(x: 0, y: originalTableViewYPos + amountToMoveTableViewDownBy, width: tableView.frame.width, height: tableView.frame.height)
                         
             if tableViewTopConstraint.constant < 0 {
                 tableViewTopConstraint.constant = 0
@@ -315,7 +315,7 @@ class ChallengesViewController: UIViewController {
             hideDailyGoalRelatedItems(bool: true)
             
             if (navigationController?.navigationBar.frame.height) != nil {
-                topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: originalTopViewHeight - amountToMoveTableViewUpOrDownBy)
+                topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: originalTopViewHeight - amountToMoveTableViewDownBy)
             }
 
             tableViewTopConstraint.constant = 0
