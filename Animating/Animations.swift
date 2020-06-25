@@ -11,7 +11,7 @@ import UIKit
 
 enum Animations {
     
-    static func slideRightToLeftAnimation(duration: TimeInterval, delayFactor: Double) -> Animation {
+    static func slideRightToLeftAnimation(duration: TimeInterval, delayFactor: Double) -> TableViewCellAnimation {
         return { cell, indexPath, tableView in
             cell.transform = CGAffineTransform(translationX: tableView.bounds.width, y: 0)
 
