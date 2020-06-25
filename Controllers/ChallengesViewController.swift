@@ -219,27 +219,11 @@ class ChallengesViewController: UIViewController {
     }
     
     func createAchievements() {
-        let deedAchievements = [
-            ["Complete 5 deeds", 5],
-            ["Complete 10 deeds", 10],
-            ["Complete 25 deeds", 25],
-            ["Complete 50 deeds", 50],
-            ["Complete 75 deeds", 75],
-            ["Complete 100 deeds", 100],
-            ["Complete 200 deeds", 200]
-        ]
-        
-        let streakAchievements = [
-            ["Hit your streak for 1 day", 1],
-            ["Hit your streak for 5 days", 5],
-            ["Hit your streak for 10 days", 10],
-            ["Hit your streak for 15 days", 15],
-            ["Hit your streak for 30 days", 30],
-        ]
-        
-        addToAchievementsArray(fromArray: deedAchievements, withIdentifier: "deedAchievement")
+        let deedAchievements = DeedAchievements.deedAchievements
+        addToAchievementsArray(fromArray: deedAchievements, withIdentifier: DeedAchievements.deedAchievementIdentifier)
 
-        addToAchievementsArray(fromArray: streakAchievements, withIdentifier: "streakAchievement")
+        let streakAchievements = StreakAchievements.streakAchievements
+        addToAchievementsArray(fromArray: streakAchievements, withIdentifier: StreakAchievements.streakAchievementIdentifier)
     }
     
     func addToAchievementsArray(fromArray titlesAndNumbers: [[Any]], withIdentifier identifier: String) {
@@ -424,14 +408,14 @@ extension ChallengesViewController: UITableViewDataSource {
                 
         cell.challengeDescriptionLabel.text = achievement.title
         
-        if achievement.identifier == "deedAchievement" {
+        if achievement.identifier == DeedAchievements.deedAchievementIdentifier {
             if (totalDeedsDone >= achievement.goalNumber) {
                 markAchievementDoneAndSetCellTextToProgress(forCell: cell, forAchievement: achievement)
             } else {
                 cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievements[indexPath.row].goalNumber)"
             }
             
-        } else if achievement.identifier == "streakAchievement" {
+        } else if achievement.identifier == StreakAchievements.streakAchievementIdentifier {
             if (streak.daysKept >= achievement.goalNumber) {
                 markAchievementDoneAndSetCellTextToProgress(forCell: cell, forAchievement: achievement)
             } else {
