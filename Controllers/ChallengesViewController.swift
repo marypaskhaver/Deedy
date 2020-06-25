@@ -376,7 +376,7 @@ extension ChallengesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let animation = Animations.slideRightToLeftAnimation(duration: 1, delayFactor: 0.1)
-        let animator = Animator(animation: animation)
+        let animator = TableViewCellAnimator(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
     }
 
