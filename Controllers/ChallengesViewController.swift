@@ -270,14 +270,11 @@ class ChallengesViewController: UIViewController {
         }
     }
 
-    // Change tableView frame and animate?
     func revealDailyGoalRelatedItemsIfNeeded() {
         let originalTableViewYPos: CGFloat = 0.263 * self.view.frame.height
         let amountToMoveTableViewDownBy = -0.122 * self.view.frame.height
         let originalTopViewHeight: CGFloat = self.view.frame.height / 4.0
-        
-//        let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height
-        
+                
         if (dailyChallenge.dailyGoal > 0) {
             hideDailyGoalRelatedItems(bool: false)
             
