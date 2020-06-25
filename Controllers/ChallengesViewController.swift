@@ -405,21 +405,8 @@ extension ChallengesViewController: UITableViewDataSource {
         let achievement = achievements[indexPath.row]
                 
         cell.challengeDescriptionLabel.text = achievement.title
-        
-        if achievement.identifier == DeedAchievements.deedAchievementIdentifier {
-            if (totalDeedsDone >= achievement.goalNumber) {
-                markAchievementDoneAndSetCellSubtitleText(forCell: cell, forAchievement: achievement)
-            } else {
-                cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievement.goalNumber)"
-            }
-            
-        } else if achievement.identifier == StreakAchievements.streakAchievementIdentifier {
-            if (streak.daysKept >= achievement.goalNumber) {
-                markAchievementDoneAndSetCellSubtitleText(forCell: cell, forAchievement: achievement)
-            } else {
-                cell.subtitleLabel.text = "\(streak.daysKept) / \(achievement.goalNumber)"
-            }
-        }
+
+        setCellSubtitleTextToAchievement(forCell: cell, forAchievement: achievement)
         
         cell.subtitleLabel.sizeToFit()
                 
@@ -433,9 +420,26 @@ extension ChallengesViewController: UITableViewDataSource {
         return cell
     }
     
-    func markAchievementDoneAndSetCellSubtitleText(forCell cell: ChallengeTableViewCell, forAchievement ach: Achievement) {
-        cell.setSubtitleTextIfAchievementCompleted(to: "\(ach.goalNumber) / \(ach.goalNumber)")
-        ach.isDone = true
+    func setCellSubtitleTextToAchievement(forCell cell: ChallengeTableViewCell, forAchievement achievement: Achievement) {
+        if achievement.identifier == DeedAchievements.deedAchievementIdentifier {
+            if (totalDeedsDone >= achievement.goalNumber) {
+                markAchievementDoneAndSetCellSubtitleTextToComplete(forCell: cell, forAchievement: achievement)
+            } else {
+                cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievement.goalNumber)"
+            }
+            
+        } else if achievement.identifier == StreakAchievements.streakAchievementIdentifier {
+            if (streak.daysKept >= achievement.goalNumber) {
+                markAchievementDoneAndSetCellSubtitleTextToComplete(forCell: cell, forAchievement: achievement)
+            } else {
+                cell.subtitleLabel.text = "\(streak.daysKept) / \(achievement.goalNumber)"
+            }
+        }
+    }
+    
+    func markAchievementDoneAndSetCellSubtitleTextToComplete(forCell cell: ChallengeTableViewCell, forAchievement achievement: Achievement) {
+        cell.setSubtitleTextIfAchievementCompleted(to: "\(achievement.goalNumber) / \(achievement.goalNumber)")
+        achievement.isDone = true
     }
     
 }
