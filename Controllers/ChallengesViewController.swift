@@ -213,23 +213,26 @@ class ChallengesViewController: UIViewController {
     }
     
     func createAchievements() {
-        let deedAchievements = DeedAchievements.deedAchievements
-        addToAchievementsArray(fromArray: deedAchievements, withIdentifier: DeedAchievements.deedAchievementIdentifier)
+        let deedAchievements = DeedAchievements.achievements
+        addToAchievementsArray(fromDictionary: deedAchievements, withIdentifier: DeedAchievements.identifier)
 
-        let streakAchievements = StreakAchievements.streakAchievements
-        addToAchievementsArray(fromArray: streakAchievements, withIdentifier: StreakAchievements.streakAchievementIdentifier)
+        let streakAchievements = StreakAchievements.achievements
+        addToAchievementsArray(fromDictionary: streakAchievements, withIdentifier: StreakAchievements.identifier)
     }
     
-    func addToAchievementsArray(fromArray titlesAndNumbers: [[Any]], withIdentifier identifier: String) {
-        for titleAndNumber in titlesAndNumbers {
-            let newAchievement = Achievement(context: context)
-            
-            newAchievement.title = (titleAndNumber[0] as! String)
-            newAchievement.goalNumber = Int32((titleAndNumber[1] as! Int))
-            newAchievement.isDone = false
-            newAchievement.identifier = identifier
-            
-            achievements.append(newAchievement)
+    func addToAchievementsArray(fromDictionary titlesAndNumbers: [Dictionary<String, Int>], withIdentifier identifier: String) {
+        
+        for titleAndNumberDictionary in titlesAndNumbers {
+            for (key, value) in titleAndNumberDictionary {
+                let newAchievement = Achievement(context: context)
+                
+                newAchievement.title = key
+                newAchievement.goalNumber = Int32(value)
+                newAchievement.isDone = false
+                newAchievement.identifier = identifier
+
+                achievements.append(newAchievement)
+            }
         }
     }
     
@@ -292,6 +295,7 @@ class ChallengesViewController: UIViewController {
         setDailyGoalProgressViewValue()
     }
     
+    // Move to TopView class?
     func moveTopViewFrame(toHeight height: CGFloat) {
         let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height
         
@@ -412,14 +416,14 @@ extension ChallengesViewController: UITableViewDataSource {
     }
     
     func setCellSubtitleTextToAchievement(forCell cell: ChallengeTableViewCell, forAchievement achievement: Achievement) {
-        if achievement.identifier == DeedAchievements.deedAchievementIdentifier {
+        if achievement.identifier == DeedAchievements.identifier {
             if (totalDeedsDone >= achievement.goalNumber) {
                 markAchievementDoneAndSetCellSubtitleTextToComplete(forCell: cell, forAchievement: achievement)
             } else {
                 cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievement.goalNumber)"
             }
             
-        } else if achievement.identifier == StreakAchievements.streakAchievementIdentifier {
+        } else if achievement.identifier == StreakAchievements.identifier {
             if (streak.daysKept >= achievement.goalNumber) {
                 markAchievementDoneAndSetCellSubtitleTextToComplete(forCell: cell, forAchievement: achievement)
             } else {
