@@ -237,9 +237,9 @@ class ChallengesViewController: UIViewController {
             ["Hit your streak for 30 days", 30],
         ]
         
-        addToAchievementsArray(fromArray: [[deedAchievements]], withIdentifier: "deedAchievement")
+        addToAchievementsArray(fromArray: deedAchievements, withIdentifier: "deedAchievement")
 
-        addToAchievementsArray(fromArray: [[streakAchievements]], withIdentifier: "streakAchievement")
+        addToAchievementsArray(fromArray: streakAchievements, withIdentifier: "streakAchievement")
     }
     
     func addToAchievementsArray(fromArray titlesAndNumbers: [[Any]], withIdentifier identifier: String) {
