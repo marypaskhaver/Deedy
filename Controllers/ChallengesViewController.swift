@@ -375,15 +375,9 @@ extension ChallengesViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.transform = CGAffineTransform(translationX: tableView.bounds.width, y: 0)
-
-        UIView.animate(
-            withDuration: 1,
-            delay: 0.1 * Double(indexPath.row),
-            options: [.curveEaseInOut],
-            animations: {
-                cell.transform = CGAffineTransform(translationX: 0, y: 0)
-        })
+        let animation = Animations.slideRightToLeftAnimation(duration: 1, delayFactor: 0.1)
+        let animator = Animator(animation: animation)
+        animator.animate(cell: cell, at: indexPath, in: tableView)
     }
 
 }
