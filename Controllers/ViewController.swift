@@ -202,6 +202,7 @@ extension ViewController: UITableViewDelegate {
         let contextItem = UIContextualAction(style: .normal, title: "Edit") {  (contextualAction, view, boolValue) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let evc = storyboard.instantiateViewController(withIdentifier: "EditDeedViewController") as! EditDeedViewController
+            
             evc.delegate = self
             
             evc.oldText = self.deeds[indexPath.row].title!
@@ -211,7 +212,7 @@ extension ViewController: UITableViewDelegate {
             self.editedIndexPath = indexPath
         }
         
-        // Green
+        // Dark blue
         contextItem.backgroundColor = UIColor(red: 0 / 255.0, green: 148 / 255.0, blue: 206 / 255.0, alpha: 1.0)
 
         let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
