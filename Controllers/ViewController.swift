@@ -9,8 +9,6 @@
 import UIKit
 import CoreData
 
-let cdm = CoreDataManager()
-
 class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     var deeds = [Deed]()
@@ -28,6 +26,8 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     var editedIndexPath: IndexPath! = nil
     
     let headerFont = UIFont.systemFont(ofSize: 22)
+    
+    var cdm = CoreDataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -235,7 +235,7 @@ extension ViewController: UITableViewDataSource {
         return section.deeds.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "deedCell", for: indexPath) as! DeedTableViewCell
         
         cell.contentView.viewWithTag(WhiteRoundedView.tag)?.removeFromSuperview()
