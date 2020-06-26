@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var resetButton: UIButton!
     
     // Default -- a light blue
-    static var navBarColor = UIColor(red: 114 / 255.0, green: 200 / 255.0, blue: 250 / 255.0, alpha: 1.0)
+    static var navBarColor = CustomColors.defaultBlue
     static var navBarTextColor = UIColor.white
     
     let navBarColorUserDefaultsKey = "navBarColor"
@@ -46,19 +46,19 @@ class SettingsViewController: UIViewController {
         let color = UIColor(red: CGFloat(redSlider.value / 255.0), green: CGFloat(greenSlider.value / 255.0), blue: CGFloat(blueSlider.value / 255.0), alpha: CGFloat(1.0))
         
         changeNavBarColorToColor(color: color)
-        
         changeTextColorIfNeeded()
-                
         saveColorTheme()
         
         return color
     }
     
     @IBAction func resetButtonPressed(_ sender: Any) {
-        // Default light blue
-        redSlider.value = 114
-        greenSlider.value = 200
-        blueSlider.value = 250
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        CustomColors.defaultBlue.getRed(&r, green: &g, blue: &b, alpha: &a)
+
+        redSlider.value = Float(r * 255)
+        greenSlider.value = Float(g * 255)
+        blueSlider.value = Float(b * 255)
         
         changeNavBarColorToColor(color: getUIColorFromSliders())
         changeTextColorIfNeeded()
@@ -135,7 +135,7 @@ extension UserDefaults {
         do {
             return try NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData)
         } catch let error {
-            print("color error \(error.localizedDescription)")
+            print("Color error \(error)")
             return nil
         }
 
@@ -148,7 +148,7 @@ extension UserDefaults {
             let data = try NSKeyedArchiver.archivedData(withRootObject: color, requiringSecureCoding: false)
             set(data, forKey: key)
         } catch let error {
-            print("error color key data not saved \(error.localizedDescription)")
+            print("Error color key data not saved \(error)")
         }
     }
 
