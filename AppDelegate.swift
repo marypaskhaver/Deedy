@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let center = UNUserNotificationCenter.current()
 
@@ -92,16 +91,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        }
     
     //MARK: - Change app color theme
-    
     func changeAppColor() {
         if let navBarColor = defaults.color(forKey: "navBarColor") {
             UINavigationBar.appearance().barTintColor = navBarColor
+        } else {
+            UINavigationBar.appearance().barTintColor = CustomColors.defaultBlue
         }
 
         if let navBarTextColor = defaults.color(forKey: "navBarTextColor") {
             UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: navBarTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
 
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: navBarTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)], for: .normal)
+        } else {
+            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
+
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)], for: .normal)
         }
     }
 
