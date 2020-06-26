@@ -26,8 +26,9 @@ class ChallengesViewController: UIViewController {
     @IBOutlet var backgroundView: BackgroundView!
     
     // Unwrap safely somehow? Later?
-    var dailyChallenge: DailyChallenge = cdm.insertDailyChallenge(dailyGoal: 0, date: Date())!
-    var streak: Streak = cdm.insertStreak(daysKept: 0, wasUpdatedToday: false, date: Date())!
+    let cdm = CoreDataManager()
+    lazy var dailyChallenge: DailyChallenge = cdm.insertDailyChallenge(dailyGoal: 0, date: Date())!
+    lazy var streak: Streak = cdm.insertStreak(daysKept: 0, wasUpdatedToday: false, date: Date())!
     
     var deedsDoneToday: Int = 0
     var achievements = [Achievement]()
@@ -92,7 +93,7 @@ class ChallengesViewController: UIViewController {
     
     // MARK: - Updating Daily Streak
     func loadStreak() {
-        let request : NSFetchRequest<Streak> = Streak.fetchRequest()
+        let request: NSFetchRequest<Streak> = Streak.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
 
         let fetchedRequest = cdm.fetchStreaks(with: request)
@@ -348,6 +349,8 @@ extension ChallengesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as! ChallengeTableViewCell
+        
+        cell.contentView.viewWithTag(WhiteRoundedView.tag)?.removeFromSuperview() 
     
         let achievement = achievements[indexPath.row]
                 
