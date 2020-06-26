@@ -44,10 +44,8 @@ class SettingsViewController: UIViewController {
     
     func getUIColorFromSliders() -> UIColor {
         let color = UIColor(red: CGFloat(redSlider.value / 255.0), green: CGFloat(greenSlider.value / 255.0), blue: CGFloat(blueSlider.value / 255.0), alpha: CGFloat(1.0))
-        
-        changeNavBarColorToColor(color: color)
-        changeTextColorIfNeeded()
-        saveColorTheme()
+    
+        changeAppColorTheme(toColor: color)
         
         return color
     }
@@ -60,7 +58,11 @@ class SettingsViewController: UIViewController {
         greenSlider.value = Float(g * 255)
         blueSlider.value = Float(b * 255)
         
-        changeNavBarColorToColor(color: getUIColorFromSliders())
+        changeAppColorTheme(toColor: getUIColorFromSliders())
+    }
+    
+    func changeAppColorTheme(toColor color: UIColor) {
+        changeNavBarColorToColor(color: color)
         changeTextColorIfNeeded()
         saveColorTheme()
     }
