@@ -59,7 +59,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         if let navBarColor = defaults.color(forKey: "navBarColor") {
             changeViewBackgroundColorFromComponents(from: navBarColor)
         } else {
-            changeViewBackgroundColorFromComponents(from: SettingsViewController.navBarColor)
+            changeViewBackgroundColorFromComponents(from: CustomColors.defaultBlue)
         }
     }
     
