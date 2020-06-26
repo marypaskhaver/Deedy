@@ -23,6 +23,7 @@ class ChallengesViewController: UIViewController {
     @IBOutlet weak var labelSayingDays: UILabel!
     
     @IBOutlet weak var topView: TopView!
+    @IBOutlet var backgroundView: BackgroundView!
     
     // Unwrap safely somehow? Later?
     var dailyChallenge: DailyChallenge = cdm.insertDailyChallenge(dailyGoal: 0, date: Date())!
@@ -80,22 +81,7 @@ class ChallengesViewController: UIViewController {
         
         setTotalDeedsDone()
         
-        if let navBarColor = defaults.color(forKey: "navBarColor") {
-            changeViewBackgroundColorFromComponents(from: navBarColor)
-        } else {
-            changeViewBackgroundColorFromComponents(from: CustomColors.defaultBlue)
-        }
-    }
-    
-    func changeViewBackgroundColorFromComponents(from color: UIColor) {
-        var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-        color.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-
-        if b > 0.75 {
-            view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b, alpha: a)
-        } else {
-            view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b * 1.8, alpha: a)
-        }
+        backgroundView.changeBackgroundColor()
     }
     
     func setTotalDeedsDone() {
