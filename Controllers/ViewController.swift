@@ -174,7 +174,7 @@ extension ViewController: UITableViewDelegate {
     // Edit deed
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let contextItem = UIContextualAction(style: .normal, title: "Edit") {  (contextualAction, view, boolValue) in
+        let editContextItem = UIContextualAction(style: .normal, title: "Edit") {  (contextualAction, view, boolValue) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let evc = storyboard.instantiateViewController(withIdentifier: "EditDeedViewController") as! EditDeedViewController
             
@@ -188,9 +188,9 @@ extension ViewController: UITableViewDelegate {
         }
         
         // Dark blue
-        contextItem.backgroundColor = UIColor(red: 0 / 255.0, green: 148 / 255.0, blue: 206 / 255.0, alpha: 1.0)
+        editContextItem.backgroundColor = CustomColors.editButtonBlue
 
-        let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+        let swipeActions = UISwipeActionsConfiguration(actions: [editContextItem])
         
         return swipeActions
     }
