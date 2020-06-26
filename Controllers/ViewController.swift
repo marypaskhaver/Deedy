@@ -32,6 +32,8 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // Default
         ViewController.dateFormatter.dateFormat = "MMMM yyyy"
         
         let font = UIFont.systemFont(ofSize: 28)
@@ -52,7 +54,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         
         if (navigationController?.navigationBar.frame.height) != nil {
             topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: topView.frame.height)
-        }
+        }        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -161,6 +163,7 @@ extension ViewController: UITableViewDelegate {
         
         let editContextItem = UIContextualAction(style: .normal, title: "Edit") {  (contextualAction, view, boolValue) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
             let evc = storyboard.instantiateViewController(withIdentifier: "EditDeedViewController") as! EditDeedViewController
             
             evc.delegate = self
@@ -232,12 +235,10 @@ extension ViewController: UITableViewDataSource {
         return section.deeds.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let whiteRoundedViewTag = WhiteRoundedView.tag
-        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
         let cell = tableView.dequeueReusableCell(withIdentifier: "deedCell", for: indexPath) as! DeedTableViewCell
         
-        cell.contentView.viewWithTag(whiteRoundedViewTag)?.removeFromSuperview()
+        cell.contentView.viewWithTag(WhiteRoundedView.tag)?.removeFromSuperview()
         
         let section = self.sections[indexPath.section]
         let deed = section.deeds[indexPath.row]
