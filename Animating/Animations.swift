@@ -24,4 +24,15 @@ enum Animations {
             })
         }
     }
+    
+    static func changeLabelNumberWithPop(forLabel label: UILabel, withNewNumber num: Int, duration: TimeInterval) {
+        UIView.animate(withDuration: duration, animations: { () -> Void in
+            label.transform = .init(scaleX: 1.25, y: 1.25)
+        }) { (finished: Bool) -> Void in
+                label.text = String(num)
+            UIView.animate(withDuration: duration, animations: { () -> Void in
+                label.transform = .identity
+            })
+        }
+    }
 }
