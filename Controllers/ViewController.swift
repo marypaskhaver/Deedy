@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 
-//let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 let cdm = CoreDataManager()
 
 class ViewController: UIViewController, DeedEditedDelegateProtocol {
@@ -23,6 +22,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalDeedsLabel: UILabel!
     @IBOutlet weak var topView: TopView!
+    @IBOutlet var backgroundView: BackgroundView!
     
     var editedDeedText: String = ""
     var editedIndexPath: IndexPath! = nil
@@ -56,22 +56,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let navBarColor = defaults.color(forKey: "navBarColor") {
-            changeViewBackgroundColorFromComponents(from: navBarColor)
-        } else {
-            changeViewBackgroundColorFromComponents(from: CustomColors.defaultBlue)
-        }
-    }
-    
-    func changeViewBackgroundColorFromComponents(from color: UIColor) {
-        var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-        color.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-
-        if b > 0.75 {
-            view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b, alpha: a)
-        } else {
-            view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b * 1.8, alpha: a)
-        }
+        backgroundView.changeBackgroundColor()
     }
     
     // MARK: - Segue methods
