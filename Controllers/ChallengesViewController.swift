@@ -81,25 +81,20 @@ class ChallengesViewController: UIViewController {
         setTotalDeedsDone()
         
         if let navBarColor = defaults.color(forKey: "navBarColor") {
-            var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-            navBarColor.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-
-            if b > 0.75 {
-                view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b, alpha: a)
-            } else {
-                view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b * 1.8, alpha: a)
-            }
+            changeViewBackgroundColorFromComponents(from: navBarColor)
         } else {
-            let navBarColor = SettingsViewController.navBarColor
-            
-            var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-            navBarColor.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
+            changeViewBackgroundColorFromComponents(from: CustomColors.defaultBlue)
+        }
+    }
+    
+    func changeViewBackgroundColorFromComponents(from color: UIColor) {
+        var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        color.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
 
-            if b > 0.75 {
-                view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b, alpha: a)
-            } else {
-                view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b * 1.8, alpha: a)
-            }
+        if b > 0.75 {
+            view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b, alpha: a)
+        } else {
+            view.backgroundColor = UIColor(hue: h, saturation: s, brightness: b * 1.8, alpha: a)
         }
     }
     
