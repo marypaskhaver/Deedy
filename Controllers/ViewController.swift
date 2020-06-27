@@ -117,6 +117,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     func updateDeedsLabel() {
         Animations.changeLabelNumberWithPop(forLabel: totalDeedsLabel, withNewNumber: deeds.count, duration: 0.4)
+        totalDeedsLabel.text = deeds.count
     }
     
     static func changeDateFormatter(toOrderBy dateFormat: String, timeSection: String) {
