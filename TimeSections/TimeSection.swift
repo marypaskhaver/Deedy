@@ -12,4 +12,5 @@ protocol TimeSection {
     var date: Date { get set }
     var deeds: [Deed] { get set }
     static func group(deeds : [Deed]) -> [TimeSection]
+    static var dateFormat: String { get }
 }
