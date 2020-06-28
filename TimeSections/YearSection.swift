@@ -11,10 +11,11 @@ import Foundation
 struct YearSection: TimeSection {
     var date: Date
     var deeds: [Deed]
+    static var dateFormat: String = "yyyy"
     
     static func group(deeds: [Deed]) -> [TimeSection] {
         let groups = Dictionary(grouping: deeds) { (deed) -> Date in
-            return year(date: deed.date)
+            return year(date: deed.date!)
         }
         
         return groups.map(YearSection.init(date:deeds:))
@@ -26,3 +27,4 @@ struct YearSection: TimeSection {
         return calendar.date(from: components)!
     }
 }
+
