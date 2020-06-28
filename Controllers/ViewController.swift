@@ -77,8 +77,6 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
             
             // Will crash if newDeed is nil/not inserted properly, etc
             deeds.insert(newDeed!, at: 0)
-        } else if (segue.identifier == "doneSortingSegue") {
-            
         }
         
         saveDeeds()
@@ -93,7 +91,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     // MARK: - Updating/Sorting Sections and Labels
     func splitSections() {
-        
+        // Make class for this switch statement and all
         switch ViewController.timeSection {
             case "Day":
                 self.sections = DaySection.group(deeds: deeds)
