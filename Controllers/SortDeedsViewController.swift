@@ -35,14 +35,6 @@ class SortDeedsViewController: UIViewController {
         
         navigationController?.navigationBar.shadowImage = UIImage()
     }
-    
-    // Do any additional setup after loading the view.
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "doneSortingSegue" {
-            
-        }
-    }
-    
 }
 
 extension SortDeedsViewController: PickerViewProtocol {
