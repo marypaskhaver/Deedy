@@ -11,10 +11,11 @@ import Foundation
 struct MonthSection: TimeSection {
     var date: Date
     var deeds: [Deed]
-    
+    static var dateFormat: String = "MMMM yyyy"
+
     static func group(deeds: [Deed]) -> [TimeSection] {
         let groups = Dictionary(grouping: deeds) { (deed) -> Date in
-            return firstDayOfMonth(date: deed.date)
+            return firstDayOfMonth(date: deed.date!)
         }
         
         return groups.map(MonthSection.init(date:deeds:))
@@ -26,3 +27,4 @@ struct MonthSection: TimeSection {
         return calendar.date(from: components)!
     }
 }
+
