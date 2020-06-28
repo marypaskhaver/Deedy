@@ -139,27 +139,19 @@ class ChallengesViewController: UIViewController {
         request.predicate = datePredicate
          
         let arrayOfDeedsDoneYesterday = cdm.fetchDeeds(with: request)
-//            let arrayOfDeedsDoneYesterday = try context.fetch(request)
       
         // Check if deed was done yesterday-- if it was: add to streak w/ if statement below, else: set streak to zero, then save everything
-        if (arrayOfDeedsDoneYesterday.count == 0) {
+        if (arrayOfDeedsDoneYesterday.count < dailyChallenge.dailyGoal) {
             streak.daysKept = 0
-            
-            streak.date = Date()
-            dailyGoalStreakLabel.text = String(streak.daysKept)
-            
-            return
         } else {
-            if (arrayOfDeedsDoneYesterday.count >= dailyChallenge.dailyGoal) {
-                streak.daysKept += 1
-                
-                streak.date = Date()
-                dailyGoalStreakLabel.text = String(streak.daysKept)
-            }
+            streak.daysKept += 1
         }
-            
+        
+        streak.date = Date()
+        dailyGoalStreakLabel.text = String(streak.daysKept)
         streak.wasUpdatedToday = true
     }
+    
     
     //MARK: - Loading and Creating Achievements
     func loadAchievements() {
@@ -231,7 +223,8 @@ class ChallengesViewController: UIViewController {
         let originalTableViewYPos: CGFloat = 0.263 * self.view.frame.height
         let amountToMoveTableViewDownBy = -0.122 * self.view.frame.height
         let originalTopViewHeight: CGFloat = self.view.frame.height / 4.0
-                
+        
+        // TableViewModification class
         if (dailyChallenge.dailyGoal > 0) {
             hideDailyGoalRelatedItems(bool: false)
             
@@ -366,7 +359,7 @@ extension ChallengesViewController: UITableViewDataSource {
         
         cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubviewToBack(whiteRoundedView) 
-                        
+        // CellGenerator class
         return cell
     }
     
@@ -378,7 +371,7 @@ extension ChallengesViewController: UITableViewDataSource {
                 cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievement.goalNumber)"
             }
             
-        } else if achievement.identifier == StreakAchievements.identifier {
+        } else if achievement.identifier == StreakAchievements.identifier {            
             if (streak.daysKept >= achievement.goalNumber) {
                 markAchievementDoneAndSetCellSubtitleTextToComplete(forCell: cell, forAchievement: achievement)
             } else {
