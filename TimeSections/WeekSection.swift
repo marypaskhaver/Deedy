@@ -11,10 +11,11 @@ import Foundation
 struct WeekSection: TimeSection {
     var date: Date
     var deeds: [Deed]
+    static var dateFormat: String = "dd MMMM yyyy"
     
     static func group(deeds: [Deed]) -> [TimeSection] {
         let groups = Dictionary(grouping: deeds) { (deed) -> Date in
-            return firstWeekOfMonth(date: deed.date)
+            return firstWeekOfMonth(date: deed.date!)
         }
         
         return groups.map(WeekSection.init(date:deeds:))
@@ -34,3 +35,4 @@ extension Date {
         return sunday
     }
 }
+
