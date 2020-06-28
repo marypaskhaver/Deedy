@@ -22,8 +22,7 @@ class CellCustomizer {
                 
         let whiteRoundedView = WhiteRoundedView(frameToDisplay: CGRect(x: 10, y: 10, width: view.frame.width - 20, height: whiteRoundedViewHeight))
         
-        cell.contentView.addSubview(whiteRoundedView)
-        cell.contentView.sendSubviewToBack(whiteRoundedView)
+        addWhiteRoundedViewToCell(cell: cell, whiteRoundedView: whiteRoundedView)
     }
     
     static func customizeChallengeCell(cell: ChallengeTableViewCell, withAchievement achievement: Achievement, view: UIView) {
@@ -39,8 +38,12 @@ class CellCustomizer {
     
          let whiteRoundedView = WhiteRoundedView(frameToDisplay: CGRect(x: 10, y: 10, width: view.frame.width - 20, height: whiteRoundedViewHeight - 18))
          
-         cell.contentView.addSubview(whiteRoundedView)
-         cell.contentView.sendSubviewToBack(whiteRoundedView)
+         addWhiteRoundedViewToCell(cell: cell, whiteRoundedView: whiteRoundedView) 
+    }
+    
+    static func addWhiteRoundedViewToCell(cell: UITableViewCell, whiteRoundedView: WhiteRoundedView) {
+        cell.contentView.addSubview(whiteRoundedView)
+        cell.contentView.sendSubviewToBack(whiteRoundedView)
     }
     
     static func setCellSubtitleTextToAchievement(forCell cell: ChallengeTableViewCell, forAchievement achievement: Achievement) {
