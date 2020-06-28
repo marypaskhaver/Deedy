@@ -52,20 +52,19 @@ extension SortDeedsViewController: PickerViewProtocol {
         
         switch pickerListItem {
             case "Day":
-                dateFormat = "dd MMMM yyyy" // Move these to xSection classes?
+                dateFormat = DaySection.dateFormat
                 break
             case "Week":
-                dateFormat = "dd MMMM yyyy"
+                dateFormat = WeekSection.dateFormat
                 break
             case "Month":
-                dateFormat = "MMMM yyyy"
+                dateFormat = MonthSection.dateFormat
                 break
             case "Year":
-                dateFormat = "yyyy"
+                dateFormat = YearSection.dateFormat
                 break
             default:
-                //Month
-                dateFormat = "MMMM yyyy"
+                dateFormat = MonthSection.dateFormat
         }
         
         return dateFormat
