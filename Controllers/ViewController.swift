@@ -223,6 +223,13 @@ extension ViewController: UITableViewDelegate {
        header.textLabel?.font = headerFont
    }
     
+    // Animate cells here
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let animation = Animations.slideRightToLeftAnimation(duration: 1, delayFactor: 0.1)
+        let animator = TableViewCellAnimator(animation: animation)
+        animator.animate(cell: cell, at: indexPath, in: tableView)
+    }
+    
 }
 
 // MARK: - Search bar methods
