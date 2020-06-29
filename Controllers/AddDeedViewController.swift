@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DeedDetailViewController: UIViewController {
+class AddDeedViewController: UIViewController {
 
     @IBOutlet weak var textView: TextViewForDeedEntry!
 
