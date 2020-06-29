@@ -266,7 +266,6 @@ class ChallengesViewController: UIViewController {
     
     // MARK: - Model Manipulation Methods
     func saveGoalsAndAchievements() {
-
         if dailyChallenge.date == nil {
             dailyChallenge.date = Date()
         }
@@ -282,25 +281,24 @@ class ChallengesViewController: UIViewController {
         let request : NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
 
-
         let fetchedRequest = cdm.fetchDailyChallenges(with: request)
             
         if fetchedRequest.count == 0 {
             dailyChallenge.dailyGoal = 0
-            dailyChallenge.date = Date()
-            saveGoalsAndAchievements()
         } else {
             dailyChallenge.dailyGoal = fetchedRequest[0].dailyGoal
-            dailyChallenge.date = Date()
         }
-                
+
+        dailyChallenge.date = Date()
+
+        saveGoalsAndAchievements()
+        
         stepper.value = Double(dailyChallenge.dailyGoal)
         dailyGoalStepperLabel.text = String(dailyChallenge.dailyGoal)
         revealDailyGoalRelatedItemsIfNeeded()
     }
     
 }
-
 
 // MARK: - TableView Delegate Methods
 extension ChallengesViewController: UITableViewDelegate {
