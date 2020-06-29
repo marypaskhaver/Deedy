@@ -43,13 +43,6 @@ class ViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
                                 
         return cell
     }
-    
-    // Animate cells here-- does it work?
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let animation = Animations.slideRightToLeftAnimation(duration: 1, delayFactor: 0.1)
-        let animator = TableViewCellAnimator(animation: animation)
-        animator.animate(cell: cell, at: indexPath, in: tableView)
-    }
 
     func addDeed(title: String, date: Date) -> Deed? {
         return cdm.insertDeed(title: title, date: date)!
