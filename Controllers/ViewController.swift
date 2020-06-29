@@ -11,8 +11,8 @@ import CoreData
 
 class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
-    var deeds = [Deed]()
-    var sections = [TimeSection]()
+//    var deeds = [Deed]()
+//    var sections = [TimeSection]()
     static var timeSection: String = "Month"
     
     static let dateFormatter = DateFormatter()
@@ -29,6 +29,8 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     var cdm = CoreDataManager()
     
+    lazy var dataSource = ViewControllerTableViewDataSource(withView: self.view)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -40,6 +42,9 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
 
         self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         
+        tableView.dataSource = dataSource
+        tableView.delegate = self
+
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
@@ -49,12 +54,12 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         loadDeeds()
         sortDeedsFromSavedData()
         updateSections()
-                
+      
         let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height
         
         if (navigationController?.navigationBar.frame.height) != nil {
             topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: topView.frame.height)
-        }        
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,12 +76,12 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         let _ = self.view
         
         if (segue.identifier == "doneAddingSegue") {
-            let deedDetailVC = segue.source as! DeedDetailViewController
+            let deedDetailVC = segue.source as! AddDeedViewController
             
-            let newDeed = cdm.insertDeed(title: deedDetailVC.textView.text, date: Date())
-            
+            let newDeed = dataSource.addDeed(title: deedDetailVC.textView.text!, date: Date())
+
             // Will crash if newDeed is nil/not inserted properly, etc
-            deeds.insert(newDeed!, at: 0)
+            dataSource.deeds.insert(newDeed!, at: 0)
         }
         
         saveDeeds()
@@ -94,18 +99,18 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         // Make class for this switch statement and all
         switch ViewController.timeSection {
             case "Day":
-                self.sections = DaySection.group(deeds: deeds)
+                dataSource.sections = DaySection.group(deeds: dataSource.deeds)
             case "Week":
-                self.sections = WeekSection.group(deeds: deeds)
+                dataSource.sections = WeekSection.group(deeds: dataSource.deeds)
             case "Month":
-                self.sections = MonthSection.group(deeds: deeds)
+                dataSource.sections = MonthSection.group(deeds: dataSource.deeds)
             case "Year":
-                self.sections = YearSection.group(deeds: deeds)
+                dataSource.sections = YearSection.group(deeds: dataSource.deeds)
             default:
-                self.sections = MonthSection.group(deeds: deeds)
+                dataSource.sections = MonthSection.group(deeds: dataSource.deeds)
         }
         
-        self.sections.sort { (lhs, rhs) in lhs.date > rhs.date }
+        dataSource.sections.sort { (lhs, rhs) in lhs.date > rhs.date }
     }
     
     func updateSections() {
@@ -114,8 +119,8 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     }
     
     func updateDeedsLabel() {
-        Animations.changeLabelNumberWithPop(forLabel: totalDeedsLabel, withNewNumber: deeds.count, duration: 0.4)
-        totalDeedsLabel.text = String(deeds.count)
+        Animations.changeLabelNumberWithPop(forLabel: totalDeedsLabel, withNewNumber: dataSource.deeds.count, duration: 0.4)
+        totalDeedsLabel.text = String(dataSource.deeds.count)
     }
     
     static func changeDateFormatter(toOrderBy dateFormat: String, timeSection: String) {
@@ -137,14 +142,14 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     //MARK: - Model Manipulation Methods
     func saveDeeds() {
-        cdm.save()
+        dataSource.saveDeeds()
     }
     
     // Provides default value if no request is sent
     func loadDeeds(with request: NSFetchRequest<Deed> = Deed.fetchRequest()) {
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
 
-        deeds = cdm.fetchDeeds(with: request)
+        dataSource.deeds = cdm.fetchDeeds(with: request)
         updateSections()
 
         tableView.reloadData()
@@ -154,7 +159,12 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
 // MARK: - TableView Delegate Methods
 extension ViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        
+        if dataSource.sections.isEmpty {
+            return 0
+        }
+        
+        return dataSource.sections.count
     }
     
     // Edit deed
@@ -167,7 +177,7 @@ extension ViewController: UITableViewDelegate {
             
             evc.delegate = self
             
-            evc.oldText = self.deeds[indexPath.row].title!
+            evc.oldText = self.dataSource.deeds[indexPath.row].title!
             
             self.navigationController?.present(evc, animated: true)
             
@@ -185,7 +195,7 @@ extension ViewController: UITableViewDelegate {
     func userEditedDeed(newDeedTitle: String) {
         editedDeedText = newDeedTitle
         
-        deeds[editedIndexPath.row].title = editedDeedText
+        dataSource.deeds[editedIndexPath.row].title = editedDeedText
 
         editedDeedText = ""
         editedIndexPath = nil
@@ -195,24 +205,16 @@ extension ViewController: UITableViewDelegate {
         
         tableView.reloadData()
     }
-
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let section = self.sections[section]
-        let date = section.date
-        
-        if (ViewController.timeSection == "Week") {
-            return "Week of " + ViewController.dateFormatter.string(from: date);
-        }
-        
-        return ViewController.dateFormatter.string(from: date)
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if dataSource.sections.isEmpty {
+            return 0
+        }
+        
         return headerFont.pointSize + 18
     }
     
@@ -223,43 +225,12 @@ extension ViewController: UITableViewDelegate {
     
 }
 
-// MARK: - TableView DataSource Methods
-extension ViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (self.sections.isEmpty) {
-            return 0
-        }
-        
-        let section = self.sections[section]
-        return section.deeds.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "deedCell", for: indexPath) as! DeedTableViewCell
-        
-        let section = self.sections[indexPath.section]
-        let deed = section.deeds[indexPath.row]
-        
-        CellCustomizer.customizeDeedCell(cell: cell, withNewText: deed.title!, view: view)
-                                
-        return cell
-    }
-    
-    // Animate cells here
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let animation = Animations.slideRightToLeftAnimation(duration: 1, delayFactor: 0.1)
-        let animator = TableViewCellAnimator(animation: animation)
-        animator.animate(cell: cell, at: indexPath, in: tableView)
-    }
-}
-
-
 // MARK: - Search bar methods
 extension ViewController: UISearchBarDelegate {
     
     // Query CoreData database
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let request : NSFetchRequest<Deed> = Deed.fetchRequest()
+        let request: NSFetchRequest<Deed> = Deed.fetchRequest()
         
         // We need to query/filter what's in our database-- can be done with an NSPredicate
         // The [cd] makes the search case and diacritic insensitive
