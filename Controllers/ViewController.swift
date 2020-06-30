@@ -10,9 +10,7 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController, DeedEditedDelegateProtocol {
-    
-//    var deeds = [Deed]()
-//    var sections = [TimeSection]()
+   
     static var timeSection: String = "Month"
     
     static let dateFormatter = DateFormatter()
