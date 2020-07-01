@@ -27,8 +27,9 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     var cdm = CoreDataManager()
     
-    lazy var dataSource = ViewControllerTableViewDataSource(withView: self.view)
-    
+//    lazy var dataSource = ViewControllerTableViewDataSource(withView: self.view)
+    var dataSource: ViewControllerTableViewDataSource!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -39,6 +40,8 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         let font = UIFont.systemFont(ofSize: 28)
 
         self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
+        
+        dataSource = ViewControllerTableViewDataSource(withView: self.view)
         
         tableView.dataSource = dataSource
         tableView.delegate = self
@@ -52,7 +55,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         loadDeeds()
         sortDeedsFromSavedData()
         updateSections()
-      
+        
         let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height
         
         if (navigationController?.navigationBar.frame.height) != nil {
@@ -83,15 +86,13 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         if (segue.identifier == "doneAddingSegue") {
             let deedDetailVC = segue.source as! AddDeedViewController
             
-            let newDeed = dataSource.addDeed(title: deedDetailVC.textView.text!, date: Date())
-
-            // Will crash if newDeed is nil/not inserted properly, etc
-            dataSource.deeds.insert(newDeed!, at: 0)
+            dataSource.addDeed(title: deedDetailVC.textView.text!, date: Date())
         }
         
-        saveDeeds()
         updateSections()
-        
+
+        dataSource.saveDeeds()
+
         tableView.reloadData()
     }
     
@@ -100,7 +101,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     }
     
     // MARK: - Updating/Sorting Sections and Labels
-    func updateSections() {
+   func updateSections() {
         dataSource.splitSections()
         updateDeedsLabel()
     }
@@ -128,15 +129,11 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     }
     
     //MARK: - Model Manipulation Methods
-    func saveDeeds() {
-        dataSource.saveDeeds()
-    }
-    
     // Provides default value if no request is sent
     func loadDeeds(with request: NSFetchRequest<Deed> = Deed.fetchRequest()) {
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
-        dataSource.deeds = cdm.fetchDeeds(with: request)
+//        dataSource.deeds = cdm.fetchDeeds(with: request)
         updateSections()
 
         tableView.reloadData()
@@ -145,15 +142,6 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
 
 // MARK: - TableView Delegate Methods
 extension ViewController: UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        if dataSource.sections.isEmpty {
-            return 0
-        }
-        
-        return dataSource.sections.count
-    }
-    
     // Edit deed
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
@@ -187,7 +175,8 @@ extension ViewController: UITableViewDelegate {
         editedDeedText = ""
         editedIndexPath = nil
         
-        saveDeeds()
+//        saveDeeds()
+        dataSource.saveDeeds()
         updateSections()
         
         tableView.reloadData()
