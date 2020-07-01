@@ -73,13 +73,11 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     // MARK: - Segue methods
     @IBAction func cancel(segue: UIStoryboardSegue) {
-        
+
     }
     
     // Add deed
-    @IBAction func done(segue: UIStoryboardSegue) {
-        let _ = self.view
-        
+    @IBAction func done(segue: UIStoryboardSegue) {        
         if (segue.identifier == "doneAddingSegue") {
             let deedDetailVC = segue.source as! AddDeedViewController
             
