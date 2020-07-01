@@ -27,8 +27,8 @@ class ChallengesViewController: UIViewController {
     
     // Unwrap safely somehow? Later?
     let cdm = CoreDataManager()
-    lazy var dailyChallenge: DailyChallenge = cdm.insertDailyChallenge(dailyGoal: 0, date: Date())!
-    lazy var streak: Streak = cdm.insertStreak(daysKept: 0, wasUpdatedToday: false, date: Date())!
+    lazy var dailyChallenge = DailyChallenge(context: cdm.backgroundContext)
+    lazy var streak = Streak(context: cdm.backgroundContext)
     
     var deedsDoneToday: Int = 0
     var achievements = [Achievement]()
@@ -73,6 +73,8 @@ class ChallengesViewController: UIViewController {
         if totalDeedsDone > 0 && !streak.wasUpdatedToday {
             updateStreak()
         }
+        
+        cdm.save()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,9 +99,14 @@ class ChallengesViewController: UIViewController {
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
 
         let fetchedRequest = cdm.fetchStreaks(with: request)
-            
-        streak.daysKept = fetchedRequest[0].daysKept
-        streak.date = fetchedRequest[0].date
+        
+        // No previous streaks have ever been saved
+        if (fetchedRequest.count == 0) {
+            streak = cdm.insertStreak(daysKept: 0, wasUpdatedToday: false, date: Date())!
+        } else {
+            streak.daysKept = fetchedRequest[0].daysKept
+            streak.date = fetchedRequest[0].date
+        }
         
         if streak.date == nil {
             streak.date = Date()
@@ -269,7 +276,7 @@ class ChallengesViewController: UIViewController {
         if dailyChallenge.date == nil {
             dailyChallenge.date = Date()
         }
-        
+
         if streak.date == nil {
             streak.date = Date()
         }
@@ -280,18 +287,16 @@ class ChallengesViewController: UIViewController {
     func loadDailyGoalValue() {
         let request : NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-
+        
         let fetchedRequest = cdm.fetchDailyChallenges(with: request)
             
         if fetchedRequest.count == 0 {
-            dailyChallenge.dailyGoal = 0
+            dailyChallenge = cdm.insertDailyChallenge(dailyGoal: 0, date: Date())!
         } else {
             dailyChallenge.dailyGoal = fetchedRequest[0].dailyGoal
         }
 
         dailyChallenge.date = Date()
-
-        saveGoalsAndAchievements()
         
         stepper.value = Double(dailyChallenge.dailyGoal)
         dailyGoalStepperLabel.text = String(dailyChallenge.dailyGoal)
@@ -313,7 +318,7 @@ extension ChallengesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.textLabel?.textAlignment = NSTextAlignment.center
-        header.textLabel?.font = headerFont 
+        header.textLabel?.font = headerFont
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
