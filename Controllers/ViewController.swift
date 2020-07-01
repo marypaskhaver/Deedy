@@ -92,27 +92,9 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         tableView.setContentOffset(.zero, animated: true)
     }
     
-    // MARK: - Updating/Sorting Sections and Labels
-    func splitSections() {
-        // Make class for this switch statement and all
-        switch ViewController.timeSection {
-            case "Day":
-                dataSource.sections = DaySection.group(deeds: dataSource.deeds)
-            case "Week":
-                dataSource.sections = WeekSection.group(deeds: dataSource.deeds)
-            case "Month":
-                dataSource.sections = MonthSection.group(deeds: dataSource.deeds)
-            case "Year":
-                dataSource.sections = YearSection.group(deeds: dataSource.deeds)
-            default:
-                dataSource.sections = MonthSection.group(deeds: dataSource.deeds)
-        }
-        
-        dataSource.sections.sort { (lhs, rhs) in lhs.date > rhs.date }
-    }
-    
+    // MARK: - Updating/Sorting Sections and Labels    
     func updateSections() {
-        splitSections()
+        dataSource.splitSections()
         updateDeedsLabel()
     }
     
@@ -146,7 +128,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     // Provides default value if no request is sent
     func loadDeeds(with request: NSFetchRequest<Deed> = Deed.fetchRequest()) {
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-
+        
         dataSource.deeds = cdm.fetchDeeds(with: request)
         updateSections()
 
