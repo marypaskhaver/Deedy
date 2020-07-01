@@ -101,7 +101,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     }
     
     // MARK: - Updating/Sorting Sections and Labels
-   func updateSections() {
+    func updateSections() {
         dataSource.splitSections()
         updateDeedsLabel()
     }
@@ -133,7 +133,8 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     func loadDeeds(with request: NSFetchRequest<Deed> = Deed.fetchRequest()) {
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
-//        dataSource.deeds = cdm.fetchDeeds(with: request)
+        dataSource.deeds = cdm.fetchDeeds(with: request)
+        
         updateSections()
 
         tableView.reloadData()
@@ -175,7 +176,6 @@ extension ViewController: UITableViewDelegate {
         editedDeedText = ""
         editedIndexPath = nil
         
-//        saveDeeds()
         dataSource.saveDeeds()
         updateSections()
         
