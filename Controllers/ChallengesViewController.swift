@@ -138,12 +138,7 @@ class ChallengesViewController: UIViewController {
         let today = calendar.startOfDay(for: Date())
         let yesterday = calendar.date(byAdding: .day, value: -1, to: today)
 
-         // Set predicate as date being today's date
-        let fromPredicate = NSPredicate(format: "date >= %@", yesterday! as NSDate)
-        let toPredicate = NSPredicate(format: "date < %@", today as NSDate)
-        
-        let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
-        request.predicate = datePredicate
+        setRequestPredicatesBetween(dateFrom: yesterday!, dateTo: today, forRequest: request as! NSFetchRequest<NSFetchRequestResult>)
          
         let arrayOfDeedsDoneYesterday = cdm.fetchDeeds(with: request)
       
@@ -158,7 +153,6 @@ class ChallengesViewController: UIViewController {
         dailyGoalStreakLabel.text = String(streak.daysKept)
         streak.wasUpdatedToday = true
     }
-    
     
     //MARK: - Loading and Creating Achievements
     func loadAchievements() {
@@ -200,7 +194,6 @@ class ChallengesViewController: UIViewController {
     }
     
     // MARK: - Manipulating Progress Views and Daily Challenge Items
-    
     func setDailyGoalProgressViewValue() {
         if (dailyChallenge.dailyGoal > 0) {
             let progress = Float(deedsDoneToday) / Float(dailyChallenge.dailyGoal)
@@ -217,11 +210,7 @@ class ChallengesViewController: UIViewController {
         let dateFrom = calendar.startOfDay(for: Date())
         let dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom)
        
-        // Set predicate as date being today's date
-        let fromPredicate = NSPredicate(format: "date >= %@", dateFrom as NSDate)
-        let toPredicate = NSPredicate(format: "date < %@", dateTo! as NSDate)
-        let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
-        request.predicate = datePredicate
+        setRequestPredicatesBetween(dateFrom: dateFrom, dateTo: dateTo!, forRequest: request as! NSFetchRequest<NSFetchRequestResult>)
             
         deedsDoneToday = cdm.fetchDeeds(with: request).count
     }
@@ -301,6 +290,13 @@ class ChallengesViewController: UIViewController {
         stepper.value = Double(dailyChallenge.dailyGoal)
         dailyGoalStepperLabel.text = String(dailyChallenge.dailyGoal)
         revealDailyGoalRelatedItemsIfNeeded()
+    }
+    
+    func setRequestPredicatesBetween(dateFrom: Date, dateTo: Date, forRequest request: NSFetchRequest<NSFetchRequestResult>) {
+        let fromPredicate = NSPredicate(format: "date >= %@", dateFrom as NSDate)
+        let toPredicate = NSPredicate(format: "date < %@", dateTo as NSDate)
+        let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
+        request.predicate = datePredicate
     }
     
 }
