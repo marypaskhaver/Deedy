@@ -1,5 +1,5 @@
 //
-//  AddDeedViewController.swift
+//  DeedDetailViewController.swift
 //  Good Deed Counter
 //
 //  Created by Mary Paskhaver on 3/7/20.
@@ -17,6 +17,13 @@ class AddDeedViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.shadowImage = UIImage()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+        
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
