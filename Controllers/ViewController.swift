@@ -58,10 +58,17 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         if (navigationController?.navigationBar.frame.height) != nil {
             topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: topView.frame.height)
         }
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         backgroundView.changeBackgroundColor()
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     // MARK: - Segue methods
@@ -92,7 +99,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         tableView.setContentOffset(.zero, animated: true)
     }
     
-    // MARK: - Updating/Sorting Sections and Labels    
+    // MARK: - Updating/Sorting Sections and Labels
     func updateSections() {
         dataSource.splitSections()
         updateDeedsLabel()
