@@ -1,5 +1,5 @@
 //
-//  DeedDetailViewController.swift
+//  AddDeedViewController.swift
 //  Good Deed Counter
 //
 //  Created by Mary Paskhaver on 3/7/20.
