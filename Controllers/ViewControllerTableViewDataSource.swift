@@ -22,9 +22,6 @@ class ViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("number of sections: \(sections.count)")
-        print("sections: \(sections)")
-        
         if (self.sections.isEmpty) {
             return 0
         }
@@ -66,4 +63,22 @@ class ViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
         
         return ViewController.dateFormatter.string(from: date)
     }
+    
+    func splitSections() {
+        switch ViewController.timeSection {
+            case "Day":
+                sections = DaySection.group(deeds: deeds)
+            case "Week":
+                sections = WeekSection.group(deeds: deeds)
+            case "Month":
+                sections = MonthSection.group(deeds: deeds)
+            case "Year":
+                sections = YearSection.group(deeds: deeds)
+            default:
+                sections = MonthSection.group(deeds: deeds)
+        }
+        
+        sections.sort { (lhs, rhs) in lhs.date > rhs.date }
+    }
+   
 }
