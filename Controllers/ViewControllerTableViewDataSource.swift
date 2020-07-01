@@ -19,6 +19,12 @@ class ViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
     init(withView view: UIView) {
         self.view = view
         super.init()
+        
+        let request: NSFetchRequest<Deed> = Deed.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+            
+        deeds = cdm.fetchDeeds(with: request)
+        splitSections()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,8 +47,9 @@ class ViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
         return cell
     }
 
-    func addDeed(title: String, date: Date) -> Deed? {
-        return cdm.insertDeed(title: title, date: date)!
+    func addDeed(title: String, date: Date) {
+        deeds.insert(cdm.insertDeed(title: title, date: date)!, at: 0)
+        splitSections()
     }
     
     func saveDeeds() {
@@ -62,6 +69,14 @@ class ViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
         }
         
         return ViewController.dateFormatter.string(from: date)
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if sections.isEmpty {
+            return 0
+        }
+
+        return sections.count
     }
     
     func splitSections() {
