@@ -233,6 +233,31 @@ class Good_Deed_CounterTests: XCTestCase {
         XCTAssertTrue(vc.dataSource.sections.count == 2)
         XCTAssertFalse(vc.dataSource.sections.count == 1)
     }
+    
+    func testIfDeedsDisplayInTableView() {
+        let calendar = Calendar.current
+
+        let today = Date()
+        addDeed(withTitle: "A", date: today)
+        
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)
+        addDeed(withTitle: "B", date: tomorrow!)
+        addDeed(withTitle: "C", date: tomorrow!)
+
+        if !vc.dataSource.deeds.isEmpty {
+            XCTAssertTrue(vc.dataSource.sections.count > 0)
+        }
+        
+        vc.tableView.reloadData()
+
+        for (sectionIndex, section) in vc.dataSource.sections.enumerated() {
+            for (deedIndex, deed) in section.deeds.enumerated() {
+                let indexPath = IndexPath(row: deedIndex, section: sectionIndex)
+                let cell: DeedTableViewCell = vc.tableView.cellForRow(at: indexPath) as! DeedTableViewCell
+                XCTAssertTrue(cell.deedDescriptionLabel.text == deed.title)
+            }
+        }
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
