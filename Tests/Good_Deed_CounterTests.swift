@@ -14,7 +14,7 @@ import CoreData
 class Good_Deed_CounterTests: XCTestCase {
     var vc: ViewController!
     var sdvc: SortDeedsViewController!
-    var ddvc: DeedDetailViewController!
+    var ddvc: AddDeedViewController!
     
     lazy var managedObjectModel: NSManagedObjectModel = {
         let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))] )!
@@ -50,14 +50,15 @@ class Good_Deed_CounterTests: XCTestCase {
         vc = storyboard.instantiateViewController(identifier: "ViewController") as? ViewController
         
         vc.cdm = CoreDataManager(container: mockPersistentContainer)
+        vc.loadViewIfNeeded()
         
-        ddvc = storyboard.instantiateViewController(identifier: "DeedDetailViewController") as? DeedDetailViewController
+        vc.dataSource.cdm = CoreDataManager(container: mockPersistentContainer)
+        
+        ddvc = storyboard.instantiateViewController(identifier: "DeedDetailViewController") as? AddDeedViewController
         ddvc.loadViewIfNeeded()
 
         initDeedStubs()
-        
-        vc.loadViewIfNeeded()
-        
+                
         sdvc = storyboard.instantiateViewController(identifier: "SortDeedsViewController") as? SortDeedsViewController
         sdvc.loadViewIfNeeded()
     }
@@ -65,6 +66,7 @@ class Good_Deed_CounterTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+        vc.dataSource = nil
         vc = nil
         ddvc = nil
         sdvc = nil
@@ -74,10 +76,10 @@ class Good_Deed_CounterTests: XCTestCase {
     // MARK: - Needed funcs
     func addDeed(withTitle title: String, date: Date) {
         let deed = vc.cdm.insertDeed(title: title, date: date)
-        vc.deeds.append(deed!)
+        vc.dataSource.deeds.append(deed!)
         // Split deeds into proper sections
-//        vc.updateSections()
-        vc.splitSections()
+
+        vc.updateSections()
     }
     
     func initDeedStubs() {
@@ -88,7 +90,7 @@ class Good_Deed_CounterTests: XCTestCase {
         addDeed(withTitle: "D", date: Date())
         addDeed(withTitle: "E", date: Date())
         
-        vc.saveDeeds()
+        vc.dataSource.saveDeeds()
     }
     
     func flushDeedData() {
@@ -111,13 +113,13 @@ class Good_Deed_CounterTests: XCTestCase {
     
     // MARK: - Tests for ViewController
     func testAddingDeed() {
-        XCTAssertEqual(vc.deeds.count, 5)
+        XCTAssertEqual(vc.dataSource.deeds.count, 5)
                 
         ddvc.textView.text = "Hello"
         
         vc.done(segue: UIStoryboardSegue(identifier: "doneAddingSegue", source: ddvc, destination: vc))
         
-        XCTAssertEqual(vc.deeds.count, 6)
+        XCTAssertEqual(vc.dataSource.deeds.count, 6)
     }
     
     func testSectionDeedsEqualToVCDeeds() {
@@ -132,11 +134,11 @@ class Good_Deed_CounterTests: XCTestCase {
         addDeed(withTitle: "B", date: tomorrow!)
         addDeed(withTitle: "C", date: tomorrow!)
 
-        for section in vc.sections {
+        for section in vc.dataSource.sections {
             sumDeeds += section.deeds.count
         }
 
-        XCTAssertEqual(vc.deeds.count, sumDeeds)
+        XCTAssertEqual(vc.dataSource.deeds.count, sumDeeds)
     }
 
 
@@ -163,15 +165,15 @@ class Good_Deed_CounterTests: XCTestCase {
         addDeed(withTitle: "C", date: tomorrow!)
 
         ViewController.changeDateFormatter(toOrderBy: "dd MMMM yyyy", timeSection: "Day")
-        vc.splitSections()
+        vc.dataSource.splitSections()
         
-        XCTAssert((vc.sections as Any) is [DaySection])
+        XCTAssert((vc.dataSource.sections as Any) is [DaySection])
 
-        XCTAssertFalse(vc.sections.count == 0)
-        XCTAssertTrue(vc.sections.count == 2)
-        XCTAssertFalse(vc.sections.count == 1)
-    }
-    
+        XCTAssertFalse(vc.dataSource.sections.count == 0)
+        XCTAssertTrue(vc.dataSource.sections.count == 2)
+        XCTAssertFalse(vc.dataSource.sections.count == 1)
+    } 
+
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
