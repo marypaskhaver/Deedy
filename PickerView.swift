@@ -17,18 +17,24 @@ class PickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
     var pickerList: [String] = []
     var pickerListItem: String!
     var propertyThatReferencesThisViewController: PickerViewProtocol?
+    let labelFontSize = CGFloat(24.0)
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
     }
     
-    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return labelFontSize + 8.0
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerList.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         // Tell ViewController item was selected
         propertyThatReferencesThisViewController?.pickerDidSelectRow(selectedRowValue: pickerList[row])
+
         return pickerList[row]
     }
 
