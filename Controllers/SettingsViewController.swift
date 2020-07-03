@@ -122,15 +122,13 @@ class SettingsViewController: UIViewController {
         if let bsv = defaults.object(forKey: "blueSliderValue") {
             blueSlider.value = bsv as! Float
         }
-        
+                
         navigationController?.navigationBar.barTintColor = getUIColorFromSliders()
     }
 }
 
 // MARK: - UserDefaults methods
-
 extension UserDefaults {
-
     func color(forKey key: String) -> UIColor? {
         guard let colorData = data(forKey: key) else { return nil }
 
