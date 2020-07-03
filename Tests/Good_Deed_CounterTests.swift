@@ -164,7 +164,7 @@ class Good_Deed_CounterTests: XCTestCase {
         addDeed(withTitle: "B", date: tomorrow!)
         addDeed(withTitle: "C", date: tomorrow!)
 
-        ViewController.changeDateFormatter(toOrderBy: "dd MMMM yyyy", timeSection: "Day")
+        ViewController.changeDateFormatter(toOrderBy: DaySection.dateFormat, timeSection: "Day")
         vc.dataSource.splitSections()
         
         XCTAssert((vc.dataSource.sections as Any) is [DaySection])
@@ -173,6 +173,66 @@ class Good_Deed_CounterTests: XCTestCase {
         XCTAssertTrue(vc.dataSource.sections.count == 2)
         XCTAssertFalse(vc.dataSource.sections.count == 1)
     } 
+
+    func testDeedsSortedByWeek() {
+        let calendar = Calendar.current
+        
+        let today = Date()
+        addDeed(withTitle: "A", date: today)
+        
+        let oneWeekFromNow = calendar.date(byAdding: .weekOfYear, value: 1, to: today)
+        addDeed(withTitle: "B", date: oneWeekFromNow!)
+        addDeed(withTitle: "C", date: oneWeekFromNow!)
+
+        ViewController.changeDateFormatter(toOrderBy: WeekSection.dateFormat, timeSection: "Week")
+        vc.dataSource.splitSections()
+        
+        XCTAssert((vc.dataSource.sections as Any) is [WeekSection])
+
+        XCTAssertFalse(vc.dataSource.sections.count == 0)
+        XCTAssertTrue(vc.dataSource.sections.count == 2)
+        XCTAssertFalse(vc.dataSource.sections.count == 1)
+    }
+
+    func testDeedsSortedByMonth() {
+        let calendar = Calendar.current
+        
+        let today = Date()
+        addDeed(withTitle: "A", date: today)
+        
+        let oneMonthFromNow = calendar.date(byAdding: .month, value: 1, to: today)
+        addDeed(withTitle: "B", date: oneMonthFromNow!)
+        addDeed(withTitle: "C", date: oneMonthFromNow!)
+
+        ViewController.changeDateFormatter(toOrderBy: MonthSection.dateFormat, timeSection: "Month")
+        vc.dataSource.splitSections()
+        
+        XCTAssert((vc.dataSource.sections as Any) is [MonthSection])
+
+        XCTAssertFalse(vc.dataSource.sections.count == 0)
+        XCTAssertTrue(vc.dataSource.sections.count == 2)
+        XCTAssertFalse(vc.dataSource.sections.count == 1)
+    }
+
+    func testDeedsSortedByYear() {
+        let calendar = Calendar.current
+        
+        let today = Date()
+        addDeed(withTitle: "A", date: today)
+        
+        let oneYearFromNow = calendar.date(byAdding: .year, value: 1, to: today)
+        addDeed(withTitle: "B", date: oneYearFromNow!)
+        addDeed(withTitle: "C", date: oneYearFromNow!)
+
+        ViewController.changeDateFormatter(toOrderBy: YearSection.dateFormat, timeSection: "Year")
+        vc.dataSource.splitSections()
+        
+        XCTAssert((vc.dataSource.sections as Any) is [YearSection])
+
+        XCTAssertFalse(vc.dataSource.sections.count == 0)
+        XCTAssertTrue(vc.dataSource.sections.count == 2)
+        XCTAssertFalse(vc.dataSource.sections.count == 1)
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
