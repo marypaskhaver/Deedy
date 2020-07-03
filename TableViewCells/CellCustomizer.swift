@@ -28,17 +28,17 @@ class CellCustomizer {
     static func customizeChallengeCell(cell: ChallengeTableViewCell, withAchievement achievement: Achievement, view: UIView) {
         cell.contentView.viewWithTag(WhiteRoundedView.tag)?.removeFromSuperview()
                               
-         cell.challengeDescriptionLabel.text = achievement.title
+        cell.challengeDescriptionLabel.text = achievement.title
 
-         setCellSubtitleTextToAchievement(forCell: cell, forAchievement: achievement)
-         
-         cell.subtitleLabel.sizeToFit()
-                 
-         let whiteRoundedViewHeight = cell.challengeDescriptionLabel.frame.height + cell.subtitleLabel.frame.height
-    
-         let whiteRoundedView = WhiteRoundedView(frameToDisplay: CGRect(x: 10, y: 10, width: view.frame.width - 20, height: whiteRoundedViewHeight - 18))
-         
-         addWhiteRoundedViewToCell(cell: cell, whiteRoundedView: whiteRoundedView) 
+        setCellSubtitleTextToAchievement(forCell: cell, forAchievement: achievement)
+     
+        cell.subtitleLabel.sizeToFit()
+             
+        let whiteRoundedViewHeight = cell.challengeDescriptionLabel.frame.height + cell.subtitleLabel.frame.height
+
+        let whiteRoundedView = WhiteRoundedView(frameToDisplay: CGRect(x: 10, y: 10, width: view.frame.width - 20, height: whiteRoundedViewHeight - 18))
+     
+        addWhiteRoundedViewToCell(cell: cell, whiteRoundedView: whiteRoundedView)
     }
     
     static func addWhiteRoundedViewToCell(cell: UITableViewCell, whiteRoundedView: WhiteRoundedView) {
@@ -47,7 +47,14 @@ class CellCustomizer {
     }
     
     static func setCellSubtitleTextToAchievement(forCell cell: ChallengeTableViewCell, forAchievement achievement: Achievement) {
+            
+    //        figure_out_achievement = ___()
+    //        achievement.perform_logic()
+            
             if achievement.identifier == DeedAchievements.identifier {
+                
+    //            DeedAchievements.perform_logic()
+                
                 let totalDeedsDone = getTotalDeedsDone()
                 
                 if (totalDeedsDone >= achievement.goalNumber) {
@@ -57,6 +64,7 @@ class CellCustomizer {
                 }
                 
             } else if achievement.identifier == StreakAchievements.identifier {
+    //            StreakAchievements.perform_logic()
                 let streakDaysKept = getStreakDaysKept()
                 
                 if (streakDaysKept >= achievement.goalNumber) {
@@ -76,10 +84,11 @@ class CellCustomizer {
         return CoreDataManager().fetchDeeds().count
     }
     
+    // Test if works
     static func getStreakDaysKept() -> Int {
         let request: NSFetchRequest<Streak> = Streak.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-        
+
         return Int(CoreDataManager().fetchStreaks(with: request)[0].daysKept)
     }
 
