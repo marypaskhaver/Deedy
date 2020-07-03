@@ -14,7 +14,7 @@ class ViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
     var sections = [TimeSection]()
     var view: UIView
     
-    let cdm = CoreDataManager()
+    var cdm = CoreDataManager()
     
     init(withView view: UIView) {
         self.view = view
@@ -22,7 +22,7 @@ class ViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
         
         let request: NSFetchRequest<Deed> = Deed.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-            
+        
         deeds = cdm.fetchDeeds(with: request)
         splitSections()
     }
