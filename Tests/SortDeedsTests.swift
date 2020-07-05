@@ -47,12 +47,10 @@ class SortDeedsTests: XCTestCase {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         vc = storyboard.instantiateViewController(identifier: "ViewController") as? ViewController
-        
-        vc.cdm = CoreDataManager(container: mockPersistentContainer)
         vc.loadViewIfNeeded()
         
         vc.dataSource.cdm = CoreDataManager(container: mockPersistentContainer)
-
+        
         initDeedStubs()
                 
         sdvc = storyboard.instantiateViewController(identifier: "SortDeedsViewController") as? SortDeedsViewController
@@ -70,7 +68,7 @@ class SortDeedsTests: XCTestCase {
     
     // MARK: - Needed funcs
     func addDeed(withTitle title: String, date: Date) {
-        let deed = vc.cdm.insertDeed(title: title, date: date)
+        let deed = vc.dataSource.cdm.insertDeed(title: title, date: date)
         vc.dataSource.deeds.append(deed!)
         // Split deeds into proper sections
 
