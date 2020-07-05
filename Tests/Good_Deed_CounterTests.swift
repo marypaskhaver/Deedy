@@ -13,7 +13,6 @@ import CoreData
 
 class Good_Deed_CounterTests: XCTestCase {
     var vc: ViewController!
-    var sdvc: SortDeedsViewController!
     var ddvc: AddDeedViewController!
     
     lazy var managedObjectModel: NSManagedObjectModel = {
@@ -48,9 +47,9 @@ class Good_Deed_CounterTests: XCTestCase {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         vc = storyboard.instantiateViewController(identifier: "ViewController") as? ViewController
-        
-        vc.cdm = CoreDataManager(container: mockPersistentContainer)
         vc.loadViewIfNeeded()
+        vc.dataSource.cdm = CoreDataManager(container: mockPersistentContainer)
+        vc.dataSource.loadDeeds()
         
         vc.dataSource.cdm = CoreDataManager(container: mockPersistentContainer)
         
@@ -58,9 +57,6 @@ class Good_Deed_CounterTests: XCTestCase {
         ddvc.loadViewIfNeeded()
 
         initDeedStubs()
-                
-        sdvc = storyboard.instantiateViewController(identifier: "SortDeedsViewController") as? SortDeedsViewController
-        sdvc.loadViewIfNeeded()
     }
 
     override func tearDown() {
@@ -69,13 +65,12 @@ class Good_Deed_CounterTests: XCTestCase {
         vc.dataSource = nil
         vc = nil
         ddvc = nil
-        sdvc = nil
         flushDeedData()
     }
     
     // MARK: - Needed funcs
     func addDeed(withTitle title: String, date: Date) {
-        let deed = vc.cdm.insertDeed(title: title, date: date)
+        let deed = vc.dataSource.cdm.insertDeed(title: title, date: date)
         vc.dataSource.deeds.append(deed!)
         // Split deeds into proper sections
 
@@ -174,15 +169,9 @@ class Good_Deed_CounterTests: XCTestCase {
             for (deedIndex, deed) in section.deeds.enumerated() {
                 let indexPath = IndexPath(row: deedIndex, section: sectionIndex)
                 let cell: DeedTableViewCell = vc.tableView.cellForRow(at: indexPath) as! DeedTableViewCell
+                
                 XCTAssertTrue(cell.deedDescriptionLabel.text == deed.title)
             }
-        }
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
         }
     }
 
