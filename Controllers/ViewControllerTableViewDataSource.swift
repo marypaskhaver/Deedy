@@ -95,5 +95,13 @@ class ViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
         
         sections.sort { (lhs, rhs) in lhs.date > rhs.date }
     }
+    
+    func loadDeeds(with request: NSFetchRequest<Deed> = Deed.fetchRequest()) {
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        
+        deeds = cdm.fetchDeeds(with: request)
+        
+        splitSections()
+    }
    
 }
