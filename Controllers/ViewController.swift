@@ -24,9 +24,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     var editedIndexPath: IndexPath! = nil
     
     let headerFont = UIFont.systemFont(ofSize: 22)
-    
-    var cdm = CoreDataManager()
-    
+        
     var dataSource: ViewControllerTableViewDataSource!
 
     override func viewDidLoad() {
