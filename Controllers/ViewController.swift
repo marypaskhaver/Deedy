@@ -27,7 +27,6 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     var cdm = CoreDataManager()
     
-//    lazy var dataSource = ViewControllerTableViewDataSource(withView: self.view)
     var dataSource: ViewControllerTableViewDataSource!
 
     override func viewDidLoad() {
@@ -52,7 +51,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         
 //        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
                 
-        loadDeeds()
+        dataSource.loadDeeds()
         sortDeedsFromSavedData()
         updateSections()
         
@@ -126,18 +125,6 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         }
         
         updateSections()
-    }
-    
-    //MARK: - Model Manipulation Methods
-    // Provides default value if no request is sent
-    func loadDeeds(with request: NSFetchRequest<Deed> = Deed.fetchRequest()) {
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-        
-        dataSource.deeds = cdm.fetchDeeds(with: request)
-        
-        updateSections()
-
-        tableView.reloadData()
     }
 }
 
@@ -219,15 +206,15 @@ extension ViewController: UISearchBarDelegate {
         // The [cd] makes the search case and diacritic insensitive
         request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
         
-        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        
-        loadDeeds(with: request)
+        dataSource.loadDeeds(with: request)
+        tableView.reloadData()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
-            loadDeeds()
-            
+            dataSource.loadDeeds()
+            tableView.reloadData()
+
             // Multiple threads/stuffs are happening when we try to de-activate the searchBar.
             // We need to get to the main queue (where UI elements are updated) to dismiss the searchBar while background tasks are being completed.
             // Thus: Use DispatchQueue, which manages execution of work items
