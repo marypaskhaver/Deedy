@@ -11,13 +11,16 @@ import UIKit
 class AddDeedViewController: UIViewController {
 
     @IBOutlet weak var textView: TextViewForDeedEntry!
-
+    @IBOutlet weak var invalidInputWarningLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        navigationController?.navigationBar.shadowImage = UIImage()
+        invalidInputWarningLabel.isHidden = true
         
+        navigationController?.navigationBar.shadowImage = UIImage()
+
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
@@ -35,7 +38,8 @@ class AddDeedViewController: UIViewController {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (identifier == "doneAddingSegue") {
             if (textView.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)  {
-                self.performSegue(withIdentifier: "cancelAddingSegue", sender: Any?.self)
+                invalidInputWarningLabel.isHidden = false
+
                 return false
             }
         }
