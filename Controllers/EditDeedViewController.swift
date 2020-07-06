@@ -16,11 +16,12 @@ class EditDeedViewController: UIViewController {
 
     @IBOutlet weak var textView: TextViewForDeedEntry!
     @IBOutlet weak var topView: UIView!
-    
-    var delegate: DeedEditedDelegateProtocol? = nil
-    var oldText: String = ""
     @IBOutlet weak var invalidInputWarningLabel: UILabel!
+
+    var delegate: DeedEditedDelegateProtocol? = nil
     
+    var oldText: String = ""
+        
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         let trimmedText: String = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         
@@ -46,6 +47,13 @@ class EditDeedViewController: UIViewController {
         textView.text = oldText
         
         invalidInputWarningLabel.isHidden = true
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+            view.addGestureRecognizer(tap)
+    }
+            
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 
 }
