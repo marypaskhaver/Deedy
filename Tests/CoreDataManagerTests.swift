@@ -16,30 +16,8 @@ class CoreDataManagerTests: XCTestCase {
     // MARK: - Class vars
     var sut: CoreDataManager!
     
-    lazy var managedObjectModel: NSManagedObjectModel = {
-        let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))] )!
-        return managedObjectModel
-    }()
-    
-    lazy var mockPersistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "DataModel", managedObjectModel: self.managedObjectModel)
-        
-        let description = NSPersistentStoreDescription()
-        description.type = NSInMemoryStoreType
-        description.shouldAddStoreAsynchronously = false // Make it simpler in test env
-        
-        container.persistentStoreDescriptions = [description]
-        container.loadPersistentStores { (description, error) in
-            // Check if the data store is in memory
-            precondition( description.type == NSInMemoryStoreType )
-                                        
-            // Check if creating container wrong
-            if let error = error {
-                fatalError("Create an in-mem coordinator failed \(error)")
-            }
-        }
-        return container
-    }()
+    lazy var managedObjectModel: NSManagedObjectModel = MockDataModelObjects().managedObjectModel
+    lazy var mockPersistentContainer: NSPersistentContainer = MockDataModelObjects().persistentContainer
     
     // MARK: - Set up and tear down methods
     override func setUp() {
@@ -58,7 +36,6 @@ class CoreDataManagerTests: XCTestCase {
     }
     
     // MARK: - Needed funcs
-    
     func initDeedStubs() {
         // Put fake items in the "database"
         _ = sut.insertDeed(title: "1", date: Date())
@@ -126,7 +103,7 @@ class CoreDataManagerTests: XCTestCase {
     }
     
     func testFetchingDeeds() {
-        let deeds = sut.fetchDeeds()
+        let deeds = sut.fetchDeeds() 
 
         // There should be 5 that were initialized in the initStubs() method
         XCTAssertEqual(deeds.count, 5)
