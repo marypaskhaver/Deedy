@@ -154,28 +154,44 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rLu-ZJ-lvd" customClass="TextViewForDeedEntry" customModule="Good_Deed_Counter" customModuleProvider="target">
-                                <rect key="frame" x="20" y="259" width="374" height="324"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="KLi-cp-k2v">
+                                <rect key="frame" x="20" y="241.5" width="374" height="359"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rLu-ZJ-lvd" customClass="TextViewForDeedEntry" customModule="Good_Deed_Counter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="324.5"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input can't be blank" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmr-wG-b4y">
+                                        <rect key="frame" x="94.5" y="332.5" width="185.5" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="rLu-ZJ-lvd" firstAttribute="leading" secondItem="KLi-cp-k2v" secondAttribute="leading" id="i0r-b2-GG5"/>
+                                    <constraint firstItem="hmr-wG-b4y" firstAttribute="top" secondItem="rLu-ZJ-lvd" secondAttribute="bottom" constant="8" id="jak-tk-27W"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="CRX-lV-pGb" firstAttribute="leading" secondItem="3zD-6i-eDU" secondAttribute="leading" id="9ZQ-YA-OUZ"/>
+                            <constraint firstItem="CRX-lV-pGb" firstAttribute="leading" secondItem="3zD-6i-eDU" secondAttribute="leading" id="05q-Xk-ZWa"/>
+                            <constraint firstItem="3zD-6i-eDU" firstAttribute="bottom" secondItem="KLi-cp-k2v" secondAttribute="bottom" constant="207.5" id="DYU-YR-YWy"/>
                             <constraint firstItem="CRX-lV-pGb" firstAttribute="top" secondItem="KPT-vk-VUY" secondAttribute="topMargin" constant="-12" id="FUG-wM-2Ff"/>
-                            <constraint firstItem="rLu-ZJ-lvd" firstAttribute="centerX" secondItem="CRX-lV-pGb" secondAttribute="centerX" id="Kec-fR-Oxt"/>
-                            <constraint firstItem="rLu-ZJ-lvd" firstAttribute="centerY" secondItem="KPT-vk-VUY" secondAttribute="centerY" id="WAD-Xb-2RB"/>
-                            <constraint firstItem="rLu-ZJ-lvd" firstAttribute="centerX" secondItem="KPT-vk-VUY" secondAttribute="centerX" id="kER-gb-Th5"/>
-                            <constraint firstItem="3zD-6i-eDU" firstAttribute="bottom" secondItem="rLu-ZJ-lvd" secondAttribute="bottom" constant="225" id="nDE-rs-nad"/>
-                            <constraint firstItem="rLu-ZJ-lvd" firstAttribute="leading" secondItem="KPT-vk-VUY" secondAttribute="leadingMargin" id="wOC-5S-unC"/>
+                            <constraint firstItem="CRX-lV-pGb" firstAttribute="centerX" secondItem="KPT-vk-VUY" secondAttribute="centerX" id="bZV-1a-lIR"/>
+                            <constraint firstItem="KLi-cp-k2v" firstAttribute="centerX" secondItem="KPT-vk-VUY" secondAttribute="centerX" id="iEg-RB-C55"/>
+                            <constraint firstItem="KLi-cp-k2v" firstAttribute="centerY" secondItem="KPT-vk-VUY" secondAttribute="centerY" id="rUf-A5-l6d"/>
+                            <constraint firstItem="KLi-cp-k2v" firstAttribute="leading" secondItem="3zD-6i-eDU" secondAttribute="leading" constant="20" id="wau-vA-zbg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3zD-6i-eDU"/>
                     </view>
                     <navigationItem key="navigationItem" id="YXC-bS-eMZ"/>
                     <connections>
+                        <outlet property="invalidInputWarningLabel" destination="hmr-wG-b4y" id="lBy-4K-Xgx"/>
                         <outlet property="textView" destination="rLu-ZJ-lvd" id="wfQ-VI-g9b"/>
                     </connections>
                 </viewController>
@@ -338,33 +354,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="bps-6Y-Fjf">
-                                <rect key="frame" x="-40" y="283" width="494" height="330.5"/>
+                                <rect key="frame" x="-44" y="283" width="502" height="330.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Zga-OD-37s">
-                                        <rect key="frame" x="0.0" y="0.0" width="494" height="241.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="502" height="241.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change app theme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WC6-qq-akK">
-                                                <rect key="frame" x="0.0" y="0.0" width="494" height="31.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="502" height="31.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="114" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="H02-ha-Lt9">
-                                                <rect key="frame" x="-2" y="71.5" width="498" height="31"/>
+                                                <rect key="frame" x="-2" y="71.5" width="506" height="31"/>
                                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="redSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="QBE-xS-Dvx"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="207" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="uAG-aC-vWs">
-                                                <rect key="frame" x="-2" y="141.5" width="498" height="31"/>
+                                                <rect key="frame" x="-2" y="141.5" width="506" height="31"/>
                                                 <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="greenSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="DLG-wM-mad"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="250" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="VPB-qN-2uF">
-                                                <rect key="frame" x="-2" y="211.5" width="498" height="31"/>
+                                                <rect key="frame" x="-2" y="211.5" width="506" height="31"/>
                                                 <connections>
                                                     <action selector="blueSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="wKc-pW-dWm"/>
                                                 </connections>
@@ -372,7 +388,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-wo-DIy">
-                                        <rect key="frame" x="149.5" y="291.5" width="195" height="39"/>
+                                        <rect key="frame" x="153.5" y="291.5" width="195" height="39"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Reset to default blue"/>
                                         <connections>
