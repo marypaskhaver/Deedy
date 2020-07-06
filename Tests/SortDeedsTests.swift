@@ -48,9 +48,9 @@ class SortDeedsTests: XCTestCase {
         
         vc = storyboard.instantiateViewController(identifier: "ViewController") as? ViewController
         vc.loadViewIfNeeded()
-        
         vc.dataSource.cdm = CoreDataManager(container: mockPersistentContainer)
-        
+        vc.dataSource.loadDeeds()
+
         initDeedStubs()
                 
         sdvc = storyboard.instantiateViewController(identifier: "SortDeedsViewController") as? SortDeedsViewController
