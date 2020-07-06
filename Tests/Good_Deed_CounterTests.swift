@@ -15,30 +15,8 @@ class Good_Deed_CounterTests: XCTestCase {
     var vc: ViewController!
     var ddvc: AddDeedViewController!
     
-    lazy var managedObjectModel: NSManagedObjectModel = {
-        let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))] )!
-        return managedObjectModel
-    }()
-    
-    lazy var mockPersistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "DataModel", managedObjectModel: self.managedObjectModel)
-        
-        let description = NSPersistentStoreDescription()
-        description.type = NSInMemoryStoreType
-        description.shouldAddStoreAsynchronously = false // Make it simpler in test env
-        
-        container.persistentStoreDescriptions = [description]
-        container.loadPersistentStores { (description, error) in
-            // Check if the data store is in memory
-            precondition( description.type == NSInMemoryStoreType )
-                                        
-            // Check if creating container wrong
-            if let error = error {
-                fatalError("Create an in-mem coordinator failed \(error)")
-            }
-        }
-        return container
-    }()
+    lazy var managedObjectModel: NSManagedObjectModel = MockDataModelObjects().managedObjectModel
+    lazy var mockPersistentContainer: NSPersistentContainer = MockDataModelObjects().persistentContainer
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -50,9 +28,7 @@ class Good_Deed_CounterTests: XCTestCase {
         vc.loadViewIfNeeded()
         vc.dataSource.cdm = CoreDataManager(container: mockPersistentContainer)
         vc.dataSource.loadDeeds()
-        
-        vc.dataSource.cdm = CoreDataManager(container: mockPersistentContainer)
-        
+                
         ddvc = storyboard.instantiateViewController(identifier: "DeedDetailViewController") as? AddDeedViewController
         ddvc.loadViewIfNeeded()
 
@@ -174,5 +150,6 @@ class Good_Deed_CounterTests: XCTestCase {
             }
         }
     }
+
 
 }
