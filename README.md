@@ -1,7 +1,7 @@
 # Good-Deed-Counter
 
 While making this app, I learned how to:
-- Change the positions of objects on my screen based off user input
+- Change the positions of objects on the screen based off user input
 - Create, remove, update, and destroy user data with Core Data
 - Query databases to get entities based on their attributes 
 - Use UINavigationBar and UIBarButtonItem in my classes to change my app's theme 
@@ -9,5 +9,8 @@ While making this app, I learned how to:
 - Use the AppDelegate class to send the user daily notifications
 - Create custom views to create spacing between TableView cells
 - Use protocols and delegates to send data between ViewControllers
+- Customize my app's appearance in Dark Mode
+- Sort TableView cells based off user input
+- Animate TableView cells
 
 I'll be adding on to this project over the summer, so keep an eye out for new features. :)
