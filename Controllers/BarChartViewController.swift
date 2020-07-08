@@ -41,8 +41,7 @@ class BarChartViewController: UIViewController {
             
             barChartView.dataEntries.append(newBarEntry)
         }
-
-        
+    
         view.addSubview(barChartView)
     }
     
@@ -60,10 +59,10 @@ class BarChartViewController: UIViewController {
         var calendar = Calendar.current
         calendar.timeZone = NSTimeZone.local
         
-        let today = calendar.startOfDay(for: Date())
-        let oneMonthEarlier = calendar.date(byAdding: .month, value: -1, to: today)
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: Date()))
+        let oneMonthEarlier = calendar.date(byAdding: .month, value: -1, to: tomorrow!)
 
-        setRequestPredicatesBetween(dateFrom: oneMonthEarlier!, dateTo: today, forRequest: request as! NSFetchRequest<NSFetchRequestResult>)
+        setRequestPredicatesBetween(dateFrom: oneMonthEarlier!, dateTo: tomorrow!, forRequest: request as! NSFetchRequest<NSFetchRequestResult>)
         
         return CoreDataManager().fetchDeeds(with: request)
     }
