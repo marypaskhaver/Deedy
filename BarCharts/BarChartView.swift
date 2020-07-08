@@ -17,9 +17,11 @@ class BarChartView: UIView {
     private let scrollView: UIScrollView = UIScrollView()
 
     // Adjust spacing and hardcoded vals
+    // Vertical space between entries
     let space: CGFloat = 40.0
+    
     let barHeight: CGFloat = 40.0
-    let contentSpace: CGFloat = 60.0
+    let contentSpace: CGFloat = 30.0
     
     // Generate graph when data is passed in
     var dataEntries: [BarEntry] = [] {
@@ -28,8 +30,6 @@ class BarChartView: UIView {
             mainLayer.sublayers?.forEach({ $0.removeFromSuperlayer() })
            
             scrollView.contentSize = CGSize(width: frame.size.width, height: (barHeight + space) * CGFloat(dataEntries.count) + contentSpace)
-            print(scrollView.contentSize)
-            print(scrollView.frame.size)
 
             scrollView.isScrollEnabled = true
             
@@ -60,36 +60,46 @@ class BarChartView: UIView {
     }
     
     private func showEntry(index: Int, entry: BarEntry) {
-        let xPos: CGFloat = translateWidthValueToXPosition(value: Float(entry.count) / Float(100.0))
+        let xPos: CGFloat = 30
         let yPos: CGFloat = space + CGFloat(index) * (barHeight + space)
+
+        let titleBar: CALayer = drawTitle(xPos: xPos, yPos: yPos + 12.0, width: 120, height: 40.0, title: entry.title)
         
-        drawBar(xPos: xPos, yPos: yPos)
-        drawTextValue(xPos: xPos + 155.0, yPos: yPos + 4.0, textValue: "\(entry.count)")
-        drawTitle(xPos: 30, yPos: yPos + 12.0, width: 150.0, height: 40.0, title: entry.title)
+        let progressBar = drawBar(forEntry: entry, xPos: xPos + titleBar.frame.width + contentSpace, yPos: yPos)
+        
+        drawTextValue(xPos: xPos + progressBar.frame.origin.x, yPos: yPos + 12.0, textValue: "\(entry.count)")
+
     }
     
-    private func drawBar(xPos: CGFloat, yPos: CGFloat) {
+    private func drawBar(forEntry entry: BarEntry, xPos: CGFloat, yPos: CGFloat) -> CALayer {
         let barLayer = CALayer()
-        barLayer.frame = CGRect(x: 144.0, y: yPos, width: xPos, height: barHeight)
+        
+        let width = translateWidthValueToXPosition(value: Float(entry.count) / Float(100.0))
+        
+        barLayer.frame = CGRect(x: xPos, y: yPos, width: width, height: barHeight)
         barLayer.backgroundColor = CustomColors.defaultBlue.cgColor
         
         mainLayer.addSublayer(barLayer)
+        
+        return barLayer
     }
     
     private func drawTextValue(xPos: CGFloat, yPos: CGFloat, textValue: String) {
-       let textLayer = CATextLayer()
-       textLayer.frame = CGRect(x: xPos, y: yPos, width: 33, height: 80.0)
-       textLayer.foregroundColor = UIColor.black.cgColor
-       textLayer.backgroundColor = UIColor.clear.cgColor
-       textLayer.alignmentMode = CATextLayerAlignmentMode.center
-       textLayer.contentsScale = UIScreen.main.scale
-       textLayer.font = CTFontCreateWithName(UIFont.systemFont(ofSize: 14.0).fontName as CFString, 0, nil)
-        textLayer.fontSize = 14.0
-       textLayer.string = textValue
-       mainLayer.addSublayer(textLayer)
+        let textLayer = CATextLayer()
+        textLayer.frame = CGRect(x: xPos, y: yPos, width: 33, height: 80.0)
+        textLayer.foregroundColor = UIColor.black.cgColor
+        textLayer.backgroundColor = UIColor.clear.cgColor
+        textLayer.alignmentMode = CATextLayerAlignmentMode.center
+        textLayer.contentsScale = UIScreen.main.scale
+        
+        textLayer.font = CTFontCreateWithName(UIFont.systemFont(ofSize: 22.0).fontName as CFString, 0, nil)
+        textLayer.fontSize = 22.0
+        
+        textLayer.string = textValue
+        mainLayer.addSublayer(textLayer)
     }
     
-    private func drawTitle(xPos: CGFloat, yPos: CGFloat, width: CGFloat, height: CGFloat = 22, title: String) {
+    private func drawTitle(xPos: CGFloat, yPos: CGFloat, width: CGFloat, height: CGFloat = 22, title: String) -> CALayer {
         let textLayer = CATextLayer()
         textLayer.frame = CGRect(x: xPos, y: yPos, width: width, height: height)
         
@@ -99,11 +109,14 @@ class BarChartView: UIView {
         textLayer.alignmentMode = CATextLayerAlignmentMode.left
         textLayer.contentsScale = UIScreen.main.scale
 
-        textLayer.font = CTFontCreateWithName(UIFont.systemFont(ofSize: 14.0).fontName as CFString, 0, nil)
-        textLayer.fontSize = 14
+        textLayer.font = CTFontCreateWithName(UIFont.systemFont(ofSize: 22.0).fontName as CFString, 0, nil)
+        textLayer.fontSize = 22
        
         textLayer.string = title
+        
         mainLayer.addSublayer(textLayer)
+        
+        return textLayer
     }
     
     private func translateWidthValueToXPosition(value: Float) -> CGFloat {
