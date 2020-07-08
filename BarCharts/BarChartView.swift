@@ -74,7 +74,7 @@ class BarChartView: UIView {
     private func drawBar(forEntry entry: BarEntry, xPos: CGFloat, yPos: CGFloat) -> CALayer {
         let barLayer = CALayer()
         
-        let width = translateWidthValueToXPosition(value: Float(entry.count) / Float(100.0))
+        let width = translateWidthValueToXPosition(value: Float(entry.count) / Float(30.0))
         
         barLayer.frame = CGRect(x: xPos, y: yPos, width: width, height: barHeight)
         barLayer.backgroundColor = CustomColors.defaultBlue.cgColor
