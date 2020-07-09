@@ -28,11 +28,7 @@ class BarChartView: UIView {
         
         didSet {
             mainLayer.sublayers?.forEach({ $0.removeFromSuperlayer() })
-           
-            scrollView.contentSize = CGSize(width: frame.size.width, height: (barHeight + space) * CGFloat(dataEntries.count) + contentSpace)
-
-            scrollView.isScrollEnabled = true
-            
+    
             mainLayer.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: scrollView.contentSize.height)
            
             for i in 0..<dataEntries.count {
@@ -57,18 +53,40 @@ class BarChartView: UIView {
     
     override func layoutSubviews() {
         scrollView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+
+        scrollView.contentSize = CGSize(width: frame.size.width, height: (barHeight + space) * CGFloat(dataEntries.count) + contentSpace)
     }
     
     private func showEntry(index: Int, entry: BarEntry) {
         let xPos: CGFloat = 30
         let yPos: CGFloat = space + CGFloat(index) * (barHeight + space)
 
-        let titleBar: CALayer = drawTitle(xPos: xPos, yPos: yPos + 12.0, width: 120, height: 40.0, title: entry.title)
+        let titleBar: CATextLayer = drawTitle(xPos: xPos, yPos: yPos + (barHeight / 4), width: 120, height: 40.0, title: entry.title)
         
         let progressBar = drawBar(forEntry: entry, xPos: xPos + titleBar.frame.width + contentSpace, yPos: yPos)
         
-        drawTextValue(xPos: xPos + progressBar.frame.origin.x, yPos: yPos + 12.0, textValue: "\(entry.count)")
+        drawTextValue(xPos: xPos + progressBar.frame.origin.x + contentSpace, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
+    }
+    
+    private func drawTitle(xPos: CGFloat, yPos: CGFloat, width: CGFloat, height: CGFloat = 22, title: String) -> CATextLayer {
+        let textLayer = CATextLayer()
+                
+        textLayer.frame = CGRect(x: xPos, y: yPos, width: width, height: height)
+        
+        textLayer.foregroundColor = UIColor.black.cgColor
+        textLayer.backgroundColor = UIColor.clear.cgColor
+        
+        textLayer.alignmentMode = CATextLayerAlignmentMode.left
+        textLayer.contentsScale = UIScreen.main.scale
 
+        textLayer.font = CTFontCreateWithName(UIFont.systemFont(ofSize: 22.0).fontName as CFString, 0, nil)
+        textLayer.fontSize = 22
+       
+        textLayer.string = title
+        
+        mainLayer.addSublayer(textLayer)
+        
+        return textLayer
     }
     
     private func drawBar(forEntry entry: BarEntry, xPos: CGFloat, yPos: CGFloat) -> CALayer {
@@ -97,26 +115,6 @@ class BarChartView: UIView {
         
         textLayer.string = textValue
         mainLayer.addSublayer(textLayer)
-    }
-    
-    private func drawTitle(xPos: CGFloat, yPos: CGFloat, width: CGFloat, height: CGFloat = 22, title: String) -> CALayer {
-        let textLayer = CATextLayer()
-        textLayer.frame = CGRect(x: xPos, y: yPos, width: width, height: height)
-        
-        textLayer.foregroundColor = UIColor.black.cgColor
-        textLayer.backgroundColor = UIColor.clear.cgColor
-        
-        textLayer.alignmentMode = CATextLayerAlignmentMode.left
-        textLayer.contentsScale = UIScreen.main.scale
-
-        textLayer.font = CTFontCreateWithName(UIFont.systemFont(ofSize: 22.0).fontName as CFString, 0, nil)
-        textLayer.fontSize = 22
-       
-        textLayer.string = title
-        
-        mainLayer.addSublayer(textLayer)
-        
-        return textLayer
     }
     
     private func translateWidthValueToXPosition(value: Float) -> CGFloat {
