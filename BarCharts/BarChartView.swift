@@ -28,12 +28,14 @@ class BarChartView: UIView {
         
         didSet {
             mainLayer.sublayers?.forEach({ $0.removeFromSuperlayer() })
-            
+                  
             mainLayer.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: scrollView.contentSize.height)
 
             for i in 0..<dataEntries.count {
                 showEntry(index: i, entry: dataEntries[i])
-            }            
+            }
+            
+            mainLayer.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: scrollView.contentSize.height)
         }
     }
     
@@ -66,6 +68,11 @@ class BarChartView: UIView {
         let progressBar = drawBar(xPos: xPos + titleBar.frame.width + contentSpace, yPos: yPos, forEntry: entry)
         
         let text = drawTextValue(xPos: xPos + titleBar.frame.width + progressBar.frame.width + contentSpace, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
+        
+        if text.frame.origin.x + text.frame.width > UIScreen.main.bounds.width {
+            let shrinkBy: CGFloat = (0.045 * UIScreen.main.bounds.width) / CGFloat(entry.count)
+            mainLayer.transform = CATransform3DMakeScale(shrinkBy, shrinkBy, 1)
+        }
     }
     
     private func drawTitle(xPos: CGFloat, yPos: CGFloat, width: CGFloat, height: CGFloat = 22, title: String) -> CATextLayer {
