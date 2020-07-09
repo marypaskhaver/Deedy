@@ -13,6 +13,8 @@ class BarChartViewController: UIViewController {
     
     var deedsDone = [Deed]()
     
+    @IBOutlet weak var noDeedsDoneLabel: UILabel!
+    
     lazy var barChartView: BarChartView = {
        let barChartView = BarChartView()
        barChartView.frame = view.frame
@@ -23,19 +25,22 @@ class BarChartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        noDeedsDoneLabel.sizeToFit()
+        
         deedsDone = getDeedsDoneInPastMonth()
         
-        if deedsDone.count == 0 {
-            // Display label on screen saying you need to complete some deeds to get data
-            print("No deeds done in past month")
+        if deedsDone.count > 0 {
+            noDeedsDoneLabel.removeFromSuperview()
+        } else {
+            return
         }
         
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = DaySection.dateFormat
-        
+            
         var sections = DaySection.group(deeds: deedsDone)
         sections.sort { (lhs, rhs) in lhs.date > rhs.date }
-        
+            
         for section in sections {
             let newBarEntry = BarEntry(count: section.deeds.count, title: dateFormatter.string(from: section.date))
             
