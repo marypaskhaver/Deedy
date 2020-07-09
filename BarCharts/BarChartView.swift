@@ -61,11 +61,11 @@ class BarChartView: UIView {
         let xPos: CGFloat = 30
         let yPos: CGFloat = space + CGFloat(index) * (barHeight + space)
 
-        let titleBar: CATextLayer = drawTitle(xPos: xPos, yPos: yPos + (barHeight / 4), width: 120, height: 40.0, title: entry.title)
+        let titleBar = drawTitle(xPos: xPos, yPos: yPos + (barHeight / 4), width: 120, height: 40.0, title: entry.title)
         
-        let progressBar = drawBar(forEntry: entry, xPos: xPos + titleBar.frame.width + contentSpace, yPos: yPos)
+        let progressBar = drawBar(xPos: xPos + titleBar.frame.width + contentSpace, yPos: yPos, forEntry: entry)
         
-        drawTextValue(xPos: xPos + progressBar.frame.origin.x + contentSpace, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
+        drawTextValue(xPos: xPos + titleBar.frame.width + progressBar.frame.width + contentSpace, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
     }
     
     private func drawTitle(xPos: CGFloat, yPos: CGFloat, width: CGFloat, height: CGFloat = 22, title: String) -> CATextLayer {
@@ -89,10 +89,10 @@ class BarChartView: UIView {
         return textLayer
     }
     
-    private func drawBar(forEntry entry: BarEntry, xPos: CGFloat, yPos: CGFloat) -> CALayer {
+    private func drawBar(xPos: CGFloat, yPos: CGFloat, forEntry entry: BarEntry) -> CALayer {
         let barLayer = CALayer()
         
-        let width = translateWidthValueToXPosition(value: Float(entry.count) / Float(30.0))
+        let width = translateWidthValueToXPosition(value: Float(entry.count))
         
         barLayer.frame = CGRect(x: xPos, y: yPos, width: width, height: barHeight)
         barLayer.backgroundColor = CustomColors.defaultBlue.cgColor
@@ -118,7 +118,8 @@ class BarChartView: UIView {
     }
     
     private func translateWidthValueToXPosition(value: Float) -> CGFloat {
-       let width = CGFloat(value) * (mainLayer.frame.width - space)
-       return abs(width)
+        let width = CGFloat(value / 4) * (mainLayer.frame.width - space)
+        return abs(width)
     }
+  
 }
