@@ -69,9 +69,18 @@ class BarChartView: UIView {
         
         let text = drawTextValue(xPos: xPos + titleBar.frame.width + progressBar.frame.width + contentSpace, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
         
-        if text.frame.origin.x + text.frame.width > UIScreen.main.bounds.width {
-            let shrinkBy: CGFloat = (0.045 * UIScreen.main.bounds.width) / CGFloat(entry.count)
-            mainLayer.transform = CATransform3DMakeScale(shrinkBy, shrinkBy, 1)
+        let maxEntryCount = dataEntries.map { $0.count }.max() ?? 0
+        
+        if maxEntryCount == entry.count {
+            var entryWidth = xPos + (titleBar.frame.width + contentSpace) + (progressBar.frame.width + contentSpace) + (xPos + text.frame.width)
+            
+            if entryWidth > UIScreen.main.bounds.width {
+                let shrinkBy: CGFloat = (UIScreen.main.bounds.width) / CGFloat(entryWidth)
+                
+                mainLayer.transform = CATransform3DMakeScale(shrinkBy, shrinkBy, 1)
+                
+                entryWidth *= shrinkBy
+            }
         }
     }
     
@@ -122,7 +131,7 @@ class BarChartView: UIView {
         textLayer.fontSize = 22.0
         
         textLayer.string = textValue
-        
+      
         mainLayer.addSublayer(textLayer)
         
         return textLayer
