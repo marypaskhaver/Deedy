@@ -82,6 +82,7 @@ class BarChartView: UIView {
                 entryWidth *= shrinkBy
             }
         }
+        
     }
     
     private func drawTitle(xPos: CGFloat, yPos: CGFloat, width: CGFloat, height: CGFloat = 22, title: String) -> CATextLayer {
@@ -90,8 +91,11 @@ class BarChartView: UIView {
         textLayer.frame = CGRect(x: xPos, y: yPos, width: width, height: height)
         
         textLayer.foregroundColor = UIColor.black.cgColor
-        textLayer.backgroundColor = UIColor.clear.cgColor
         
+        if self.traitCollection.userInterfaceStyle == .dark {
+            textLayer.foregroundColor = UIColor.white.cgColor
+        }
+                
         textLayer.alignmentMode = CATextLayerAlignmentMode.left
         textLayer.contentsScale = UIScreen.main.scale
 
@@ -123,7 +127,12 @@ class BarChartView: UIView {
         
         textLayer.frame = CGRect(x: xPos, y: yPos, width: 33, height: 80.0)
         textLayer.foregroundColor = UIColor.black.cgColor
-        textLayer.backgroundColor = UIColor.clear.cgColor
+        
+        // Adjust text color for DarkMode
+        if self.traitCollection.userInterfaceStyle == .dark {
+            textLayer.foregroundColor = UIColor.white.cgColor
+        }
+        
         textLayer.alignmentMode = CATextLayerAlignmentMode.center
         textLayer.contentsScale = UIScreen.main.scale
         
@@ -131,7 +140,7 @@ class BarChartView: UIView {
         textLayer.fontSize = 22.0
         
         textLayer.string = textValue
-      
+        
         mainLayer.addSublayer(textLayer)
         
         return textLayer
