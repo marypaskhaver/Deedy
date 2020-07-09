@@ -28,12 +28,12 @@ class BarChartView: UIView {
         
         didSet {
             mainLayer.sublayers?.forEach({ $0.removeFromSuperlayer() })
-    
+            
             mainLayer.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: scrollView.contentSize.height)
-           
+
             for i in 0..<dataEntries.count {
                 showEntry(index: i, entry: dataEntries[i])
-            }
+            }            
         }
     }
     
@@ -65,7 +65,7 @@ class BarChartView: UIView {
         
         let progressBar = drawBar(xPos: xPos + titleBar.frame.width + contentSpace, yPos: yPos, forEntry: entry)
         
-        drawTextValue(xPos: xPos + titleBar.frame.width + progressBar.frame.width + contentSpace, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
+        let text = drawTextValue(xPos: xPos + titleBar.frame.width + progressBar.frame.width + contentSpace, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
     }
     
     private func drawTitle(xPos: CGFloat, yPos: CGFloat, width: CGFloat, height: CGFloat = 22, title: String) -> CATextLayer {
@@ -92,7 +92,7 @@ class BarChartView: UIView {
     private func drawBar(xPos: CGFloat, yPos: CGFloat, forEntry entry: BarEntry) -> CALayer {
         let barLayer = CALayer()
         
-        let width = translateWidthValueToXPosition(value: Float(entry.count))
+        let width = calculateBarWidth(value: Float(entry.count))
         
         barLayer.frame = CGRect(x: xPos, y: yPos, width: width, height: barHeight)
         barLayer.backgroundColor = CustomColors.defaultBlue.cgColor
@@ -102,8 +102,9 @@ class BarChartView: UIView {
         return barLayer
     }
     
-    private func drawTextValue(xPos: CGFloat, yPos: CGFloat, textValue: String) {
+    private func drawTextValue(xPos: CGFloat, yPos: CGFloat, textValue: String) -> CATextLayer {
         let textLayer = CATextLayer()
+        
         textLayer.frame = CGRect(x: xPos, y: yPos, width: 33, height: 80.0)
         textLayer.foregroundColor = UIColor.black.cgColor
         textLayer.backgroundColor = UIColor.clear.cgColor
@@ -114,12 +115,16 @@ class BarChartView: UIView {
         textLayer.fontSize = 22.0
         
         textLayer.string = textValue
+        
         mainLayer.addSublayer(textLayer)
+        
+        return textLayer
     }
     
-    private func translateWidthValueToXPosition(value: Float) -> CGFloat {
-        let width = CGFloat(value / 4) * (mainLayer.frame.width - space)
+    private func calculateBarWidth(value: Float) -> CGFloat {
+        let width = CGFloat(value / 3) * (mainLayer.frame.width - space)
+        
         return abs(width)
     }
-  
+   
 }
