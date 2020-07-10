@@ -39,7 +39,11 @@ class BarChartView: UIView {
                 showEntry(index: i, entry: dataEntries[i], shrinkBarWidthByFactorOf: factor)
                 
                 while entryTooBig {
-                    mainLayer.sublayers?.forEach({ $0.removeFromSuperlayer() })
+                    // Remove previous title, bar, and text
+                    _ = mainLayer.sublayers?.popLast()
+                    _ = mainLayer.sublayers?.popLast()
+                    _ = mainLayer.sublayers?.popLast()
+
                     factor += 0.2
                     showEntry(index: i, entry: dataEntries[i], shrinkBarWidthByFactorOf: factor)
                 }
