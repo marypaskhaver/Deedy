@@ -125,7 +125,6 @@ class BarChartView: UIView {
     private func drawTextValue(xPos: CGFloat, yPos: CGFloat, textValue: String) -> CATextLayer {
         let textLayer = CATextLayer()
         
-        textLayer.frame = CGRect(x: xPos, y: yPos, width: 33, height: 80.0)
         textLayer.foregroundColor = UIColor.black.cgColor
         
         // Adjust text color for DarkMode
@@ -140,6 +139,7 @@ class BarChartView: UIView {
         textLayer.fontSize = 22.0
         
         textLayer.string = textValue
+        textLayer.frame = CGRect(x: xPos, y: yPos, width: textLayer.preferredFrameSize().width + 15, height: 80.0)
         
         mainLayer.addSublayer(textLayer)
         
