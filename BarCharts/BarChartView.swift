@@ -45,7 +45,6 @@ class BarChartView: UIView {
                 }
             }
             
-            
             mainLayer.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: scrollView.contentSize.height)
         }
     }
@@ -90,11 +89,7 @@ class BarChartView: UIView {
                 
         textLayer.frame = CGRect(x: xPos, y: yPos, width: width, height: height)
         
-        textLayer.foregroundColor = UIColor.black.cgColor
-        
-        if self.traitCollection.userInterfaceStyle == .dark {
-            textLayer.foregroundColor = UIColor.white.cgColor
-        }
+        textLayer.foregroundColor = (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.white.cgColor : UIColor.black.cgColor
                 
         textLayer.alignmentMode = CATextLayerAlignmentMode.left
         textLayer.contentsScale = UIScreen.main.scale
@@ -123,12 +118,7 @@ class BarChartView: UIView {
     private func drawTextValue(xPos: CGFloat, yPos: CGFloat, textValue: String) -> CATextLayer {
         let textLayer = CATextLayer()
         
-        textLayer.foregroundColor = UIColor.black.cgColor
-        
-        // Adjust text color for DarkMode
-        if self.traitCollection.userInterfaceStyle == .dark {
-            textLayer.foregroundColor = UIColor.white.cgColor
-        }
+        textLayer.foregroundColor = (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.white.cgColor : UIColor.black.cgColor
         
         textLayer.alignmentMode = CATextLayerAlignmentMode.center
         textLayer.contentsScale = UIScreen.main.scale
