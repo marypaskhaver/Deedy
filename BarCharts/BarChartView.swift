@@ -23,6 +23,8 @@ class BarChartView: UIView {
     let barHeight: CGFloat = 40.0
     let contentSpace: CGFloat = 30.0
     
+    var entryTooBig = false
+    
     // Generate graph when data is passed in
     var dataEntries: [BarEntry] = [] {
         
@@ -31,9 +33,18 @@ class BarChartView: UIView {
                   
             mainLayer.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: scrollView.contentSize.height)
 
+            var factor: Float = 3.0
+            
             for i in 0..<dataEntries.count {
-                showEntry(index: i, entry: dataEntries[i])
+                showEntry(index: i, entry: dataEntries[i], shrinkBarWidthByFactorOf: factor)
+                
+                while entryTooBig {
+                    mainLayer.sublayers?.forEach({ $0.removeFromSuperlayer() })
+                    factor += 0.2
+                    showEntry(index: i, entry: dataEntries[i], shrinkBarWidthByFactorOf: factor)
+                }
             }
+            
             
             mainLayer.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: scrollView.contentSize.height)
         }
@@ -59,32 +70,19 @@ class BarChartView: UIView {
         scrollView.contentSize = CGSize(width: frame.size.width, height: (barHeight + space) * CGFloat(dataEntries.count) + contentSpace)
     }
     
-    private func showEntry(index: Int, entry: BarEntry) {
+    private func showEntry(index: Int, entry: BarEntry, shrinkBarWidthByFactorOf factor: Float) {
         let xPos: CGFloat = 30
         let yPos: CGFloat = space + CGFloat(index) * (barHeight + space)
 
         let titleBar = drawTitle(xPos: xPos, yPos: yPos + (barHeight / 4), width: 120, height: 40.0, title: entry.title)
         
-        var progressBar = drawBar(xPos: xPos + titleBar.frame.width + contentSpace, yPos: yPos, width: calculateBarWidth(value: Float(entry.count), shrinkByFactorOf: 3.0), forEntry: entry)
+        let progressBar = drawBar(xPos: xPos + titleBar.frame.width + contentSpace, yPos: yPos, width: calculateBarWidth(value: Float(entry.count), shrinkByFactorOf: factor), forEntry: entry)
         
-        var text = drawTextValue(xPos: xPos + titleBar.frame.width + progressBar.frame.width + contentSpace, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
+        let text = drawTextValue(xPos: xPos + titleBar.frame.width + progressBar.frame.width + contentSpace, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
         
-        var entryWidth = xPos + (titleBar.frame.width + contentSpace) + (progressBar.frame.width + contentSpace) + (xPos + text.frame.width)
+        let entryWidth = xPos + (titleBar.frame.width + contentSpace) + (progressBar.frame.width + contentSpace) + (xPos + text.frame.width)
         
-        var factor: Float = 3.5
-
-        while entryWidth > UIScreen.main.bounds.width {
-            progressBar.removeFromSuperlayer()
-            progressBar = drawBar(xPos: xPos + titleBar.frame.width + contentSpace, yPos: yPos, width: calculateBarWidth(value: Float(entry.count), shrinkByFactorOf: factor), forEntry: entry)
-
-            entryWidth = xPos + (titleBar.frame.width + contentSpace) + (progressBar.frame.width + contentSpace) + (xPos + text.frame.width)
-
-            factor += 0.5
-        }
-        
-        text.removeFromSuperlayer()
-        text = drawTextValue(xPos: xPos + titleBar.frame.width + progressBar.frame.width + contentSpace, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
-                
+        entryTooBig = entryWidth > UIScreen.main.bounds.width ? true : false
     }
     
     private func drawTitle(xPos: CGFloat, yPos: CGFloat, width: CGFloat, height: CGFloat = 22, title: String) -> CATextLayer {
