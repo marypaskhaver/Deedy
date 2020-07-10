@@ -65,24 +65,26 @@ class BarChartView: UIView {
 
         let titleBar = drawTitle(xPos: xPos, yPos: yPos + (barHeight / 4), width: 120, height: 40.0, title: entry.title)
         
-        let progressBar = drawBar(xPos: xPos + titleBar.frame.width + contentSpace, yPos: yPos, forEntry: entry)
+        var progressBar = drawBar(xPos: xPos + titleBar.frame.width + contentSpace, yPos: yPos, width: calculateBarWidth(value: Float(entry.count), shrinkByFactorOf: 3.0), forEntry: entry)
         
-        let text = drawTextValue(xPos: xPos + titleBar.frame.width + progressBar.frame.width + contentSpace, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
+        var text = drawTextValue(xPos: xPos + titleBar.frame.width + progressBar.frame.width + contentSpace, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
         
-        let maxEntryCount = dataEntries.map { $0.count }.max() ?? 0
+        var entryWidth = xPos + (titleBar.frame.width + contentSpace) + (progressBar.frame.width + contentSpace) + (xPos + text.frame.width)
         
-        if maxEntryCount == entry.count {
-            var entryWidth = xPos + (titleBar.frame.width + contentSpace) + (progressBar.frame.width + contentSpace) + (xPos + text.frame.width)
-            
-            if entryWidth > UIScreen.main.bounds.width {
-                let shrinkBy: CGFloat = (UIScreen.main.bounds.width) / CGFloat(entryWidth)
-                
-                mainLayer.transform = CATransform3DMakeScale(shrinkBy, shrinkBy, 1)
-                
-                entryWidth *= shrinkBy
-            }
+        var factor: Float = 3.5
+
+        while entryWidth > UIScreen.main.bounds.width {
+            progressBar.removeFromSuperlayer()
+            progressBar = drawBar(xPos: xPos + titleBar.frame.width + contentSpace, yPos: yPos, width: calculateBarWidth(value: Float(entry.count), shrinkByFactorOf: factor), forEntry: entry)
+
+            entryWidth = xPos + (titleBar.frame.width + contentSpace) + (progressBar.frame.width + contentSpace) + (xPos + text.frame.width)
+
+            factor += 0.5
         }
         
+        text.removeFromSuperlayer()
+        text = drawTextValue(xPos: xPos + titleBar.frame.width + progressBar.frame.width + contentSpace, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
+                
     }
     
     private func drawTitle(xPos: CGFloat, yPos: CGFloat, width: CGFloat, height: CGFloat = 22, title: String) -> CATextLayer {
@@ -109,11 +111,9 @@ class BarChartView: UIView {
         return textLayer
     }
     
-    private func drawBar(xPos: CGFloat, yPos: CGFloat, forEntry entry: BarEntry) -> CALayer {
+    private func drawBar(xPos: CGFloat, yPos: CGFloat, width: CGFloat, forEntry entry: BarEntry) -> CALayer {
         let barLayer = CALayer()
-        
-        let width = calculateBarWidth(value: Float(entry.count))
-        
+                
         barLayer.frame = CGRect(x: xPos, y: yPos, width: width, height: barHeight)
         barLayer.backgroundColor = CustomColors.defaultBlue.cgColor
         
@@ -146,8 +146,8 @@ class BarChartView: UIView {
         return textLayer
     }
     
-    private func calculateBarWidth(value: Float) -> CGFloat {
-        let width = CGFloat(value / 3) * (mainLayer.frame.width - space)
+    private func calculateBarWidth(value: Float, shrinkByFactorOf factor: Float) -> CGFloat {
+        let width = CGFloat(value / factor) * (mainLayer.frame.width - space)
         
         return abs(width)
     }
