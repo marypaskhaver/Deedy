@@ -139,7 +139,7 @@ class BarChartView: UIView {
         textLayer.fontSize = 22.0
         
         textLayer.string = textValue
-        textLayer.frame = CGRect(x: xPos, y: yPos, width: textLayer.preferredFrameSize().width + 15, height: 80.0)
+        textLayer.frame = CGRect(x: xPos, y: yPos, width: textLayer.preferredFrameSize().width + 15, height: textLayer.preferredFrameSize().height)
         
         mainLayer.addSublayer(textLayer)
         
