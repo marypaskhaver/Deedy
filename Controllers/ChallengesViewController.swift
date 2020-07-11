@@ -47,10 +47,6 @@ class ChallengesViewController: UIViewController {
         saveGoalsAndAchievements()
     }
     
-    @IBAction func scrollUpButtonPressed(_ sender: UIBarButtonItem) {
-        tableView.setContentOffset(.zero, animated: true)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -274,7 +270,7 @@ class ChallengesViewController: UIViewController {
     }
     
     func loadDailyGoalValue() {
-        let request : NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()
+        let request: NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
         let fetchedRequest = cdm.fetchDailyChallenges(with: request)
