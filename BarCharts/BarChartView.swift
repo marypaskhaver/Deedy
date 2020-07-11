@@ -129,6 +129,9 @@ class BarChartView: UIView {
         barLayer.frame = CGRect(x: xPos, y: yPos, width: width, height: barHeight)
         barLayer.backgroundColor = CustomColors.defaultBlue.cgColor
         
+        barLayer.opacity = 0.0
+        barLayer.add(getFadeInAnimation(), forKey: "fadeIn")
+        
         mainLayer.addSublayer(barLayer)
     
         return barLayer
@@ -147,6 +150,9 @@ class BarChartView: UIView {
         
         textLayer.string = textValue
         textLayer.frame = CGRect(x: xPos, y: yPos, width: textLayer.preferredFrameSize().width + 15, height: textLayer.preferredFrameSize().height)
+        
+        textLayer.opacity = 0.0
+        textLayer.add(getFadeInAnimation(), forKey: "fadeIn")
         
         mainLayer.addSublayer(textLayer)
         
