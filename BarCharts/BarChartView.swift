@@ -23,8 +23,8 @@ class BarChartView: UIView {
     let barHeight: CGFloat = 40.0
     let contentSpace: CGFloat = 30.0
     
-    var entryTooBig = false
-    
+    var entryTooBig: Bool = false
+    var currentEntry: Int = 0
     // Generate graph when data is passed in
     var dataEntries: [BarEntry] = [] {
         
@@ -36,6 +36,7 @@ class BarChartView: UIView {
             var factor: Float = 3.0
             
             for i in 0..<dataEntries.count {
+                currentEntry = i
                 showEntry(index: i, entry: dataEntries[i], shrinkBarWidthByFactorOf: factor)
                 
                 while entryTooBig {
@@ -90,7 +91,7 @@ class BarChartView: UIView {
     
     private func drawTitle(xPos: CGFloat, yPos: CGFloat, title: String) -> CATextLayer {
         let textLayer = CATextLayer()
-                        
+                
         textLayer.foregroundColor = (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.white.cgColor : UIColor.black.cgColor
                 
         textLayer.alignmentMode = CATextLayerAlignmentMode.left
@@ -101,10 +102,34 @@ class BarChartView: UIView {
        
         textLayer.string = title
         textLayer.frame = CGRect(x: xPos, y: yPos, width: textLayer.preferredFrameSize().width + 15, height: textLayer.preferredFrameSize().height)
+        
+        textLayer.opacity = 0.0
+        
+        let animation = CABasicAnimation(keyPath: "opacity")
+        animation.fromValue = 0.0
+        animation.toValue = 1.0
+        animation.duration = 2.0
+        animation.beginTime = CACurrentMediaTime() + 0.3 * Double(currentEntry)
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        animation.isRemovedOnCompletion = false
+        
+        textLayer.add(getFadeInAnimation(), forKey: "fadeIn")
 
         mainLayer.addSublayer(textLayer)
-        
+
         return textLayer
+    }
+    
+    func getFadeInAnimation() -> CABasicAnimation {
+        let animation = CABasicAnimation(keyPath: "opacity")
+        animation.fromValue = 0.0
+        animation.toValue = 1.0
+        animation.duration = 2.0
+        animation.beginTime = CACurrentMediaTime() + 0.3 * Double(currentEntry)
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        animation.isRemovedOnCompletion = false
+        
+        return animation
     }
     
     private func drawBar(xPos: CGFloat, yPos: CGFloat, width: CGFloat, forEntry entry: BarEntry) -> CALayer {
@@ -114,7 +139,7 @@ class BarChartView: UIView {
         barLayer.backgroundColor = CustomColors.defaultBlue.cgColor
         
         mainLayer.addSublayer(barLayer)
-        
+    
         return barLayer
     }
     
