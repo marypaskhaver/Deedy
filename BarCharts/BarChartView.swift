@@ -93,9 +93,8 @@ class BarChartView: UIView {
         let textLayer = CATextLayer()
                 
         textLayer.foregroundColor = (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.white.cgColor : UIColor.black.cgColor
-                
-        textLayer.alignmentMode = CATextLayerAlignmentMode.left
-        textLayer.contentsScale = UIScreen.main.scale
+        
+        setTextLayerAlignmentAndContentScale(forLayer: textLayer)
 
         setTextLayerFont(forLayer: textLayer)
         
@@ -107,6 +106,11 @@ class BarChartView: UIView {
         mainLayer.addSublayer(textLayer)
 
         return textLayer
+    }
+    
+    func setTextLayerAlignmentAndContentScale(forLayer layer: CATextLayer) {
+        layer.alignmentMode = CATextLayerAlignmentMode.center
+        layer.contentsScale = UIScreen.main.scale
     }
     
     func setTextLayerFont(forLayer layer: CATextLayer) {
@@ -149,8 +153,7 @@ class BarChartView: UIView {
         
         textLayer.foregroundColor = (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.white.cgColor : UIColor.black.cgColor
         
-        textLayer.alignmentMode = CATextLayerAlignmentMode.center
-        textLayer.contentsScale = UIScreen.main.scale
+        setTextLayerAlignmentAndContentScale(forLayer: textLayer)
         
         setTextLayerFont(forLayer: textLayer)
 
