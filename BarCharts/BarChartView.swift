@@ -104,15 +104,6 @@ class BarChartView: UIView {
         textLayer.frame = CGRect(x: xPos, y: yPos, width: textLayer.preferredFrameSize().width + 15, height: textLayer.preferredFrameSize().height)
         
         textLayer.opacity = 0.0
-        
-        let animation = CABasicAnimation(keyPath: "opacity")
-        animation.fromValue = 0.0
-        animation.toValue = 1.0
-        animation.duration = 2.0
-        animation.beginTime = CACurrentMediaTime() + 0.3 * Double(currentEntry)
-        animation.fillMode = CAMediaTimingFillMode.forwards
-        animation.isRemovedOnCompletion = false
-        
         textLayer.add(getFadeInAnimation(), forKey: "fadeIn")
 
         mainLayer.addSublayer(textLayer)
