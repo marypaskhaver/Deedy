@@ -93,10 +93,6 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         tableView.reloadData()
     }
     
-    @IBAction func scrollUpButtonPressed(_ sender: UIBarButtonItem) {
-        tableView.setContentOffset(.zero, animated: true)
-    }
-    
     // MARK: - Updating/Sorting Sections and Labels
     func updateSections() {
         dataSource.splitSections()
