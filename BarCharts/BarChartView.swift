@@ -115,7 +115,7 @@ class BarChartView: UIView {
         let animation = CABasicAnimation(keyPath: "opacity")
         animation.fromValue = 0.0
         animation.toValue = 1.0
-        animation.duration = 2.0
+        animation.duration = 1.0
         animation.beginTime = CACurrentMediaTime() + 0.3 * Double(currentEntry)
         animation.fillMode = CAMediaTimingFillMode.forwards
         animation.isRemovedOnCompletion = false
