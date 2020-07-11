@@ -91,12 +91,8 @@ class BarChartView: UIView {
     
     private func drawTitle(xPos: CGFloat, yPos: CGFloat, title: String) -> CATextLayer {
         let textLayer = CATextLayer()
-                
-        textLayer.foregroundColor = (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.white.cgColor : UIColor.black.cgColor
-        
-        setTextLayerAlignmentAndContentScale(forLayer: textLayer)
-
-        setTextLayerFont(forLayer: textLayer)
+                        
+        configureTextLayer(layer: textLayer)
         
         textLayer.string = title
         textLayer.frame = CGRect(x: xPos, y: yPos, width: textLayer.preferredFrameSize().width + 15, height: textLayer.preferredFrameSize().height)
@@ -106,6 +102,12 @@ class BarChartView: UIView {
         mainLayer.addSublayer(textLayer)
 
         return textLayer
+    }
+    
+    func configureTextLayer(layer: CATextLayer) {
+        layer.foregroundColor = (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.white.cgColor : UIColor.black.cgColor
+        setTextLayerAlignmentAndContentScale(forLayer: layer)
+        setTextLayerFont(forLayer: layer)
     }
     
     func setTextLayerAlignmentAndContentScale(forLayer layer: CATextLayer) {
@@ -150,13 +152,9 @@ class BarChartView: UIView {
     
     private func drawTextValue(xPos: CGFloat, yPos: CGFloat, textValue: String) -> CATextLayer {
         let textLayer = CATextLayer()
+                
+        configureTextLayer(layer: textLayer)
         
-        textLayer.foregroundColor = (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.white.cgColor : UIColor.black.cgColor
-        
-        setTextLayerAlignmentAndContentScale(forLayer: textLayer)
-        
-        setTextLayerFont(forLayer: textLayer)
-
         textLayer.string = textValue
         textLayer.frame = CGRect(x: xPos, y: yPos, width: textLayer.preferredFrameSize().width + 15, height: textLayer.preferredFrameSize().height)
         
