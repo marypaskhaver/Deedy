@@ -97,9 +97,8 @@ class BarChartView: UIView {
         textLayer.alignmentMode = CATextLayerAlignmentMode.left
         textLayer.contentsScale = UIScreen.main.scale
 
-        textLayer.font = CTFontCreateWithName(UIFont.systemFont(ofSize: 22.0).fontName as CFString, 0, nil)
-        textLayer.fontSize = 22
-       
+        setTextLayerFont(forLayer: textLayer)
+        
         textLayer.string = title
         textLayer.frame = CGRect(x: xPos, y: yPos, width: textLayer.preferredFrameSize().width + 15, height: textLayer.preferredFrameSize().height)
     
@@ -108,6 +107,11 @@ class BarChartView: UIView {
         mainLayer.addSublayer(textLayer)
 
         return textLayer
+    }
+    
+    func setTextLayerFont(forLayer layer: CATextLayer) {
+        layer.font = CTFontCreateWithName(UIFont.systemFont(ofSize: 22.0).fontName as CFString, 0, nil)
+        layer.fontSize = 22
     }
     
     func addAnimationToLayer(layer: CALayer) {
@@ -131,7 +135,7 @@ class BarChartView: UIView {
         let barLayer = CALayer()
                 
         barLayer.frame = CGRect(x: xPos, y: yPos, width: width, height: barHeight)
-        barLayer.backgroundColor = CustomColors.defaultBlue.cgColor
+        barLayer.backgroundColor = CustomColors.defaultBlue.cgColor // Set to nav bar color
         
         addAnimationToLayer(layer: barLayer)
 
@@ -148,9 +152,8 @@ class BarChartView: UIView {
         textLayer.alignmentMode = CATextLayerAlignmentMode.center
         textLayer.contentsScale = UIScreen.main.scale
         
-        textLayer.font = CTFontCreateWithName(UIFont.systemFont(ofSize: 22.0).fontName as CFString, 0, nil)
-        textLayer.fontSize = 22.0
-        
+        setTextLayerFont(forLayer: textLayer)
+
         textLayer.string = textValue
         textLayer.frame = CGRect(x: xPos, y: yPos, width: textLayer.preferredFrameSize().width + 15, height: textLayer.preferredFrameSize().height)
         
