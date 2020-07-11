@@ -77,7 +77,7 @@ class BarChartView: UIView {
         let xPos: CGFloat = 30
         let yPos: CGFloat = space + CGFloat(index) * (barHeight + space)
 
-        let titleBar = drawTitle(xPos: xPos, yPos: yPos + (barHeight / 4), width: 120, height: 40.0, title: entry.title)
+        let titleBar = drawTitle(xPos: xPos, yPos: yPos + (barHeight / 4), title: entry.title)
         
         let progressBar = drawBar(xPos: xPos + titleBar.frame.width + contentSpace, yPos: yPos, width: calculateBarWidth(value: Float(entry.count), shrinkByFactorOf: factor), forEntry: entry)
         
@@ -88,11 +88,9 @@ class BarChartView: UIView {
         entryTooBig = entryWidth > UIScreen.main.bounds.width ? true : false
     }
     
-    private func drawTitle(xPos: CGFloat, yPos: CGFloat, width: CGFloat, height: CGFloat = 22, title: String) -> CATextLayer {
+    private func drawTitle(xPos: CGFloat, yPos: CGFloat, title: String) -> CATextLayer {
         let textLayer = CATextLayer()
-                
-        textLayer.frame = CGRect(x: xPos, y: yPos, width: width, height: height)
-        
+                        
         textLayer.foregroundColor = (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.white.cgColor : UIColor.black.cgColor
                 
         textLayer.alignmentMode = CATextLayerAlignmentMode.left
@@ -102,7 +100,8 @@ class BarChartView: UIView {
         textLayer.fontSize = 22
        
         textLayer.string = title
-        
+        textLayer.frame = CGRect(x: xPos, y: yPos, width: textLayer.preferredFrameSize().width + 15, height: textLayer.preferredFrameSize().height)
+
         mainLayer.addSublayer(textLayer)
         
         return textLayer
