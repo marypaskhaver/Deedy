@@ -122,19 +122,7 @@ class BarChartView: UIView {
     
     func addAnimationToLayer(layer: CALayer) {
         layer.opacity = 0.0
-        layer.add(getFadeInAnimation(), forKey: "fadeIn")
-    }
-    
-    func getFadeInAnimation() -> CABasicAnimation {
-        let animation = CABasicAnimation(keyPath: "opacity")
-        animation.fromValue = 0.0
-        animation.toValue = 1.0
-        animation.duration = 1.0
-        animation.beginTime = CACurrentMediaTime() + 0.3 * Double(currentEntry)
-        animation.fillMode = CAMediaTimingFillMode.forwards
-        animation.isRemovedOnCompletion = false
-        
-        return animation
+        layer.add(Animations.getFadeInAnimationForCALayer(atIndex: currentEntry), forKey: "fadeIn")
     }
     
     private func drawBar(xPos: CGFloat, yPos: CGFloat, width: CGFloat, forEntry entry: BarEntry) -> CALayer {
