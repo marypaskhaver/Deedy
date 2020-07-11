@@ -89,6 +89,7 @@ class BarChartView: UIView {
         entryTooBig = entryWidth > UIScreen.main.bounds.width ? true : false
     }
     
+    // MARK: - Drawing CALayers
     private func drawTitle(xPos: CGFloat, yPos: CGFloat, title: String) -> CATextLayer {
         let textLayer = CATextLayer()
                         
@@ -102,27 +103,6 @@ class BarChartView: UIView {
         mainLayer.addSublayer(textLayer)
 
         return textLayer
-    }
-    
-    func configureTextLayer(layer: CATextLayer) {
-        layer.foregroundColor = (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.white.cgColor : UIColor.black.cgColor
-        setTextLayerAlignmentAndContentScale(forLayer: layer)
-        setTextLayerFont(forLayer: layer)
-    }
-    
-    func setTextLayerAlignmentAndContentScale(forLayer layer: CATextLayer) {
-        layer.alignmentMode = CATextLayerAlignmentMode.center
-        layer.contentsScale = UIScreen.main.scale
-    }
-    
-    func setTextLayerFont(forLayer layer: CATextLayer) {
-        layer.font = CTFontCreateWithName(UIFont.systemFont(ofSize: 22.0).fontName as CFString, 0, nil)
-        layer.fontSize = 22
-    }
-    
-    func addAnimationToLayer(layer: CALayer) {
-        layer.opacity = 0.0
-        layer.add(Animations.getFadeInAnimationForCALayer(atIndex: currentEntry), forKey: "fadeIn")
     }
     
     private func drawBar(xPos: CGFloat, yPos: CGFloat, width: CGFloat, forEntry entry: BarEntry) -> CALayer {
@@ -157,6 +137,29 @@ class BarChartView: UIView {
         let width = CGFloat(value / factor) * (mainLayer.frame.width - space)
         
         return abs(width)
+    }
+    
+    // MARK: - Setting up CATextLayers
+    func configureTextLayer(layer: CATextLayer) {
+        layer.foregroundColor = (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.white.cgColor : UIColor.black.cgColor
+        setTextLayerAlignmentAndContentScale(forLayer: layer)
+        setTextLayerFont(forLayer: layer)
+    }
+    
+    func setTextLayerAlignmentAndContentScale(forLayer layer: CATextLayer) {
+        layer.alignmentMode = CATextLayerAlignmentMode.center
+        layer.contentsScale = UIScreen.main.scale
+    }
+    
+    func setTextLayerFont(forLayer layer: CATextLayer) {
+        layer.font = CTFontCreateWithName(UIFont.systemFont(ofSize: 22.0).fontName as CFString, 0, nil)
+        layer.fontSize = 22
+    }
+    
+    // MARK: - Animating CALayers
+    func addAnimationToLayer(layer: CALayer) {
+        layer.opacity = 0.0
+        layer.add(Animations.getFadeInAnimationForCALayer(atIndex: currentEntry), forKey: "fadeIn")
     }
    
 }
