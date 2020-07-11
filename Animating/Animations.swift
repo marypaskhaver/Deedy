@@ -33,6 +33,18 @@ enum Animations {
             UIView.animate(withDuration: duration, animations: { () -> Void in
                 label.transform = .identity
             })
-        }
+        }        
+    }
+    
+    static func getFadeInAnimationForCALayer(atIndex index: Int) -> CABasicAnimation {
+        let animation = CABasicAnimation(keyPath: "opacity")
+        animation.fromValue = 0.0
+        animation.toValue = 1.0
+        animation.duration = 1.0
+        animation.beginTime = CACurrentMediaTime() + 0.3 * Double(index)
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        animation.isRemovedOnCompletion = false
+        
+        return animation
     }
 }
