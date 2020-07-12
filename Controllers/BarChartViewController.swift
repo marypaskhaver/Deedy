@@ -12,7 +12,7 @@ import CoreData
 class BarChartViewController: UIViewController {
     
     var deedsDone = [Deed]()
-    
+    var cdm: CoreDataManager = CoreDataManager()
     @IBOutlet weak var noDeedsDoneLabel: UILabel!
     
     lazy var barChartView: BarChartView = {
@@ -40,10 +40,9 @@ class BarChartViewController: UIViewController {
             
         var sections = DaySection.group(deeds: deedsDone)
         sections.sort { (lhs, rhs) in lhs.date > rhs.date }
-            
+         
         for section in sections {
             let newBarEntry = BarEntry(count: section.deeds.count, title: dateFormatter.string(from: section.date))
-            
             barChartView.dataEntries.append(newBarEntry)
         }
     
@@ -69,7 +68,7 @@ class BarChartViewController: UIViewController {
 
         setRequestPredicatesBetween(dateFrom: oneMonthEarlier!, dateTo: tomorrow!, forRequest: request as! NSFetchRequest<NSFetchRequestResult>)
         
-        return CoreDataManager().fetchDeeds(with: request)
+        return cdm.fetchDeeds(with: request)
     }
     
     func setRequestPredicatesBetween(dateFrom: Date, dateTo: Date, forRequest request: NSFetchRequest<NSFetchRequestResult>) {
