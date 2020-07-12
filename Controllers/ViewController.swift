@@ -65,6 +65,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         backgroundView.changeBackgroundColor()
+        topView.changeBackgroundColor()
     }
     
     @objc func dismissKeyboard() {
