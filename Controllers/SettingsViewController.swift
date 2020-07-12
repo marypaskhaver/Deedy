@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider! 
-    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var resetButton: ResetButton!
     
     // Default -- a light blue
     static var navBarColor = CustomColors.defaultBlue
@@ -86,7 +86,7 @@ class SettingsViewController: UIViewController {
             changeNavBarTextAndItemsToColor(color: UIColor.white)
         }
     }
-    
+        
     func changeNavBarTextAndItemsToColor(color: UIColor) {
         // Change this nav bar's text color
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
@@ -96,7 +96,7 @@ class SettingsViewController: UIViewController {
         
         // Change all nav bars' items' colors
         UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)], for: .normal)
-        
+
         SettingsViewController.navBarTextColor = color
     }
     
