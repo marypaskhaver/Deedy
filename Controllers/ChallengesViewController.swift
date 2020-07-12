@@ -25,7 +25,6 @@ class ChallengesViewController: UIViewController {
     @IBOutlet weak var topView: TopView!
     @IBOutlet var backgroundView: BackgroundView!
     
-    // Unwrap safely somehow? Later?
     let cdm = CoreDataManager()
     lazy var dailyChallenge = DailyChallenge(context: cdm.backgroundContext)
     lazy var streak = Streak(context: cdm.backgroundContext)
