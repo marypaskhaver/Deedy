@@ -70,7 +70,6 @@ class SettingsViewController: UIViewController {
     // MARK: - Change app color theme
 
     func changeNavBarColorToColor(color: UIColor) {
-        navigationController?.navigationBar.barTintColor = color
         UINavigationBar.appearance().barTintColor = color
         SettingsViewController.navBarColor = color
     }
