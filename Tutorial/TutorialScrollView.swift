@@ -10,12 +10,20 @@ import UIKit
 
 class TutorialScrollView: UIScrollView {
    
-    func createPages() -> [TutorialPage] {
+    func createPages(forViewController vc: UIViewController) -> [TutorialPage] {
+        if vc.restorationIdentifier == "ViewController" {
+            return createViewControllerPages()
+        }
+    
+        return []
+    }
+   
+   func createViewControllerPages() -> [TutorialPage] {
         let page1: TutorialPage = Bundle.main.loadNibNamed("TutorialPage", owner: self, options: nil)?.first as! TutorialPage
-        page1.textView.text = "\t\t    Welcome to Deedy!\n\n• Press ＋ to add deeds\n\n• Swipe left on a deed to edit it"
+        page1.textView.text = "\n\t\t    Welcome to Deedy!\n\n\t• Press ＋ to add deeds\n\n\t• Swipe left on a deed to edit it"
         
         let page2: TutorialPage = Bundle.main.loadNibNamed("TutorialPage", owner: self, options: nil)?.first as! TutorialPage
-        page2.textView.text = "\t\t    Welcome to Deedy!\n\n•Press 📊 to see graphs of your deeds in the past month\n\n• Press Sort to sort deeds by date"
+        page2.textView.text = "\n\t\t    Welcome to Deedy!\n\n\t• Press 📊 to see graphs of your deeds in the past month\n\n\t• Press Sort to sort deeds by date"
         
         return [page1, page2]
     }
