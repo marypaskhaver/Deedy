@@ -11,11 +11,7 @@ import UIKit
 class TopView: UIView {
 
     override func awakeFromNib() {
-        self.backgroundColor = UIColor.white
-        
-        if self.traitCollection.userInterfaceStyle == .dark {
-            self.backgroundColor = UIColor.black
-        }
+        self.backgroundColor = (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.black : UIColor.white
     }
 
 }
