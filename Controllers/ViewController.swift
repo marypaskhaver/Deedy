@@ -20,6 +20,8 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     @IBOutlet weak var topView: TopView!
     @IBOutlet var backgroundView: BackgroundView!
     
+    @IBOutlet weak var tutorialXButton: UIButton!
+    
     var editedDeedText: String = ""
     var editedIndexPath: IndexPath! = nil
 
@@ -28,6 +30,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     var dataSource: ViewControllerTableViewDataSource!
     
     @IBOutlet weak var scrollView: TutorialScrollView!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +41,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         
         let font = UIFont.systemFont(ofSize: 28)
 
-        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
+    self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         
         dataSource = ViewControllerTableViewDataSource(withView: self.view)
         
@@ -67,9 +70,30 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         showTutorial()
     }
     
+    @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
+        scrollView.removeFromSuperview()
+        pageControl.removeFromSuperview()
+        tutorialXButton.removeFromSuperview()
+    }
+    
     func showTutorial() {
-        let pages = scrollView.createPages()
-        scrollView.setupSlideScrollView(withPages: pages)        
+        let pages = scrollView.createPages(forViewController: self)
+        scrollView.setupSlideScrollView(withPages: pages)
+        
+        pageControl.frame = CGRect(x: scrollView.frame.width / 2, y: scrollView.frame.maxY - 60, width: 37, height: 39)
+        pageControl.numberOfPages = pages.count
+        pageControl.currentPage = 0
+        view.bringSubviewToFront(pageControl)
+        
+        tutorialXButton.frame = CGRect(x: 0.82 * UIScreen.main.bounds.width, y: 0.46 * UIScreen.main.bounds.height, width: 30, height: 30)
+        view.bringSubviewToFront(tutorialXButton)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.isDescendant(of: view.superview!) {
+            let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
+            pageControl.currentPage = Int(pageNumber)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
