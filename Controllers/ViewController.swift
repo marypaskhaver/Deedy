@@ -85,7 +85,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         pageControl.currentPage = 0
         view.bringSubviewToFront(pageControl)
         
-        tutorialXButton.frame = CGRect(x: 0.82 * UIScreen.main.bounds.width, y: 0.46 * UIScreen.main.bounds.height, width: 30, height: 30)
+        tutorialXButton.frame = CGRect(x: scrollView.frame.width - 20, y: scrollView.frame.origin.y + 10, width: 30, height: 30)
         view.bringSubviewToFront(tutorialXButton)
     }
     
