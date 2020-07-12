@@ -13,7 +13,7 @@ class ResetButton: UIButton {
         super.awakeFromNib()
         // Initialization code
         
-        self.layer.cornerRadius = 8
+        self.layer.cornerRadius = 30
         self.layer.borderWidth = 1
         
         self.addConstraint(NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0.54 * UIScreen.main.bounds.width))
