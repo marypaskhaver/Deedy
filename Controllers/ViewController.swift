@@ -81,9 +81,9 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         let _ = self.view
         
         if (segue.identifier == "doneAddingSegue") {
-            let deedDetailVC = segue.source as! AddDeedViewController
+            let addDeedVC = segue.source as! AddDeedViewController
             
-            dataSource.addDeed(title: deedDetailVC.textView.text!, date: Date())
+            dataSource.addDeed(title: addDeedVC.textView.text!, date: Date())
         }
         
         updateSections()
