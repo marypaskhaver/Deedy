@@ -26,7 +26,9 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     let headerFont = UIFont.systemFont(ofSize: 22)
         
     var dataSource: ViewControllerTableViewDataSource!
-
+    
+    @IBOutlet weak var scrollView: TutorialScrollView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -61,6 +63,13 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        showTutorial()
+    }
+    
+    func showTutorial() {
+        let pages = scrollView.createPages()
+        scrollView.setupSlideScrollView(withPages: pages)        
     }
     
     override func viewWillAppear(_ animated: Bool) {
