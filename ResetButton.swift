@@ -16,8 +16,6 @@ class ResetButton: UIButton {
         self.layer.cornerRadius = 8
         self.layer.borderWidth = 1
         
-        self.backgroundColor = (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.white : UIColor.black
-
         self.addConstraint(NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0.54 * UIScreen.main.bounds.width))
     }
 }
