@@ -34,20 +34,23 @@ class BarChartView: UIView {
             mainLayer.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: scrollView.contentSize.height)
 
             var factor: Float = 3.0
+            var index: Int = 0
             
-            for i in 0..<dataEntries.count {
-                currentEntry = i
-                showEntry(index: i, entry: dataEntries[i], shrinkBarWidthByFactorOf: factor)
+            while index < dataEntries.count {
+                currentEntry = index
+                showEntry(index: index, entry: dataEntries[index], shrinkBarWidthByFactorOf: factor)
                 
                 while entryTooBig {
-                    // Remove previous title, bar, and text
-                    _ = mainLayer.sublayers?.popLast()
-                    _ = mainLayer.sublayers?.popLast()
-                    _ = mainLayer.sublayers?.popLast()
+                    // Remove all entries from screen
+                    mainLayer.sublayers?.forEach({ $0.removeFromSuperlayer() })
+
+                    index = 0
 
                     factor += 0.2
-                    showEntry(index: i, entry: dataEntries[i], shrinkBarWidthByFactorOf: factor)
+                    showEntry(index: index, entry: dataEntries[index], shrinkBarWidthByFactorOf: factor)
                 }
+                
+                index += 1
             }
             
             mainLayer.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: scrollView.contentSize.height)
