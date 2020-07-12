@@ -22,7 +22,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     var editedDeedText: String = ""
     var editedIndexPath: IndexPath! = nil
-    
+
     let headerFont = UIFont.systemFont(ofSize: 22)
         
     var dataSource: ViewControllerTableViewDataSource!
@@ -65,9 +65,16 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         backgroundView.changeBackgroundColor()
-        topView.changeBackgroundColor()
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        topView.changeBackgroundColor()
+        totalDeedsLabel.textColor = (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.white : UIColor.black
+        tableView.reloadData()
+    }
+        
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
