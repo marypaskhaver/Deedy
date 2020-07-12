@@ -83,6 +83,13 @@ class ChallengesViewController: UIViewController {
         backgroundView.changeBackgroundColor()
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        topView.changeBackgroundColor()
+        tableView.reloadData()
+    }
+    
     func setTotalDeedsDone() {
         self.totalDeedsDone = cdm.fetchDeeds().count
         
