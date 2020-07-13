@@ -52,9 +52,9 @@ class ChallengesViewController: UIViewController {
     }
     
     @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
-        scrollView.removeFromSuperview()
-        pageControl.removeFromSuperview()
-        tutorialXButton.removeFromSuperview()
+        scrollView.isHidden = true
+        pageControl.isHidden = true
+        tutorialXButton.isHidden = true
         
         stepper.isEnabled = true
     }
@@ -106,7 +106,7 @@ class ChallengesViewController: UIViewController {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.isDescendant(of: view.superview!) && pageControl != nil {
+        if scrollView.isDescendant(of: view.superview!) {
             let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
             pageControl.currentPage = Int(pageNumber)
         }
