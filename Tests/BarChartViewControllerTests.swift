@@ -12,7 +12,7 @@ import CoreData
 @testable import Good_Deed_Counter
 
 class BarChartViewControllerTests: XCTestCase {
-    var vc: ViewController!
+    var ddvc: DisplayDeedsViewController!
     var bvc: BarChartViewController!
 
     lazy var managedObjectModel: NSManagedObjectModel = MockDataModelObjects().managedObjectModel
@@ -24,13 +24,14 @@ class BarChartViewControllerTests: XCTestCase {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        vc = storyboard.instantiateViewController(identifier: "ViewController") as? ViewController
-        vc.loadViewIfNeeded()
-        vc.dataSource.cdm = CoreDataManager(container: mockPersistentContainer)
-        vc.dataSource.loadDeeds()
+        ddvc = storyboard.instantiateViewController(identifier: "DisplayDeedsViewController") as? DisplayDeedsViewController
+        ddvc.loadViewIfNeeded()
+        ddvc.dataSource.isShowingTutorial = false
+        ddvc.dataSource.cdm = CoreDataManager(container: mockPersistentContainer)
+        ddvc.dataSource.loadDeeds()
         
         bvc = storyboard.instantiateViewController(identifier: "BarChartViewController") as? BarChartViewController
-        bvc.cdm = vc.dataSource.cdm
+        bvc.cdm = ddvc.dataSource.cdm
             
         initDeedStubs()
     }
@@ -38,21 +39,21 @@ class BarChartViewControllerTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
-        vc.dataSource = nil
-        vc = nil
+        ddvc.dataSource = nil
+        ddvc = nil
         bvc = nil
         flushDeedData()
     }
     
     // MARK: - Needed funcs
     func addDeed(withTitle title: String, date: Date) {
-        let deed = vc.dataSource.cdm.insertDeed(title: title, date: date)
-        vc.dataSource.deeds.append(deed!)
+        let deed = ddvc.dataSource.cdm.insertDeed(title: title, date: date)
+        ddvc.dataSource.deeds.append(deed!)
 
-        vc.updateSections()
-        vc.dataSource.saveDeeds()
+        ddvc.updateSections()
+        ddvc.dataSource.saveDeeds()
 
-        bvc.cdm = vc.dataSource.cdm
+        bvc.cdm = ddvc.dataSource.cdm
     }
     
     func initDeedStubs() {
@@ -60,7 +61,7 @@ class BarChartViewControllerTests: XCTestCase {
         addDeed(withTitle: "A", date: Date())
         addDeed(withTitle: "B", date: Date())
         
-        vc.dataSource.saveDeeds()
+        ddvc.dataSource.saveDeeds()
     }
     
     func flushDeedData() {
