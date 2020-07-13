@@ -46,6 +46,7 @@ class TutorialScrollView: UIScrollView {
     func setupSlideScrollView(withPages pages: [TutorialPage]) {
         self.frame = CGRect(x: 15, y: UIScreen.main.bounds.height / 2 - 100, width: UIScreen.main.bounds.width - 30, height: 300)
         self.contentSize = CGSize(width: self.frame.width * CGFloat(pages.count), height: self.frame.height)
+        self.layer.cornerRadius = 20
         
         self.isPagingEnabled = true
         
