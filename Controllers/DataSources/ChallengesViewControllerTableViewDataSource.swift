@@ -11,7 +11,7 @@ import CoreData
 class ChallengesViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
     var achievements = [Achievement]()
     var view: UIView
-       
+    var isShowingTutorial: Bool = false
     var cdm = CoreDataManager()
        
     init(withView view: UIView) {
@@ -59,6 +59,10 @@ class ChallengesViewControllerTableViewDataSource: NSObject, UITableViewDataSour
         let achievement = achievements[indexPath.row]
         
         CellCustomizer.customizeChallengeCell(cell: cell, withAchievement: achievement, view: view)
+        
+        if isShowingTutorial {
+            cell.isHidden = true
+        }
 
         return cell
     }
@@ -70,4 +74,5 @@ class ChallengesViewControllerTableViewDataSource: NSObject, UITableViewDataSour
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
 }
