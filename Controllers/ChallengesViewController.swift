@@ -55,7 +55,8 @@ class ChallengesViewController: UIViewController {
         scrollView.isHidden = true
         pageControl.isHidden = true
         tutorialXButton.isHidden = true
-        
+        dataSource.isShowingTutorial = false
+                
         stepper.isEnabled = true
     }
     
@@ -65,11 +66,11 @@ class ChallengesViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView()
-        
-        showTutorial()
-        
+                
         dataSource = ChallengesViewControllerTableViewDataSource(withView: self.view)
         
+        showTutorial()
+
         tableView.dataSource = dataSource
         tableView.delegate = self
 
@@ -91,6 +92,7 @@ class ChallengesViewController: UIViewController {
     }
     
     func showTutorial() {
+        dataSource.isShowingTutorial = true
         stepper.isEnabled = false
         
         let pages = scrollView.createPages(forViewController: self)
