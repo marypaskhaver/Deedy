@@ -42,6 +42,10 @@ class SettingsViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = getUIColorFromSliders()
     }
     
+    @IBAction func reviewTutorialButtonPressed(_ sender: UIButton) {
+        defaults.removeObject(forKey: "DisplayDeedsViewControllerTutorialShown")
+    }
+    
     func getUIColorFromSliders() -> UIColor {
         let color = UIColor(red: CGFloat(redSlider.value / 255.0), green: CGFloat(greenSlider.value / 255.0), blue: CGFloat(blueSlider.value / 255.0), alpha: CGFloat(1.0))
     
