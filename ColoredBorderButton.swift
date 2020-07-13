@@ -1,5 +1,5 @@
 //
-//  ResetButton.swift
+//  ColoredBorderButton.swift
 //  Good Deed Counter
 //
 //  Created by Mary Paskhaver on 7/11/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ResetButton: UIButton {
+class ColoredBorderButton: UIButton {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
