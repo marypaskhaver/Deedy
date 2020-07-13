@@ -49,21 +49,24 @@ class TutorialScrollView: UIScrollView {
     }
     
     func createSettingsViewControllerPages() -> [TutorialPage] {
-        let page1 = makePageWithText(text: "\n\t\t\tWelcome to Deedy!\n\n  • Move the sliders to change your app's color theme \n\n  • You can re-view the tutorial here if you'd like")
+        let page1 = makePageWithText(text: "\n\t\t\tWelcome to Deedy!\n\n  • Move the sliders to change your app's color theme \n\n  • You can re-view the tutorial here if you'd like\n\n  • Exit the tutorial to access the settings")
         
         return [page1]
     }
     
     func setupSlideScrollView(withPages pages: [TutorialPage]) {
-        self.frame = CGRect(x: 15, y: UIScreen.main.bounds.height / 2 - 100, width: UIScreen.main.bounds.width - 30, height: 300)
+        self.frame = CGRect(x: 15, y: UIScreen.main.bounds.height / 2 - 100, width: UIScreen.main.bounds.width - 30, height: 320)
         self.contentSize = CGSize(width: self.frame.width * CGFloat(pages.count), height: self.frame.height)
+        
         self.layer.cornerRadius = 20
+        self.layer.borderWidth = 1
+        self.layer.borderColor = CustomColors.defaultBlue.cgColor
         
         self.isPagingEnabled = true
         
         for i in 0 ..< pages.count {
             pages[i].frame = CGRect(x: (UIScreen.main.bounds.width - 30) * CGFloat(i), y: 0, width: UIScreen.main.bounds.width - 30, height: self.frame.height)
-            self.addSubview(pages[i])            
+            self.addSubview(pages[i])
         }
     }
 }
