@@ -13,7 +13,7 @@ class ViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
     var deeds = [Deed]()
     var sections = [TimeSection]()
     var view: UIView
-    
+    var isShowingTutorial: Bool = false
     var cdm = CoreDataManager()
     
     init(withView view: UIView) {
@@ -43,7 +43,11 @@ class ViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
         let deed = section.deeds[indexPath.row]
         
         CellCustomizer.customizeDeedCell(cell: cell, withNewText: deed.title!, view: view)
-                                
+        
+        if isShowingTutorial {
+            cell.isHidden = true
+        }
+
         return cell
     }
 
