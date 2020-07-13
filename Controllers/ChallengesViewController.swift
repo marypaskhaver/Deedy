@@ -70,8 +70,7 @@ class ChallengesViewController: UIViewController {
         dataSource = ChallengesViewControllerTableViewDataSource(withView: self.view)
         
         tableView.dataSource = dataSource
-        tableView.delegate = self
-        
+
         setTotalDeedsDone()
         
         dailyGoalProgressView.transform = CGAffineTransform(scaleX: 1.0, y: 2.0)
