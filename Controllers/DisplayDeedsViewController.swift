@@ -31,6 +31,18 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var tutorialXButton: UIButton!
 
+    @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
+        scrollView.isHidden = true
+        pageControl.isHidden = true
+        tutorialXButton.isHidden = true
+        dataSource.isShowingTutorial = false
+        
+        tableView.reloadData()
+
+        enableBarButtons(bool: true)
+        defaults.set(true, forKey: "DisplayDeedsViewControllerTutorialShown")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -61,22 +73,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        scrollView.isHidden = true
-        pageControl.isHidden = true
-        tutorialXButton.isHidden = true
-        dataSource.isShowingTutorial = false
-    }
-    
-    @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
-        scrollView.isHidden = true
-        pageControl.isHidden = true
-        tutorialXButton.isHidden = true
-        dataSource.isShowingTutorial = false
-        
-        tableView.reloadData()
-
-        enableBarButtons(bool: true)
-        defaults.set(true, forKey: "DisplayDeedsViewControllerTutorialShown")
+        hideTutorialItems(bool: true)
     }
     
     func enableBarButtons(bool: Bool) {
@@ -86,10 +83,17 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
             item.isEnabled = bool
         }
     }
+    
+    func hideTutorialItems(bool: Bool) {
+        scrollView.isHidden = bool
+        pageControl.isHidden = bool
+        tutorialXButton.isHidden = bool
+        dataSource.isShowingTutorial = !bool
+    }
         
     func showTutorial() {
         enableBarButtons(bool: false)
-        dataSource.isShowingTutorial = true
+        hideTutorialItems(bool: false)
         
         let pages = scrollView.createPages(forViewController: self)
         scrollView.setupSlideScrollView(withPages: pages)
@@ -114,13 +118,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         backgroundView.changeBackgroundColor()
         
         if defaults.object(forKey: "DisplayDeedsViewControllerTutorialShown") == nil {
-            dataSource.isShowingTutorial = true
             tableView.reloadData()
-            
-            scrollView.isHidden = false
-            pageControl.isHidden = false
-            tutorialXButton.isHidden = false
-            
             showTutorial()
         }
     }
