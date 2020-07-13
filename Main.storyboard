@@ -379,40 +379,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wLd-YC-kHl">
+                                <rect key="frame" x="358" y="413" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="✕"/>
+                                <connections>
+                                    <action selector="tutorialXButtonPressed:" destination="dfk-rK-XUr" eventType="touchUpInside" id="k36-Re-4Fb"/>
+                                </connections>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="cxw-L5-qCF" customClass="TutorialScrollView" customModule="Good_Deed_Counter" customModuleProvider="target">
+                                <rect key="frame" x="15" y="398" width="384" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="cIj-bw-IYC"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Ipk-wX-hZB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="dfk-rK-XUr" id="kEW-xk-Q9h"/>
+                                </connections>
+                            </scrollView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Zga-OD-37s">
-                                <rect key="frame" x="-234.5" y="227.5" width="883" height="441"/>
+                                <rect key="frame" x="-246.5" y="227.5" width="907" height="441"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="fFE-uJ-fI1">
-                                        <rect key="frame" x="0.0" y="0.0" width="883" height="315.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="907" height="315.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change app theme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WC6-qq-akK">
-                                                <rect key="frame" x="0.0" y="0.0" width="883" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="907" height="26.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="114" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="H02-ha-Lt9">
-                                                <rect key="frame" x="-2" y="66.5" width="887" height="31"/>
+                                                <rect key="frame" x="-2" y="66.5" width="911" height="31"/>
                                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="redSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="QBE-xS-Dvx"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="207" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="uAG-aC-vWs">
-                                                <rect key="frame" x="-2" y="136.5" width="887" height="31"/>
+                                                <rect key="frame" x="-2" y="136.5" width="911" height="31"/>
                                                 <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="greenSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="DLG-wM-mad"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="250" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="VPB-qN-2uF">
-                                                <rect key="frame" x="-2" y="206.5" width="887" height="31"/>
+                                                <rect key="frame" x="-2" y="206.5" width="911" height="31"/>
                                                 <connections>
                                                     <action selector="blueSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="wKc-pW-dWm"/>
                                                 </connections>
                                             </slider>
                                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-wo-DIy" customClass="ColoredBorderButton" customModule="Good_Deed_Counter" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="276.5" width="883" height="39"/>
+                                                <rect key="frame" x="0.0" y="276.5" width="907" height="39"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <state key="normal" title="Reset to default"/>
@@ -423,16 +441,17 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="u85-c2-mRg">
-                                        <rect key="frame" x="0.0" y="355.5" width="883" height="85.5"/>
+                                        <rect key="frame" x="0.0" y="355.5" width="907" height="85.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3j-os-gVj">
-                                                <rect key="frame" x="0.0" y="0.0" width="883" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="907" height="26.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6O-VU-SUI" customClass="ColoredBorderButton" customModule="Good_Deed_Counter" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="46.5" width="883" height="39"/>
+                                                <rect key="frame" x="0.0" y="46.5" width="907" height="39"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <state key="normal" title="Re-view tutorial"/>
                                                 <connections>
@@ -443,23 +462,6 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="cxw-L5-qCF" customClass="TutorialScrollView" customModule="Good_Deed_Counter" customModuleProvider="target">
-                                <rect key="frame" x="15" y="398" width="384" height="300"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <viewLayoutGuide key="contentLayoutGuide" id="cIj-bw-IYC"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="Ipk-wX-hZB"/>
-                                <connections>
-                                    <outlet property="delegate" destination="dfk-rK-XUr" id="kEW-xk-Q9h"/>
-                                </connections>
-                            </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLd-YC-kHl">
-                                <rect key="frame" x="358" y="413" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="✕"/>
-                                <connections>
-                                    <action selector="tutorialXButtonPressed:" destination="dfk-rK-XUr" eventType="touchUpInside" id="k36-Re-4Fb"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
