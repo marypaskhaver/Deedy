@@ -98,7 +98,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         let pages = scrollView.createPages(forViewController: self)
         scrollView.setupSlideScrollView(withPages: pages)
         
-        pageControl.frame = CGRect(x: scrollView.frame.width / 2, y: scrollView.frame.maxY - 50, width: 37, height: 39)
+        pageControl.frame = CGRect(x: scrollView.frame.width / 2, y: scrollView.frame.maxY - 50, width: CGFloat(13 * pages.count), height: 37)
         pageControl.numberOfPages = pages.count
         pageControl.currentPage = 0
         view.bringSubviewToFront(pageControl)
