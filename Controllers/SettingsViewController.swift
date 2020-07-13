@@ -15,6 +15,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider! 
     @IBOutlet weak var resetButton: ColoredBorderButton!
+    @IBOutlet weak var reviewTutorialButton: ColoredBorderButton!
     
     // Default -- a light blue
     static var navBarColor = CustomColors.defaultBlue
@@ -44,6 +45,7 @@ class SettingsViewController: UIViewController {
     
     @IBAction func reviewTutorialButtonPressed(_ sender: UIButton) {
         defaults.removeObject(forKey: "DisplayDeedsViewControllerTutorialShown")
+        defaults.removeObject(forKey: "ChallengesViewControllerTutorialShown") 
     }
     
     func getUIColorFromSliders() -> UIColor {
@@ -69,11 +71,13 @@ class SettingsViewController: UIViewController {
         changeNavBarColorToColor(color: color)
         changeTextColorIfNeeded()
         resetButton.setBorderColor()
+        reviewTutorialButton.setBorderColor()
         saveColorTheme()
     }
     
     // MARK: - Change app color theme
     func changeNavBarColorToColor(color: UIColor) {
+        navigationController?.navigationBar.barTintColor = color
         UINavigationBar.appearance().barTintColor = color
         SettingsViewController.navBarColor = color
     }
