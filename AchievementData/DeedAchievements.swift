@@ -9,7 +9,8 @@
 import Foundation
 
 class DeedAchievements: AchievementProtocol {
-    
+    static var cdm: CoreDataManager = CoreDataManager()
+
     static var achievements: [Dictionary<String, Int>] = [
         ["Complete 5 deeds" : 5],
         ["Complete 10 deeds" : 10],
@@ -38,7 +39,7 @@ class DeedAchievements: AchievementProtocol {
     }
     
     private static func getTotalDeedsDone() -> Int {
-        return CoreDataManager().fetchDeeds().count
+        return cdm.fetchDeeds().count
     }
     
 }
