@@ -58,7 +58,8 @@ class ChallengesViewController: UIViewController {
         dataSource.isShowingTutorial = false
         
         tableView.reloadData()
-        
+        defaults.set(true, forKey: "ChallengesViewControllerTutorialShown")
+
         stepper.isEnabled = true
     }
     
@@ -71,8 +72,6 @@ class ChallengesViewController: UIViewController {
                 
         dataSource = ChallengesViewControllerTableViewDataSource(withView: self.view)
         
-        showTutorial()
-
         tableView.dataSource = dataSource
         tableView.delegate = self
 
@@ -116,6 +115,13 @@ class ChallengesViewController: UIViewController {
         }
     }
     
+    func hideTutorialItems(bool: Bool) {
+        scrollView.isHidden = bool
+        pageControl.isHidden = bool
+        tutorialXButton.isHidden = bool
+        dataSource.isShowingTutorial = !bool
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         setCountOfDeedsDoneToday()
 
@@ -124,6 +130,11 @@ class ChallengesViewController: UIViewController {
         setTotalDeedsDone()
         
         backgroundView.changeBackgroundColor()
+        
+        if defaults.object(forKey: "ChallengesViewControllerTutorialShown") == nil {
+            tableView.reloadData()
+            showTutorial()
+        }
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
