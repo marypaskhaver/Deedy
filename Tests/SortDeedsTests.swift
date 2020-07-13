@@ -12,7 +12,7 @@ import CoreData
 @testable import Good_Deed_Counter
 
 class SortDeedsTests: XCTestCase {
-    var vc: ViewController!
+    var ddvc: DisplayDeedsViewController!
     var sdvc: SortDeedsViewController!
     
     lazy var managedObjectModel: NSManagedObjectModel = MockDataModelObjects().managedObjectModel
@@ -24,33 +24,34 @@ class SortDeedsTests: XCTestCase {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        vc = storyboard.instantiateViewController(identifier: "ViewController") as? ViewController
-        vc.loadViewIfNeeded()
-        vc.dataSource.cdm = CoreDataManager(container: mockPersistentContainer)
-        vc.dataSource.loadDeeds()
-
-        initDeedStubs()
-                
+        ddvc = storyboard.instantiateViewController(identifier: "DisplayDeedsViewController") as? DisplayDeedsViewController
+        ddvc.loadViewIfNeeded()
+        ddvc.dataSource.isShowingTutorial = false
+        ddvc.dataSource.cdm = CoreDataManager(container: mockPersistentContainer)
+        ddvc.dataSource.loadDeeds()
+                    
         sdvc = storyboard.instantiateViewController(identifier: "SortDeedsViewController") as? SortDeedsViewController
         sdvc.loadViewIfNeeded()
+        
+        initDeedStubs()
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
-        vc.dataSource = nil
-        vc = nil
+        ddvc.dataSource = nil
+        ddvc = nil
         sdvc = nil
         flushDeedData()
     }
     
     // MARK: - Needed funcs
     func addDeed(withTitle title: String, date: Date) {
-        let deed = vc.dataSource.cdm.insertDeed(title: title, date: date)
-        vc.dataSource.deeds.append(deed!)
+        let deed = ddvc.dataSource.cdm.insertDeed(title: title, date: date)
+        ddvc.dataSource.deeds.append(deed!)
         // Split deeds into proper sections
 
-        vc.updateSections()
+        ddvc.updateSections()
     }
     
     func initDeedStubs() {
@@ -61,7 +62,7 @@ class SortDeedsTests: XCTestCase {
         addDeed(withTitle: "D", date: Date())
         addDeed(withTitle: "E", date: Date())
         
-        vc.dataSource.saveDeeds()
+        ddvc.dataSource.saveDeeds()
     }
     
     func flushDeedData() {
@@ -93,14 +94,14 @@ class SortDeedsTests: XCTestCase {
         addDeed(withTitle: "B", date: tomorrow!)
         addDeed(withTitle: "C", date: tomorrow!)
 
-        ViewController.changeDateFormatter(toOrderBy: DaySection.dateFormat, timeSection: "Day")
-        vc.dataSource.splitSections()
+        DisplayDeedsViewController.changeDateFormatter(toOrderBy: DaySection.dateFormat, timeSection: "Day")
+        ddvc.dataSource.splitSections()
         
-        XCTAssert((vc.dataSource.sections as Any) is [DaySection])
+        XCTAssert((ddvc.dataSource.sections as Any) is [DaySection])
 
-        XCTAssertFalse(vc.dataSource.sections.count == 0)
-        XCTAssertTrue(vc.dataSource.sections.count == 2)
-        XCTAssertFalse(vc.dataSource.sections.count == 1)
+        XCTAssertFalse(ddvc.dataSource.sections.count == 0)
+        XCTAssertTrue(ddvc.dataSource.sections.count == 2)
+        XCTAssertFalse(ddvc.dataSource.sections.count == 1)
     }
 
     func testDeedsSortedByWeek() {
@@ -113,14 +114,14 @@ class SortDeedsTests: XCTestCase {
         addDeed(withTitle: "B", date: oneWeekFromNow!)
         addDeed(withTitle: "C", date: oneWeekFromNow!)
 
-        ViewController.changeDateFormatter(toOrderBy: WeekSection.dateFormat, timeSection: "Week")
-        vc.dataSource.splitSections()
+        DisplayDeedsViewController.changeDateFormatter(toOrderBy: WeekSection.dateFormat, timeSection: "Week")
+        ddvc.dataSource.splitSections()
         
-        XCTAssert((vc.dataSource.sections as Any) is [WeekSection])
+        XCTAssert((ddvc.dataSource.sections as Any) is [WeekSection])
 
-        XCTAssertFalse(vc.dataSource.sections.count == 0)
-        XCTAssertTrue(vc.dataSource.sections.count == 2)
-        XCTAssertFalse(vc.dataSource.sections.count == 1)
+        XCTAssertFalse(ddvc.dataSource.sections.count == 0)
+        XCTAssertTrue(ddvc.dataSource.sections.count == 2)
+        XCTAssertFalse(ddvc.dataSource.sections.count == 1)
     }
 
     func testDeedsSortedByMonth() {
@@ -133,14 +134,14 @@ class SortDeedsTests: XCTestCase {
         addDeed(withTitle: "B", date: oneMonthFromNow!)
         addDeed(withTitle: "C", date: oneMonthFromNow!)
 
-        ViewController.changeDateFormatter(toOrderBy: MonthSection.dateFormat, timeSection: "Month")
-        vc.dataSource.splitSections()
+        DisplayDeedsViewController.changeDateFormatter(toOrderBy: MonthSection.dateFormat, timeSection: "Month")
+        ddvc.dataSource.splitSections()
         
-        XCTAssert((vc.dataSource.sections as Any) is [MonthSection])
+        XCTAssert((ddvc.dataSource.sections as Any) is [MonthSection])
 
-        XCTAssertFalse(vc.dataSource.sections.count == 0)
-        XCTAssertTrue(vc.dataSource.sections.count == 2)
-        XCTAssertFalse(vc.dataSource.sections.count == 1)
+        XCTAssertFalse(ddvc.dataSource.sections.count == 0)
+        XCTAssertTrue(ddvc.dataSource.sections.count == 2)
+        XCTAssertFalse(ddvc.dataSource.sections.count == 1)
     }
 
     func testDeedsSortedByYear() {
@@ -153,14 +154,14 @@ class SortDeedsTests: XCTestCase {
         addDeed(withTitle: "B", date: oneYearFromNow!)
         addDeed(withTitle: "C", date: oneYearFromNow!)
 
-        ViewController.changeDateFormatter(toOrderBy: YearSection.dateFormat, timeSection: "Year")
-        vc.dataSource.splitSections()
+        DisplayDeedsViewController.changeDateFormatter(toOrderBy: YearSection.dateFormat, timeSection: "Year")
+        ddvc.dataSource.splitSections()
         
-        XCTAssert((vc.dataSource.sections as Any) is [YearSection])
+        XCTAssert((ddvc.dataSource.sections as Any) is [YearSection])
 
-        XCTAssertFalse(vc.dataSource.sections.count == 0)
-        XCTAssertTrue(vc.dataSource.sections.count == 2)
-        XCTAssertFalse(vc.dataSource.sections.count == 1)
+        XCTAssertFalse(ddvc.dataSource.sections.count == 0)
+        XCTAssertTrue(ddvc.dataSource.sections.count == 2)
+        XCTAssertFalse(ddvc.dataSource.sections.count == 1)
     }
 
 }
