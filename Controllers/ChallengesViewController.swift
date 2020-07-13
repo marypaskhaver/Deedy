@@ -34,9 +34,10 @@ class ChallengesViewController: UIViewController {
     lazy var streak = Streak(context: cdm.backgroundContext)
     
     var deedsDoneToday: Int = 0
-    var achievements = [Achievement]()
     var totalDeedsDone: Int = 0
     
+    var dataSource: ChallengesViewControllerTableViewDataSource!
+
     let headerFont = UIFont.systemFont(ofSize: 22)
 
     @IBAction func stepperValueChanged(_ sender: Any) {
@@ -66,11 +67,14 @@ class ChallengesViewController: UIViewController {
         tableView.tableFooterView = UIView()
         
         showTutorial()
+        
+        dataSource = ChallengesViewControllerTableViewDataSource(withView: self.view)
+        
+        tableView.dataSource = dataSource
+        tableView.delegate = self
 
         setTotalDeedsDone()
         
-        loadAchievements()
-
         dailyGoalProgressView.transform = CGAffineTransform(scaleX: 1.0, y: 2.0)
 
         loadDailyGoalValue()
@@ -102,7 +106,7 @@ class ChallengesViewController: UIViewController {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.isDescendant(of: view.superview!) {
+        if scrollView.isDescendant(of: view.superview!) && pageControl != nil {
             let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
             pageControl.currentPage = Int(pageNumber)
         }
@@ -190,36 +194,6 @@ class ChallengesViewController: UIViewController {
         streak.date = Date()
         dailyGoalStreakLabel.text = String(streak.daysKept)
         streak.wasUpdatedToday = true
-    }
-    
-    //MARK: - Loading and Creating Achievements
-    func loadAchievements() {
-        let request: NSFetchRequest<Achievement> = Achievement.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))]
-        
-        achievements = cdm.fetchAchievements(with: request)
-
-        // If no achievements have been saved before
-        if (achievements.count == 0) {
-            createAchievements()
-        }
-    
-        tableView.reloadData()
-    }
-    
-    func createAchievements() {
-        addToAchievementsArray(fromDictionary: DeedAchievements.achievements, withIdentifier: DeedAchievements.identifier)
-        addToAchievementsArray(fromDictionary: DeedAchievements.achievements, withIdentifier: StreakAchievements.identifier)
-    }
-    
-    func addToAchievementsArray(fromDictionary titlesAndNumbers: [Dictionary<String, Int>], withIdentifier identifier: String) {
-        for titleAndNumberDictionary in titlesAndNumbers {
-            for (key, value) in titleAndNumberDictionary {
-                let newAchievement = cdm.insertAchievement(title: key, identifier: identifier, goalNumber: Int32(value), isDone: false)
-                
-                achievements.append(newAchievement!)
-            }
-        }
     }
     
     // MARK: - Manipulating Progress Views and Daily Challenge Items
@@ -332,14 +306,6 @@ class ChallengesViewController: UIViewController {
 
 // MARK: - TableView Delegate Methods
 extension ChallengesViewController: UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Achievements"
-    }
-    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.textLabel?.textAlignment = NSTextAlignment.center
@@ -360,22 +326,4 @@ extension ChallengesViewController: UITableViewDelegate {
         animator.animate(cell: cell, at: indexPath, in: tableView)
     }
 
-}
-
-// MARK: - TableView DataSource Methods
-extension ChallengesViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return achievements.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as! ChallengeTableViewCell
-        
-        let achievement = achievements[indexPath.row]
-        
-        CellCustomizer.customizeChallengeCell(cell: cell, withAchievement: achievement, view: view)
-
-        return cell
-    }
-        
 }
