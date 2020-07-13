@@ -11,4 +11,5 @@ import Foundation
 protocol AchievementProtocol {
     static var achievements: [Dictionary<String, Int>] { get set }
     static var identifier: String { get set }
+    static func setCellText(forCell cell: ChallengeTableViewCell, forAchievement achievement: Achievement)
 }
