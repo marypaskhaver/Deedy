@@ -64,11 +64,11 @@ class ViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
         let section = sections[section]
         let date = section.date
             
-        if (ViewController.timeSection == "Week") {
-            return "Week of " + ViewController.dateFormatter.string(from: date)
+        if (DisplayDeedsViewController.timeSection == "Week") {
+            return "Week of " + DisplayDeedsViewController.dateFormatter.string(from: date)
         }
         
-        return ViewController.dateFormatter.string(from: date)
+        return DisplayDeedsViewController.dateFormatter.string(from: date)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -80,7 +80,7 @@ class ViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func splitSections() {
-        switch ViewController.timeSection {
+        switch DisplayDeedsViewController.timeSection {
             case "Day":
                 sections = DaySection.group(deeds: deeds)
             case "Week":
