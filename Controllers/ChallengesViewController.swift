@@ -208,15 +208,11 @@ class ChallengesViewController: UIViewController {
     }
     
     func createAchievements() {
-        let deedAchievements = DeedAchievements.achievements
-        addToAchievementsArray(fromDictionary: deedAchievements, withIdentifier: DeedAchievements.identifier)
-
-        let streakAchievements = StreakAchievements.achievements
-        addToAchievementsArray(fromDictionary: streakAchievements, withIdentifier: StreakAchievements.identifier)
+        addToAchievementsArray(fromDictionary: DeedAchievements.achievements, withIdentifier: DeedAchievements.identifier)
+        addToAchievementsArray(fromDictionary: DeedAchievements.achievements, withIdentifier: StreakAchievements.identifier)
     }
     
     func addToAchievementsArray(fromDictionary titlesAndNumbers: [Dictionary<String, Int>], withIdentifier identifier: String) {
-        
         for titleAndNumberDictionary in titlesAndNumbers {
             for (key, value) in titleAndNumberDictionary {
                 let title = key
