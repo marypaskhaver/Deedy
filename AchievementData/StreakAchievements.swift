@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class StreakAchievements: AchievementProtocol {
     
@@ -20,4 +21,24 @@ class StreakAchievements: AchievementProtocol {
     
     static var identifier: String = "streakAchievement"
     
+    static func setCellText(forCell cell: ChallengeTableViewCell, forAchievement achievement: Achievement) {
+        let streakDaysKept = getStreakDaysKept()
+        if (streakDaysKept >= achievement.goalNumber) {
+            markAchievementDoneAndSetCellSubtitleTextToComplete(forCell: cell, forAchievement: achievement)
+        } else {
+            cell.subtitleLabel.text = "\(streakDaysKept) / \(achievement.goalNumber)"
+        }
+    }
+    
+    private static func markAchievementDoneAndSetCellSubtitleTextToComplete(forCell cell: ChallengeTableViewCell, forAchievement achievement: Achievement) {
+        cell.setSubtitleTextIfAchievementCompleted(to: "\(achievement.goalNumber) / \(achievement.goalNumber)")
+        achievement.isDone = true
+    }
+    
+    static func getStreakDaysKept() -> Int {
+        let request: NSFetchRequest<Streak> = Streak.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+
+        return Int(CoreDataManager().fetchStreaks(with: request)[0].daysKept)
+    }
 }
