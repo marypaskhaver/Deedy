@@ -25,6 +25,10 @@ class ChallengesViewController: UIViewController {
     @IBOutlet weak var topView: TopView!
     @IBOutlet var backgroundView: BackgroundView!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var tutorialXButton: UIScrollView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    
     let cdm = CoreDataManager()
     lazy var dailyChallenge = DailyChallenge(context: cdm.backgroundContext)
     lazy var streak = Streak(context: cdm.backgroundContext)
@@ -44,6 +48,9 @@ class ChallengesViewController: UIViewController {
         revealDailyGoalRelatedItemsIfNeeded()
         
         saveGoalsAndAchievements()
+    }
+    
+    @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
     }
     
     override func viewDidLoad() {
