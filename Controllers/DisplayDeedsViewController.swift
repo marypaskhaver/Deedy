@@ -25,7 +25,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
 
     let headerFont = UIFont.systemFont(ofSize: 22)
         
-    var dataSource: ViewControllerTableViewDataSource!
+    var dataSource: DisplayDeedsViewControllerTableViewDataSource!
     
     @IBOutlet weak var scrollView: TutorialScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -41,7 +41,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 28)], for: .normal)
         self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24)], for: .disabled)
         
-        dataSource = ViewControllerTableViewDataSource(withView: self.view)
+        dataSource = DisplayDeedsViewControllerTableViewDataSource(withView: self.view)
         
         tableView.dataSource = dataSource
 
