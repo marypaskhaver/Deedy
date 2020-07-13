@@ -15,9 +15,18 @@ class ResetButton: UIButton {
         
         self.layer.cornerRadius = 30
         self.layer.borderWidth = 1
+        setBorderColor()
         
         self.addConstraint(NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0.54 * UIScreen.main.bounds.width))
         
         self.addConstraint(NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.frame.width / 3))
+    }
+    
+    func setBorderColor() {
+        if let navBarColor = defaults.color(forKey: "navBarColor") {
+            self.layer.borderColor = navBarColor.cgColor
+        } else {
+            self.layer.borderColor = CustomColors.defaultBlue.cgColor
+        }
     }
 }
