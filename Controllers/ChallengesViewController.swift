@@ -215,13 +215,8 @@ class ChallengesViewController: UIViewController {
     func addToAchievementsArray(fromDictionary titlesAndNumbers: [Dictionary<String, Int>], withIdentifier identifier: String) {
         for titleAndNumberDictionary in titlesAndNumbers {
             for (key, value) in titleAndNumberDictionary {
-                let title = key
-                let identifier = identifier
-                let goalNumber = Int32(value)
+                let newAchievement = cdm.insertAchievement(title: key, identifier: identifier, goalNumber: Int32(value), isDone: false)
                 
-                let newAchievement = cdm.insertAchievement(title: title, identifier: identifier, goalNumber: goalNumber, isDone: false)
-                
-                // Unwrap safely at some point
                 achievements.append(newAchievement!)
             }
         }
