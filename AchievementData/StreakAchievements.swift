@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 class StreakAchievements: AchievementProtocol {
+    static var cdm: CoreDataManager = CoreDataManager()
     
     static var achievements: [Dictionary<String, Int>] = [
         ["Hit your streak for 1 day" : 1],
@@ -39,6 +40,6 @@ class StreakAchievements: AchievementProtocol {
         let request: NSFetchRequest<Streak> = Streak.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
 
-        return Int(CoreDataManager().fetchStreaks(with: request)[0].daysKept)
+        return Int(cdm.fetchStreaks(with: request)[0].daysKept)
     }
 }
