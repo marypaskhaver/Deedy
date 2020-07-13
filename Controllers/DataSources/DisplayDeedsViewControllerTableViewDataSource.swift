@@ -1,5 +1,5 @@
 //
-//  ViewControllerTableViewDataSource.swift
+//  DisplayDeedsViewControllerTableViewDataSource.swift
 //  Good Deed Counter
 //
 //  Created by Mary Paskhaver on 6/29/20.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
+class DisplayDeedsViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
     var deeds = [Deed]()
     var sections = [TimeSection]()
     var view: UIView
