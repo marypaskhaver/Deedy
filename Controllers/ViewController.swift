@@ -19,9 +19,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     @IBOutlet weak var totalDeedsLabel: UILabel!
     @IBOutlet weak var topView: TopView!
     @IBOutlet var backgroundView: BackgroundView!
-    
-    @IBOutlet weak var tutorialXButton: UIButton!
-    
+        
     var editedDeedText: String = ""
     var editedIndexPath: IndexPath! = nil
 
@@ -31,7 +29,8 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     @IBOutlet weak var scrollView: TutorialScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
-    
+    @IBOutlet weak var tutorialXButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -75,16 +74,25 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         scrollView.removeFromSuperview()
         pageControl.removeFromSuperview()
         tutorialXButton.removeFromSuperview()
-        self.navigationItem.rightBarButtonItem?.isEnabled = true
+
+        enableBarButtons(bool: true)
+    }
+    
+    func enableBarButtons(bool: Bool) {
+        self.navigationItem.leftBarButtonItem?.isEnabled = bool
+        
+        for item in self.navigationItem.rightBarButtonItems! {
+            item.isEnabled = bool
+        }
     }
     
     func showTutorial() {
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
-
+        enableBarButtons(bool: false)
+        
         let pages = scrollView.createPages(forViewController: self)
         scrollView.setupSlideScrollView(withPages: pages)
         
-        pageControl.frame = CGRect(x: scrollView.frame.width / 2, y: scrollView.frame.maxY - 60, width: 37, height: 39)
+        pageControl.frame = CGRect(x: scrollView.frame.width / 2, y: scrollView.frame.maxY - 50, width: 37, height: 39)
         pageControl.numberOfPages = pages.count
         pageControl.currentPage = 0
         view.bringSubviewToFront(pageControl)
