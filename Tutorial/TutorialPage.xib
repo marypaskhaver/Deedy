@@ -13,8 +13,9 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cde-Hd-1k8">
-                    <rect key="frame" x="15" y="121" width="384" height="300"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="Cde-Hd-1k8">
+                    <rect key="frame" x="0.0" y="0.0" width="399" height="300"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -22,13 +23,6 @@
                 </textView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Cde-Hd-1k8" secondAttribute="bottom" constant="441" id="G0c-Ka-EcP"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Cde-Hd-1k8" secondAttribute="trailing" constant="15" id="tn0-sI-4mi"/>
-                <constraint firstItem="Cde-Hd-1k8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="yWn-XS-zGq"/>
-                <constraint firstItem="Cde-Hd-1k8" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="77" id="ye8-WA-Bw1"/>
-                <constraint firstItem="Cde-Hd-1k8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yll-z8-PtA"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="textView" destination="Cde-Hd-1k8" id="CWl-Ln-R6u"/>
