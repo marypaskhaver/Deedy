@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider! 
-    @IBOutlet weak var resetButton: ResetButton!
+    @IBOutlet weak var resetButton: ColoredBorderButton!
     
     // Default -- a light blue
     static var navBarColor = CustomColors.defaultBlue
