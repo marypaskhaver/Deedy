@@ -47,30 +47,10 @@ class CellCustomizer {
     }
     
     static func setCellSubtitleTextToAchievement(forCell cell: ChallengeTableViewCell, forAchievement achievement: Achievement) {
-        
         if achievement.identifier == DeedAchievements.identifier {
             DeedAchievements.setCellText(forCell: cell, forAchievement: achievement)
         } else if achievement.identifier == StreakAchievements.identifier {
-            let streakDaysKept = getStreakDaysKept()
-            
-            if (streakDaysKept >= achievement.goalNumber) {
-                markAchievementDoneAndSetCellSubtitleTextToComplete(forCell: cell, forAchievement: achievement)
-            } else {
-                cell.subtitleLabel.text = "\(streakDaysKept) / \(achievement.goalNumber)"
-            }
+            StreakAchievements.setCellText(forCell: cell, forAchievement: achievement)
         }
     }
-        
-    static func markAchievementDoneAndSetCellSubtitleTextToComplete(forCell cell: ChallengeTableViewCell, forAchievement achievement: Achievement) {
-        cell.setSubtitleTextIfAchievementCompleted(to: "\(achievement.goalNumber) / \(achievement.goalNumber)")
-        achievement.isDone = true
-    }
-    
-    static func getStreakDaysKept() -> Int {
-        let request: NSFetchRequest<Streak> = Streak.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-
-        return Int(CoreDataManager().fetchStreaks(with: request)[0].daysKept)
-    }
-
 }
