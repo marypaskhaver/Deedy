@@ -56,7 +56,9 @@ class ChallengesViewController: UIViewController {
         pageControl.isHidden = true
         tutorialXButton.isHidden = true
         dataSource.isShowingTutorial = false
-                
+        
+        tableView.reloadData()
+        
         stepper.isEnabled = true
     }
     
