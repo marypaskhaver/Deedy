@@ -380,33 +380,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="bps-6Y-Fjf">
-                                <rect key="frame" x="-86.5" y="283" width="587" height="330.5"/>
+                                <rect key="frame" x="-88.5" y="283" width="591" height="330.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Zga-OD-37s">
-                                        <rect key="frame" x="0.0" y="0.0" width="587" height="241.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="591" height="241.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change app theme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WC6-qq-akK">
-                                                <rect key="frame" x="0.0" y="0.0" width="587" height="31.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="591" height="31.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="114" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="H02-ha-Lt9">
-                                                <rect key="frame" x="-2" y="71.5" width="591" height="31"/>
+                                                <rect key="frame" x="-2" y="71.5" width="595" height="31"/>
                                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="redSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="QBE-xS-Dvx"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="207" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="uAG-aC-vWs">
-                                                <rect key="frame" x="-2" y="141.5" width="591" height="31"/>
+                                                <rect key="frame" x="-2" y="141.5" width="595" height="31"/>
                                                 <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="greenSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="DLG-wM-mad"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="250" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="VPB-qN-2uF">
-                                                <rect key="frame" x="-2" y="211.5" width="591" height="31"/>
+                                                <rect key="frame" x="-2" y="211.5" width="595" height="31"/>
                                                 <connections>
                                                     <action selector="blueSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="wKc-pW-dWm"/>
                                                 </connections>
@@ -414,7 +414,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-wo-DIy" customClass="ResetButton" customModule="Good_Deed_Counter" customModuleProvider="target">
-                                        <rect key="frame" x="196" y="291.5" width="195" height="39"/>
+                                        <rect key="frame" x="198" y="291.5" width="195" height="39"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Reset to default blue"/>
@@ -491,7 +491,7 @@
         <!--Challenges-->
         <scene sceneID="Rlw-wa-eBa">
             <objects>
-                <viewController id="1zG-BV-JIP" customClass="ChallengesViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChallengesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1zG-BV-JIP" customClass="ChallengesViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E6K-LM-Wg1" customClass="BackgroundView" customModule="Good_Deed_Counter" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -599,7 +599,17 @@
                                     <constraint firstItem="nhm-pD-kfu" firstAttribute="centerX" secondItem="3iE-4K-WjQ" secondAttribute="centerX" id="m2b-ak-zXK"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AdM-nI-12C">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="kvR-e5-RcF" customClass="TutorialScrollView" customModule="Good_Deed_Counter" customModuleProvider="target">
+                                <rect key="frame" x="15" y="398" width="384" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="DHm-DB-md8"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="nF7-wD-Wjg"/>
+                                <connections>
+                                    <outlet property="delegate" destination="1zG-BV-JIP" id="HkD-dE-kPM"/>
+                                </connections>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AdM-nI-12C">
                                 <rect key="frame" x="358" y="413" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="✕"/>
@@ -607,18 +617,12 @@
                                     <action selector="tutorialXButtonPressed:" destination="1zG-BV-JIP" eventType="touchUpInside" id="86c-mH-asx"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="3e7-xO-ETp">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="3e7-xO-ETp">
                                 <rect key="frame" x="200" y="638" width="39" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="currentPageIndicatorTintColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </pageControl>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kvR-e5-RcF" customClass="TutorialScrollView" customModule="Good_Deed_Counter" customModuleProvider="target">
-                                <rect key="frame" x="15" y="398" width="384" height="300"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <viewLayoutGuide key="contentLayoutGuide" id="DHm-DB-md8"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="nF7-wD-Wjg"/>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -639,13 +643,13 @@
                         <outlet property="dailyGoalStreakLabel" destination="amA-te-Ctr" id="o2S-tN-SKC"/>
                         <outlet property="labelSayingDays" destination="lT0-Vy-9HL" id="APv-15-ssb"/>
                         <outlet property="labelSayingStreak" destination="ljz-B7-EPS" id="Efo-dF-0bd"/>
-                        <outlet property="pageControl" destination="3e7-xO-ETp" id="4Nk-Gr-evs"/>
+                        <outlet property="pageControl" destination="3e7-xO-ETp" id="KqB-4z-Xch"/>
                         <outlet property="scrollView" destination="kvR-e5-RcF" id="fGU-OE-eyu"/>
                         <outlet property="stepper" destination="rmo-W3-PIF" id="X2E-f6-gcY"/>
                         <outlet property="tableView" destination="zwu-jo-YRK" id="bYv-eZ-qYv"/>
                         <outlet property="tableViewTopConstraint" destination="aqc-La-CEp" id="zeD-mN-APg"/>
                         <outlet property="topView" destination="3iE-4K-WjQ" id="r24-2M-a6J"/>
-                        <outlet property="tutorialXButton" destination="kvR-e5-RcF" id="GIF-or-4jY"/>
+                        <outlet property="tutorialXButton" destination="AdM-nI-12C" id="eOa-gW-x2o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZsA-Z7-KeZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
