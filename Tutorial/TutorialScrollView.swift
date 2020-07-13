@@ -21,6 +21,13 @@ class TutorialScrollView: UIScrollView {
         }
     }
     
+    func makePageWithText(text: String) -> TutorialPage {
+        let page: TutorialPage = Bundle.main.loadNibNamed("TutorialPage", owner: self, options: nil)?.first as! TutorialPage
+        page.textView.text = text
+        
+        return page
+    }
+    
     func createViewControllerPages() -> [TutorialPage] {
         let page1: TutorialPage = Bundle.main.loadNibNamed("TutorialPage", owner: self, options: nil)?.first as! TutorialPage
         page1.textView.text = "\n\t\t\tWelcome to Deedy!\n\n  • Press ＋ (top right) to add deeds\n\n  • Swipe left on a deed to edit it\n\n   • Exit the tutorial to begin recording deeds"
