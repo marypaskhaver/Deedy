@@ -29,24 +29,19 @@ class TutorialScrollView: UIScrollView {
     }
     
     func createViewControllerPages() -> [TutorialPage] {
-        let page1: TutorialPage = Bundle.main.loadNibNamed("TutorialPage", owner: self, options: nil)?.first as! TutorialPage
-        page1.textView.text = "\n\t\t\tWelcome to Deedy!\n\n  • Press ＋ (top right) to add deeds\n\n  • Swipe left on a deed to edit it\n\n   • Exit the tutorial to begin recording deeds"
+        let page1 = makePageWithText(text: "\n\t\t\tWelcome to Deedy!\n\n  • Press ＋ (top right) to add deeds\n\n  • Swipe left on a deed to edit it\n\n   • Exit the tutorial to begin recording deeds")
         
-        let page2: TutorialPage = Bundle.main.loadNibNamed("TutorialPage", owner: self, options: nil)?.first as! TutorialPage
-        page2.textView.text = "\n\t\t\tWelcome to Deedy!\n\n  • Press 📊 to see graphs of your deeds in the past month\n\n  • Press Sort to sort deeds by date"
+        let page2 = makePageWithText(text: "\n\t\t\tWelcome to Deedy!\n\n  • Press ＋ (top right) to add deeds\n\n  • Swipe left on a deed to edit it\n\n   • Exit the tutorial to begin recording deeds")
         
         return [page1, page2]
     }
     
     func createChallengesViewControllerPages() -> [TutorialPage] {
-        let page1: TutorialPage = Bundle.main.loadNibNamed("TutorialPage", owner: self, options: nil)?.first as! TutorialPage
-        page1.textView.text = "\n\t\t\tWelcome to Deedy!\n\n  • Set a challenge to complete a certain amount of deeds daily \n\n  • Setting a challenge will show a daily streak"
+        let page1 = makePageWithText(text: "\n\t\t\tWelcome to Deedy!\n\n  • Set a challenge to complete a certain amount of deeds daily \n\n  • Setting a challenge will show a daily streak")
         
-        let page2: TutorialPage = Bundle.main.loadNibNamed("TutorialPage", owner: self, options: nil)?.first as! TutorialPage
-        page2.textView.text = "\n\t\t\tWelcome to Deedy!\n\n  • If you complete your challenge, your streak will increase\n\n  • If you don't, your streak will reset"
+        let page2 = makePageWithText(text: "\n\t\t\tWelcome to Deedy!\n\n  • If you complete your challenge, your streak will increase\n\n  • If you don't, your streak will reset")
         
-        let page3: TutorialPage = Bundle.main.loadNibNamed("TutorialPage", owner: self, options: nil)?.first as! TutorialPage
-        page3.textView.text = "\n\t\t\tWelcome to Deedy!\n\n  • Track your impact and progress with achievements\n\n  • Exit the tutorial to view them"
+        let page3 = makePageWithText(text: "\n\t\t\tWelcome to Deedy!\n\n  • Track your impact and progress with achievements\n\n  • Exit the tutorial to view them")
         
         return [page1, page2, page3]
     }
