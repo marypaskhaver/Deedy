@@ -50,7 +50,6 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
                         
-        dataSource.loadDeeds()
         sortDeedsFromSavedData()
         updateSections()
         
