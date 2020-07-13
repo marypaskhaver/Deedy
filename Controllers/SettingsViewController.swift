@@ -64,11 +64,11 @@ class SettingsViewController: UIViewController {
     func changeAppColorTheme(toColor color: UIColor) {
         changeNavBarColorToColor(color: color)
         changeTextColorIfNeeded()
+        resetButton.setBorderColor()
         saveColorTheme()
     }
     
     // MARK: - Change app color theme
-
     func changeNavBarColorToColor(color: UIColor) {
         UINavigationBar.appearance().barTintColor = color
         SettingsViewController.navBarColor = color
