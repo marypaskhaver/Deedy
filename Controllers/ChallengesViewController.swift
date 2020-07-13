@@ -25,8 +25,8 @@ class ChallengesViewController: UIViewController {
     @IBOutlet weak var topView: TopView!
     @IBOutlet var backgroundView: BackgroundView!
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var tutorialXButton: UIScrollView!
+    @IBOutlet weak var scrollView: TutorialScrollView!
+    @IBOutlet weak var tutorialXButton: UIButton!
     @IBOutlet weak var pageControl: UIPageControl!
     
     let cdm = CoreDataManager()
@@ -51,6 +51,11 @@ class ChallengesViewController: UIViewController {
     }
     
     @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
+        scrollView.removeFromSuperview()
+        pageControl.removeFromSuperview()
+        tutorialXButton.removeFromSuperview()
+        
+        stepper.isEnabled = true
     }
     
     override func viewDidLoad() {
@@ -60,6 +65,8 @@ class ChallengesViewController: UIViewController {
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView()
         
+        showTutorial()
+
         setTotalDeedsDone()
         
         loadAchievements()
@@ -77,6 +84,28 @@ class ChallengesViewController: UIViewController {
         }
         
         cdm.save()
+    }
+    
+    func showTutorial() {
+        stepper.isEnabled = false
+        
+        let pages = scrollView.createPages(forViewController: self)
+        scrollView.setupSlideScrollView(withPages: pages)
+        
+        pageControl.frame = CGRect(x: scrollView.frame.width / 2, y: scrollView.frame.maxY - 50, width: 37, height: 39)
+        pageControl.numberOfPages = pages.count
+        pageControl.currentPage = 0
+        view.bringSubviewToFront(pageControl)
+        
+        tutorialXButton.frame = CGRect(x: scrollView.frame.width - 20, y: scrollView.frame.origin.y + 10, width: 30, height: 30)
+        view.bringSubviewToFront(tutorialXButton)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.isDescendant(of: view.superview!) {
+            let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
+            pageControl.currentPage = Int(pageNumber)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
