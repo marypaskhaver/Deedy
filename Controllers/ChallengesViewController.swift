@@ -52,10 +52,7 @@ class ChallengesViewController: UIViewController {
     }
     
     @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
-        scrollView.isHidden = true
-        pageControl.isHidden = true
-        tutorialXButton.isHidden = true
-        dataSource.isShowingTutorial = false
+        hideTutorialItems(bool: true)
         
         tableView.reloadData()
         defaults.set(true, forKey: "ChallengesViewControllerTutorialShown")
