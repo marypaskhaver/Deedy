@@ -41,7 +41,8 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         
         let font = UIFont.systemFont(ofSize: 28)
 
-    self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
+        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
+        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .disabled)
         
         dataSource = ViewControllerTableViewDataSource(withView: self.view)
         
@@ -74,9 +75,12 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         scrollView.removeFromSuperview()
         pageControl.removeFromSuperview()
         tutorialXButton.removeFromSuperview()
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
     }
     
     func showTutorial() {
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+
         let pages = scrollView.createPages(forViewController: self)
         scrollView.setupSlideScrollView(withPages: pages)
         
