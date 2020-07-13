@@ -22,4 +22,23 @@ class DeedAchievements: AchievementProtocol {
     
     static var identifier: String = "deedAchievement"
     
+    static func setCellText(forCell cell: ChallengeTableViewCell, forAchievement achievement: Achievement) {
+        let totalDeedsDone = getTotalDeedsDone()
+        
+        if (totalDeedsDone >= achievement.goalNumber) {
+            markAchievementDoneAndSetCellSubtitleTextToComplete(forCell: cell, forAchievement: achievement)
+        } else {
+            cell.subtitleLabel.text = "\(totalDeedsDone) / \(achievement.goalNumber)"
+        }
+    }
+    
+    private static func markAchievementDoneAndSetCellSubtitleTextToComplete(forCell cell: ChallengeTableViewCell, forAchievement achievement: Achievement) {
+        cell.setSubtitleTextIfAchievementCompleted(to: "\(achievement.goalNumber) / \(achievement.goalNumber)")
+        achievement.isDone = true
+    }
+    
+    private static func getTotalDeedsDone() -> Int {
+        return CoreDataManager().fetchDeeds().count
+    }
+    
 }
