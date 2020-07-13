@@ -65,14 +65,14 @@ class ViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
         let date = section.date
             
         if (ViewController.timeSection == "Week") {
-            return "Week of " + ViewController.dateFormatter.string(from: date);
+            return "Week of " + ViewController.dateFormatter.string(from: date)
         }
         
         return ViewController.dateFormatter.string(from: date)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if sections.isEmpty {
+        if sections.isEmpty || isShowingTutorial {
             return 0
         }
 
