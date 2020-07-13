@@ -112,13 +112,25 @@ class BarChartView: UIView {
         let barLayer = CALayer()
                 
         barLayer.frame = CGRect(x: xPos, y: yPos, width: width, height: barHeight)
-        barLayer.backgroundColor = CustomColors.defaultBlue.cgColor // Set to nav bar color
+                        
+        if let navBarColor = defaults.color(forKey: "navBarColor") {
+            changeLayerToColorFromComponents(from: navBarColor, toLayer: barLayer)
+        } else {
+            changeLayerToColorFromComponents(from: CustomColors.defaultBlue, toLayer: barLayer)
+        }
         
         addAnimationToLayer(layer: barLayer)
 
         mainLayer.addSublayer(barLayer)
     
         return barLayer
+    }
+    
+    func changeLayerToColorFromComponents(from color: UIColor, toLayer layer: CALayer) {
+        var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        color.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
+        
+        layer.backgroundColor = UIColor(hue: h, saturation: s, brightness: b * 0.8, alpha: a).cgColor
     }
     
     private func drawTextValue(xPos: CGFloat, yPos: CGFloat, textValue: String) -> CATextLayer {
