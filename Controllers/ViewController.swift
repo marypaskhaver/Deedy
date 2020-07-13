@@ -67,10 +67,10 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     }
     
     @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
-        scrollView.removeFromSuperview()
-        pageControl.removeFromSuperview()
-        tutorialXButton.removeFromSuperview()
-
+        scrollView.isHidden = true
+        pageControl.isHidden = true
+        tutorialXButton.isHidden = true
+        
         enableBarButtons(bool: true)
     }
     
