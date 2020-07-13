@@ -12,8 +12,8 @@ import CoreData
 @testable import Good_Deed_Counter
 
 class Good_Deed_CounterTests: XCTestCase {
-    var vc: ViewController!
-    var ddvc: AddDeedViewController!
+    var ddvc: DisplayDeedsViewController!
+    var advc: AddDeedViewController!
     
     lazy var managedObjectModel: NSManagedObjectModel = MockDataModelObjects().managedObjectModel
     lazy var mockPersistentContainer: NSPersistentContainer = MockDataModelObjects().persistentContainer
@@ -24,13 +24,14 @@ class Good_Deed_CounterTests: XCTestCase {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        vc = storyboard.instantiateViewController(identifier: "ViewController") as? ViewController
-        vc.loadViewIfNeeded()
-        vc.dataSource.cdm = CoreDataManager(container: mockPersistentContainer)
-        vc.dataSource.loadDeeds()
-                
-        ddvc = storyboard.instantiateViewController(identifier: "DeedDetailViewController") as? AddDeedViewController
+        ddvc = storyboard.instantiateViewController(identifier: "DisplayDeedsViewController") as? DisplayDeedsViewController
         ddvc.loadViewIfNeeded()
+        ddvc.dataSource.isShowingTutorial = false
+        ddvc.dataSource.cdm = CoreDataManager(container: mockPersistentContainer)
+        ddvc.dataSource.loadDeeds()
+                
+        advc = storyboard.instantiateViewController(identifier: "AddDeedViewController") as? AddDeedViewController
+        advc.loadViewIfNeeded()
 
         initDeedStubs()
     }
@@ -38,19 +39,19 @@ class Good_Deed_CounterTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
-        vc.dataSource = nil
-        vc = nil
+        ddvc.dataSource = nil
         ddvc = nil
+        advc = nil
         flushDeedData()
     }
     
     // MARK: - Needed funcs
     func addDeed(withTitle title: String, date: Date) {
-        let deed = vc.dataSource.cdm.insertDeed(title: title, date: date)
-        vc.dataSource.deeds.append(deed!)
+        let deed = ddvc.dataSource.cdm.insertDeed(title: title, date: date)
+        ddvc.dataSource.deeds.append(deed!)
         // Split deeds into proper sections
 
-        vc.updateSections()
+        ddvc.updateSections()
     }
     
     func initDeedStubs() {
@@ -61,7 +62,7 @@ class Good_Deed_CounterTests: XCTestCase {
         addDeed(withTitle: "D", date: Date())
         addDeed(withTitle: "E", date: Date())
         
-        vc.dataSource.saveDeeds()
+        ddvc.dataSource.saveDeeds()
     }
     
     func flushDeedData() {
@@ -84,13 +85,13 @@ class Good_Deed_CounterTests: XCTestCase {
     
     // MARK: - Tests for ViewController
     func testAddingDeed() {
-        XCTAssertEqual(vc.dataSource.deeds.count, 5)
+        XCTAssertEqual(ddvc.dataSource.deeds.count, 5)
                 
-        ddvc.textView.text = "Hello"
+        advc.textView.text = "Hello"
         
-        vc.done(segue: UIStoryboardSegue(identifier: "doneAddingSegue", source: ddvc, destination: vc))
+        ddvc.done(segue: UIStoryboardSegue(identifier: "doneAddingSegue", source: advc, destination: ddvc))
         
-        XCTAssertEqual(vc.dataSource.deeds.count, 6)
+        XCTAssertEqual(ddvc.dataSource.deeds.count, 6)
     }
     
     func testSectionDeedsEqualToVCDeeds() {
@@ -105,24 +106,24 @@ class Good_Deed_CounterTests: XCTestCase {
         addDeed(withTitle: "B", date: tomorrow!)
         addDeed(withTitle: "C", date: tomorrow!)
 
-        for section in vc.dataSource.sections {
+        for section in ddvc.dataSource.sections {
             sumDeeds += section.deeds.count
         }
 
-        XCTAssertEqual(vc.dataSource.deeds.count, sumDeeds)
+        XCTAssertEqual(ddvc.dataSource.deeds.count, sumDeeds)
     }
 
 
     func testDeedLabelUpdates() {
-        XCTAssert(vc.totalDeedsLabel != nil)
-        XCTAssert(vc.totalDeedsLabel.text != nil)
+        XCTAssert(ddvc.totalDeedsLabel != nil)
+        XCTAssert(ddvc.totalDeedsLabel.text != nil)
         
-        XCTAssertEqual(vc.totalDeedsLabel.text, String(5))
+        XCTAssertEqual(ddvc.totalDeedsLabel.text, String(5))
 
         addDeed(withTitle: "A", date: Date())
-        vc.updateSections()
+        ddvc.updateSections()
         
-        XCTAssertEqual(vc.totalDeedsLabel.text, String(6))
+        XCTAssertEqual(ddvc.totalDeedsLabel.text, String(6))
     }
     
     func testIfDeedsDisplayInTableView() {
@@ -135,21 +136,20 @@ class Good_Deed_CounterTests: XCTestCase {
         addDeed(withTitle: "B", date: tomorrow!)
         addDeed(withTitle: "C", date: tomorrow!)
 
-        if !vc.dataSource.deeds.isEmpty {
-            XCTAssertTrue(vc.dataSource.sections.count > 0)
+        if !ddvc.dataSource.deeds.isEmpty {
+            XCTAssertTrue(ddvc.dataSource.sections.count > 0)
         }
         
-        vc.tableView.reloadData()
+        ddvc.tableView.reloadData()
 
-        for (sectionIndex, section) in vc.dataSource.sections.enumerated() {
+        for (sectionIndex, section) in ddvc.dataSource.sections.enumerated() {
             for (deedIndex, deed) in section.deeds.enumerated() {
                 let indexPath = IndexPath(row: deedIndex, section: sectionIndex)
-                let cell: DeedTableViewCell = vc.tableView.cellForRow(at: indexPath) as! DeedTableViewCell
+                let cell: DeedTableViewCell = ddvc.tableView.cellForRow(at: indexPath) as! DeedTableViewCell
                 
                 XCTAssertTrue(cell.deedDescriptionLabel.text == deed.title)
             }
         }
     }
-
 
 }
