@@ -24,6 +24,9 @@ class SettingsViewController: UIViewController {
     let navBarColorUserDefaultsKey = "navBarColor"
     let navBarTextColorUserDefaultsKey = "navBarTextColor"
 
+    @IBOutlet weak var scrollView: TutorialScrollView!
+    @IBOutlet weak var tutorialXButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -46,6 +49,10 @@ class SettingsViewController: UIViewController {
     @IBAction func reviewTutorialButtonPressed(_ sender: UIButton) {
         defaults.removeObject(forKey: "DisplayDeedsViewControllerTutorialShown")
         defaults.removeObject(forKey: "ChallengesViewControllerTutorialShown") 
+    }
+    
+    @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
+    
     }
     
     func getUIColorFromSliders() -> UIColor {
