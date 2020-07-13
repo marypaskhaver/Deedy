@@ -80,15 +80,30 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4TE-AB-Hcq" customClass="TutorialScrollView" customModule="Good_Deed_Counter" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="4TE-AB-Hcq" customClass="TutorialScrollView" customModule="Good_Deed_Counter" customModuleProvider="target">
+                                <rect key="frame" x="15" y="398" width="384" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Q4K-us-k6n"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="OJo-EA-Jsw"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Ge4-CI-NaT"/>
                                 </connections>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b0R-Tf-6LF">
+                                <rect key="frame" x="358" y="413" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="✕"/>
+                                <connections>
+                                    <action selector="tutorialXButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2xB-br-XuJ"/>
+                                </connections>
+                            </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="IGL-AT-qsi">
+                                <rect key="frame" x="200" y="638" width="39" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="currentPageIndicatorTintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -126,10 +141,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="backgroundView" destination="8bC-Xf-vdC" id="Qfa-aU-Wve"/>
+                        <outlet property="pageControl" destination="IGL-AT-qsi" id="AfP-7o-bm7"/>
                         <outlet property="scrollView" destination="4TE-AB-Hcq" id="pcZ-wh-iuN"/>
                         <outlet property="tableView" destination="RdT-sR-3dH" id="RK6-eV-AvL"/>
                         <outlet property="topView" destination="IQx-fm-4T2" id="7FJ-yW-XPq"/>
                         <outlet property="totalDeedsLabel" destination="Jyh-Dt-k60" id="HOZ-he-1o9"/>
+                        <outlet property="tutorialXButton" destination="b0R-Tf-6LF" id="G3m-Ie-u4h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -363,33 +380,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="bps-6Y-Fjf">
-                                <rect key="frame" x="-84.5" y="283" width="583" height="330.5"/>
+                                <rect key="frame" x="-86.5" y="283" width="587" height="330.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Zga-OD-37s">
-                                        <rect key="frame" x="0.0" y="0.0" width="583" height="241.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="587" height="241.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change app theme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WC6-qq-akK">
-                                                <rect key="frame" x="0.0" y="0.0" width="583" height="31.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="587" height="31.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="114" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="H02-ha-Lt9">
-                                                <rect key="frame" x="-2" y="71.5" width="587" height="31"/>
+                                                <rect key="frame" x="-2" y="71.5" width="591" height="31"/>
                                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="redSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="QBE-xS-Dvx"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="207" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="uAG-aC-vWs">
-                                                <rect key="frame" x="-2" y="141.5" width="587" height="31"/>
+                                                <rect key="frame" x="-2" y="141.5" width="591" height="31"/>
                                                 <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="greenSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="DLG-wM-mad"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="250" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="VPB-qN-2uF">
-                                                <rect key="frame" x="-2" y="211.5" width="587" height="31"/>
+                                                <rect key="frame" x="-2" y="211.5" width="591" height="31"/>
                                                 <connections>
                                                     <action selector="blueSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="wKc-pW-dWm"/>
                                                 </connections>
@@ -397,7 +414,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-wo-DIy" customClass="ResetButton" customModule="Good_Deed_Counter" customModuleProvider="target">
-                                        <rect key="frame" x="194" y="291.5" width="195" height="39"/>
+                                        <rect key="frame" x="196" y="291.5" width="195" height="39"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Reset to default blue"/>
@@ -479,6 +496,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zwu-jo-YRK">
+                                <rect key="frame" x="0.0" y="236" width="414" height="664"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeCell" textLabel="1Di-z0-Tq7" detailTextLabel="eTX-ff-ZVX" rowHeight="55" style="IBUITableViewCellStyleValue1" id="bkt-IQ-viI" customClass="ChallengeTableViewCell" customModule="Good_Deed_Counter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bkt-IQ-viI" translatesAutoresizingMaskIntoConstraints="NO" id="8gS-da-4lj">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Di-z0-Tq7">
+                                                    <rect key="frame" x="20" y="15" width="41.5" height="26.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eTX-ff-ZVX">
+                                                    <rect key="frame" x="339" y="15" width="55" height="26.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="challengeDescriptionLabel" destination="1Di-z0-Tq7" id="m84-Ab-yIT"/>
+                                            <outlet property="subtitleLabel" destination="eTX-ff-ZVX" id="VMM-ar-eqx"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="1zG-BV-JIP" id="Kt4-ua-4eG"/>
+                                    <outlet property="delegate" destination="1zG-BV-JIP" id="nsO-rk-m3v"/>
+                                </connections>
+                            </tableView>
                             <view contentMode="scaleToFill" id="3iE-4K-WjQ" customClass="TopView" customModule="Good_Deed_Counter" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="414" height="257"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -544,44 +599,26 @@
                                     <constraint firstItem="nhm-pD-kfu" firstAttribute="centerX" secondItem="3iE-4K-WjQ" secondAttribute="centerX" id="m2b-ak-zXK"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zwu-jo-YRK">
-                                <rect key="frame" x="0.0" y="236" width="414" height="664"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeCell" textLabel="1Di-z0-Tq7" detailTextLabel="eTX-ff-ZVX" rowHeight="55" style="IBUITableViewCellStyleValue1" id="bkt-IQ-viI" customClass="ChallengeTableViewCell" customModule="Good_Deed_Counter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="55"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bkt-IQ-viI" translatesAutoresizingMaskIntoConstraints="NO" id="8gS-da-4lj">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Di-z0-Tq7">
-                                                    <rect key="frame" x="20" y="15" width="41.5" height="26.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eTX-ff-ZVX">
-                                                    <rect key="frame" x="339" y="15" width="55" height="26.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="challengeDescriptionLabel" destination="1Di-z0-Tq7" id="m84-Ab-yIT"/>
-                                            <outlet property="subtitleLabel" destination="eTX-ff-ZVX" id="VMM-ar-eqx"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AdM-nI-12C">
+                                <rect key="frame" x="358" y="413" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="✕"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="1zG-BV-JIP" id="Kt4-ua-4eG"/>
-                                    <outlet property="delegate" destination="1zG-BV-JIP" id="nsO-rk-m3v"/>
+                                    <action selector="tutorialXButtonPressed:" destination="1zG-BV-JIP" eventType="touchUpInside" id="86c-mH-asx"/>
                                 </connections>
-                            </tableView>
+                            </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="3e7-xO-ETp">
+                                <rect key="frame" x="200" y="638" width="39" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="currentPageIndicatorTintColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </pageControl>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kvR-e5-RcF" customClass="TutorialScrollView" customModule="Good_Deed_Counter" customModuleProvider="target">
+                                <rect key="frame" x="15" y="398" width="384" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="DHm-DB-md8"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="nF7-wD-Wjg"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -602,10 +639,13 @@
                         <outlet property="dailyGoalStreakLabel" destination="amA-te-Ctr" id="o2S-tN-SKC"/>
                         <outlet property="labelSayingDays" destination="lT0-Vy-9HL" id="APv-15-ssb"/>
                         <outlet property="labelSayingStreak" destination="ljz-B7-EPS" id="Efo-dF-0bd"/>
+                        <outlet property="pageControl" destination="3e7-xO-ETp" id="4Nk-Gr-evs"/>
+                        <outlet property="scrollView" destination="kvR-e5-RcF" id="fGU-OE-eyu"/>
                         <outlet property="stepper" destination="rmo-W3-PIF" id="X2E-f6-gcY"/>
                         <outlet property="tableView" destination="zwu-jo-YRK" id="bYv-eZ-qYv"/>
                         <outlet property="tableViewTopConstraint" destination="aqc-La-CEp" id="zeD-mN-APg"/>
                         <outlet property="topView" destination="3iE-4K-WjQ" id="r24-2M-a6J"/>
+                        <outlet property="tutorialXButton" destination="kvR-e5-RcF" id="GIF-or-4jY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZsA-Z7-KeZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
