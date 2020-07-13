@@ -70,7 +70,10 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         scrollView.isHidden = true
         pageControl.isHidden = true
         tutorialXButton.isHidden = true
+        dataSource.isShowingTutorial = false
         
+        tableView.reloadData()
+
         enableBarButtons(bool: true)
     }
     
@@ -84,6 +87,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     
     func showTutorial() {
         enableBarButtons(bool: false)
+        dataSource.isShowingTutorial = true
         
         let pages = scrollView.createPages(forViewController: self)
         scrollView.setupSlideScrollView(withPages: pages)
