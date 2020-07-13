@@ -38,10 +38,8 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         // Default
         ViewController.dateFormatter.dateFormat = "MMMM yyyy"
         
-        let font = UIFont.systemFont(ofSize: 28)
-
-        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
-        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .disabled)
+        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 28)], for: .normal)
+        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24)], for: .disabled)
         
         dataSource = ViewControllerTableViewDataSource(withView: self.view)
         
