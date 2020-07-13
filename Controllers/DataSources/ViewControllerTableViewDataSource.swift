@@ -20,11 +20,7 @@ class ViewControllerTableViewDataSource: NSObject, UITableViewDataSource {
         self.view = view
         super.init()
         
-        let request: NSFetchRequest<Deed> = Deed.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-        
-        deeds = cdm.fetchDeeds(with: request)
-        splitSections()
+        loadDeeds()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
