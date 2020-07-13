@@ -72,7 +72,7 @@ class ChallengesViewControllerTableViewDataSource: NSObject, UITableViewDataSour
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return isShowingTutorial ? 0 : 1
     }
     
 }
