@@ -12,8 +12,8 @@ class TutorialScrollView: UIScrollView {
        
     func createPages(forViewController vc: UIViewController) -> [TutorialPage] {
         switch vc.restorationIdentifier {
-            case "ViewController":
-                return createViewControllerPages()
+            case "DisplayDeedsViewController":
+                return createDisplayDeedsViewControllerPages()
             case "ChallengesViewController":
                 return createChallengesViewControllerPages()
             default:
@@ -28,7 +28,7 @@ class TutorialScrollView: UIScrollView {
         return page
     }
     
-    func createViewControllerPages() -> [TutorialPage] {
+    func createDisplayDeedsViewControllerPages() -> [TutorialPage] {
         let page1 = makePageWithText(text: "\n\t\t\tWelcome to Deedy!\n\n  • Press ＋ (top right) to add deeds\n\n  • Swipe left on a deed to edit it\n\n   • Exit the tutorial to begin recording deeds")
         
         let page2 = makePageWithText(text: "\n\t\t\tWelcome to Deedy!\n\n  • Press 📊 to see graphs of your deeds in the past month\n\n  • Press Sort to sort deeds by date")
