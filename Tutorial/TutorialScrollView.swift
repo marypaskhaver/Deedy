@@ -11,13 +11,14 @@ import UIKit
 class TutorialScrollView: UIScrollView {
        
     func createPages(forViewController vc: UIViewController) -> [TutorialPage] {
-        if vc.restorationIdentifier == "ViewController" {
-            return createViewControllerPages()
-        } else if vc.restorationIdentifier == "ChallengesViewController" {
-            return createChallengesViewControllerPages()
+        switch vc.restorationIdentifier {
+            case "ViewController":
+                return createViewControllerPages()
+            case "ChallengesViewController":
+                return createChallengesViewControllerPages()
+            default:
+                return []
         }
-    
-        return []
     }
     
     func createViewControllerPages() -> [TutorialPage] {
