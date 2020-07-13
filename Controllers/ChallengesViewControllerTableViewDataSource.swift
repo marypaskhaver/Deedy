@@ -34,7 +34,6 @@ class ChallengesViewControllerTableViewDataSource: NSObject, UITableViewDataSour
     }
     
     func createAchievements() {
-        print("creating achievements")
         addToAchievementsArray(fromDictionary: DeedAchievements.achievements, withIdentifier: DeedAchievements.identifier)
         addToAchievementsArray(fromDictionary: StreakAchievements.achievements, withIdentifier: StreakAchievements.identifier)
     }
