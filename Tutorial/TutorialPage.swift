@@ -14,7 +14,6 @@ class TutorialPage: UIView {
     @IBOutlet weak var textView: UITextView!
 
     override func awakeFromNib() {
-        textView.frame = CGRect(x: textView.frame.origin.x, y: textView.frame.origin.y, width: UIScreen.main.bounds.width - 30, height: 300)
+        textView.frame = CGRect(x: textView.frame.origin.x, y: textView.frame.origin.y, width: UIScreen.main.bounds.width - 30, height: 320)
     }
 }
-
