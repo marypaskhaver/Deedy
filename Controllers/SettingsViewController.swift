@@ -32,6 +32,38 @@ class SettingsViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         loadColorTheme()
+        hideTutorialItems(bool: true)
+    }
+    
+    func hideTutorialItems(bool: Bool) {
+       scrollView.isHidden = bool
+       tutorialXButton.isHidden = bool
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if defaults.object(forKey: "SettingsViewControllerTutorialShown") == nil {
+            showTutorial()
+        }
+    }
+    
+    func enableSlidersAndButtons(bool: Bool) {
+        redSlider.isEnabled = bool
+        greenSlider.isEnabled = bool
+        blueSlider.isEnabled = bool
+        resetButton.isEnabled = bool
+        reviewTutorialButton.isEnabled = bool
+    }
+    
+    func showTutorial() {
+        enableSlidersAndButtons(bool: false)
+        hideTutorialItems(bool: false)
+        
+        let pages = scrollView.createPages(forViewController: self)
+        scrollView.setupSlideScrollView(withPages: pages)
+        view.bringSubviewToFront(scrollView)
+
+        tutorialXButton.frame = CGRect(x: scrollView.frame.width - 20, y: scrollView.frame.origin.y + 10, width: 30, height: 30)
+        view.bringSubviewToFront(tutorialXButton)
     }
 
     @IBAction func redSliderChanged(_ sender: UISlider) {
@@ -48,11 +80,15 @@ class SettingsViewController: UIViewController {
     
     @IBAction func reviewTutorialButtonPressed(_ sender: UIButton) {
         defaults.removeObject(forKey: "DisplayDeedsViewControllerTutorialShown")
-        defaults.removeObject(forKey: "ChallengesViewControllerTutorialShown") 
+        defaults.removeObject(forKey: "ChallengesViewControllerTutorialShown")
+        defaults.removeObject(forKey: "SettingsViewControllerTutorialShown")
+
     }
     
     @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
-    
+        enableSlidersAndButtons(bool: true)
+        hideTutorialItems(bool: true)
+        defaults.set(true, forKey: "SettingsViewControllerTutorialShown")
     }
     
     func getUIColorFromSliders() -> UIColor {
