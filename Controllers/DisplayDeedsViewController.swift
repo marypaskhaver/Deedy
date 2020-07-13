@@ -32,10 +32,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
     @IBOutlet weak var tutorialXButton: UIButton!
 
     @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
-        scrollView.isHidden = true
-        pageControl.isHidden = true
-        tutorialXButton.isHidden = true
-        dataSource.isShowingTutorial = false
+        hideTutorialItems(bool: true)
         
         tableView.reloadData()
 
@@ -97,6 +94,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         
         let pages = scrollView.createPages(forViewController: self)
         scrollView.setupSlideScrollView(withPages: pages)
+        view.bringSubviewToFront(scrollView)
         
         pageControl.frame = CGRect(x: scrollView.frame.width / 2, y: scrollView.frame.maxY - 50, width: CGFloat(13 * pages.count), height: 37)
         pageControl.numberOfPages = pages.count
