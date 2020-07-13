@@ -61,7 +61,10 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        showTutorial()
+        scrollView.isHidden = true
+        pageControl.isHidden = true
+        tutorialXButton.isHidden = true
+        dataSource.isShowingTutorial = false
     }
     
     @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
@@ -73,6 +76,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         tableView.reloadData()
 
         enableBarButtons(bool: true)
+        defaults.set(true, forKey: "DisplayDeedsViewControllerTutorialShown")
     }
     
     func enableBarButtons(bool: Bool) {
@@ -82,7 +86,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
             item.isEnabled = bool
         }
     }
-    
+        
     func showTutorial() {
         enableBarButtons(bool: false)
         dataSource.isShowingTutorial = true
@@ -108,6 +112,17 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         backgroundView.changeBackgroundColor()
+        
+        if defaults.object(forKey: "DisplayDeedsViewControllerTutorialShown") == nil {
+            dataSource.isShowingTutorial = true
+            tableView.reloadData()
+            
+            scrollView.isHidden = false
+            pageControl.isHidden = false
+            tutorialXButton.isHidden = false
+            
+            showTutorial()
+        }
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
