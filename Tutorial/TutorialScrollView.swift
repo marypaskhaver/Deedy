@@ -16,6 +16,8 @@ class TutorialScrollView: UIScrollView {
                 return createDisplayDeedsViewControllerPages()
             case "ChallengesViewController":
                 return createChallengesViewControllerPages()
+            case "SettingsViewController":
+                return createSettingsViewControllerPages()
             default:
                 return []
         }
@@ -44,6 +46,12 @@ class TutorialScrollView: UIScrollView {
         let page3 = makePageWithText(text: "\n\t\t\tWelcome to Deedy!\n\n  • Track your impact and progress with achievements\n\n  • Exit the tutorial to view them")
         
         return [page1, page2, page3]
+    }
+    
+    func createSettingsViewControllerPages() -> [TutorialPage] {
+        let page1 = makePageWithText(text: "\n\t\t\tWelcome to Deedy!\n\n  • Move the sliders to change your app's color theme \n\n  • You can re-view the tutorial here if you'd like")
+        
+        return [page1]
     }
     
     func setupSlideScrollView(withPages pages: [TutorialPage]) {
