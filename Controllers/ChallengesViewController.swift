@@ -71,7 +71,7 @@ class ChallengesViewController: UIViewController {
         
         tableView.dataSource = dataSource
         tableView.delegate = self
-
+        
         setTotalDeedsDone()
         
         dailyGoalProgressView.transform = CGAffineTransform(scaleX: 1.0, y: 2.0)
@@ -90,7 +90,7 @@ class ChallengesViewController: UIViewController {
     }
     
     func showTutorial() {
-        dataSource.isShowingTutorial = true
+        hideTutorialItems(bool: false)
         stepper.isEnabled = false
         
         let pages = scrollView.createPages(forViewController: self)
