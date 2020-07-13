@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DisplayDeedsViewController.swift
 //  Good Deed Counter
 //
 //  Created by Mary Paskhaver on 3/7/20.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController, DeedEditedDelegateProtocol {
+class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
    
     static var timeSection: String = "Month"
     
@@ -36,7 +36,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         // Do any additional setup after loading the view.
         
         // Default
-        ViewController.dateFormatter.dateFormat = "MMMM yyyy"
+        DisplayDeedsViewController.dateFormatter.dateFormat = "MMMM yyyy"
         
         self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 28)], for: .normal)
         self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24)], for: .disabled)
@@ -44,7 +44,6 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
         dataSource = ViewControllerTableViewDataSource(withView: self.view)
         
         tableView.dataSource = dataSource
-        tableView.delegate = self
 
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
@@ -157,17 +156,17 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
     }
     
     static func changeDateFormatter(toOrderBy dateFormat: String, timeSection: String) {
-        ViewController.dateFormatter.dateFormat = dateFormat
-        ViewController.timeSection = timeSection
+        DisplayDeedsViewController.dateFormatter.dateFormat = dateFormat
+        DisplayDeedsViewController.timeSection = timeSection
     }
     
     func sortDeedsFromSavedData() {
         if let dateFormat = defaults.string(forKey: "dateFormat") {
-            ViewController.dateFormatter.dateFormat = dateFormat
+            DisplayDeedsViewController.dateFormatter.dateFormat = dateFormat
         }
         
         if let timeSection = defaults.string(forKey: "timeSection") {
-            ViewController.timeSection = timeSection
+            DisplayDeedsViewController.timeSection = timeSection
         }
         
         updateSections()
@@ -175,7 +174,7 @@ class ViewController: UIViewController, DeedEditedDelegateProtocol {
 }
 
 // MARK: - TableView Delegate Methods
-extension ViewController: UITableViewDelegate {
+extension DisplayDeedsViewController: UITableViewDelegate {
     // Edit deed
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
@@ -242,7 +241,7 @@ extension ViewController: UITableViewDelegate {
 }
 
 // MARK: - Search bar methods
-extension ViewController: UISearchBarDelegate {
+extension DisplayDeedsViewController: UISearchBarDelegate {
     
     // Query CoreData database
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
