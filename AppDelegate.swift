@@ -99,14 +99,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         if let navBarTextColor = defaults.color(forKey: "navBarTextColor") {
-            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: navBarTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
-
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: navBarTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)], for: .normal)
+            setNavBarTextAndItemsAppearance(withColor: navBarTextColor)
         } else {
-            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
-
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)], for: .normal)
+            setNavBarTextAndItemsAppearance(withColor: UIColor.white)
         }
+    }
+    
+    func setNavBarTextAndItemsAppearance(withColor color: UIColor) {
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
+
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)], for: .normal)
     }
 
 }
