@@ -85,6 +85,7 @@ class ChallengesViewController: UIViewController {
             updateStreak()
         }
         
+        hideTutorialItems(bool: true)
         cdm.save()
     }
     
@@ -94,7 +95,8 @@ class ChallengesViewController: UIViewController {
         
         let pages = scrollView.createPages(forViewController: self)
         scrollView.setupSlideScrollView(withPages: pages)
-    
+        view.bringSubviewToFront(scrollView)
+
         pageControl.frame = CGRect(x: scrollView.frame.width / 2, y: scrollView.frame.maxY - 50, width: CGFloat(13 * pages.count), height: 37)
         pageControl.numberOfPages = pages.count
         pageControl.currentPage = 0
@@ -102,6 +104,8 @@ class ChallengesViewController: UIViewController {
         
         tutorialXButton.frame = CGRect(x: scrollView.frame.width - 20, y: scrollView.frame.origin.y + 10, width: 30, height: 30)
         view.bringSubviewToFront(tutorialXButton)
+        
+        tableView.reloadData()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -128,9 +132,8 @@ class ChallengesViewController: UIViewController {
         backgroundView.changeBackgroundColor()
         
         if defaults.object(forKey: "ChallengesViewControllerTutorialShown") == nil {
-            tableView.reloadData()
             showTutorial()
-        }
+        }        
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
