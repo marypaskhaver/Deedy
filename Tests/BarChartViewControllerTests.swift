@@ -24,11 +24,7 @@ class BarChartViewControllerTests: XCTestCase {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        ddvc = storyboard.instantiateViewController(identifier: "DisplayDeedsViewController") as? DisplayDeedsViewController
-        ddvc.loadViewIfNeeded()
-        ddvc.dataSource.isShowingTutorial = false
-        ddvc.dataSource.cdm = CoreDataManager(container: mockPersistentContainer)
-        ddvc.dataSource.loadDeeds()
+        ddvc = MockDataModelObjects().createDisplayDeedsViewController()
         
         bvc = storyboard.instantiateViewController(identifier: "BarChartViewController") as? BarChartViewController
         bvc.cdm = ddvc.dataSource.cdm
