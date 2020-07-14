@@ -52,7 +52,7 @@ class ChallengesViewController: UIViewController {
 
         saveGoalsAndAchievements()
         
-        setDailyGoalProgressViewValue()
+        dailyGoalProgressView.updateProgress()
     }
     
     @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
@@ -89,8 +89,8 @@ class ChallengesViewController: UIViewController {
             updateStreak()
         }
         
-        setDailyGoalProgressViewValue()
-        
+        dailyGoalProgressView.updateProgress()
+
         hideTutorialItems(bool: true)
         cdm.save()
     }
@@ -129,8 +129,8 @@ class ChallengesViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setDailyGoalProgressViewValue()
-        
+        dailyGoalProgressView.updateProgress() // needed?
+
         setTotalDeedsDone()
         
         backgroundView.changeBackgroundColor()
@@ -211,11 +211,7 @@ class ChallengesViewController: UIViewController {
         streak.wasUpdatedToday = true
     }
     
-    // MARK: - Manipulating Progress Views and Daily Challenge Items
-    func setDailyGoalProgressViewValue() {
-        dailyGoalProgressView.updateProgress()
-    }
-
+    // MARK: - Manipulating Views and Daily Challenge Items
     func revealDailyGoalRelatedItemsIfNeeded() {
         let originalTableViewYPos: CGFloat = 0.263 * self.view.frame.height
         let amountToMoveTableViewDownBy = -0.122 * self.view.frame.height
@@ -242,7 +238,7 @@ class ChallengesViewController: UIViewController {
             tableView.frame = CGRect(x: 0, y: originalTableViewYPos, width: CGFloat(tableView.frame.width), height: CGFloat(tableView.frame.height))
         }
         
-        setDailyGoalProgressViewValue()
+        dailyGoalProgressView.updateProgress()
     }
     
     // Move to TopView class?
