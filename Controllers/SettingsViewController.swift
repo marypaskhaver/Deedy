@@ -44,6 +44,8 @@ class SettingsViewController: UIViewController {
         if defaults.object(forKey: "SettingsViewControllerTutorialShown") == nil {
             showTutorial()
         }
+        
+        BarStyleSetter.setBarStyle(forViewController: self)
     }
     
     func enableSlidersAndButtons(bool: Bool) {
