@@ -81,5 +81,16 @@ class BarChartViewControllerTests: XCTestCase {
         
         XCTAssert(bvc.getDeedsDoneInPastMonth().count == 3)
     }
- 
+    
+    // The amount of deeds done (2 from initDeedStubs) is > 0, so the noDeedsDoneLabel should be hidden
+    func testIfNoDeedsDoneLabelHides() {
+        XCTAssertFalse(bvc.noDeedsDoneLabel.isDescendant(of: bvc.view))
+    }
+    
+    // The amount of deeds done is = 0, so the noDeedsDoneLabel should show
+    func testIfNoDeedsDoneLabelShows() {
+        flushDeedData()
+        bvc.loadView()
+        XCTAssertTrue(bvc.noDeedsDoneLabel.isDescendant(of: bvc.view))
+    }
 }
