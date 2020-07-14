@@ -133,7 +133,9 @@ class ChallengesViewController: UIViewController {
         
         if defaults.object(forKey: "ChallengesViewControllerTutorialShown") == nil {
             showTutorial()
-        }        
+        }
+        
+        BarStyleSetter.setBarStyle(forViewController: self)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
