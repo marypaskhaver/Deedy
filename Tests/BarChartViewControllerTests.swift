@@ -48,8 +48,6 @@ class BarChartViewControllerTests: XCTestCase {
 
         ddvc.updateSections()
         ddvc.dataSource.saveDeeds()
-
-        bvc.cdm = ddvc.dataSource.cdm
     }
     
     func initDeedStubs() {
