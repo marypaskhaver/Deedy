@@ -24,12 +24,8 @@ class Good_Deed_CounterTests: XCTestCase {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        ddvc = storyboard.instantiateViewController(identifier: "DisplayDeedsViewController") as? DisplayDeedsViewController
-        ddvc.loadViewIfNeeded()
-        ddvc.dataSource.isShowingTutorial = false
-        ddvc.dataSource.cdm = CoreDataManager(container: mockPersistentContainer)
-        ddvc.dataSource.loadDeeds()
-                
+        ddvc = MockDataModelObjects().createDisplayDeedsViewController()
+        
         advc = storyboard.instantiateViewController(identifier: "AddDeedViewController") as? AddDeedViewController
         advc.loadViewIfNeeded()
 
