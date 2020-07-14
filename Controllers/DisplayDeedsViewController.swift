@@ -103,6 +103,8 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         
         tutorialXButton.frame = CGRect(x: scrollView.frame.width - 20, y: scrollView.frame.origin.y + 10, width: 30, height: 30)
         view.bringSubviewToFront(tutorialXButton)
+        
+        tableView.reloadData()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -116,9 +118,8 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         backgroundView.changeBackgroundColor()
         
         if defaults.object(forKey: "DisplayDeedsViewControllerTutorialShown") == nil {
-            tableView.reloadData()
             showTutorial()
-        }
+        }        
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
