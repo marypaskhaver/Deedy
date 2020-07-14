@@ -119,7 +119,9 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         
         if defaults.object(forKey: "DisplayDeedsViewControllerTutorialShown") == nil {
             showTutorial()
-        }        
+        }
+        
+        BarStyleSetter.setBarStyle(forViewController: self)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
