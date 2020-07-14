@@ -8,6 +8,9 @@
 
 import Foundation
 import CoreData
+import UIKit
+
+@testable import Good_Deed_Counter
 
 class MockDataModelObjects {
     
@@ -35,5 +38,17 @@ class MockDataModelObjects {
         }
         return container
     }()
+    
+    func createDisplayDeedsViewController() -> DisplayDeedsViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let ddvc: DisplayDeedsViewController! = storyboard.instantiateViewController(identifier: "DisplayDeedsViewController") as? DisplayDeedsViewController
+        ddvc.loadViewIfNeeded()
+        ddvc.dataSource.isShowingTutorial = false
+        ddvc.dataSource.cdm = CoreDataManager(container: persistentContainer)
+        ddvc.dataSource.loadDeeds()
+        
+        return ddvc
+    }
 
 }
