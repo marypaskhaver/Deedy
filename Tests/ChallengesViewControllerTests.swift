@@ -33,7 +33,7 @@ class ChallengesViewControllerTests: XCTestCase {
         cvc.setTotalDeedsDone()
         cvc.dataSource.loadAchievements()
         cvc.dailyGoalProgressView.cdm = ddvc.dataSource.cdm
-        
+        DeedAchievements.cdm = ddvc.dataSource.cdm
         initDeedStubs()
     }
 
