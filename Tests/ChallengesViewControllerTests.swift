@@ -29,6 +29,7 @@ class ChallengesViewControllerTests: XCTestCase {
         cvc = storyboard.instantiateViewController(identifier: "ChallengesViewController") as? ChallengesViewController
         cvc.cdm = ddvc.dataSource.cdm
         cvc.loadViewIfNeeded()
+        cvc.setTotalDeedsDone()
         cvc.dataSource.loadAchievements()
         cvc.dailyGoalProgressView.cdm = ddvc.dataSource.cdm
         
@@ -49,12 +50,8 @@ class ChallengesViewControllerTests: XCTestCase {
     func addDeed(withTitle title: String, date: Date) {
         let deed = ddvc.dataSource.cdm.insertDeed(title: title, date: date)
         ddvc.dataSource.deeds.append(deed!)
-        // Split deeds into proper sections
-
-        ddvc.updateSections()
-        
-        cvc.cdm = ddvc.dataSource.cdm
-        cvc.dailyGoalProgressView.cdm = ddvc.dataSource.cdm
+        ddvc.dataSource.saveDeeds()
+        cvc.setTotalDeedsDone()
     }
     
     func initDeedStubs() {
@@ -62,9 +59,6 @@ class ChallengesViewControllerTests: XCTestCase {
         addDeed(withTitle: "A", date: Date())
         addDeed(withTitle: "B", date: Date())
         addDeed(withTitle: "C", date: Calendar.current.date(byAdding: .day, value: 1, to: Date())!)
-
-        ddvc.dataSource.saveDeeds()
-        cvc.setTotalDeedsDone()
     }
     
     func flushDeedData() {
@@ -106,5 +100,5 @@ class ChallengesViewControllerTests: XCTestCase {
             XCTAssertTrue(cell.challengeDescriptionLabel.text == achievement.title)
         }
     }
-    
+
 }
