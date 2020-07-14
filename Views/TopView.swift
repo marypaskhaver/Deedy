@@ -11,6 +11,7 @@ import UIKit
 class TopView: UIView {
 
     override func awakeFromNib() {
+        super.awakeFromNib()
         changeBackgroundColor()
     }
     
