@@ -45,8 +45,9 @@ class Good_Deed_CounterTests: XCTestCase {
     func addDeed(withTitle title: String, date: Date) {
         let deed = ddvc.dataSource.cdm.insertDeed(title: title, date: date)
         ddvc.dataSource.deeds.append(deed!)
-        // Split deeds into proper sections
+        ddvc.dataSource.saveDeeds()
 
+        // Split deeds into proper sections
         ddvc.updateSections()
     }
     
@@ -57,8 +58,6 @@ class Good_Deed_CounterTests: XCTestCase {
         addDeed(withTitle: "C", date: Date())
         addDeed(withTitle: "D", date: Date())
         addDeed(withTitle: "E", date: Date())
-        
-        ddvc.dataSource.saveDeeds()
     }
     
     func flushDeedData() {
