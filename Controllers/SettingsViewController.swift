@@ -82,7 +82,7 @@ class SettingsViewController: UIViewController {
         defaults.removeObject(forKey: "DisplayDeedsViewControllerTutorialShown")
         defaults.removeObject(forKey: "ChallengesViewControllerTutorialShown")
         defaults.removeObject(forKey: "SettingsViewControllerTutorialShown")
-
+        showTutorial()
     }
     
     @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
@@ -130,7 +130,7 @@ class SettingsViewController: UIViewController {
         sum += greenSlider.value >= 225 ? 1 : 0
         sum += blueSlider.value >= 225 ? 1 : 0
 
-        sum >= 2 ? changeNavBarTextAndItemsToColor(color: UIColor.black) : changeNavBarTextAndItemsToColor(color: UIColor.white)
+        sum >= 2 ? changeNavBarTextAndItemsToColor(color: UIColor.black) : changeNavBarTextAndItemsToColor(color: UIColor.white)        
     }
         
     func changeNavBarTextAndItemsToColor(color: UIColor) {
