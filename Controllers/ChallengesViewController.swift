@@ -16,7 +16,7 @@ class ChallengesViewController: UIViewController {
     @IBOutlet weak var stepper: UIStepper!
     
     @IBOutlet weak var dailyGoalStepperLabel: UILabel!
-    @IBOutlet weak var dailyGoalProgressView: UIProgressView!
+    @IBOutlet weak var dailyGoalProgressView: MyProgressView!
     
     @IBOutlet weak var dailyGoalStreakLabel: UILabel!
     @IBOutlet weak var labelSayingStreak: UILabel!
@@ -73,8 +73,6 @@ class ChallengesViewController: UIViewController {
 
         setTotalDeedsDone()
         
-        dailyGoalProgressView.transform = CGAffineTransform(scaleX: 1.0, y: 2.0)
-
         loadDailyGoalValue()
         
         // Load up previous streak data for use in updateStreak method
