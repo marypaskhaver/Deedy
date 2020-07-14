@@ -29,6 +29,7 @@ class ChallengesViewControllerTests: XCTestCase {
         cvc = storyboard.instantiateViewController(identifier: "ChallengesViewController") as? ChallengesViewController
         cvc.cdm = ddvc.dataSource.cdm
         cvc.loadViewIfNeeded()
+        cvc.dataSource.cdm = ddvc.dataSource.cdm
         cvc.setTotalDeedsDone()
         cvc.dataSource.loadAchievements()
         cvc.dailyGoalProgressView.cdm = ddvc.dataSource.cdm
@@ -51,6 +52,7 @@ class ChallengesViewControllerTests: XCTestCase {
         let deed = ddvc.dataSource.cdm.insertDeed(title: title, date: date)
         ddvc.dataSource.deeds.append(deed!)
         ddvc.dataSource.saveDeeds()
+        
         cvc.setTotalDeedsDone()
     }
     
@@ -61,16 +63,23 @@ class ChallengesViewControllerTests: XCTestCase {
         addDeed(withTitle: "C", date: Calendar.current.date(byAdding: .day, value: 1, to: Date())!)
     }
     
-    func flushDeedData() {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Deed")
+    func flushDataForEntity(withName name: String) {
+        let fetchRequest2: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: name)
         
-        let objs = try! mockPersistentContainer.viewContext.fetch(fetchRequest)
+        let objs2 = try! mockPersistentContainer.viewContext.fetch(fetchRequest2)
 
-        for case let obj as NSManagedObject in objs {
+        for case let obj as NSManagedObject in objs2 {
             mockPersistentContainer.viewContext.delete(obj)
         }
         
         try! mockPersistentContainer.viewContext.save()
+    }
+    
+    func flushDeedData() {
+        flushDataForEntity(withName: "Deed")
+        flushDataForEntity(withName: "DailyChallenge")
+        flushDataForEntity(withName: "Streak")
+        flushDataForEntity(withName: "Achievement")
     }
     
     func testDailyProgressViewDailyGoalValueSame() {
