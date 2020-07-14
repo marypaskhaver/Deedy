@@ -148,6 +148,7 @@ class ChallengesViewController: UIViewController {
     func setTotalDeedsDone() {
         self.totalDeedsDone = cdm.fetchDeeds().count
         
+        // Reloads achievements with updated text
         tableView.reloadData()
     }
     
@@ -199,9 +200,9 @@ class ChallengesViewController: UIViewController {
         setRequestPredicatesBetween(dateFrom: yesterday!, dateTo: today, forRequest: request as! NSFetchRequest<NSFetchRequestResult>)
          
         let arrayOfDeedsDoneYesterday = cdm.fetchDeeds(with: request)
-      
-        // Check if deed was done yesterday-- if it was: add to streak w/ if statement below, else: set streak to zero, then save everything
-        if (arrayOfDeedsDoneYesterday.count < dailyChallenge.dailyGoal) {
+        
+        // Check if deed was done yesterday-- if it was and the daily challenge was > 0: add to streak else: set streak to zero
+        if (arrayOfDeedsDoneYesterday.count < dailyChallenge.dailyGoal || dailyChallenge.dailyGoal == 0) {
             streak.daysKept = 0
         } else {
             streak.daysKept += 1
