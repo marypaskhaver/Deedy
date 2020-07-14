@@ -17,11 +17,12 @@ class SortDeedsTests: XCTestCase {
     
     lazy var managedObjectModel: NSManagedObjectModel = MockDataModelObjects().managedObjectModel
     lazy var mockPersistentContainer: NSPersistentContainer = MockDataModelObjects().persistentContainer
-    
+    let calendar = Calendar.current
+
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         super.setUp()
-        
+                
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         ddvc = MockDataModelObjects().createDisplayDeedsViewController()
@@ -81,8 +82,6 @@ class SortDeedsTests: XCTestCase {
     
     // MARK: - Tests for ViewController
     func testDeedsSortedByDay() {
-        let calendar = Calendar.current
-        
         let today = Date()
         addDeed(withTitle: "A", date: today)
         
@@ -101,8 +100,6 @@ class SortDeedsTests: XCTestCase {
     }
 
     func testDeedsSortedByWeek() {
-        let calendar = Calendar.current
-        
         let today = Date()
         addDeed(withTitle: "A", date: today)
         
@@ -121,8 +118,6 @@ class SortDeedsTests: XCTestCase {
     }
 
     func testDeedsSortedByMonth() {
-        let calendar = Calendar.current
-        
         let today = Date()
         addDeed(withTitle: "A", date: today)
         
@@ -141,8 +136,6 @@ class SortDeedsTests: XCTestCase {
     }
 
     func testDeedsSortedByYear() {
-        let calendar = Calendar.current
-        
         let today = Date()
         addDeed(withTitle: "A", date: today)
         
