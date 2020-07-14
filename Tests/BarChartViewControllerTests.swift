@@ -27,8 +27,9 @@ class BarChartViewControllerTests: XCTestCase {
         ddvc = MockDataModelObjects().createDisplayDeedsViewController()
         
         bvc = storyboard.instantiateViewController(identifier: "BarChartViewController") as? BarChartViewController
+        bvc.loadViewIfNeeded()
         bvc.cdm = ddvc.dataSource.cdm
-            
+        
         initDeedStubs()
     }
 
@@ -80,4 +81,5 @@ class BarChartViewControllerTests: XCTestCase {
         
         XCTAssert(bvc.getDeedsDoneInPastMonth().count == 3)
     }
+ 
 }
