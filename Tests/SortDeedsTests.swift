@@ -29,8 +29,6 @@ class SortDeedsTests: XCTestCase {
 
         sdvc = storyboard.instantiateViewController(identifier: "SortDeedsViewController") as? SortDeedsViewController
         sdvc.loadViewIfNeeded()
-        
-        initDeedStubs()
     }
 
     override func tearDown() {
@@ -49,17 +47,6 @@ class SortDeedsTests: XCTestCase {
         // Split deeds into proper sections
 
         ddvc.updateSections()
-    }
-    
-    func initDeedStubs() {
-        // Put fake items in the "database"
-        addDeed(withTitle: "A", date: Date())
-        addDeed(withTitle: "B", date: Date())
-        addDeed(withTitle: "C", date: Date())
-        addDeed(withTitle: "D", date: Date())
-        addDeed(withTitle: "E", date: Date())
-        
-        ddvc.dataSource.saveDeeds()
     }
     
     func flushDeedData() {
