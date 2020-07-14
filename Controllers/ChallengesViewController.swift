@@ -39,6 +39,8 @@ class ChallengesViewController: UIViewController {
     var dataSource: ChallengesViewControllerTableViewDataSource!
 
     let headerFont = UIFont.systemFont(ofSize: 22)
+    
+    var calendar = Calendar.current
 
     @IBAction func stepperValueChanged(_ sender: Any) {
         dailyChallenge.dailyGoal = Int32(stepper.value)
@@ -62,6 +64,8 @@ class ChallengesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        calendar.timeZone = NSTimeZone.local
+        
         // Do any additional setup after loading the view.
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
@@ -170,9 +174,6 @@ class ChallengesViewController: UIViewController {
         }
         
         // Set wasUpdatedToday to false if the streak's previous date was before today
-        var calendar = Calendar.current
-        calendar.timeZone = NSTimeZone.local
-        
         if calendar.isDateInToday(streak.date!) {
             streak.wasUpdatedToday = true
         } else {
@@ -187,9 +188,6 @@ class ChallengesViewController: UIViewController {
     func updateStreak() {
         let request: NSFetchRequest<Deed> = Deed.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-
-        var calendar = Calendar.current
-        calendar.timeZone = NSTimeZone.local
         
         // Include deeds only done before today
         let today = calendar.startOfDay(for: Date())
@@ -221,8 +219,6 @@ class ChallengesViewController: UIViewController {
     
     func setCountOfDeedsDoneToday() {
         let request: NSFetchRequest<Deed> = Deed.fetchRequest()
-        var calendar = Calendar.current
-        calendar.timeZone = NSTimeZone.local
 
         // Get today's beginning & end
         let dateFrom = calendar.startOfDay(for: Date())
