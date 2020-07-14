@@ -72,12 +72,6 @@ class Good_Deed_CounterTests: XCTestCase {
         try! mockPersistentContainer.viewContext.save()
     }
     
-    func numberOfItemsInPersistentStore(withEntityName name: String) -> Int {
-        let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: name)
-        let results = try! mockPersistentContainer.viewContext.fetch(request)
-        return results.count
-    }
-    
     // MARK: - Tests for ViewController
     func testAddingDeed() {
         XCTAssertEqual(ddvc.dataSource.deeds.count, 5)
