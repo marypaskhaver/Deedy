@@ -130,7 +130,9 @@ class SettingsViewController: UIViewController {
         sum += greenSlider.value >= 225 ? 1 : 0
         sum += blueSlider.value >= 225 ? 1 : 0
 
-        sum >= 2 ? changeNavBarTextAndItemsToColor(color: UIColor.black) : changeNavBarTextAndItemsToColor(color: UIColor.white)        
+        sum >= 2 ? changeNavBarTextAndItemsToColor(color: UIColor.black) : changeNavBarTextAndItemsToColor(color: UIColor.white)
+        
+        BarStyleSetter.setBarStyle(forViewController: self)
     }
         
     func changeNavBarTextAndItemsToColor(color: UIColor) {
