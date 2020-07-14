@@ -33,7 +33,6 @@ class ChallengesViewController: UIViewController {
     lazy var dailyChallenge = DailyChallenge(context: cdm.backgroundContext)
     lazy var streak = Streak(context: cdm.backgroundContext)
     
-    var deedsDoneToday: Int = 0
     var totalDeedsDone: Int = 0
     
     var dataSource: ChallengesViewControllerTableViewDataSource!
@@ -45,12 +44,15 @@ class ChallengesViewController: UIViewController {
     @IBAction func stepperValueChanged(_ sender: Any) {
         dailyChallenge.dailyGoal = Int32(stepper.value)
         dailyChallenge.date = Date()
+        cdm.save()
         
         dailyGoalStepperLabel.text = String(dailyChallenge.dailyGoal)
         
         revealDailyGoalRelatedItemsIfNeeded()
-        
+
         saveGoalsAndAchievements()
+        
+        setDailyGoalProgressViewValue()
     }
     
     @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
@@ -86,6 +88,8 @@ class ChallengesViewController: UIViewController {
         if totalDeedsDone > 0 && !streak.wasUpdatedToday {
             updateStreak()
         }
+        
+        setDailyGoalProgressViewValue()
         
         hideTutorialItems(bool: true)
         cdm.save()
@@ -125,8 +129,6 @@ class ChallengesViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setCountOfDeedsDoneToday()
-
         setDailyGoalProgressViewValue()
         
         setTotalDeedsDone()
@@ -211,22 +213,7 @@ class ChallengesViewController: UIViewController {
     
     // MARK: - Manipulating Progress Views and Daily Challenge Items
     func setDailyGoalProgressViewValue() {
-        if (dailyChallenge.dailyGoal > 0) {
-            let progress = Float(deedsDoneToday) / Float(dailyChallenge.dailyGoal)
-            dailyGoalProgressView.setProgress(progress, animated: true)
-        }
-    }
-    
-    func setCountOfDeedsDoneToday() {
-        let request: NSFetchRequest<Deed> = Deed.fetchRequest()
-
-        // Get today's beginning & end
-        let dateFrom = calendar.startOfDay(for: Date())
-        let dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom)
-       
-        setRequestPredicatesBetween(dateFrom: dateFrom, dateTo: dateTo!, forRequest: request as! NSFetchRequest<NSFetchRequestResult>)
-            
-        deedsDoneToday = cdm.fetchDeeds(with: request).count
+        dailyGoalProgressView.updateProgress()
     }
 
     func revealDailyGoalRelatedItemsIfNeeded() {
