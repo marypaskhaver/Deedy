@@ -29,7 +29,7 @@ class ChallengesViewControllerTests: XCTestCase {
         cvc = storyboard.instantiateViewController(identifier: "ChallengesViewController") as? ChallengesViewController
         cvc.cdm = ddvc.dataSource.cdm
         cvc.loadViewIfNeeded()
-
+        cvc.dataSource.loadAchievements()
         cvc.dailyGoalProgressView.cdm = ddvc.dataSource.cdm
         
         initDeedStubs()
@@ -64,6 +64,7 @@ class ChallengesViewControllerTests: XCTestCase {
         addDeed(withTitle: "C", date: Calendar.current.date(byAdding: .day, value: 1, to: Date())!)
 
         ddvc.dataSource.saveDeeds()
+        cvc.setTotalDeedsDone()
     }
     
     func flushDeedData() {
@@ -95,6 +96,15 @@ class ChallengesViewControllerTests: XCTestCase {
                 
         // Deeds done today will be equal to 2, was set in initDeedStubs
         XCTAssert(progressView?.progress == Float(2 / stepperVal))
+    }
+    
+    func testAchievementsLoaded() {
+        for (achievementIndex, achievement) in cvc.dataSource.achievements.enumerated() {
+            let indexPath = IndexPath(row: achievementIndex, section: 0)
+            let cell: ChallengeTableViewCell = cvc.tableView.cellForRow(at: indexPath) as! ChallengeTableViewCell
+            
+            XCTAssertTrue(cell.challengeDescriptionLabel.text == achievement.title)
+        }
     }
     
 }
