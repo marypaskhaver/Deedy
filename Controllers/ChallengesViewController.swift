@@ -29,7 +29,7 @@ class ChallengesViewController: UIViewController {
     @IBOutlet weak var tutorialXButton: UIButton!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    let cdm = CoreDataManager()
+    var cdm = CoreDataManager()
     lazy var dailyChallenge = DailyChallenge(context: cdm.backgroundContext)
     lazy var streak = Streak(context: cdm.backgroundContext)
     
