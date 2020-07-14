@@ -100,5 +100,9 @@ class ChallengesViewControllerTests: XCTestCase {
             XCTAssertTrue(cell.challengeDescriptionLabel.text == achievement.title)
         }
     }
+    
+    func testTotalDeedsDoneCorrect() {
+        XCTAssert(ddvc.dataSource.deeds.count == cvc.totalDeedsDone)
+    }
 
 }
