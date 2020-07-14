@@ -54,8 +54,6 @@ class BarChartViewControllerTests: XCTestCase {
         // Put fake items in the "database"
         addDeed(withTitle: "A", date: Date())
         addDeed(withTitle: "B", date: Date())
-        
-        ddvc.dataSource.saveDeeds()
     }
     
     func flushDeedData() {
