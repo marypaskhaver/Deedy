@@ -1,5 +1,5 @@
 //
-//  DisplayDeedsViewController+Delegate.swift
+//  DisplayDeedsViewController+TableViewDelegate.swift
 //  Good Deed Counter
 //
 //  Created by Mary Paskhaver on 7/15/20.
