@@ -69,9 +69,7 @@ class ChallengesViewController: UIViewController {
         calendar.timeZone = NSTimeZone.local
         
         // Do any additional setup after loading the view.
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100
-        tableView.tableFooterView = UIView()
+        TableViewModification.setRowAndEstimatedRowHeightsToAutomaticDimension(forTableView: tableView)
                 
         dataSource = ChallengesViewControllerTableViewDataSource(withView: self.view)
         
