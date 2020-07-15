@@ -27,7 +27,7 @@ class ChallengesViewController: UIViewController {
     
     @IBOutlet weak var scrollView: TutorialScrollView!
     @IBOutlet weak var tutorialXButton: UIButton!
-    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var pageControl: MyPageControl!
     
     var cdm = CoreDataManager()
     lazy var dailyChallenge = DailyChallenge(context: cdm.backgroundContext)
@@ -102,10 +102,8 @@ class ChallengesViewController: UIViewController {
         let pages = scrollView.createPages(forViewController: self)
         scrollView.setupSlideScrollView(withPages: pages)
         view.bringSubviewToFront(scrollView)
-
-        pageControl.frame = CGRect(x: scrollView.frame.width / 2, y: scrollView.frame.maxY - 50, width: CGFloat(13 * pages.count), height: 37)
-        pageControl.numberOfPages = pages.count
-        pageControl.currentPage = 0
+        
+        pageControl.setUp(withScrollView: scrollView, inViewController: self)
         view.bringSubviewToFront(pageControl)
         
         tutorialXButton.frame = CGRect(x: scrollView.frame.width - 20, y: scrollView.frame.origin.y + 10, width: 30, height: 30)
