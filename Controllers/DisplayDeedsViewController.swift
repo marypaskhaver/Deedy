@@ -53,10 +53,8 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         dataSource = DisplayDeedsViewControllerTableViewDataSource(withView: self.view)
         
         tableView.dataSource = dataSource
-
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = UITableView.automaticDimension
-        tableView.tableFooterView = UIView()
+        
+        TableViewModification.setRowAndEstimatedRowHeightsToAutomaticDimension(forTableView: tableView)
                         
         sortDeedsFromSavedData()
         updateSections()
