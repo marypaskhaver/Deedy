@@ -31,6 +31,8 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
     @IBOutlet weak var pageControl: MyPageControl!
     @IBOutlet weak var tutorialXButton: UIButton!
 
+    var dateHandler = DateHandler()
+    
     @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
         hideTutorialItems(bool: true)
         
@@ -133,7 +135,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         if (segue.identifier == "doneAddingSegue") {
             let addDeedVC = segue.source as! AddDeedViewController
             
-            dataSource.addDeed(title: addDeedVC.textView.text!, date: Date())
+            dataSource.addDeed(title: addDeedVC.textView.text!, date: dateHandler.currentDate() as Date)
         }
         
         updateSections()
