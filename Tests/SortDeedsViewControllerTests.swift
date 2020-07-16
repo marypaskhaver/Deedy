@@ -1,5 +1,5 @@
 //
-//  SortDeedsTests.swift
+//  SortDeedsViewControllerTests.swift
 //  Good Deed CounterTests
 //
 //  Created by Mary Paskhaver on 7/3/20.
@@ -11,7 +11,7 @@ import CoreData
 
 @testable import Good_Deed_Counter
 
-class SortDeedsTests: XCTestCase {
+class SortDeedsViewControllerTests: XCTestCase {
     var ddvc: DisplayDeedsViewController!
     var sdvc: SortDeedsViewController!
 
