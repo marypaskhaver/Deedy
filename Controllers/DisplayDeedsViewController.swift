@@ -10,9 +10,7 @@ import UIKit
 import CoreData
 
 class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
-   
     static var timeSection: String = "Month"
-    
     static let dateFormatter = DateFormatter()
     
     @IBOutlet weak var tableView: UITableView!
@@ -85,15 +83,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         enableBarButtons(bool: false)
         hideTutorialItems(bool: false)
         
-        let pages = scrollView.createPages(forViewController: self)
-        scrollView.setupSlideScrollView(withPages: pages)
-        view.bringSubviewToFront(scrollView)
-        
-        pageControl.setUp(withScrollView: scrollView, inViewController: self)
-        view.bringSubviewToFront(pageControl)
-        
-        tutorialXButton.setUp(inScrollView: scrollView)
-        view.bringSubviewToFront(tutorialXButton)
+        TutorialSetterUpper.setUp(withViewController: self)
         
         tableView.reloadData()
     }
