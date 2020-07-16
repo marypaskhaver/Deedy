@@ -9,7 +9,6 @@
 import UIKit
 
 class BarChartView: UIView {
-  
     // Where the graph will be located
     private let mainLayer: CALayer = CALayer()
     
@@ -19,15 +18,14 @@ class BarChartView: UIView {
     // Adjust spacing and hardcoded vals
     // Vertical space between entries
     let space: CGFloat = 40.0
-    
     let barHeight: CGFloat = 40.0
     let contentSpace: CGFloat = 30.0
     
     var entryTooBig: Bool = false
     var currentEntry: Int = 0
+    
     // Generate graph when data is passed in
     var dataEntries: [BarEntry] = [] {
-        
         didSet {
             mainLayer.sublayers?.forEach({ $0.removeFromSuperlayer() })
                   
@@ -94,13 +92,8 @@ class BarChartView: UIView {
     
     // MARK: - Drawing CALayers
     private func drawTitle(xPos: CGFloat, yPos: CGFloat, title: String) -> CATextLayer {
-        let textLayer = CATextLayer()
-                        
-        configureTextLayer(layer: textLayer)
-        
-        textLayer.string = title
-        textLayer.frame = CGRect(x: xPos, y: yPos, width: textLayer.preferredFrameSize().width + 15, height: textLayer.preferredFrameSize().height)
-    
+        let textLayer = BarChartDrawer(withView: self, withBarHeight: barHeight).drawTitle(xPos: xPos, yPos: yPos, title: title)
+
         addAnimationToLayer(layer: textLayer)
         
         mainLayer.addSublayer(textLayer)
@@ -109,15 +102,7 @@ class BarChartView: UIView {
     }
     
     private func drawBar(xPos: CGFloat, yPos: CGFloat, width: CGFloat, forEntry entry: BarEntry) -> CALayer {
-        let barLayer = CALayer()
-                
-        barLayer.frame = CGRect(x: xPos, y: yPos, width: width, height: barHeight)
-                        
-        if let navBarColor = defaults.color(forKey: "navBarColor") {
-            changeLayerToColorFromComponents(from: navBarColor, toLayer: barLayer)
-        } else {
-            changeLayerToColorFromComponents(from: CustomColors.defaultBlue, toLayer: barLayer)
-        }
+        let barLayer = BarChartDrawer(withView: self, withBarHeight: barHeight).drawBar(xPos: xPos, yPos: yPos, width: width, forEntry: entry)
         
         addAnimationToLayer(layer: barLayer)
 
@@ -125,21 +110,9 @@ class BarChartView: UIView {
     
         return barLayer
     }
-    
-    func changeLayerToColorFromComponents(from color: UIColor, toLayer layer: CALayer) {
-        var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-        color.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-        
-        layer.backgroundColor = UIColor(hue: h, saturation: s, brightness: b * 0.8, alpha: a).cgColor
-    }
-    
+
     private func drawTextValue(xPos: CGFloat, yPos: CGFloat, textValue: String) -> CATextLayer {
-        let textLayer = CATextLayer()
-                
-        configureTextLayer(layer: textLayer)
-        
-        textLayer.string = textValue
-        textLayer.frame = CGRect(x: xPos, y: yPos, width: textLayer.preferredFrameSize().width + 15, height: textLayer.preferredFrameSize().height)
+        let textLayer = BarChartDrawer(withView: self, withBarHeight: barHeight).drawTextValue(xPos: xPos, yPos: yPos, textValue: textValue)
         
         addAnimationToLayer(layer: textLayer)
 
