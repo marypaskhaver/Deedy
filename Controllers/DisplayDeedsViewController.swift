@@ -28,7 +28,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
     var dataSource: DisplayDeedsViewControllerTableViewDataSource!
     
     @IBOutlet weak var scrollView: TutorialScrollView!
-    @IBOutlet weak var pageControl: MyPageControl!
+    @IBOutlet weak var pageControl: TutorialPageControl!
     @IBOutlet weak var tutorialXButton: UIButton!
 
     var dateHandler = DateHandler()
