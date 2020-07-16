@@ -223,11 +223,12 @@ class ChallengesViewController: UIViewController {
                 tableViewTopConstraint.constant = 0
             }
             
-            moveTopViewFrame(toHeight: originalTopViewHeight)
+            topView.setHeightInViewController(vc: self, toHeight: originalTopViewHeight)
+
         } else { // If daily goals are set to 0, remove daily goal-related items from screen
             hideDailyGoalRelatedItems(bool: true)
             
-            moveTopViewFrame(toHeight: originalTopViewHeight + amountToMoveTableViewDownBy)
+            topView.setHeightInViewController(vc: self, toHeight: originalTopViewHeight + amountToMoveTableViewDownBy)
 
             tableViewTopConstraint.constant = 0
             
@@ -236,11 +237,7 @@ class ChallengesViewController: UIViewController {
         
         dailyGoalProgressView.updateProgress()
     }
-    
-    func moveTopViewFrame(toHeight height: CGFloat) {
-        topView.setHeightInViewController(vc: self, toHeight: height)
-    }
-    
+
     func hideDailyGoalRelatedItems(bool: Bool) {
         dailyGoalProgressView.isHidden = bool
         dailyGoalStreakLabel.isHidden = bool
