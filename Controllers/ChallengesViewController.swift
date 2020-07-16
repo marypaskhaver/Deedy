@@ -40,10 +40,11 @@ class ChallengesViewController: UIViewController {
     let headerFont = UIFont.systemFont(ofSize: 22)
     
     var calendar = Calendar.current
+    var dateHandler = DateHandler()
 
     @IBAction func stepperValueChanged(_ sender: Any) {
         dailyChallenge.dailyGoal = Int32(stepper.value)
-        dailyChallenge.date = Date()
+        dailyChallenge.date = dateHandler.currentDate() as Date?
         cdm.save()
         
         dailyGoalStepperLabel.text = String(dailyChallenge.dailyGoal)
@@ -154,14 +155,14 @@ class ChallengesViewController: UIViewController {
         
         // No previous streaks have ever been saved
         if (fetchedRequest.count == 0) {
-            streak = cdm.insertStreak(daysKept: 0, wasUpdatedToday: false, date: Date())!
+            streak = cdm.insertStreak(daysKept: 0, wasUpdatedToday: false, date: dateHandler.currentDate() as Date)!
         } else {
             streak.daysKept = fetchedRequest[0].daysKept
             streak.date = fetchedRequest[0].date
         }
         
         if streak.date == nil {
-            streak.date = Date()
+            streak.date = dateHandler.currentDate() as Date
         }
         
         // Set wasUpdatedToday to false if the streak's previous date was before today
@@ -171,7 +172,7 @@ class ChallengesViewController: UIViewController {
             streak.wasUpdatedToday = false
         }
         
-        streak.date = Date()
+        streak.date = dateHandler.currentDate() as Date
 
         dailyGoalStreakLabel.text = String(streak.daysKept)
     }
@@ -181,7 +182,7 @@ class ChallengesViewController: UIViewController {
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
         // Include deeds only done before today
-        let today = calendar.startOfDay(for: Date())
+        let today = calendar.startOfDay(for: dateHandler.currentDate() as Date)
         let yesterday = calendar.date(byAdding: .day, value: -1, to: today)
 
         setRequestPredicatesBetween(dateFrom: yesterday!, dateTo: today, forRequest: request as! NSFetchRequest<NSFetchRequestResult>)
@@ -195,7 +196,7 @@ class ChallengesViewController: UIViewController {
             streak.daysKept += 1
         }
         
-        streak.date = Date()
+        streak.date = dateHandler.currentDate() as Date
         dailyGoalStreakLabel.text = String(streak.daysKept)
         streak.wasUpdatedToday = true
     }
@@ -241,11 +242,11 @@ class ChallengesViewController: UIViewController {
     // MARK: - Model Manipulation Methods
     func saveGoalsAndAchievements() {
         if dailyChallenge.date == nil {
-            dailyChallenge.date = Date()
+            dailyChallenge.date = dateHandler.currentDate() as Date
         }
 
         if streak.date == nil {
-            streak.date = Date()
+            streak.date = dateHandler.currentDate() as Date
         }
 
         cdm.save()
@@ -258,12 +259,12 @@ class ChallengesViewController: UIViewController {
         let fetchedRequest = cdm.fetchDailyChallenges(with: request)
             
         if fetchedRequest.count == 0 {
-            dailyChallenge = cdm.insertDailyChallenge(dailyGoal: 0, date: Date())!
+            dailyChallenge = cdm.insertDailyChallenge(dailyGoal: 0, date: dateHandler.currentDate() as Date)!
         } else {
             dailyChallenge.dailyGoal = fetchedRequest[0].dailyGoal
         }
 
-        dailyChallenge.date = Date()
+        dailyChallenge.date = dateHandler.currentDate() as Date
         
         stepper.value = Double(dailyChallenge.dailyGoal)
         dailyGoalStepperLabel.text = String(dailyChallenge.dailyGoal)
