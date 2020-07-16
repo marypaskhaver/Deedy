@@ -14,9 +14,11 @@ import CoreData
 class SortDeedsTests: XCTestCase {
     var ddvc: DisplayDeedsViewController!
     var sdvc: SortDeedsViewController!
-    
+
     lazy var managedObjectModel: NSManagedObjectModel = MockDataModelObjects().managedObjectModel
     lazy var mockPersistentContainer: NSPersistentContainer = MockDataModelObjects().persistentContainer
+        
+    let dateHandler = DateHandler()
     let calendar = Calendar.current
 
     override func setUp() {
@@ -69,7 +71,7 @@ class SortDeedsTests: XCTestCase {
     
     // MARK: - Tests for ViewController
     func testDeedsSortedByDay() {
-        let today = Date()
+        let today = dateHandler.currentDate() as Date
         addDeed(withTitle: "A", date: today)
         
         let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)
@@ -87,7 +89,7 @@ class SortDeedsTests: XCTestCase {
     }
 
     func testDeedsSortedByWeek() {
-        let today = Date()
+        let today = dateHandler.currentDate() as Date
         addDeed(withTitle: "A", date: today)
         
         let oneWeekFromNow = calendar.date(byAdding: .weekOfYear, value: 1, to: today)
@@ -105,7 +107,7 @@ class SortDeedsTests: XCTestCase {
     }
 
     func testDeedsSortedByMonth() {
-        let today = Date()
+        let today = dateHandler.currentDate() as Date
         addDeed(withTitle: "A", date: today)
         
         let oneMonthFromNow = calendar.date(byAdding: .month, value: 1, to: today)
@@ -123,7 +125,7 @@ class SortDeedsTests: XCTestCase {
     }
 
     func testDeedsSortedByYear() {
-        let today = Date()
+        let today = dateHandler.currentDate() as Date
         addDeed(withTitle: "A", date: today)
         
         let oneYearFromNow = calendar.date(byAdding: .year, value: 1, to: today)
