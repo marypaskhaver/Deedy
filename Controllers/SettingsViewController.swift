@@ -25,7 +25,7 @@ class SettingsViewController: UIViewController {
     let navBarTextColorUserDefaultsKey = "navBarTextColor"
 
     @IBOutlet weak var scrollView: TutorialScrollView!
-    @IBOutlet weak var tutorialXButton: UIButton!
+    @IBOutlet weak var tutorialXButton: TutorialXButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +64,7 @@ class SettingsViewController: UIViewController {
         scrollView.setupSlideScrollView(withPages: pages)
         view.bringSubviewToFront(scrollView)
 
-        tutorialXButton.frame = CGRect(x: scrollView.frame.width - 20, y: scrollView.frame.origin.y + 10, width: 30, height: 30)
+        tutorialXButton.setUp(inScrollView: scrollView)
         view.bringSubviewToFront(tutorialXButton)
     }
 
@@ -161,6 +161,7 @@ class SettingsViewController: UIViewController {
     }
     
     func loadColorTheme() {
+        // Default values are set in Main.storyboard
         if let rsv = defaults.object(forKey: "redSliderValue") {
             redSlider.value = rsv as! Float
         }
