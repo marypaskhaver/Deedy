@@ -141,6 +141,20 @@ class ChallengesViewControllerTests: XCTestCase {
         }
     }
 
+    func testStreakDoesIncrease() {
+        cvc.dailyChallenge.dailyGoal = 1 // Init stubs made 3 deeds so the streak should have been met
+        cvc.cdm.save()
+        
+        XCTAssert(cvc.streak.daysKept == 0)
+        
+        cvc.dateHandler = MockDataModelObjects.MockDateHandler()
+        cvc.loadDailyGoalValue()
+        cvc.loadStreak()
+        cvc.updateStreak()
+        
+        XCTAssert(cvc.streak.daysKept == 1)
+    }
+
     func testTableViewMovesBasedOnDailyChallenge() {
         let originalTableViewYPos: CGFloat = 0.263 * cvc.view.frame.height
 
