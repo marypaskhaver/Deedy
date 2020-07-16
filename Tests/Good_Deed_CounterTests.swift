@@ -166,6 +166,15 @@ class Good_Deed_CounterTests: XCTestCase {
         searchBar.text = "Aa"
         ddvc.searchBarSearchButtonClicked(searchBar)
         XCTAssert(ddvc.dataSource.deeds.count == 1)
+        
+        for deed in ddvc.dataSource.deeds {
+            let text: String = searchBar.text!
+            
+            let deedContainsSearchBarTextLowercased = deed.title!.contains(text.lowercased())
+            let deedContainsSearchBarTextUppercased = deed.title!.contains(text.uppercased())
+
+            XCTAssert(deedContainsSearchBarTextLowercased || deedContainsSearchBarTextUppercased)
+        }
     }
 
 }
