@@ -59,13 +59,7 @@ class SettingsViewController: UIViewController {
     func showTutorial() {
         enableSlidersAndButtons(bool: false)
         hideTutorialItems(bool: false)
-        
-        let pages = scrollView.createPages(forViewController: self)
-        scrollView.setupSlideScrollView(withPages: pages)
-        view.bringSubviewToFront(scrollView)
-
-        tutorialXButton.setUp(inScrollView: scrollView)
-        view.bringSubviewToFront(tutorialXButton)
+        TutorialSetterUpper.setUp(withViewController: self)
     }
 
     @IBAction func redSliderChanged(_ sender: UISlider) {
