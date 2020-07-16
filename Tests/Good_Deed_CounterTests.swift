@@ -15,6 +15,8 @@ class Good_Deed_CounterTests: XCTestCase {
     var ddvc: DisplayDeedsViewController!
     var advc: AddDeedViewController!
     
+    let dateHandler = DateHandler()
+    
     lazy var managedObjectModel: NSManagedObjectModel = MockDataModelObjects().managedObjectModel
     lazy var mockPersistentContainer: NSPersistentContainer = MockDataModelObjects().persistentContainer
     
@@ -53,11 +55,11 @@ class Good_Deed_CounterTests: XCTestCase {
     
     func initDeedStubs() {
         // Put fake items in the "database"
-        addDeed(withTitle: "A", date: Date())
-        addDeed(withTitle: "B", date: Date())
-        addDeed(withTitle: "C", date: Date())
-        addDeed(withTitle: "D", date: Date())
-        addDeed(withTitle: "E", date: Date())
+        addDeed(withTitle: "A", date: dateHandler.currentDate() as Date)
+        addDeed(withTitle: "B", date: dateHandler.currentDate() as Date)
+        addDeed(withTitle: "C", date: dateHandler.currentDate() as Date)
+        addDeed(withTitle: "D", date: dateHandler.currentDate() as Date)
+        addDeed(withTitle: "E", date: dateHandler.currentDate() as Date)
     }
     
     func flushDeedData() {
@@ -88,7 +90,7 @@ class Good_Deed_CounterTests: XCTestCase {
 
         var sumDeeds = 0
 
-        let today = Date()
+        let today = dateHandler.currentDate() as Date
         addDeed(withTitle: "A", date: today)
         
         let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)
@@ -102,14 +104,13 @@ class Good_Deed_CounterTests: XCTestCase {
         XCTAssertEqual(ddvc.dataSource.deeds.count, sumDeeds)
     }
 
-
     func testDeedLabelUpdates() {
         XCTAssert(ddvc.totalDeedsLabel != nil)
         XCTAssert(ddvc.totalDeedsLabel.text != nil)
         
         XCTAssertEqual(ddvc.totalDeedsLabel.text, String(5))
 
-        addDeed(withTitle: "A", date: Date())
+        addDeed(withTitle: "A", date: dateHandler.currentDate() as Date)
         ddvc.updateSections()
         
         XCTAssertEqual(ddvc.totalDeedsLabel.text, String(6))
@@ -118,7 +119,7 @@ class Good_Deed_CounterTests: XCTestCase {
     func testIfDeedsDisplayInTableView() {
         let calendar = Calendar.current
 
-        let today = Date()
+        let today = dateHandler.currentDate() as Date
         addDeed(withTitle: "A", date: today)
         
         let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)
