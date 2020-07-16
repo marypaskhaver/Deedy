@@ -44,8 +44,6 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
         // Default
         DisplayDeedsViewController.dateFormatter.dateFormat = "MMMM yyyy"
         
@@ -53,7 +51,6 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24)], for: .disabled)
         
         dataSource = DisplayDeedsViewControllerTableViewDataSource(withView: self.view)
-        
         tableView.dataSource = dataSource
         
         TableViewModification.setRowAndEstimatedRowHeightsToAutomaticDimension(forTableView: tableView)
@@ -124,9 +121,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
     }
     
     // MARK: - Segue methods
-    @IBAction func cancel(segue: UIStoryboardSegue) {
-
-    }
+    @IBAction func cancel(segue: UIStoryboardSegue) { }
     
     // Add deed
     @IBAction func done(segue: UIStoryboardSegue) {
