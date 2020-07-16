@@ -14,7 +14,9 @@ import CoreData
 class BarChartViewControllerTests: XCTestCase {
     var ddvc: DisplayDeedsViewController!
     var bvc: BarChartViewController!
-
+    
+    let dateHandler = DateHandler()
+    
     lazy var managedObjectModel: NSManagedObjectModel = MockDataModelObjects().managedObjectModel
     lazy var mockPersistentContainer: NSPersistentContainer = MockDataModelObjects().persistentContainer
     
@@ -53,8 +55,8 @@ class BarChartViewControllerTests: XCTestCase {
     
     func initDeedStubs() {
         // Put fake items in the "database"
-        addDeed(withTitle: "A", date: Date())
-        addDeed(withTitle: "B", date: Date())
+        addDeed(withTitle: "A", date: dateHandler.currentDate() as Date)
+        addDeed(withTitle: "B", date: dateHandler.currentDate() as Date)
     }
     
     func flushDeedData() {
@@ -75,7 +77,7 @@ class BarChartViewControllerTests: XCTestCase {
         calendar.timeZone = NSTimeZone.local
         
         // Include everything done today and 29 days ago (30 days total)
-        let oneMonthBeforeToday = calendar.date(byAdding: .day, value: -29, to: calendar.startOfDay(for: Date()))
+        let oneMonthBeforeToday = calendar.date(byAdding: .day, value: -29, to: calendar.startOfDay(for: dateHandler.currentDate() as Date))
 
         addDeed(withTitle: "1", date: oneMonthBeforeToday!)
         
