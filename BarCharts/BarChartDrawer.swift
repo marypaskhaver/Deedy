@@ -11,7 +11,8 @@ import UIKit
 class BarChartDrawer {
     var view: UIView!
     var barHeight: CGFloat!
-
+    static var currentEntry: Int = 0
+    
     init(withView view: UIView, withBarHeight barHeight: CGFloat) {
         self.view = view
         self.barHeight = barHeight
@@ -25,6 +26,8 @@ class BarChartDrawer {
         
         textLayer.string = title
         textLayer.frame = CGRect(x: xPos, y: yPos, width: textLayer.preferredFrameSize().width + 15, height: textLayer.preferredFrameSize().height)
+        
+        addAnimationToLayer(layer: textLayer)
        
         return textLayer
     }
@@ -41,6 +44,8 @@ class BarChartDrawer {
         } else {
             changeLayerToColorFromComponents(from: CustomColors.defaultBlue, toLayer: barLayer)
         }
+        
+        addAnimationToLayer(layer: barLayer)
             
         return barLayer
     }
@@ -52,6 +57,8 @@ class BarChartDrawer {
         
         textLayer.string = textValue
         textLayer.frame = CGRect(x: xPos, y: yPos, width: textLayer.preferredFrameSize().width + 15, height: textLayer.preferredFrameSize().height)
+        
+        addAnimationToLayer(layer: textLayer)
                 
         return textLayer
     }
@@ -79,6 +86,12 @@ class BarChartDrawer {
         color.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
         
         layer.backgroundColor = UIColor(hue: h, saturation: s, brightness: b * 0.8, alpha: a).cgColor
+    }
+    
+    // MARK: - Animating CALayers
+    func addAnimationToLayer(layer: CALayer) {
+        layer.opacity = 0.0
+        layer.add(Animations.getFadeInAnimationForCALayer(atIndex: BarChartDrawer.currentEntry), forKey: "fadeIn")
     }
 
 }
