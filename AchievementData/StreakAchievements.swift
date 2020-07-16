@@ -39,7 +39,6 @@ class StreakAchievements: AchievementProtocol {
     
     static func getStreakDaysKept() -> Int32 {
         let request: NSFetchRequest<Streak> = Streak.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
 
         return cdm.fetchStreaks(with: request).map( { $0.daysKept }).max() ?? 0
     }
