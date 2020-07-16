@@ -14,6 +14,7 @@ import CoreData
 class ChallengesViewControllerTests: XCTestCase {
     var ddvc: DisplayDeedsViewController!
     var cvc: ChallengesViewController!
+    let dateHandler = DateHandler()
     
     lazy var managedObjectModel: NSManagedObjectModel = MockDataModelObjects().managedObjectModel
     lazy var mockPersistentContainer: NSPersistentContainer = MockDataModelObjects().persistentContainer
@@ -34,6 +35,7 @@ class ChallengesViewControllerTests: XCTestCase {
         cvc.dataSource.loadAchievements()
         cvc.dailyGoalProgressView.cdm = ddvc.dataSource.cdm
         DeedAchievements.cdm = ddvc.dataSource.cdm
+        StreakAchievements.cdm = ddvc.dataSource.cdm
         initDeedStubs()
     }
 
@@ -58,9 +60,9 @@ class ChallengesViewControllerTests: XCTestCase {
     
     func initDeedStubs() {
         // Put fake items in the "database"
-        addDeed(withTitle: "A", date: Date())
-        addDeed(withTitle: "B", date: Date())
-        addDeed(withTitle: "C", date: Calendar.current.date(byAdding: .day, value: -1, to: Date())!)
+        addDeed(withTitle: "A", date: dateHandler.currentDate() as Date)
+        addDeed(withTitle: "B", date: dateHandler.currentDate() as Date)
+        addDeed(withTitle: "C", date: Calendar.current.date(byAdding: .day, value: -1, to: dateHandler.currentDate() as Date)!)
     }
     
     func flushDataForEntity(withName name: String) {
@@ -125,7 +127,7 @@ class ChallengesViewControllerTests: XCTestCase {
             }
         }
         
-        addDeed(withTitle: "1", date: Date())
+        addDeed(withTitle: "1", date: dateHandler.currentDate() as Date)
         cvc.setTotalDeedsDone()
         
         for (achievementIndex, achievement) in cvc.dataSource.achievements.enumerated() {
@@ -138,11 +140,12 @@ class ChallengesViewControllerTests: XCTestCase {
             }
         }
     }
-    
+
     func testTableViewMovesBasedOnDailyChallenge() {
         let originalTableViewYPos: CGFloat = 0.263 * cvc.view.frame.height
+
         let amountToMoveTableViewDownBy = -0.122 * cvc.view.frame.height
-        
+
         cvc.revealDailyGoalRelatedItemsIfNeeded()
         XCTAssert(roundToTenThousandths(num: cvc.tableView.frame.origin.y) == roundToTenThousandths(num: originalTableViewYPos))
 
