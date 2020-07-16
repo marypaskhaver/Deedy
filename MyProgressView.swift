@@ -12,6 +12,7 @@ import CoreData
 class MyProgressView: UIProgressView {
     var cdm: CoreDataManager = CoreDataManager()
     var calendar = Calendar.current
+    var dateHandler = DateHandler()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,7 +47,7 @@ class MyProgressView: UIProgressView {
         let request: NSFetchRequest<Deed> = Deed.fetchRequest()
 
         // Get today's beginning & end
-        let dateFrom = calendar.startOfDay(for: Date())
+        let dateFrom = calendar.startOfDay(for: dateHandler.currentDate() as Date)
         let dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom)
        
         setRequestPredicatesBetween(dateFrom: dateFrom, dateTo: dateTo!, forRequest: request as! NSFetchRequest<NSFetchRequestResult>)
