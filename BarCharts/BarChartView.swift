@@ -22,7 +22,6 @@ class BarChartView: UIView {
     let contentSpace: CGFloat = 30.0
     
     var entryTooBig: Bool = false
-    var currentEntry: Int = 0
     
     // Generate graph when data is passed in
     var dataEntries: [BarEntry] = [] {
@@ -35,7 +34,7 @@ class BarChartView: UIView {
             var index: Int = 0
             
             while index < dataEntries.count {
-                currentEntry = index
+                BarChartDrawer.currentEntry = index
                 showEntry(index: index, entry: dataEntries[index], shrinkBarWidthByFactorOf: factor)
                 
                 while entryTooBig {
@@ -71,7 +70,6 @@ class BarChartView: UIView {
     
     override func layoutSubviews() {
         scrollView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
-
         scrollView.contentSize = CGSize(width: frame.size.width, height: (barHeight + space) * CGFloat(dataEntries.count) + contentSpace)
     }
     
@@ -94,8 +92,6 @@ class BarChartView: UIView {
     private func drawTitle(xPos: CGFloat, yPos: CGFloat, title: String) -> CATextLayer {
         let textLayer = BarChartDrawer(withView: self, withBarHeight: barHeight).drawTitle(xPos: xPos, yPos: yPos, title: title)
 
-        addAnimationToLayer(layer: textLayer)
-        
         mainLayer.addSublayer(textLayer)
 
         return textLayer
@@ -104,8 +100,6 @@ class BarChartView: UIView {
     private func drawBar(xPos: CGFloat, yPos: CGFloat, width: CGFloat, forEntry entry: BarEntry) -> CALayer {
         let barLayer = BarChartDrawer(withView: self, withBarHeight: barHeight).drawBar(xPos: xPos, yPos: yPos, width: width, forEntry: entry)
                 
-        addAnimationToLayer(layer: barLayer)
-
         mainLayer.addSublayer(barLayer)
     
         return barLayer
@@ -114,8 +108,6 @@ class BarChartView: UIView {
     private func drawTextValue(xPos: CGFloat, yPos: CGFloat, textValue: String) -> CATextLayer {
         let textLayer = BarChartDrawer(withView: self, withBarHeight: barHeight).drawTextValue(xPos: xPos, yPos: yPos, textValue: textValue)
         
-        addAnimationToLayer(layer: textLayer)
-
         mainLayer.addSublayer(textLayer)
         
         return textLayer
@@ -125,12 +117,6 @@ class BarChartView: UIView {
         let width = CGFloat(value / factor) * (mainLayer.frame.width - space)
         
         return abs(width)
-    }
-    
-    // MARK: - Animating CALayers
-    func addAnimationToLayer(layer: CALayer) {
-        layer.opacity = 0.0
-        layer.add(Animations.getFadeInAnimationForCALayer(atIndex: currentEntry), forKey: "fadeIn")
     }
    
 }
