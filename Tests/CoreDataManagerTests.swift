@@ -15,6 +15,7 @@ import CoreData
 class CoreDataManagerTests: XCTestCase {
     // MARK: - Class vars
     var sut: CoreDataManager!
+    let dateHandler = DateHandler()
     
     lazy var managedObjectModel: NSManagedObjectModel = MockDataModelObjects().managedObjectModel
     lazy var mockPersistentContainer: NSPersistentContainer = MockDataModelObjects().persistentContainer
@@ -38,11 +39,11 @@ class CoreDataManagerTests: XCTestCase {
     // MARK: - Needed funcs
     func initDeedStubs() {
         // Put fake items in the "database"
-        _ = sut.insertDeed(title: "1", date: Date())
-        _ = sut.insertDeed(title: "2", date: Date())
-        _ = sut.insertDeed(title: "3", date: Date())
-        _ = sut.insertDeed(title: "4", date: Date())
-        _ = sut.insertDeed(title: "5", date: Date())
+        _ = sut.insertDeed(title: "1", date: dateHandler.currentDate() as Date)
+        _ = sut.insertDeed(title: "2", date: dateHandler.currentDate() as Date)
+        _ = sut.insertDeed(title: "3", date: dateHandler.currentDate() as Date)
+        _ = sut.insertDeed(title: "4", date: dateHandler.currentDate() as Date)
+        _ = sut.insertDeed(title: "5", date: dateHandler.currentDate() as Date)
 
         sut.save()
     }
@@ -79,7 +80,7 @@ class CoreDataManagerTests: XCTestCase {
     // MARK: - Deed tests
     func testCreatingDeed() {
         let title = "A"
-        let date = Date()
+        let date = dateHandler.currentDate() as Date
         
         let deed = sut.insertDeed(title: title, date: date)
         
@@ -88,7 +89,7 @@ class CoreDataManagerTests: XCTestCase {
     
     func testSavingDeed() {
         let title = "A"
-        let date = Date()
+        let date = dateHandler.currentDate() as Date
 
         let expect = expectation(description: "Context Saved")
         
