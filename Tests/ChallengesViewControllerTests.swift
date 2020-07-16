@@ -138,5 +138,21 @@ class ChallengesViewControllerTests: XCTestCase {
             }
         }
     }
+    
+    func testTableViewMovesBasedOnDailyChallenge() {
+        let originalTableViewYPos: CGFloat = 0.263 * cvc.view.frame.height
+        let amountToMoveTableViewDownBy = -0.122 * cvc.view.frame.height
+        
+        cvc.revealDailyGoalRelatedItemsIfNeeded()
+        XCTAssert(roundToTenThousandths(num: cvc.tableView.frame.origin.y) == roundToTenThousandths(num: originalTableViewYPos))
+
+        cvc.dailyChallenge.dailyGoal = 1
+        cvc.revealDailyGoalRelatedItemsIfNeeded()
+        XCTAssert(roundToTenThousandths(num: cvc.tableView.frame.origin.y) == roundToTenThousandths(num: originalTableViewYPos + amountToMoveTableViewDownBy))
+    }
+    
+    func roundToTenThousandths(num: CGFloat) -> CGFloat {
+        return CGFloat(round(10000 * (num) / 10000))
+    }
 
 }
