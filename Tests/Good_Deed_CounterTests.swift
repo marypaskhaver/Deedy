@@ -141,5 +141,19 @@ class Good_Deed_CounterTests: XCTestCase {
             }
         }
     }
+    
+    func testSearchBarSetsDataSourceDeeds() {
+        // In initDeedStubs, a deed with the title "A" was created. Now I make 2 deeds with "a" or "A" in their titles.
+        addDeed(withTitle: "abacadae", date: dateHandler.currentDate() as Date)
+        addDeed(withTitle: "bbbbAAA", date: dateHandler.currentDate() as Date)
+
+        let searchBar = UISearchBar()
+        searchBar.text = "A"
+        
+        ddvc.searchBarSearchButtonClicked(searchBar)
+        
+        // From the initDeedStubs method and my call to addDeed above, there should be 3 deeds with "A" or "a" in their titles that show/are in ddvc.dataSource.deeds.
+        XCTAssert(ddvc.dataSource.deeds.count == 3)
+    }
 
 }
