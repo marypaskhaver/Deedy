@@ -80,9 +80,3 @@ class BarChartViewController: UIViewController {
     }
 
 }
-
-extension Date {
-    func days(from date: Date) -> Int {
-        Calendar.current.dateComponents([.day], from: date, to: self).day!
-    }
-}
