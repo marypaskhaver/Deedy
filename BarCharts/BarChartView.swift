@@ -56,14 +56,14 @@ class BarChartView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView()
+        setUpView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupView() {
+    private func setUpView() {
         scrollView.layer.addSublayer(mainLayer)
         addSubview(scrollView)
     }
