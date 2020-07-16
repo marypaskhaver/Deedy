@@ -26,10 +26,19 @@ class TutorialSetterUpper {
         let pages = vc.scrollView.createPages(forViewController: vc)
         vc.scrollView.setupSlideScrollView(withPages: pages)
         vc.view.bringSubviewToFront(vc.scrollView)
-        
+
         vc.pageControl.setUp(withScrollView: vc.scrollView, inViewController: vc)
         vc.view.bringSubviewToFront(vc.pageControl)
-        
+
+        vc.tutorialXButton.setUp(inScrollView: vc.scrollView)
+        vc.view.bringSubviewToFront(vc.tutorialXButton)
+    }
+    
+    static func setUp(withViewController vc: SettingsViewController) {
+        let pages = vc.scrollView.createPages(forViewController: vc)
+        vc.scrollView.setupSlideScrollView(withPages: pages)
+        vc.view.bringSubviewToFront(vc.scrollView)
+
         vc.tutorialXButton.setUp(inScrollView: vc.scrollView)
         vc.view.bringSubviewToFront(vc.tutorialXButton)
     }
