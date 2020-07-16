@@ -60,7 +60,7 @@ class ChallengesViewControllerTests: XCTestCase {
         // Put fake items in the "database"
         addDeed(withTitle: "A", date: Date())
         addDeed(withTitle: "B", date: Date())
-        addDeed(withTitle: "C", date: Calendar.current.date(byAdding: .day, value: 1, to: Date())!)
+        addDeed(withTitle: "C", date: Calendar.current.date(byAdding: .day, value: -1, to: Date())!)
     }
     
     func flushDataForEntity(withName name: String) {
@@ -112,6 +112,31 @@ class ChallengesViewControllerTests: XCTestCase {
     
     func testTotalDeedsDoneCorrect() {
         XCTAssert(ddvc.dataSource.deeds.count == cvc.totalDeedsDone)
+    }
+    
+    func testAchievementsProgressUpdates() {
+        for (achievementIndex, achievement) in cvc.dataSource.achievements.enumerated() {
+            let indexPath = IndexPath(row: achievementIndex, section: 0)
+            let cell: ChallengeTableViewCell = cvc.tableView.cellForRow(at: indexPath) as! ChallengeTableViewCell
+
+            if achievement.identifier == "deedAchievement" {
+                print(cell.subtitleLabel.text)
+                XCTAssertTrue(cell.subtitleLabel.text == "\(cvc.totalDeedsDone) / \(achievement.goalNumber)")
+            }
+        }
+        
+        addDeed(withTitle: "1", date: Date())
+        cvc.setTotalDeedsDone()
+        
+        for (achievementIndex, achievement) in cvc.dataSource.achievements.enumerated() {
+            let indexPath = IndexPath(row: achievementIndex, section: 0)
+            let cell: ChallengeTableViewCell = cvc.tableView.cellForRow(at: indexPath) as! ChallengeTableViewCell
+
+            if achievement.identifier == "deedAchievement" {
+                print(cell.subtitleLabel.text)
+                XCTAssertTrue(cell.subtitleLabel.text == "\(cvc.totalDeedsDone) / \(achievement.goalNumber)")
+            }
+        }
     }
 
 }
