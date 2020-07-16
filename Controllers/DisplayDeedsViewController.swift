@@ -99,13 +99,6 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         tableView.reloadData()
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.isDescendant(of: view.superview!) {
-            let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
-            pageControl.currentPage = Int(pageNumber)
-        }
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         backgroundView.changeBackgroundColor()
         
