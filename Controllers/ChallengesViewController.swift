@@ -110,13 +110,6 @@ class ChallengesViewController: UIViewController {
         tableView.reloadData()
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.isDescendant(of: view.superview!) {
-            let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
-            pageControl.currentPage = Int(pageNumber)
-        }
-    }
-    
     func hideTutorialItems(bool: Bool) {
         scrollView.isHidden = bool
         pageControl.isHidden = bool
