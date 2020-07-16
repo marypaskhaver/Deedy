@@ -26,7 +26,7 @@ class ChallengesViewController: UIViewController {
     @IBOutlet var backgroundView: BackgroundView!
     
     @IBOutlet weak var scrollView: TutorialScrollView!
-    @IBOutlet weak var tutorialXButton: UIButton!
+    @IBOutlet weak var tutorialXButton: TutorialXButton!
     @IBOutlet weak var pageControl: TutorialPageControl!
     
     var cdm = CoreDataManager()
@@ -105,7 +105,7 @@ class ChallengesViewController: UIViewController {
         pageControl.setUp(withScrollView: scrollView, inViewController: self)
         view.bringSubviewToFront(pageControl)
         
-        tutorialXButton.frame = CGRect(x: scrollView.frame.width - 20, y: scrollView.frame.origin.y + 10, width: 30, height: 30)
+        tutorialXButton.setUp(inScrollView: scrollView)
         view.bringSubviewToFront(tutorialXButton)
         
         tableView.reloadData()
