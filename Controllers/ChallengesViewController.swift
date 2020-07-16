@@ -27,7 +27,7 @@ class ChallengesViewController: UIViewController {
     
     @IBOutlet weak var scrollView: TutorialScrollView!
     @IBOutlet weak var tutorialXButton: UIButton!
-    @IBOutlet weak var pageControl: MyPageControl!
+    @IBOutlet weak var pageControl: TutorialPageControl!
     
     var cdm = CoreDataManager()
     lazy var dailyChallenge = DailyChallenge(context: cdm.backgroundContext)
