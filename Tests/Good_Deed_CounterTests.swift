@@ -149,11 +149,23 @@ class Good_Deed_CounterTests: XCTestCase {
 
         let searchBar = UISearchBar()
         searchBar.text = "A"
-        
         ddvc.searchBarSearchButtonClicked(searchBar)
         
         // From the initDeedStubs method and my call to addDeed above, there should be 3 deeds with "A" or "a" in their titles that show/are in ddvc.dataSource.deeds.
         XCTAssert(ddvc.dataSource.deeds.count == 3)
+        
+        for deed in ddvc.dataSource.deeds {
+            let text: String = searchBar.text!
+            
+            let deedContainsSearchBarTextLowercased = deed.title!.contains(text.lowercased())
+            let deedContainsSearchBarTextUppercased = deed.title!.contains(text.uppercased())
+
+            XCTAssert(deedContainsSearchBarTextLowercased || deedContainsSearchBarTextUppercased)
+        }
+        
+        searchBar.text = "Aa"
+        ddvc.searchBarSearchButtonClicked(searchBar)
+        XCTAssert(ddvc.dataSource.deeds.count == 1)
     }
 
 }
