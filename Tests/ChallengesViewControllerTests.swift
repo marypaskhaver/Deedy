@@ -147,14 +147,27 @@ class ChallengesViewControllerTests: XCTestCase {
         
         XCTAssert(cvc.streak.daysKept == 0)
         
-        cvc.dateHandler = MockDataModelObjects.MockDateHandler()
+        cvc.dateHandler = MockDataModelObjects.MockDateHandler() // Go one day into the future
         cvc.loadDailyGoalValue()
         cvc.loadStreak()
         cvc.updateStreak()
         
         XCTAssert(cvc.streak.daysKept == 1)
     }
-
+    
+    func testStreakDoesReset() {
+        cvc.streak.daysKept = 1
+        cvc.cdm.save()
+                
+        cvc.dateHandler = MockDataModelObjects.MockDateHandler() // Go one day into the future
+        
+        cvc.loadDailyGoalValue()
+        cvc.loadStreak()
+        cvc.updateStreak()
+        
+        XCTAssert(cvc.streak.daysKept == 0)
+    }
+    
     func testTableViewMovesBasedOnDailyChallenge() {
         let originalTableViewYPos: CGFloat = 0.263 * cvc.view.frame.height
 
