@@ -24,6 +24,7 @@ class StreakAchievements: AchievementProtocol {
     
     static func setCellText(forCell cell: ChallengeTableViewCell, forAchievement achievement: Achievement) {
         let streakDaysKept = getStreakDaysKept()
+        
         if (streakDaysKept >= achievement.goalNumber) {
             markAchievementDoneAndSetCellSubtitleTextToComplete(forCell: cell, forAchievement: achievement)
         } else {
@@ -36,10 +37,10 @@ class StreakAchievements: AchievementProtocol {
         achievement.isDone = true
     }
     
-    static func getStreakDaysKept() -> Int {
+    static func getStreakDaysKept() -> Int32 {
         let request: NSFetchRequest<Streak> = Streak.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
 
-        return Int(cdm.fetchStreaks(with: request)[0].daysKept)
+        return cdm.fetchStreaks(with: request).map( { $0.daysKept }).max() ?? 0
     }
 }
