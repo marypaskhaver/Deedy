@@ -28,11 +28,11 @@ class BarChartViewControllerTests: XCTestCase {
         
         ddvc = MockDataModelObjects().createDisplayDeedsViewController()
         
-        bvc = storyboard.instantiateViewController(identifier: "BarChartViewController") as? BarChartViewController
-        bvc.loadViewIfNeeded()
-        bvc.cdm = ddvc.dataSource.cdm
-        
         initDeedStubs()
+
+        bvc = storyboard.instantiateViewController(identifier: "BarChartViewController") as? BarChartViewController
+        bvc.cdm = ddvc.dataSource.cdm
+        bvc.loadViewIfNeeded()
     }
 
     override func tearDown() {
