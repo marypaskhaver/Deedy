@@ -1,5 +1,5 @@
 //
-//  MyPageControl.swift
+//  TutorialPageControl.swift
 //  Good Deed Counter
 //
 //  Created by Mary Paskhaver on 7/15/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyPageControl: UIPageControl {
+class TutorialPageControl: UIPageControl {
     
     override func awakeFromNib() {
         super.awakeFromNib()
