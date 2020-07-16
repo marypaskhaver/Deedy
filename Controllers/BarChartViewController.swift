@@ -10,9 +10,10 @@ import UIKit
 import CoreData
 
 class BarChartViewController: UIViewController {
-    
     var deedsDone = [Deed]()
     var cdm: CoreDataManager = CoreDataManager()
+    var dateHandler = DateHandler()
+    
     @IBOutlet weak var noDeedsDoneLabel: UILabel!
     
     lazy var barChartView: BarChartView = {
@@ -63,7 +64,7 @@ class BarChartViewController: UIViewController {
         var calendar = Calendar.current
         calendar.timeZone = NSTimeZone.local
         
-        let tomorrow = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: Date()))
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: dateHandler.currentDate() as Date))
         let oneMonthEarlier = calendar.date(byAdding: .month, value: -1, to: tomorrow!)
 
         setRequestPredicatesBetween(dateFrom: oneMonthEarlier!, dateTo: tomorrow!, forRequest: request as! NSFetchRequest<NSFetchRequestResult>)
