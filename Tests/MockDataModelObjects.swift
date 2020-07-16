@@ -50,5 +50,13 @@ class MockDataModelObjects {
         
         return ddvc
     }
+    
+    class MockDateHandler: DateHandler {
+        var mockedDate: NSDate! = NSDate(timeIntervalSinceNow: 86400) // Mock date, 1 day from today
+        
+        override func currentDate() -> NSDate! {           
+            return mockedDate
+        }
+    }
 
 }
