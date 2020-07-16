@@ -10,65 +10,65 @@ import UIKit
 
 extension DisplayDeedsViewController: UITableViewDelegate {
     // Edit deed
-     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+            let editContextItem = UIContextualAction(style: .normal, title: "Edit") {  (contextualAction, view, boolValue) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                 
+            let evc = storyboard.instantiateViewController(withIdentifier: "EditDeedViewController") as! EditDeedViewController
+                 
+            evc.delegate = self
+                 
+            evc.oldText = self.dataSource.deeds[indexPath.row].title!
+             
+            self.navigationController?.present(evc, animated: true)
+             
+            self.editedIndexPath = indexPath
+        }
          
-         let editContextItem = UIContextualAction(style: .normal, title: "Edit") {  (contextualAction, view, boolValue) in
-             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-             
-             let evc = storyboard.instantiateViewController(withIdentifier: "EditDeedViewController") as! EditDeedViewController
-             
-             evc.delegate = self
-             
-             evc.oldText = self.dataSource.deeds[indexPath.row].title!
-             
-             self.navigationController?.present(evc, animated: true)
-             
-             self.editedIndexPath = indexPath
-         }
-         
-         // Dark blue
-         editContextItem.backgroundColor = CustomColors.editButtonBlue
+        // Dark blue
+        editContextItem.backgroundColor = CustomColors.editButtonBlue
 
-         let swipeActions = UISwipeActionsConfiguration(actions: [editContextItem])
+        let swipeActions = UISwipeActionsConfiguration(actions: [editContextItem])
          
-         return swipeActions
-     }
+        return swipeActions
+    }
      
-     func userEditedDeed(newDeedTitle: String) {
-         editedDeedText = newDeedTitle
+    func userEditedDeed(newDeedTitle: String) {
+        editedDeedText = newDeedTitle
          
-         dataSource.deeds[editedIndexPath.row].title = editedDeedText
+        dataSource.deeds[editedIndexPath.row].title = editedDeedText
 
-         editedDeedText = ""
-         editedIndexPath = nil
-         
-         dataSource.saveDeeds()
-         updateSections()
-         
-         tableView.reloadData()
+        editedDeedText = ""
+        editedIndexPath = nil
+     
+        dataSource.saveDeeds()
+        updateSections()
+     
+        tableView.reloadData()
      }
      
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         tableView.deselectRow(at: indexPath, animated: true)
-     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
      
-     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-         if dataSource.sections.isEmpty {
-             return 0
-         }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if dataSource.sections.isEmpty {
+            return 0
+        }
          
-         return headerFont.pointSize + 18
-     }
+        return headerFont.pointSize + 18
+    }
      
-     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.textLabel?.font = headerFont
     }
      
      // Animate cells here
-     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-         let animation = Animations.slideRightToLeftAnimation(duration: 1, delayFactor: 0.1)
-         let animator = TableViewCellAnimator(animation: animation)
-         animator.animate(cell: cell, at: indexPath, in: tableView)
-     }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let animation = Animations.slideRightToLeftAnimation(duration: 1, delayFactor: 0.1)
+        let animator = TableViewCellAnimator(animation: animation)
+        animator.animate(cell: cell, at: indexPath, in: tableView)
+    }
+    
 }
