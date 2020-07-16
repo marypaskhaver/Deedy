@@ -98,15 +98,7 @@ class ChallengesViewController: UIViewController {
         hideTutorialItems(bool: false)
         stepper.isEnabled = false
         
-        let pages = scrollView.createPages(forViewController: self)
-        scrollView.setupSlideScrollView(withPages: pages)
-        view.bringSubviewToFront(scrollView)
-        
-        pageControl.setUp(withScrollView: scrollView, inViewController: self)
-        view.bringSubviewToFront(pageControl)
-        
-        tutorialXButton.setUp(inScrollView: scrollView)
-        view.bringSubviewToFront(tutorialXButton)
+        TutorialSetterUpper.setUp(withViewController: self)
         
         tableView.reloadData()
     }
