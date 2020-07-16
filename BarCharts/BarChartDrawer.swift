@@ -33,7 +33,9 @@ class BarChartDrawer {
         let barLayer = CALayer()
                 
         barLayer.frame = CGRect(x: xPos, y: yPos, width: width, height: barHeight)
-                        
+        barLayer.borderWidth = 1
+        barLayer.borderColor = UIColor.white.cgColor
+
         if let navBarColor = defaults.color(forKey: "navBarColor") {
             changeLayerToColorFromComponents(from: navBarColor, toLayer: barLayer)
         } else {
