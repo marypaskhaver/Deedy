@@ -59,7 +59,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         sortDeedsFromSavedData()
         updateSections()
    
-        topView.setHeightInViewController(vc: self)
+        topView.setFrameInViewController(vc: self)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
