@@ -58,12 +58,8 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
                         
         sortDeedsFromSavedData()
         updateSections()
-        
-        let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height
-        
-        if (navigationController?.navigationBar.frame.height) != nil {
-            topView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)! + (statusBarHeight ?? 0), width: self.view.frame.width, height: topView.frame.height)
-        }
+   
+        topView.setHeightInViewController(vc: self)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
