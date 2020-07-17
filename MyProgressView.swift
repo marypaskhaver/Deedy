@@ -22,16 +22,12 @@ class MyProgressView: UIProgressView {
     }
     
     func updateProgress() {
-        let dailyGoal = getDailyGoalValue()
+        let dailyGoal = cdm.fetchDailyChallenges()
 
         if (dailyGoal > 0) {
             let progress = Float(getCountOfDeedsDoneToday()) / Float(dailyGoal)
             self.setProgress(progress, animated: true)
         }
-    }
-    
-    func getDailyGoalValue() -> Int32 {
-        return cdm.fetchDailyChallenges()
     }
     
     func getCountOfDeedsDoneToday() -> Int {
