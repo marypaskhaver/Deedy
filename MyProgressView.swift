@@ -31,16 +31,7 @@ class MyProgressView: UIProgressView {
     }
     
     func getDailyGoalValue() -> Int32 {
-        let request: NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-        
-        let fetchedRequest = cdm.fetchDailyChallenges(with: request)
-            
-        if fetchedRequest.count == 0 {
-            return 0
-        }
-    
-        return fetchedRequest[0].dailyGoal
+        return cdm.fetchDailyChallenges()
     }
     
     func getCountOfDeedsDoneToday() -> Int {
