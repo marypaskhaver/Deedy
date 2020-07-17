@@ -85,10 +85,6 @@ class ChallengesViewControllerTests: XCTestCase {
         flushDataForEntity(withName: "Achievement")
     }
     
-    func testDailyProgressViewDailyGoalValueSame() {
-        XCTAssert(cvc.dailyChallenge.dailyGoal == cvc.dailyGoalProgressView.getDailyGoalValue())
-    }
-    
     func testDailyGoalProgressViewGetsDeedsDoneToday() {
         XCTAssert(cvc.dailyGoalProgressView.getCountOfDeedsDoneToday() == 2)
     }
