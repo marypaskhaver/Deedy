@@ -30,7 +30,8 @@ class ChallengesViewControllerTests: XCTestCase {
         cvc = storyboard.instantiateViewController(identifier: "ChallengesViewController") as? ChallengesViewController
         cvc.cdm = ddvc.dataSource.cdm
         cvc.loadViewIfNeeded()
-        cvc.dataSource.cdm = ddvc.dataSource.cdm
+        cvc.dataSource.cdm = cvc.dataSource.cdm
+        cvc.dailyGoalProgressView.cdm = cvc.dataSource.cdm
         cvc.setTotalDeedsDone()
         cvc.dataSource.loadAchievements()
         cvc.dailyGoalProgressView.cdm = ddvc.dataSource.cdm
@@ -147,7 +148,7 @@ class ChallengesViewControllerTests: XCTestCase {
         
         XCTAssert(cvc.streak.daysKept == 0)
         
-        cvc.dateHandler = MockDataModelObjects.MockDateHandler() // Go one day into the future
+        cvc.dateHandler = MockDataModelObjects.MockDateHandler() // Go one day into the future 
         cvc.loadDailyGoalValue()
         cvc.loadStreak()
         cvc.updateStreak()
