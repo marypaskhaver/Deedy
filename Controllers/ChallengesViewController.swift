@@ -73,7 +73,6 @@ class ChallengesViewController: UIViewController {
         TableViewModification.setRowAndEstimatedRowHeightsToAutomaticDimension(forTableView: tableView)
                 
         dataSource = ChallengesViewControllerTableViewDataSource(withView: self.view)
-        
         tableView.dataSource = dataSource
 
         setTotalDeedsDone()
@@ -87,6 +86,8 @@ class ChallengesViewController: UIViewController {
         if totalDeedsDone > 0 && !streak.wasUpdatedToday {
             updateStreak()
         }
+        
+        tableView.reloadData()
         
         dailyGoalProgressView.updateProgress()
 
@@ -114,6 +115,7 @@ class ChallengesViewController: UIViewController {
         dailyGoalProgressView.updateProgress() // needed?
 
         setTotalDeedsDone()
+        tableView.reloadData()
         
         backgroundView.changeBackgroundColor()
         
@@ -133,31 +135,16 @@ class ChallengesViewController: UIViewController {
     
     func setTotalDeedsDone() {
         self.totalDeedsDone = cdm.fetchDeeds().count
-        
-        // Reloads achievements with updated text
-        tableView.reloadData()
     }
     
     // MARK: - Updating Daily Streak
     func loadStreak() {
-        let request: NSFetchRequest<Streak> = Streak.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        let latestStreak: Streak = cdm.fetchLatestStreak()
+        streak.daysKept = latestStreak.daysKept
+        streak.date = latestStreak.date
+        streak.wasUpdatedToday = latestStreak.wasUpdatedToday
 
-        let fetchedRequest = cdm.fetchStreaks(with: request)
-        
-        // No previous streaks have ever been saved
-        if (fetchedRequest.count == 0) {
-            streak = cdm.insertStreak(daysKept: 0, wasUpdatedToday: false, date: dateHandler.currentDate() as Date)!
-        } else {
-            streak.daysKept = fetchedRequest[0].daysKept
-            streak.date = fetchedRequest[0].date
-        }
-        
-        if streak.date == nil {
-            streak.date = dateHandler.currentDate() as Date
-        }
-        
-        // Set wasUpdatedToday to false if the streak's previous date was before today
+        // Set wasUpdatedToday to true if the streak's date is today
         if calendar.isDateInToday(streak.date!) {
             streak.wasUpdatedToday = true
         } else {
@@ -169,7 +156,7 @@ class ChallengesViewController: UIViewController {
         dailyGoalStreakLabel.text = String(streak.daysKept)
     }
     
-    func updateStreak() {
+    func updateStreak() {        
         let request: NSFetchRequest<Deed> = Deed.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
@@ -186,11 +173,12 @@ class ChallengesViewController: UIViewController {
             streak.daysKept = 0
         } else {
             streak.daysKept += 1
+            streak = cdm.insertStreak(daysKept: streak.daysKept, wasUpdatedToday: streak.wasUpdatedToday, date: streak.date ?? dateHandler.currentDate() as Date)!
         }
         
-        streak.date = dateHandler.currentDate() as Date
-        dailyGoalStreakLabel.text = String(streak.daysKept)
         streak.wasUpdatedToday = true
+        dailyGoalStreakLabel.text = String(streak.daysKept)
+        cdm.save()
     }
     
     // MARK: - Manipulating Views and Daily Challenge Items
@@ -245,7 +233,7 @@ class ChallengesViewController: UIViewController {
     }
     
     func loadDailyGoalValue() {
-        dailyChallenge.dailyGoal = cdm.fetchDailyChallenges()
+        dailyChallenge.dailyGoal = cdm.fetchLatestDailyChallengeDailyGoal()
         dailyChallenge.date = dateHandler.currentDate() as Date
         
         stepper.value = Double(dailyChallenge.dailyGoal)
