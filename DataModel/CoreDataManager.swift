@@ -12,6 +12,7 @@ import UIKit
 
 class CoreDataManager {
     let persistentContainer: NSPersistentContainer!
+    var dateHandler = DateHandler()
     
     // MARK: - Init with dependency
     init(container: NSPersistentContainer) {
@@ -24,6 +25,7 @@ class CoreDataManager {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             fatalError("Can not get shared app delegate")
         }
+        
         self.init(container: appDelegate.persistentContainer)
     }
     
@@ -58,10 +60,20 @@ class CoreDataManager {
         return challenge
     }
     
-    func fetchDailyChallenges(with request: NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()) -> [DailyChallenge] {        
+    func fetchDailyChallenges(with request: NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()) -> Int32 {
+        let request: NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        
         let results = try? persistentContainer.viewContext.fetch(request)
         
-        return results ?? [DailyChallenge]()
+        // If no DailyChallenges have been saved before
+        if results?.count == 0 {
+            _ = self.insertDailyChallenge(dailyGoal: 0, date: dateHandler.currentDate() as Date)!
+            self.save()
+            return 0
+        }
+        
+        return results?[0].dailyGoal ?? 0
     }
     
     // MARK: - CRUD for Streaks
@@ -76,9 +88,9 @@ class CoreDataManager {
     }
     
     func fetchStreaks(with request: NSFetchRequest<Streak> = Streak.fetchRequest()) -> [Streak] {
-            let results = try? persistentContainer.viewContext.fetch(request)
-            
-            return results ?? [Streak]()
+        let results = try? persistentContainer.viewContext.fetch(request)
+        
+        return results ?? [Streak]()
     }
     
     // MARK: - CRUD for Achievements
@@ -94,9 +106,9 @@ class CoreDataManager {
     }
     
     func fetchAchievements(with request: NSFetchRequest<Achievement> = Achievement.fetchRequest()) -> [Achievement] {
-            let results = try? persistentContainer.viewContext.fetch(request)
-            
-            return results ?? [Achievement]()
+        let results = try? persistentContainer.viewContext.fetch(request)
+        
+        return results ?? [Achievement]()
     }
     
     // MARK: - Universal save
