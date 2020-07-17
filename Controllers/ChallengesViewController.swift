@@ -245,17 +245,7 @@ class ChallengesViewController: UIViewController {
     }
     
     func loadDailyGoalValue() {
-        let request: NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-        
-        let fetchedRequest = cdm.fetchDailyChallenges(with: request)
-            
-        if fetchedRequest.count == 0 {
-            dailyChallenge = cdm.insertDailyChallenge(dailyGoal: 0, date: dateHandler.currentDate() as Date)!
-        } else {
-            dailyChallenge.dailyGoal = fetchedRequest[0].dailyGoal
-        }
-
+        dailyChallenge.dailyGoal = cdm.fetchDailyChallenges()
         dailyChallenge.date = dateHandler.currentDate() as Date
         
         stepper.value = Double(dailyChallenge.dailyGoal)
