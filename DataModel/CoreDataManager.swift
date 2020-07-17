@@ -60,7 +60,7 @@ class CoreDataManager {
         return challenge
     }
     
-    func fetchDailyChallengeDailyGoal(with request: NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()) -> Int32 {
+    func fetchLatestDailyChallengeDailyGoal(with request: NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()) -> Int32 {
         let request: NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
@@ -84,6 +84,7 @@ class CoreDataManager {
         streak.wasUpdatedToday = wasUpdatedToday
         streak.date = date
         
+        self.save()
         return streak
     }
     
@@ -91,6 +92,23 @@ class CoreDataManager {
         let results = try? persistentContainer.viewContext.fetch(request)
         
         return results ?? [Streak]()
+    }
+    
+    func fetchLatestStreak(with request: NSFetchRequest<Streak> = Streak.fetchRequest()) -> Streak {
+        let request: NSFetchRequest<Streak> = Streak.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+
+        let results = try? persistentContainer.viewContext.fetch(request)
+
+        // No previous streaks have ever been saved
+        if (results?.count == 0) {
+            print("results.count is 0, no previous streaks saved")
+            let newStreak = self.insertStreak(daysKept: 0, wasUpdatedToday: false, date: dateHandler.currentDate() as Date)!
+            self.save()
+            return newStreak
+        }
+        
+        return (results?[0])!
     }
     
     // MARK: - CRUD for Achievements
