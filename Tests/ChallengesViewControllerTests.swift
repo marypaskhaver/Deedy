@@ -119,7 +119,7 @@ class ChallengesViewControllerTests: XCTestCase {
             let cell: ChallengeTableViewCell = cvc.tableView.cellForRow(at: indexPath) as! ChallengeTableViewCell
 
             if achievement.identifier == "deedAchievement" {
-                print(cell.subtitleLabel.text)
+                print(cell.subtitleLabel.text!)
                 XCTAssertTrue(cell.subtitleLabel.text == "\(cvc.totalDeedsDone) / \(achievement.goalNumber)")
             }
         }
@@ -132,7 +132,7 @@ class ChallengesViewControllerTests: XCTestCase {
             let cell: ChallengeTableViewCell = cvc.tableView.cellForRow(at: indexPath) as! ChallengeTableViewCell
 
             if achievement.identifier == "deedAchievement" {
-                print(cell.subtitleLabel.text)
+                print(cell.subtitleLabel.text!)
                 XCTAssertTrue(cell.subtitleLabel.text == "\(cvc.totalDeedsDone) / \(achievement.goalNumber)")
             }
         }
