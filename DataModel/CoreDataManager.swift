@@ -60,7 +60,7 @@ class CoreDataManager {
         return challenge
     }
     
-    func fetchDailyChallenges(with request: NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()) -> Int32 {
+    func fetchDailyChallengeDailyGoal(with request: NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()) -> Int32 {
         let request: NSFetchRequest<DailyChallenge> = DailyChallenge.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
