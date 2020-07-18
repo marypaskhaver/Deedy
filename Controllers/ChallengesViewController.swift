@@ -110,7 +110,7 @@ class ChallengesViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        dailyGoalProgressView.updateProgress() // needed?
+        dailyGoalProgressView.updateProgress()
 
         setTotalDeedsDone()
         tableView.reloadData()
