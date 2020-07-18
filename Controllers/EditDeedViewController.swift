@@ -42,6 +42,8 @@ class EditDeedViewController: UIViewController {
 
         if let navBarColor = defaults.color(forKey: "navBarColor") {
             topView.backgroundColor = navBarColor
+        } else {
+            topView.backgroundColor = CustomColors.defaultBlue
         }
         
         textView.text = oldText
