@@ -144,7 +144,7 @@ class ChallengesViewController: UIViewController {
         streak.date = latestStreak.date
         streak.wasUpdatedToday = latestStreak.wasUpdatedToday
 
-        // Set wasUpdatedToday to true if the streak's date is today
+        // Set wasUpdatedToday to true if the streak's date is today so it doesn't update multiple times.
         if calendar.isDateInToday(streak.date!) {
             streak.wasUpdatedToday = true
         } else {
@@ -156,7 +156,7 @@ class ChallengesViewController: UIViewController {
         dailyGoalStreakLabel.text = String(streak.daysKept)
     }
     
-    func updateStreak() {        
+    func updateStreak() {
         let request: NSFetchRequest<Deed> = Deed.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
