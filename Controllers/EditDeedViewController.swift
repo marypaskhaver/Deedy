@@ -29,12 +29,12 @@ class EditDeedViewController: UIViewController {
             invalidInputWarningLabel.isHidden = false
         } else {
             delegate?.userEditedDeed(newDeedTitle: trimmedText)
-            presentingViewController?.dismiss(animated: true, completion:nil)
+            presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        presentingViewController?.dismiss(animated: true, completion:nil)
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
