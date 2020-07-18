@@ -183,5 +183,11 @@ class ChallengesViewControllerTests: XCTestCase {
     func roundToTenThousandths(num: CGFloat) -> CGFloat {
         return CGFloat(round(10000 * (num) / 10000))
     }
+    
+    func testShowingTutorialDisablesStepper() {
+        XCTAssertTrue(cvc.stepper.isEnabled)
+        cvc.showTutorial()
+        XCTAssertFalse(cvc.stepper.isEnabled)
+    }
 
 }
