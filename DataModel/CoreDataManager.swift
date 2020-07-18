@@ -102,7 +102,6 @@ class CoreDataManager {
 
         // No previous streaks have ever been saved
         if (results?.count == 0) {
-            print("results.count is 0, no previous streaks saved")
             let newStreak = self.insertStreak(daysKept: 0, wasUpdatedToday: false, date: dateHandler.currentDate() as Date)!
             self.save()
             return newStreak
