@@ -57,6 +57,7 @@ class ChallengesViewControllerTests: XCTestCase {
         ddvc.dataSource.saveDeeds()
         
         cvc.setTotalDeedsDone()
+        cvc.tableView.reloadData()
     }
     
     func initDeedStubs() {
@@ -126,6 +127,7 @@ class ChallengesViewControllerTests: XCTestCase {
         
         addDeed(withTitle: "1", date: dateHandler.currentDate() as Date)
         cvc.setTotalDeedsDone()
+        cvc.tableView.reloadData()
         
         for (achievementIndex, achievement) in cvc.dataSource.achievements.enumerated() {
             let indexPath = IndexPath(row: achievementIndex, section: 0)
