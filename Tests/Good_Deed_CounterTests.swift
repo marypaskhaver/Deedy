@@ -202,5 +202,21 @@ class Good_Deed_CounterTests: XCTestCase {
         print(ddvc.dataSource.deeds.count)
         XCTAssert(ddvc.dataSource.deeds.count == 7) // Initial amount in initDeedStubs + 2 deeds added at top of method
     }
+    
+    func testShowingTutorialEnablesBarButtons() {
+        XCTAssertTrue(ddvc.navigationItem.leftBarButtonItem!.isEnabled)
+        
+        for item in ddvc.navigationItem.rightBarButtonItems! {
+            XCTAssertTrue(item.isEnabled)
+        }
+
+        ddvc.showTutorial()
+
+        XCTAssertFalse(ddvc.navigationItem.leftBarButtonItem!.isEnabled)
+        
+        for item in ddvc.navigationItem.rightBarButtonItems! {
+            XCTAssertFalse(item.isEnabled)
+        }
+    }
 
 }
