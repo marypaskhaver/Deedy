@@ -50,8 +50,6 @@ class ChallengesViewController: UIViewController {
         dailyGoalStepperLabel.text = String(dailyChallenge.dailyGoal)
         
         revealDailyGoalRelatedItemsIfNeeded()
-
-        saveGoalsAndAchievements()
         
         dailyGoalProgressView.updateProgress()
     }
@@ -216,10 +214,6 @@ class ChallengesViewController: UIViewController {
     }
     
     // MARK: - Model Manipulation Methods
-    func saveGoalsAndAchievements() {
-        cdm.save()
-    }
-    
     func loadDailyGoalValue() {
         dailyChallenge.dailyGoal = cdm.fetchLatestDailyChallengeDailyGoal()
         dailyChallenge.date = dateHandler.currentDate() as Date
