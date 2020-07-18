@@ -145,11 +145,7 @@ class ChallengesViewController: UIViewController {
         streak.wasUpdatedToday = latestStreak.wasUpdatedToday
 
         // Set wasUpdatedToday to true if the streak's date is today so it doesn't update multiple times.
-        if calendar.isDateInToday(streak.date!) {
-            streak.wasUpdatedToday = true
-        } else {
-            streak.wasUpdatedToday = false
-        }
+        streak.wasUpdatedToday = calendar.isDateInToday(streak.date!) ? true : false
         
         streak.date = dateHandler.currentDate() as Date
 
