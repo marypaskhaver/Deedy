@@ -38,5 +38,17 @@ class SettingsViewControllerTests: XCTestCase {
         XCTAssert(svc.greenSlider.value == Float(g * 255))
         XCTAssert(svc.blueSlider.value == Float(b * 255))
     }
+    
+    func testShowingTutorialDisablesSlidersAndButtons() {
+        for item in [svc.redSlider, svc.greenSlider, svc.blueSlider, svc.reviewTutorialButton, svc.resetButton] {
+            XCTAssertTrue(item!.isEnabled)
+        }
+
+        svc.showTutorial()
+        
+        for item in [svc.redSlider, svc.greenSlider, svc.blueSlider, svc.reviewTutorialButton, svc.resetButton] {
+            XCTAssertFalse(item!.isEnabled)
+        }
+    }
 
 }
