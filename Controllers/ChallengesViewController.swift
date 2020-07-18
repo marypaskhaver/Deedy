@@ -217,14 +217,6 @@ class ChallengesViewController: UIViewController {
     
     // MARK: - Model Manipulation Methods
     func saveGoalsAndAchievements() {
-        if dailyChallenge.date == nil {
-            dailyChallenge.date = dateHandler.currentDate() as Date
-        }
-
-        if streak.date == nil {
-            streak.date = dateHandler.currentDate() as Date
-        }
-
         cdm.save()
     }
     
