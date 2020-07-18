@@ -203,7 +203,6 @@ class ChallengesViewController: UIViewController {
             tableView.frame = CGRect(x: 0, y: originalTableViewYPos, width: CGFloat(tableView.frame.width), height: CGFloat(tableView.frame.height))
         }
         
-        dailyGoalProgressView.updateProgress()
     }
 
     func hideDailyGoalRelatedItems(bool: Bool) {
@@ -221,6 +220,7 @@ class ChallengesViewController: UIViewController {
         stepper.value = Double(dailyChallenge.dailyGoal)
         dailyGoalStepperLabel.text = String(dailyChallenge.dailyGoal)
         revealDailyGoalRelatedItemsIfNeeded()
+        dailyGoalProgressView.updateProgress()
     }
     
     func setRequestPredicatesBetween(dateFrom: Date, dateTo: Date, forRequest request: NSFetchRequest<NSFetchRequestResult>) {
