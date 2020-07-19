@@ -46,6 +46,8 @@ class EditDeedViewController: UIViewController {
             topView.backgroundColor = CustomColors.defaultBlue
         }
         
+        topView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 88)
+        
         textView.text = oldText
         
         invalidInputWarningLabel.isHidden = true
