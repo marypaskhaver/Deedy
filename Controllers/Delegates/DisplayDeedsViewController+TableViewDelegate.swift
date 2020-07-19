@@ -19,7 +19,7 @@ extension DisplayDeedsViewController: UITableViewDelegate {
             evc.delegate = self
                 
             // When the EditDeedViewController shows, its textView will contain the deed's text
-            evc.oldText = self.dataSource.deeds[indexPath.row].title!
+            evc.oldText = self.dataSource.sections[indexPath.section].deeds[indexPath.row].title!
              
             self.navigationController?.present(evc, animated: true)
              
@@ -35,16 +35,16 @@ extension DisplayDeedsViewController: UITableViewDelegate {
      
     func userEditedDeed(newDeedTitle: String) {
         editedDeedText = newDeedTitle
-         
+
+        dataSource.sections[editedIndexPath.section].deeds[editedIndexPath.row].title = editedDeedText
         dataSource.deeds[editedIndexPath.row].title = editedDeedText
+        tableView.reloadRows(at: [editedIndexPath], with: .automatic)
 
         editedDeedText = ""
      
         dataSource.saveDeeds()
         updateSections()
      
-        tableView.reloadRows(at: [editedIndexPath], with: .automatic)
-
         editedIndexPath = nil
      }
      
