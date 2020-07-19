@@ -114,9 +114,7 @@ class BarChartView: UIView {
     }
     
     private func calculateBarWidth(value: Float, shrinkByFactorOf factor: Float) -> CGFloat {
-        let width = CGFloat(value / factor) * (mainLayer.frame.width - space)
-
-        return abs(width)
+        return abs(CGFloat(value / factor) * (mainLayer.frame.width - verticalSpaceBetweenEntries))
     }
    
 }
