@@ -12,7 +12,7 @@ import CoreData
 class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
     static var timeSection: String = "Month"
     static let dateFormatter = DateFormatter()
-    
+        
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalDeedsLabel: UILabel!
     @IBOutlet weak var topView: TopView!
@@ -37,7 +37,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         tableView.reloadData()
 
         enableBarButtons(bool: true)
-        defaults.set(true, forKey: "DisplayDeedsViewControllerTutorialShown")
+        defaults.set(true, forKey: UserDefaultsKeys.displayDeedsViewControllerTutorialShown)
     }
     
     override func viewDidLoad() {
@@ -82,16 +82,14 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
     func showTutorial() {
         enableBarButtons(bool: false)
         hideTutorialItems(bool: false)
-        
         TutorialSetterUpper.setUp(withViewController: self)
-        
         tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         backgroundView.changeBackgroundColor()
         
-        if defaults.object(forKey: "DisplayDeedsViewControllerTutorialShown") == nil {
+        if defaults.object(forKey: UserDefaultsKeys.displayDeedsViewControllerTutorialShown) == nil {
             showTutorial()
         }
         
@@ -119,7 +117,6 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         
         if (segue.identifier == "doneAddingSegue") {
             let addDeedVC = segue.source as! AddDeedViewController
-            
             dataSource.addDeed(title: addDeedVC.textView.text!, date: dateHandler.currentDate() as Date)
         }
         
@@ -147,11 +144,11 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
     }
     
     func sortDeedsFromSavedData() {
-        if let dateFormat = defaults.string(forKey: "dateFormat") {
+        if let dateFormat = defaults.string(forKey: UserDefaultsKeys.dateFormat) {
             DisplayDeedsViewController.dateFormatter.dateFormat = dateFormat
         }
         
-        if let timeSection = defaults.string(forKey: "timeSection") {
+        if let timeSection = defaults.string(forKey: UserDefaultsKeys.timeSection) {
             DisplayDeedsViewController.timeSection = timeSection
         }
         
