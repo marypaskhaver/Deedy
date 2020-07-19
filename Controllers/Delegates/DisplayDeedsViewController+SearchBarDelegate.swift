@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 
 extension DisplayDeedsViewController: UISearchBarDelegate {
-    
     // Query CoreData database
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let request: NSFetchRequest<Deed> = Deed.fetchRequest()
