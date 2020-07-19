@@ -111,20 +111,34 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
     // MARK: - Segue methods
     @IBAction func cancel(segue: UIStoryboardSegue) { }
     
-    // Add deed
+    // Add or sort deeds
     @IBAction func done(segue: UIStoryboardSegue) {
         let _ = self.view
         
         if (segue.identifier == "doneAddingSegue") {
             let addDeedVC = segue.source as! AddDeedViewController
+            
+            // When a deed is added, dataSource.sections are updated
             dataSource.addDeed(title: addDeedVC.textView.text!, date: dateHandler.currentDate() as Date)
+
+            if dataSource.sections.count > tableView.numberOfSections {
+                tableView.beginUpdates()
+                tableView.insertSections(IndexSet(integer: 0), with: .none)
+                tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+                tableView.endUpdates()
+            } else {
+                tableView.beginUpdates()
+                tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+                tableView.endUpdates()
+            }
+            
+            dataSource.saveDeeds()
+
+        } else if segue.identifier == "doneSortingSegue" {
+            updateSections()
+            tableView.reloadData()
         }
-        
-        updateSections()
-
-        dataSource.saveDeeds()
-
-        tableView.reloadData()
+          
     }
     
     // MARK: - Updating/Sorting Sections and Labels
@@ -152,6 +166,6 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
             DisplayDeedsViewController.timeSection = timeSection
         }
         
-        updateSections()
+        updateSections()        
     }
 }
