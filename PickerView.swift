@@ -32,7 +32,7 @@ class PickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        // Tell ViewController item was selected
+        // Tell DisplayDeedsViewController item was selected
         propertyThatReferencesThisViewController?.pickerDidSelectRow(selectedRowValue: pickerList[row])
 
         return pickerList[row]
