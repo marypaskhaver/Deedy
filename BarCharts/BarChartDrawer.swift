@@ -39,7 +39,7 @@ class BarChartDrawer {
         barLayer.borderWidth = 1
         barLayer.borderColor = UIColor.white.cgColor
 
-        if let navBarColor = defaults.color(forKey: "navBarColor") {
+        if let navBarColor = defaults.color(forKey: UserDefaultsKeys.navBarColor) {
             changeLayerToColorFromComponents(from: navBarColor, toLayer: barLayer)
         } else {
             changeLayerToColorFromComponents(from: CustomColors.defaultBlue, toLayer: barLayer)
