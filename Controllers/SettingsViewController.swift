@@ -71,16 +71,16 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func reviewTutorialButtonPressed(_ sender: UIButton) {
-        defaults.removeObject(forKey: "DisplayDeedsViewControllerTutorialShown")
-        defaults.removeObject(forKey: "ChallengesViewControllerTutorialShown")
-        defaults.removeObject(forKey: "SettingsViewControllerTutorialShown")
+        defaults.removeObject(forKey: UserDefaultsKeys.displayDeedsViewControllerTutorialShown)
+        defaults.removeObject(forKey: UserDefaultsKeys.challengesViewControllerTutorialShown)
+        defaults.removeObject(forKey: UserDefaultsKeys.settingsViewControllerTutorialShown)
         showTutorial()
     }
     
     @IBAction func tutorialXButtonPressed(_ sender: UIButton) {
         enableSlidersAndButtons(bool: true)
         hideTutorialItems(bool: true)
-        defaults.set(true, forKey: "SettingsViewControllerTutorialShown")
+        defaults.set(true, forKey: UserDefaultsKeys.settingsViewControllerTutorialShown)
     }
     
     func getUIColorFromSliders() -> UIColor {
@@ -142,9 +142,9 @@ class SettingsViewController: UIViewController {
     
     // MARK: - Model Manipulation Methods
     func saveColorTheme() {
-        defaults.set(redSlider.value, forKey: "redSliderValue")
-        defaults.set(greenSlider.value, forKey: "greenSliderValue")
-        defaults.set(blueSlider.value, forKey: "blueSliderValue")
+        defaults.set(redSlider.value, forKey: UserDefaultsKeys.redSliderValue)
+        defaults.set(greenSlider.value, forKey: UserDefaultsKeys.greenSliderValue)
+        defaults.set(blueSlider.value, forKey: UserDefaultsKeys.blueSliderValue)
         
         defaults.set(SettingsViewController.navBarColor, forKey: UserDefaultsKeys.navBarColor)
         defaults.set(SettingsViewController.navBarTextColor, forKey: UserDefaultsKeys.navBarTextColor)
@@ -152,15 +152,15 @@ class SettingsViewController: UIViewController {
     
     func loadColorTheme() {
         // Default values are set in Main.storyboard
-        if let rsv = defaults.object(forKey: "redSliderValue") {
+        if let rsv = defaults.object(forKey: UserDefaultsKeys.redSliderValue) {
             redSlider.value = rsv as! Float
         }
         
-        if let gsv = defaults.object(forKey: "greenSliderValue") {
+        if let gsv = defaults.object(forKey: UserDefaultsKeys.greenSliderValue) {
             greenSlider.value = gsv as! Float
         }
         
-        if let bsv = defaults.object(forKey: "blueSliderValue") {
+        if let bsv = defaults.object(forKey: UserDefaultsKeys.blueSliderValue) {
             blueSlider.value = bsv as! Float
         }
                 
