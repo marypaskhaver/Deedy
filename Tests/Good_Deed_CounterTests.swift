@@ -75,16 +75,6 @@ class Good_Deed_CounterTests: XCTestCase {
     }
     
     // MARK: - Tests for ViewController
-    func testAddingDeed() {
-        XCTAssertEqual(ddvc.dataSource.deeds.count, 5)
-                
-        advc.textView.text = "Hello"
-        
-        ddvc.done(segue: UIStoryboardSegue(identifier: "doneAddingSegue", source: advc, destination: ddvc))
-        
-        XCTAssertEqual(ddvc.dataSource.deeds.count, 6)
-    }
-    
     func testSectionDeedsEqualToVCDeeds() {
         let calendar = Calendar.current
 
