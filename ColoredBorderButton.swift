@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ColoredBorderButton: UIButton {
+class ColoredBorderButton: UIButton {    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -16,10 +16,10 @@ class ColoredBorderButton: UIButton {
         self.layer.cornerRadius = 30
         self.layer.borderWidth = 2
         setBorderColor()
+
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0.56 * UIScreen.main.bounds.width))
         
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0.54 * UIScreen.main.bounds.width))
-        
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.frame.width / 10))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.frame.width / 12))
     }
     
     func setBorderColor() {
