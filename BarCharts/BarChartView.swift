@@ -16,7 +16,6 @@ class BarChartView: UIView {
     private let scrollView: UIScrollView = UIScrollView()
 
     // Adjust spacing and hardcoded vals
-    // Vertical space between entries
     let verticalSpaceBetweenEntries: CGFloat = 40.0
     let barHeight: CGFloat = 40.0
     let horizontalSpaceBetweenEntryComponents: CGFloat = 30.0
