@@ -1,5 +1,5 @@
 //
-//  MyProgressView.swift
+//  ProgressView.swift
 //  Good Deed Counter
 //
 //  Created by Mary Paskhaver on 7/14/20.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MyProgressView: UIProgressView {
+class ProgressView: UIProgressView {
     var cdm: CoreDataManager = CoreDataManager()
     var calendar = Calendar.current
     var dateHandler = DateHandler()
@@ -22,7 +22,7 @@ class MyProgressView: UIProgressView {
     }
     
     func updateProgress() {
-        let dailyGoal = cdm.fetchDailyChallenges()
+        let dailyGoal = cdm.fetchLatestDailyChallengeDailyGoal()
 
         if (dailyGoal > 0) {
             let progress = Float(getCountOfDeedsDoneToday()) / Float(dailyGoal)
