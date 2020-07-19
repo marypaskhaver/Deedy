@@ -37,7 +37,7 @@ class SettingsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if defaults.object(forKey: "SettingsViewControllerTutorialShown") == nil {
+        if defaults.object(forKey: UserDefaultsKeys.settingsViewControllerTutorialShown) == nil {
             showTutorial()
         }
         
