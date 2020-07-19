@@ -103,6 +103,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             setNavBarTextAndItemsAppearance(withColor: UIColor.white)
         }
+        
+        UINavigationController().navigationBar.barStyle = BarStyleSetter.getNavBarRGBSum() >= 2 ? UIBarStyle.default : UIBarStyle.black
     }
     
     func setNavBarTextAndItemsAppearance(withColor color: UIColor) {
