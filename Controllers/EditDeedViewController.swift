@@ -20,7 +20,7 @@ class EditDeedViewController: UIViewController {
 
     var delegate: DeedEditedDelegateProtocol? = nil
     
-    var oldText: String = ""
+    var oldText: String = "" // What will be in the textView when this view controller is presented
         
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         let trimmedText: String = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
