@@ -16,7 +16,7 @@ class ChallengesViewController: UIViewController {
     @IBOutlet weak var stepper: UIStepper!
     
     @IBOutlet weak var dailyGoalStepperLabel: UILabel!
-    @IBOutlet weak var dailyGoalProgressView: MyProgressView!
+    @IBOutlet weak var dailyGoalProgressView: ProgressView!
     
     @IBOutlet weak var dailyGoalStreakLabel: UILabel!
     @IBOutlet weak var labelSayingStreak: UILabel!
@@ -144,7 +144,6 @@ class ChallengesViewController: UIViewController {
 
         // Set wasUpdatedToday to true if the streak's date is today so it doesn't update multiple times.
         streak.wasUpdatedToday = calendar.isDateInToday(streak.date!) ? true : false
-        
         streak.date = dateHandler.currentDate() as Date
 
         dailyGoalStreakLabel.text = String(streak.daysKept)
@@ -154,7 +153,7 @@ class ChallengesViewController: UIViewController {
         let request: NSFetchRequest<Deed> = Deed.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
-        // Include deeds only done before today
+        // Get deeds between the beginning of yesterday to the very start of today
         let today = calendar.startOfDay(for: dateHandler.currentDate() as Date)
         let yesterday = calendar.date(byAdding: .day, value: -1, to: today)
 
