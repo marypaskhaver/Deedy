@@ -17,4 +17,7 @@ class UserDefaultsKeys {
     static let displayDeedsViewControllerTutorialShown = "DisplayDeedsViewControllerTutorialShown"
     static let challengesViewControllerTutorialShown = "ChallengesViewControllerTutorialShown"
     static let settingsViewControllerTutorialShown = "SettingsViewControllerTutorialShown"
+
+    static let dateFormat = "dateFormat"
+    static let timeSection = "timeSection"
 }
