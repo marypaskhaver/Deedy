@@ -6,7 +6,6 @@
 //  Copyright © 2020 Nostaw. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 typealias TableViewCellAnimation = (UITableViewCell, IndexPath, UITableView) -> Void
