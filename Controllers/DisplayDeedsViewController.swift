@@ -122,14 +122,12 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
             dataSource.addDeed(title: addDeedVC.textView.text!, date: dateHandler.currentDate() as Date)
 
             if dataSource.sections.count > tableView.numberOfSections {
-                tableView.beginUpdates()
+                tableView.beginUpdates() // Holds off calling tableView: numberOfRowsInSection until operations are completed
                 tableView.insertSections(IndexSet(integer: 0), with: .none)
                 tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
                 tableView.endUpdates()
             } else {
-                tableView.beginUpdates()
                 tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-                tableView.endUpdates()
             }
             
             dataSource.saveDeeds()
