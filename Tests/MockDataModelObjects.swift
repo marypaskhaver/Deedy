@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-@testable import Good_Deed_Counter
+@testable import Deedy
 
 class MockDataModelObjects {
     
