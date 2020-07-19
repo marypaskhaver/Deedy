@@ -9,7 +9,7 @@
 import XCTest
 import CoreData
 
-@testable import Good_Deed_Counter
+@testable import Deedy
 
 class BarChartViewControllerTests: XCTestCase {
     var ddvc: DisplayDeedsViewController!
@@ -95,4 +95,5 @@ class BarChartViewControllerTests: XCTestCase {
         bvc.loadView()
         XCTAssertTrue(bvc.noDeedsDoneLabel.isDescendant(of: bvc.view))
     }
+
 }
