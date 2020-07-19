@@ -17,7 +17,8 @@ extension DisplayDeedsViewController: UITableViewDelegate {
             let evc = storyboard.instantiateViewController(withIdentifier: "EditDeedViewController") as! EditDeedViewController
                  
             evc.delegate = self
-                 
+                
+            // When the EditDeedViewController shows, its textView will contain the deed's text
             evc.oldText = self.dataSource.deeds[indexPath.row].title!
              
             self.navigationController?.present(evc, animated: true)
@@ -25,7 +26,6 @@ extension DisplayDeedsViewController: UITableViewDelegate {
             self.editedIndexPath = indexPath
         }
          
-        // Dark blue
         editContextItem.backgroundColor = CustomColors.editButtonBlue
 
         let swipeActions = UISwipeActionsConfiguration(actions: [editContextItem])
