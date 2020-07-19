@@ -39,12 +39,13 @@ extension DisplayDeedsViewController: UITableViewDelegate {
         dataSource.deeds[editedIndexPath.row].title = editedDeedText
 
         editedDeedText = ""
-        editedIndexPath = nil
      
         dataSource.saveDeeds()
         updateSections()
      
-        tableView.reloadData()
+        tableView.reloadRows(at: [editedIndexPath], with: .automatic)
+
+        editedIndexPath = nil
      }
      
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
