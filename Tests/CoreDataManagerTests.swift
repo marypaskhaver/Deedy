@@ -10,7 +10,7 @@
 import XCTest
 import CoreData
 
-@testable import Good_Deed_Counter
+@testable import Deedy
 
 class CoreDataManagerTests: XCTestCase {
     // MARK: - Class vars
