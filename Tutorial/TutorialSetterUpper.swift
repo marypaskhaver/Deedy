@@ -43,5 +43,4 @@ class TutorialSetterUpper {
         vc.view.bringSubviewToFront(vc.tutorialXButton)
     }
     
-    
 }
