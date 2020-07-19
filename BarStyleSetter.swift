@@ -15,7 +15,7 @@ class BarStyleSetter {
         vc.navigationController?.navigationBar.barStyle = getNavBarRGBSum() >= 2 ? UIBarStyle.default : UIBarStyle.black
     }
     
-    private static func getNavBarRGBSum() -> Int {
+    static func getNavBarRGBSum() -> Int {
         var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
 
         if let navBarColor = defaults.color(forKey: UserDefaultsKeys.navBarColor) {
