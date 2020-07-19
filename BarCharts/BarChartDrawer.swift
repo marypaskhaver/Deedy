@@ -76,7 +76,7 @@ class BarChartDrawer {
     }
     
     func setTextLayerFont(forLayer layer: CATextLayer) {
-        layer.font = CTFontCreateWithName(UIFont.systemFont(ofSize: 22.0).fontName as CFString, 0, nil)
+        layer.font = CTFontCreateWithName("TimesNewRomanPSMT" as CFString, 22.0, nil)
         layer.fontSize = 22
     }
     
