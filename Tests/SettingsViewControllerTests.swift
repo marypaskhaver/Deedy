@@ -8,7 +8,7 @@
 
 import XCTest
 
-@testable import Good_Deed_Counter
+@testable import Deedy
 
 class SettingsViewControllerTests: XCTestCase {
     var svc: SettingsViewController!
