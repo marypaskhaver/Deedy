@@ -36,6 +36,7 @@ class AddDeedViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        // Don't perform segue if textView contains just white space and line breaks
         if (identifier == "doneAddingSegue") {
             if (textView.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)  {
                 invalidInputWarningLabel.isHidden = false
