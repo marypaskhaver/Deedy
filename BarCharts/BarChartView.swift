@@ -17,9 +17,9 @@ class BarChartView: UIView {
 
     // Adjust spacing and hardcoded vals
     // Vertical space between entries
-    let space: CGFloat = 40.0
+    let verticalSpaceBetweenEntries: CGFloat = 40.0
     let barHeight: CGFloat = 40.0
-    let contentSpace: CGFloat = 30.0
+    let horizontalSpaceBetweenEntryComponents: CGFloat = 30.0
     
     var entryTooBig: Bool = false
     
@@ -42,8 +42,8 @@ class BarChartView: UIView {
                     mainLayer.sublayers?.forEach({ $0.removeFromSuperlayer() })
 
                     index = 0
-
                     factor += 0.2
+                    
                     showEntry(index: index, entry: dataEntries[index], shrinkBarWidthByFactorOf: factor)
                 }
                 
@@ -70,20 +70,20 @@ class BarChartView: UIView {
     
     override func layoutSubviews() {
         scrollView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
-        scrollView.contentSize = CGSize(width: frame.size.width, height: (barHeight + space) * CGFloat(dataEntries.count) + contentSpace)
+        scrollView.contentSize = CGSize(width: frame.size.width, height: (barHeight + verticalSpaceBetweenEntries) * CGFloat(dataEntries.count) + horizontalSpaceBetweenEntryComponents)
     }
     
     private func showEntry(index: Int, entry: BarEntry, shrinkBarWidthByFactorOf factor: Float) {
         let xPos: CGFloat = 30
-        let yPos: CGFloat = space + CGFloat(index) * (barHeight + space)
+        let yPos: CGFloat = verticalSpaceBetweenEntries + CGFloat(index) * (barHeight + verticalSpaceBetweenEntries)
 
         let titleBar = drawTitle(xPos: xPos, yPos: yPos + (barHeight / 4), title: entry.title)
         
-        let progressBar = drawBar(xPos: xPos + titleBar.frame.width + contentSpace, yPos: yPos, width: calculateBarWidth(value: Float(entry.count), shrinkByFactorOf: factor), forEntry: entry)
+        let progressBar = drawBar(xPos: xPos + titleBar.frame.width + horizontalSpaceBetweenEntryComponents, yPos: yPos, width: calculateBarWidth(value: Float(entry.count), shrinkByFactorOf: factor), forEntry: entry)
         
-        let text = drawTextValue(xPos: xPos + titleBar.frame.width + progressBar.frame.width + contentSpace, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
+        let text = drawTextValue(xPos: xPos + titleBar.frame.width + progressBar.frame.width + horizontalSpaceBetweenEntryComponents, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
         
-        let entryWidth = xPos + (titleBar.frame.width + contentSpace) + (progressBar.frame.width + contentSpace) + (xPos + text.frame.width)
+        let entryWidth = xPos + (titleBar.frame.width + horizontalSpaceBetweenEntryComponents) + (progressBar.frame.width + horizontalSpaceBetweenEntryComponents) + (xPos + text.frame.width)
         
         entryTooBig = entryWidth > UIScreen.main.bounds.width ? true : false
     }
@@ -115,7 +115,7 @@ class BarChartView: UIView {
     
     private func calculateBarWidth(value: Float, shrinkByFactorOf factor: Float) -> CGFloat {
         let width = CGFloat(value / factor) * (mainLayer.frame.width - space)
-        
+
         return abs(width)
     }
    
