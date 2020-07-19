@@ -6,7 +6,6 @@
 //  Copyright © 2020 Nostaw. All rights reserved.
 //
 
-import Foundation
 import CoreData
 import UIKit
 
