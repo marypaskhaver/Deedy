@@ -11,7 +11,7 @@ import UIKit
 class BackgroundView: UIView {
     
     func changeBackgroundColor() {
-        if let navBarColor = defaults.color(forKey: "navBarColor") {
+        if let navBarColor = defaults.color(forKey: UserDefaultsKeys.navBarColor) {
             changeBackgroundToColorFromComponents(from: navBarColor)
         } else {
             changeBackgroundToColorFromComponents(from: CustomColors.defaultBlue)
