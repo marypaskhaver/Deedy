@@ -40,7 +40,7 @@ class EditDeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let navBarColor = defaults.color(forKey: "navBarColor") {
+        if let navBarColor = defaults.color(forKey: UserDefaultsKeys.navBarColor) {
             topView.backgroundColor = navBarColor
         } else {
             topView.backgroundColor = CustomColors.defaultBlue
@@ -51,7 +51,7 @@ class EditDeedViewController: UIViewController {
         invalidInputWarningLabel.isHidden = true
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-            view.addGestureRecognizer(tap)
+        view.addGestureRecognizer(tap)
     }
             
     @objc func dismissKeyboard() {
