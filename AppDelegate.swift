@@ -92,13 +92,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK: - Change app color theme
     func changeAppColor() {
-        if let navBarColor = defaults.color(forKey: "navBarColor") {
+        if let navBarColor = defaults.color(forKey: UserDefaultsKeys.navBarColor) {
             UINavigationBar.appearance().barTintColor = navBarColor
         } else {
             UINavigationBar.appearance().barTintColor = CustomColors.defaultBlue
         }
 
-        if let navBarTextColor = defaults.color(forKey: "navBarTextColor") {
+        if let navBarTextColor = defaults.color(forKey: UserDefaultsKeys.navBarTextColor) {
             setNavBarTextAndItemsAppearance(withColor: navBarTextColor)
         } else {
             setNavBarTextAndItemsAppearance(withColor: UIColor.white)
