@@ -23,7 +23,7 @@ class ColoredBorderButton: UIButton {
     }
     
     func setBorderColor() {
-        if let navBarColor = defaults.color(forKey: "navBarColor") {
+        if let navBarColor = defaults.color(forKey: UserDefaultsKeys.navBarColor) {
             self.layer.borderColor = navBarColor.cgColor
         } else {
             self.layer.borderColor = CustomColors.defaultBlue.cgColor
