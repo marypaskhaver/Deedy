@@ -21,15 +21,11 @@ class SettingsViewController: UIViewController {
     static var navBarColor = CustomColors.defaultBlue
     static var navBarTextColor = UIColor.white
     
-    let navBarColorUserDefaultsKey = "navBarColor"
-    let navBarTextColorUserDefaultsKey = "navBarTextColor"
-
     @IBOutlet weak var scrollView: TutorialScrollView!
     @IBOutlet weak var tutorialXButton: TutorialXButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         loadColorTheme()
         hideTutorialItems(bool: true)
@@ -150,8 +146,8 @@ class SettingsViewController: UIViewController {
         defaults.set(greenSlider.value, forKey: "greenSliderValue")
         defaults.set(blueSlider.value, forKey: "blueSliderValue")
         
-        defaults.set(SettingsViewController.navBarColor, forKey: "navBarColor")
-        defaults.set(SettingsViewController.navBarTextColor, forKey: "navBarTextColor")
+        defaults.set(SettingsViewController.navBarColor, forKey: UserDefaultsKeys.navBarColor)
+        defaults.set(SettingsViewController.navBarTextColor, forKey: UserDefaultsKeys.navBarTextColor)
     }
     
     func loadColorTheme() {
@@ -183,7 +179,6 @@ extension UserDefaults {
             print("Color error \(error)")
             return nil
         }
-
     }
 
     func set(_ value: UIColor?, forKey key: String) {
