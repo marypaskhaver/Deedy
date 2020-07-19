@@ -64,6 +64,7 @@ class BarChartViewController: UIViewController {
         var calendar = Calendar.current
         calendar.timeZone = NSTimeZone.local
         
+        // Get deeds from one month ago to the very end of today/start of tomorrow
         let tomorrow = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: dateHandler.currentDate() as Date))
         let oneMonthEarlier = calendar.date(byAdding: .month, value: -1, to: tomorrow!)
 
