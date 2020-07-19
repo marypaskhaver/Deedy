@@ -9,7 +9,7 @@
 import XCTest
 import CoreData
 
-@testable import Good_Deed_Counter
+@testable import Deedy
 
 class ChallengesViewControllerTests: XCTestCase {
     var ddvc: DisplayDeedsViewController!
