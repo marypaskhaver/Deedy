@@ -58,7 +58,7 @@ class ChallengesViewController: UIViewController {
         hideTutorialItems(bool: true)
         
         tableView.reloadData()
-        defaults.set(true, forKey: "ChallengesViewControllerTutorialShown")
+        defaults.set(true, forKey: UserDefaultsKeys.challengesViewControllerTutorialShown)
 
         stepper.isEnabled = true
     }
@@ -117,7 +117,7 @@ class ChallengesViewController: UIViewController {
         
         backgroundView.changeBackgroundColor()
         
-        if defaults.object(forKey: "ChallengesViewControllerTutorialShown") == nil {
+        if defaults.object(forKey: UserDefaultsKeys.challengesViewControllerTutorialShown) == nil {
             showTutorial()
         }
         
