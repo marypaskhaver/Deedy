@@ -114,7 +114,7 @@ class BarChartView: UIView {
     
     private func calculateBarWidth(value: Float, shrinkByFactorOf factor: Float) -> CGFloat {
         if UIDevice.current.userInterfaceIdiom == .pad {
-            return CGFloat(value * 2 / factor) * verticalSpaceBetweenEntries
+            return CGFloat(value * 4 / factor) * verticalSpaceBetweenEntries
         }
         
         return CGFloat(value / factor) * verticalSpaceBetweenEntries
