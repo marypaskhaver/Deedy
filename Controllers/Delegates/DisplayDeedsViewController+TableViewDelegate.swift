@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 extension DisplayDeedsViewController: UITableViewDelegate {
     // Edit deed
@@ -35,16 +36,20 @@ extension DisplayDeedsViewController: UITableViewDelegate {
      
     func userEditedDeed(newDeedTitle: String) {
         editedDeedText = newDeedTitle
+        
+        let editedDeed = dataSource.sections[editedIndexPath.section].deeds[editedIndexPath.row]
 
-        dataSource.sections[editedIndexPath.section].deeds[editedIndexPath.row].title = editedDeedText
-        dataSource.deeds[editedIndexPath.row].title = editedDeedText
+        let requestForPreviousDeed: NSFetchRequest<Deed> = Deed.fetchRequest()
+        requestForPreviousDeed.predicate = NSPredicate(format: "date == %@", editedDeed.date! as NSDate)
+        let previousDeed: Deed = dataSource.cdm.fetchDeeds(with: requestForPreviousDeed)[0]
+        previousDeed.title = editedDeedText
+            
+        dataSource.saveDeeds()
+        dataSource.loadDeeds()
+
         tableView.reloadRows(at: [editedIndexPath], with: .automatic)
 
         editedDeedText = ""
-     
-        dataSource.saveDeeds()
-        updateSections()
-     
         editedIndexPath = nil
      }
      
