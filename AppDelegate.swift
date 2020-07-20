@@ -112,5 +112,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)], for: .normal)
     }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        self.saveContext()
+    }
 
 }
