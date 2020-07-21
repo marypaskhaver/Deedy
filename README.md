@@ -1,4 +1,4 @@
-# Deedy
+# Deedy - Make an Impact
 
 Deedy is now on the App Store! You can find it [here](https://apps.apple.com/us/app/id1523913427).
 
