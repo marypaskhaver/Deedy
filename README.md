@@ -1,16 +1,20 @@
-# Good-Deed-Counter
+# Deedy
 
-While making this app, I learned how to:
-- Change the positions of objects on the screen based off user input
-- Create, remove, update, and destroy user data with Core Data
-- Query databases to get entities based on their attributes 
-- Use UINavigationBar and UIBarButtonItem in my classes to change my app's theme 
-- Use the AppDelegate class to change my app's appearance 
-- Use the AppDelegate class to send the user daily notifications
-- Create custom views to create spacing between TableView cells
-- Use protocols and delegates to send data between ViewControllers
-- Customize my app's appearance in Dark Mode
-- Sort TableView cells based off user input
-- Animate TableView cells
+Deedy is now on the App Store! You can find it [here](https://apps.apple.com/us/app/id1523913427).
 
-I'll be adding on to this project over the summer, so keep an eye out for new features. :)
+Features:
+- Track your good deeds
+- Sort deeds by date
+- Edit deeds
+- See a graph of your monthly deeds
+- Set yourself daily challenges
+- Stay committed with a daily streak
+- Complete achievements
+- Change your app’s color theme
+- Be inspired by daily quotes
+- Simple interface with a tutorial
+- Seamless transitions to Dark Mode with iOS 13
+
+## Make Someone's Day Today!
+
+![Deedy App Icon](https://github.com/marypaskhaver/Deedy/blob/master/Assets.xcassets/AppIcon.appiconset/AppIcon.png)
