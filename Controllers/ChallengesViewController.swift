@@ -45,7 +45,7 @@ class ChallengesViewController: UIViewController {
         dailyChallenge.date = dateHandler.currentDate() as Date?
         cdm.save()
         
-        dailyGoalStepperLabel.text = "Daily challenge:\t\(dailyChallenge.dailyGoal) deeds"
+        dailyGoalStepperLabel.text = dailyChallenge.dailyGoal == 1 ? "Daily challenge:\t\(dailyChallenge.dailyGoal) deed" : "Daily challenge:\t\(dailyChallenge.dailyGoal) deeds"
         
         revealDailyGoalRelatedItemsIfNeeded()
         
@@ -213,7 +213,7 @@ class ChallengesViewController: UIViewController {
         dailyChallenge.date = dateHandler.currentDate() as Date
         
         stepper.value = Double(dailyChallenge.dailyGoal)
-        dailyGoalStepperLabel.text = "Daily challenge:\t\(dailyChallenge.dailyGoal) deeds"
+        dailyGoalStepperLabel.text = dailyChallenge.dailyGoal == 1 ? "Daily challenge:\t\(dailyChallenge.dailyGoal) deed" : "Daily challenge:\t\(dailyChallenge.dailyGoal) deeds"
         revealDailyGoalRelatedItemsIfNeeded()
         dailyGoalProgressView.updateProgress()
     }
