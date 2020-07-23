@@ -19,8 +19,6 @@ class ChallengesViewController: UIViewController {
     @IBOutlet weak var dailyGoalProgressView: ProgressView!
     
     @IBOutlet weak var dailyGoalStreakLabel: UILabel!
-    @IBOutlet weak var labelSayingStreak: UILabel!
-    @IBOutlet weak var labelSayingDays: UILabel!
     
     @IBOutlet weak var topView: TopView!
     @IBOutlet var backgroundView: BackgroundView!
@@ -146,7 +144,7 @@ class ChallengesViewController: UIViewController {
         streak.wasUpdatedToday = calendar.isDateInToday(streak.date!) ? true : false
         streak.date = dateHandler.currentDate() as Date
 
-        dailyGoalStreakLabel.text = String(streak.daysKept)
+        dailyGoalStreakLabel.text = "Streak kept for:\t\(streak.daysKept) days"
     }
     
     func updateStreak() {
@@ -170,7 +168,7 @@ class ChallengesViewController: UIViewController {
         }
         
         streak.wasUpdatedToday = true
-        dailyGoalStreakLabel.text = String(streak.daysKept)
+        dailyGoalStreakLabel.text = "Streak kept for:\t\(streak.daysKept) days"
         cdm.save()
     }
     
@@ -207,8 +205,6 @@ class ChallengesViewController: UIViewController {
     func hideDailyGoalRelatedItems(bool: Bool) {
         dailyGoalProgressView.isHidden = bool
         dailyGoalStreakLabel.isHidden = bool
-        labelSayingStreak.isHidden = bool
-        labelSayingDays.isHidden = bool
     }
     
     // MARK: - Model Manipulation Methods
