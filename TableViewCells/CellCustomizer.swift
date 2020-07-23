@@ -33,9 +33,9 @@ class CellCustomizer {
      
         cell.subtitleLabel.sizeToFit()
              
-        let whiteRoundedViewHeight = cell.challengeDescriptionLabel.frame.height + cell.subtitleLabel.frame.height
+        let whiteRoundedViewHeight = cell.challengeDescriptionLabel.frame.height + 12
 
-        let whiteRoundedView = WhiteRoundedView(frameToDisplay: CGRect(x: 10, y: 10, width: view.frame.width - 20, height: whiteRoundedViewHeight - 18))
+        let whiteRoundedView = WhiteRoundedView(frameToDisplay: CGRect(x: 10, y: 10, width: view.frame.width - 20, height: whiteRoundedViewHeight))
      
         addWhiteRoundedViewToCell(cell: cell, whiteRoundedView: whiteRoundedView)
     }
