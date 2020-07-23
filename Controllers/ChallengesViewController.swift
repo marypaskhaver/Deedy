@@ -144,7 +144,7 @@ class ChallengesViewController: UIViewController {
         streak.wasUpdatedToday = calendar.isDateInToday(streak.date!) ? true : false
         streak.date = dateHandler.currentDate() as Date
 
-        dailyGoalStreakLabel.text = "Streak kept for:\t\(streak.daysKept) days"
+        dailyGoalStreakLabel.text = streak.daysKept == 1 ? "Streak kept for:\t\(streak.daysKept) day" : "Streak kept for:\t\(streak.daysKept) days"
     }
     
     func updateStreak() {
@@ -168,7 +168,7 @@ class ChallengesViewController: UIViewController {
         }
         
         streak.wasUpdatedToday = true
-        dailyGoalStreakLabel.text = "Streak kept for:\t\(streak.daysKept) days"
+        dailyGoalStreakLabel.text = streak.daysKept == 1 ? "Streak kept for:\t\(streak.daysKept) day" : "Streak kept for:\t\(streak.daysKept) days"
         cdm.save()
     }
     
