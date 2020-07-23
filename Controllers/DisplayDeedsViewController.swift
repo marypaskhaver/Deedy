@@ -14,10 +14,12 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
     static let dateFormatter = DateFormatter()
         
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var totalDeedsLabel: UILabel!
     @IBOutlet weak var topView: TopView!
     @IBOutlet var backgroundView: BackgroundView!
-        
+
+    @IBOutlet weak var totalDeedsLabel: UILabel!
+    @IBOutlet weak var deedsDoneLabel: UILabel!
+    
     var editedDeedText: String = ""
     var editedIndexPath: IndexPath! = nil
 
@@ -94,6 +96,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
         }
         
         BarStyleSetter.setBarStyle(forViewController: self)
+        tableView.reloadData()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -130,6 +133,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
                 tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
             }
             
+            updateDeedsLabel()
             dataSource.saveDeeds()
 
         } else if segue.identifier == "doneSortingSegue" {
@@ -148,6 +152,7 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
     func updateDeedsLabel() {
         Animations.changeLabelNumberWithPop(forLabel: totalDeedsLabel, withNewNumber: dataSource.deeds.count, duration: 0.4)
         totalDeedsLabel.text = String(dataSource.deeds.count)
+        deedsDoneLabel.text = dataSource.deeds.count == 1 ? "deed done" : "deeds done"
     }
     
     static func changeDateFormatter(toOrderBy dateFormat: String, timeSection: String) {
