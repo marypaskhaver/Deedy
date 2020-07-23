@@ -11,8 +11,8 @@
         <!--Your Good Deeds-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="DisplayDeedsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="DisplayDeedsViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="BackgroundView" customModule="Good_Deed_Counter" customModuleProvider="target">
+                <viewController storyboardIdentifier="DisplayDeedsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="DisplayDeedsViewController" customModule="Deedy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="BackgroundView" customModule="Deedy" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -28,7 +28,7 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="deedCell" rowHeight="44" id="Qlm-T5-C0S" customClass="DeedTableViewCell" customModule="Good_Deed_Counter" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="deedCell" rowHeight="44" id="Qlm-T5-C0S" customClass="DeedTableViewCell" customModule="Deedy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qlm-T5-C0S" id="qnL-ks-HWZ">
@@ -58,7 +58,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="FYI-kp-Qmh"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" id="IQx-fm-4T2" customClass="TopView" customModule="Good_Deed_Counter" customModuleProvider="target">
+                            <view contentMode="scaleToFill" id="IQx-fm-4T2" customClass="TopView" customModule="Deedy" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="414" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -80,7 +80,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="4TE-AB-Hcq" customClass="TutorialScrollView" customModule="Good_Deed_Counter" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="4TE-AB-Hcq" customClass="TutorialScrollView" customModule="Deedy" customModuleProvider="target">
                                 <rect key="frame" x="15" y="398" width="384" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -90,7 +90,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Ge4-CI-NaT"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b0R-Tf-6LF" customClass="TutorialXButton" customModule="Good_Deed_Counter" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b0R-Tf-6LF" customClass="TutorialXButton" customModule="Deedy" customModuleProvider="target">
                                 <rect key="frame" x="358" y="413" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="✕"/>
@@ -98,7 +98,7 @@
                                     <action selector="tutorialXButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2xB-br-XuJ"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="IGL-AT-qsi" customClass="TutorialPageControl" customModule="Good_Deed_Counter" customModuleProvider="target">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="IGL-AT-qsi" customClass="TutorialPageControl" customModule="Deedy" customModuleProvider="target">
                                 <rect key="frame" x="200" y="638" width="39" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -156,7 +156,7 @@
         <!--Add Deed View Controller-->
         <scene sceneID="EcN-cb-k0X">
             <objects>
-                <viewController storyboardIdentifier="AddDeedViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qtO-fu-afV" customClass="AddDeedViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddDeedViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qtO-fu-afV" customClass="AddDeedViewController" customModule="Deedy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KPT-vk-VUY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,7 +183,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="KLi-cp-k2v">
                                 <rect key="frame" x="20" y="241.5" width="374" height="359"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rLu-ZJ-lvd" customClass="TextViewForDeedEntry" customModule="Good_Deed_Counter" customModuleProvider="target">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rLu-ZJ-lvd" customClass="TextViewForDeedEntry" customModule="Deedy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="324.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -229,7 +229,7 @@
         <!--Edit Deed View Controller-->
         <scene sceneID="ZRp-Qo-RRf">
             <objects>
-                <viewController storyboardIdentifier="EditDeedViewController" id="tQX-D5-bfJ" customClass="EditDeedViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditDeedViewController" id="tQX-D5-bfJ" customClass="EditDeedViewController" customModule="Deedy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="USf-d2-9PL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -266,7 +266,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6ol-Cb-Tuc">
                                 <rect key="frame" x="20" y="268.5" width="374" height="359"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LD1-xx-jru" customClass="TextViewForDeedEntry" customModule="Good_Deed_Counter" customModuleProvider="target">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LD1-xx-jru" customClass="TextViewForDeedEntry" customModule="Deedy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="324.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -312,7 +312,7 @@
         <!--Sort Deeds View Controller-->
         <scene sceneID="YBQ-iH-2RQ">
             <objects>
-                <viewController storyboardIdentifier="SortDeedsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JQq-ye-dkL" customClass="SortDeedsViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SortDeedsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JQq-ye-dkL" customClass="SortDeedsViewController" customModule="Deedy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AuG-Jw-0U7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -374,12 +374,12 @@
         <!--Settings-->
         <scene sceneID="d1L-JH-n42">
             <objects>
-                <viewController storyboardIdentifier="SettingsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dfk-rK-XUr" customClass="SettingsViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dfk-rK-XUr" customClass="SettingsViewController" customModule="Deedy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="skF-eo-G7G">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wLd-YC-kHl" customClass="TutorialXButton" customModule="Good_Deed_Counter" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wLd-YC-kHl" customClass="TutorialXButton" customModule="Deedy" customModuleProvider="target">
                                 <rect key="frame" x="358" y="413" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="✕"/>
@@ -387,7 +387,7 @@
                                     <action selector="tutorialXButtonPressed:" destination="dfk-rK-XUr" eventType="touchUpInside" id="k36-Re-4Fb"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="cxw-L5-qCF" customClass="TutorialScrollView" customModule="Good_Deed_Counter" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="cxw-L5-qCF" customClass="TutorialScrollView" customModule="Deedy" customModuleProvider="target">
                                 <rect key="frame" x="15" y="398" width="384" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -398,39 +398,39 @@
                                 </connections>
                             </scrollView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Zga-OD-37s">
-                                <rect key="frame" x="-282.5" y="227.5" width="979" height="441"/>
+                                <rect key="frame" x="-284.5" y="227.5" width="983" height="441"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="fFE-uJ-fI1">
-                                        <rect key="frame" x="0.0" y="0.0" width="979" height="315.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="983" height="315.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change app theme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WC6-qq-akK">
-                                                <rect key="frame" x="0.0" y="0.0" width="979" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="983" height="26.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="114" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="H02-ha-Lt9">
-                                                <rect key="frame" x="-2" y="66.5" width="983" height="31"/>
+                                                <rect key="frame" x="-2" y="66.5" width="987" height="31"/>
                                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="redSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="QBE-xS-Dvx"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="207" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="uAG-aC-vWs">
-                                                <rect key="frame" x="-2" y="136.5" width="983" height="31"/>
+                                                <rect key="frame" x="-2" y="136.5" width="987" height="31"/>
                                                 <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="greenSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="DLG-wM-mad"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="250" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="VPB-qN-2uF">
-                                                <rect key="frame" x="-2" y="206.5" width="983" height="31"/>
+                                                <rect key="frame" x="-2" y="206.5" width="987" height="31"/>
                                                 <connections>
                                                     <action selector="blueSliderChanged:" destination="dfk-rK-XUr" eventType="valueChanged" id="wKc-pW-dWm"/>
                                                 </connections>
                                             </slider>
-                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-wo-DIy" customClass="ColoredBorderButton" customModule="Good_Deed_Counter" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="276.5" width="979" height="39"/>
+                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-wo-DIy" customClass="ColoredBorderButton" customModule="Deedy" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="276.5" width="983" height="39"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <state key="normal" title="Reset to default"/>
@@ -441,16 +441,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="u85-c2-mRg">
-                                        <rect key="frame" x="0.0" y="355.5" width="979" height="85.5"/>
+                                        <rect key="frame" x="0.0" y="355.5" width="983" height="85.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3j-os-gVj">
-                                                <rect key="frame" x="0.0" y="0.0" width="979" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="983" height="26.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6O-VU-SUI" customClass="ColoredBorderButton" customModule="Good_Deed_Counter" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="46.5" width="979" height="39"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6O-VU-SUI" customClass="ColoredBorderButton" customModule="Deedy" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="46.5" width="983" height="39"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <state key="normal" title="Re-view tutorial"/>
@@ -532,8 +532,8 @@
         <!--Challenges-->
         <scene sceneID="Rlw-wa-eBa">
             <objects>
-                <viewController storyboardIdentifier="ChallengesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1zG-BV-JIP" customClass="ChallengesViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="E6K-LM-Wg1" customClass="BackgroundView" customModule="Good_Deed_Counter" customModuleProvider="target">
+                <viewController storyboardIdentifier="ChallengesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1zG-BV-JIP" customClass="ChallengesViewController" customModule="Deedy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E6K-LM-Wg1" customClass="BackgroundView" customModule="Deedy" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -541,7 +541,7 @@
                                 <rect key="frame" x="0.0" y="236" width="414" height="664"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeCell" textLabel="1Di-z0-Tq7" detailTextLabel="eTX-ff-ZVX" rowHeight="55" style="IBUITableViewCellStyleValue1" id="bkt-IQ-viI" customClass="ChallengeTableViewCell" customModule="Good_Deed_Counter" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challengeCell" textLabel="1Di-z0-Tq7" detailTextLabel="eTX-ff-ZVX" rowHeight="55" style="IBUITableViewCellStyleValue1" id="bkt-IQ-viI" customClass="ChallengeTableViewCell" customModule="Deedy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bkt-IQ-viI" translatesAutoresizingMaskIntoConstraints="NO" id="8gS-da-4lj">
@@ -574,14 +574,14 @@
                                     <outlet property="delegate" destination="1zG-BV-JIP" id="nsO-rk-m3v"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" id="3iE-4K-WjQ" customClass="TopView" customModule="Good_Deed_Counter" customModuleProvider="target">
+                            <view contentMode="scaleToFill" id="3iE-4K-WjQ" customClass="TopView" customModule="Deedy" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="414" height="257"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nhm-pD-kfu">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nhm-pD-kfu">
                                         <rect key="frame" x="28" y="78.5" width="358.5" height="100.5"/>
                                         <subviews>
-                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mpm-Gm-9Aq" customClass="ProgressView" customModule="Good_Deed_Counter" customModuleProvider="target">
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mpm-Gm-9Aq" customClass="ProgressView" customModule="Deedy" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="358.5" height="2"/>
                                             </progressView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="WI9-nm-6zG">
@@ -607,29 +607,12 @@
                                                     </stepper>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="69" translatesAutoresizingMaskIntoConstraints="NO" id="Hnj-ST-PcH">
-                                                <rect key="frame" x="0.0" y="74" width="358.5" height="26.5"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Streak:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljz-B7-EPS">
-                                                        <rect key="frame" x="0.0" y="0.0" width="160.5" height="26.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amA-te-Ctr">
-                                                        <rect key="frame" x="229.5" y="0.0" width="14" height="26.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="days" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lT0-Vy-9HL">
-                                                        <rect key="frame" x="312.5" y="0.0" width="46" height="26.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amA-te-Ctr">
+                                                <rect key="frame" x="172" y="74" width="14" height="26.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -639,7 +622,7 @@
                                     <constraint firstItem="nhm-pD-kfu" firstAttribute="centerX" secondItem="3iE-4K-WjQ" secondAttribute="centerX" id="m2b-ak-zXK"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="kvR-e5-RcF" customClass="TutorialScrollView" customModule="Good_Deed_Counter" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="kvR-e5-RcF" customClass="TutorialScrollView" customModule="Deedy" customModuleProvider="target">
                                 <rect key="frame" x="15" y="398" width="384" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -649,7 +632,7 @@
                                     <outlet property="delegate" destination="1zG-BV-JIP" id="HkD-dE-kPM"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AdM-nI-12C" customClass="TutorialXButton" customModule="Good_Deed_Counter" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AdM-nI-12C" customClass="TutorialXButton" customModule="Deedy" customModuleProvider="target">
                                 <rect key="frame" x="358" y="413" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="✕"/>
@@ -657,7 +640,7 @@
                                     <action selector="tutorialXButtonPressed:" destination="1zG-BV-JIP" eventType="touchUpInside" id="86c-mH-asx"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="3e7-xO-ETp" customClass="TutorialPageControl" customModule="Good_Deed_Counter" customModuleProvider="target">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="3e7-xO-ETp" customClass="TutorialPageControl" customModule="Deedy" customModuleProvider="target">
                                 <rect key="frame" x="200" y="638" width="39" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -681,8 +664,6 @@
                         <outlet property="dailyGoalProgressView" destination="Mpm-Gm-9Aq" id="m1Q-Aw-xwv"/>
                         <outlet property="dailyGoalStepperLabel" destination="q2V-5J-VQr" id="lvb-ZN-R25"/>
                         <outlet property="dailyGoalStreakLabel" destination="amA-te-Ctr" id="o2S-tN-SKC"/>
-                        <outlet property="labelSayingDays" destination="lT0-Vy-9HL" id="APv-15-ssb"/>
-                        <outlet property="labelSayingStreak" destination="ljz-B7-EPS" id="Efo-dF-0bd"/>
                         <outlet property="pageControl" destination="3e7-xO-ETp" id="KqB-4z-Xch"/>
                         <outlet property="scrollView" destination="kvR-e5-RcF" id="fGU-OE-eyu"/>
                         <outlet property="stepper" destination="rmo-W3-PIF" id="X2E-f6-gcY"/>
@@ -699,7 +680,7 @@
         <!--Bar Chart View Controller-->
         <scene sceneID="cXq-6M-fJS">
             <objects>
-                <viewController storyboardIdentifier="BarChartViewController" id="YFy-3O-P2n" customClass="BarChartViewController" customModule="Good_Deed_Counter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BarChartViewController" id="YFy-3O-P2n" customClass="BarChartViewController" customModule="Deedy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Tv-Wy-ESF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
