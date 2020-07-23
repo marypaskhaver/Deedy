@@ -15,8 +15,11 @@ class CellCustomizer {
         cell.contentView.viewWithTag(WhiteRoundedView.tag)?.removeFromSuperview()
         
         cell.deedDescriptionLabel.text = text
-        cell.deedDescriptionLabel.sizeToFit()
         
+        let frame = cell.deedDescriptionLabel.frame
+        cell.deedDescriptionLabel.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: UIScreen.main.bounds.width - 20, height: cell.deedDescriptionLabel.frame.height)
+        cell.deedDescriptionLabel.sizeToFit()
+
         let whiteRoundedViewHeight = cell.deedDescriptionLabel.frame.height + 20
                 
         let whiteRoundedView = WhiteRoundedView(frameToDisplay: CGRect(x: 10, y: 10, width: view.frame.width - 20, height: whiteRoundedViewHeight))
