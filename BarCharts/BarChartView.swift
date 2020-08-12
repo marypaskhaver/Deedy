@@ -19,12 +19,13 @@ class BarChartView: UIView {
     let verticalSpaceBetweenEntries: CGFloat = 40.0
     let barHeight: CGFloat = 40.0
     let horizontalSpaceBetweenEntryComponents: CGFloat = 30.0
-    
     var entryTooBig: Bool = false
-    
+    var largestBarXPos: CGFloat = 40.0
     // Generate graph when data is passed in
     var dataEntries: [BarEntry] = [] {
         didSet {
+            largestBarXPos = getLargestBarXPos()
+
             mainLayer.sublayers?.forEach({ $0.removeFromSuperlayer() })
                   
             mainLayer.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: scrollView.contentSize.height)
@@ -53,6 +54,10 @@ class BarChartView: UIView {
         }
     }
     
+    func getLargestBarXPos() -> CGFloat {
+        return dataEntries.map( { drawTitle(xPos: -100, yPos: -100, title: $0.title).frame.width + horizontalSpaceBetweenEntryComponents } ).max() ?? 40.0
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpView()
@@ -78,9 +83,9 @@ class BarChartView: UIView {
 
         let titleBar = drawTitle(xPos: xPos, yPos: yPos + (barHeight / 4), title: entry.title)
         
-        let progressBar = drawBar(xPos: xPos + titleBar.frame.width + horizontalSpaceBetweenEntryComponents, yPos: yPos, width: calculateBarWidth(value: Float(entry.count), shrinkByFactorOf: factor), forEntry: entry)
+        let progressBar = drawBar(xPos: largestBarXPos + horizontalSpaceBetweenEntryComponents, yPos: yPos, width: calculateBarWidth(value: Float(entry.count), shrinkByFactorOf: factor), forEntry: entry)
         
-        let text = drawTextValue(xPos: xPos + titleBar.frame.width + progressBar.frame.width + horizontalSpaceBetweenEntryComponents, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
+        let text = drawTextValue(xPos: largestBarXPos + progressBar.frame.width + horizontalSpaceBetweenEntryComponents, yPos: yPos + (barHeight / 4), textValue: "\(entry.count)")
         
         let entryWidth = xPos + (titleBar.frame.width + horizontalSpaceBetweenEntryComponents) + (progressBar.frame.width + horizontalSpaceBetweenEntryComponents) + (xPos + text.frame.width)
         
