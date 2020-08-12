@@ -107,7 +107,7 @@
 “We can’t help everyone, but everyone can help someone.” - Ronald Reagan
 “Each day provides its own gifts.” - Marcus Aurelius
 “You must do the things you think you cannot do.” - Eleanor Roosevelt
-“Every day we should hear at least one little song, read one good poem, see one exquisite picture, and, if possible, speak a few sensible words.” - Johann Wolfgang van Goethe
+“Every day we should hear at least one little song, read one good poem, see one exquisite picture, and, if possible, speak a few sensible words.” - Johann Wolfgang von Goethe
 “Sometimes life hits you in the head with a brick. Don’t lose faith.” - Steve Jobs
 “Being entirely honest with oneself is a good exercise.” - Sigmund Freud
 “There are many ways of going forward, but only one way of standing still.” - Franklin Delano Roosevelt
@@ -115,3 +115,9 @@
 “We have more possibilities available in each moment than we realize.” - Thich Nhat Hanh
 “My actions are my only true belongings. I cannot escape the consequences of my actions. My actions are the ground upon which I stand.” - Thich Nhat Hanh
 “Do not do to others what angers you if done to you by others.” - Socrates
+“Make someone’s day today.” - Shaun Mayer
+“If there is no struggle, there is no progress.” - Frederick Douglass
+“Hard choices, easy life. Easy choices, hard life.” - Jerzy Gregorek
+“Diamonds are only lumps of coal that stuck at it no matter how much heat or pressure they faced.” - Jeffrey Fry
+“Patience and fortitude conquer all things.” - Ralph Waldo Emerson
+“Dream no small dreams for they have no power to move the hearts of men.” - Johann Wolfgang von Goethe
