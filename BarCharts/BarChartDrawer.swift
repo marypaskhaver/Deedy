@@ -65,7 +65,7 @@ class BarChartDrawer {
     
     // MARK: - Configuring text and alignment methods
     func configureTextLayer(layer: CATextLayer) {
-        layer.foregroundColor = (view.traitCollection.userInterfaceStyle == .dark) ? UIColor.white.cgColor : UIColor.black.cgColor
+        layer.foregroundColor = UIColor.black.cgColor
         setTextLayerAlignmentAndContentScale(forLayer: layer)
         setTextLayerFont(forLayer: layer)
     }
