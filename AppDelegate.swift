@@ -9,20 +9,21 @@
 import UIKit
 import CoreData
 
-
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
         let center = UNUserNotificationCenter.current()
+        center.delegate = self
         
         center.getNotificationSettings(completionHandler: { (settings) in
             if settings.authorizationStatus == .notDetermined {
                 center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
                     if granted {
-
+                        
                     } else {
 
                     }
@@ -33,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.addNotificationToCenter(center)
             }
         })
-        
+  
         // Override point for customization after application launch.
         changeAppColor()
         return true
