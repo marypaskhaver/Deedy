@@ -76,6 +76,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         center.setNotificationCategories([category])
     }
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        if response.actionIdentifier == "RESET_ACTION" {
+            let randomQuote = TextFileReader().returnRandomLineFromFile(withName: "quotes")
+
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
+
+            let content = UNMutableNotificationContent()
+            content.title = "Quote of the Day"
+            content.body = randomQuote
+            content.sound = UNNotificationSound.default
+
+            content.categoryIdentifier = "RESET_CATEGORY"
+            configureCategory(forCenter: center)
+
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+            center.add(request)
+        }
+        
+        completionHandler()
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+    }
+    
     // MARK: - Core Data stack
 
     // An SQL database
