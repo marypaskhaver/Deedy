@@ -46,23 +46,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func addNotificationToCenter(_ center: UNUserNotificationCenter) {
         center.removeAllPendingNotificationRequests()
         center.removeAllDeliveredNotifications()
-            
+        
+        configureCategory(forCenter: center)
+
         let randomQuote = TextFileReader().returnRandomLineFromFile(withName: "quotes")
         
         var dateComponents = DateComponents()
         dateComponents.timeZone = NSTimeZone.local
         dateComponents.hour = 9 // At 9:00 every morning
 
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-
         let content = UNMutableNotificationContent()
         content.title = "Quote of the Day"
         content.body = randomQuote
         content.sound = UNNotificationSound.default
+        content.categoryIdentifier = "RESET_CATEGORY"
         
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
     
         center.add(request)
+    }
+    
+    func configureCategory(forCenter center: UNUserNotificationCenter) {
+        let resetAction = UNNotificationAction(identifier: "RESET_ACTION", title: "Get a new quote!", options: .init(rawValue: 0))
+        
+        let category = UNNotificationCategory(identifier: "RESET_CATEGORY", actions: [resetAction], intentIdentifiers: [], options: [])
+        
+        center.setNotificationCategories([category])
     }
     
     // MARK: - Core Data stack
