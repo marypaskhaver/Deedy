@@ -13,7 +13,9 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
-
+    let resetQuoteActionIdentifier: String = "RESET_QUOTE_ACTION"
+    let categoryIdentifier: String = "RESET_QUOTE_CATEGORY"
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         let center = UNUserNotificationCenter.current()
@@ -34,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 self.addNotificationToCenter(center)
             }
         })
-  
+          
         // Override point for customization after application launch.
         changeAppColor()
         return true
@@ -60,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         content.title = "Quote of the Day"
         content.body = randomQuote
         content.sound = UNNotificationSound.default
-        content.categoryIdentifier = "RESET_CATEGORY"
+        content.categoryIdentifier = categoryIdentifier
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
 
@@ -70,15 +72,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func configureCategory(forCenter center: UNUserNotificationCenter) {
-        let resetAction = UNNotificationAction(identifier: "RESET_ACTION", title: "Get a new quote!", options: .init(rawValue: 0))
+        let resetAction = UNNotificationAction(identifier: resetQuoteActionIdentifier, title: "Get a new quote!", options: .init(rawValue: 0))
         
-        let category = UNNotificationCategory(identifier: "RESET_CATEGORY", actions: [resetAction], intentIdentifiers: [], options: [])
+        let category = UNNotificationCategory(identifier: categoryIdentifier, actions: [resetAction], intentIdentifiers: [], options: [])
         
         center.setNotificationCategories([category])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        if response.actionIdentifier == "RESET_ACTION" {
+        if response.actionIdentifier == resetQuoteActionIdentifier {
             let randomQuote = TextFileReader().returnRandomLineFromFile(withName: "quotes")
 
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
@@ -88,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             content.body = randomQuote
             content.sound = UNNotificationSound.default
 
-            content.categoryIdentifier = "RESET_CATEGORY"
+            content.categoryIdentifier = categoryIdentifier
             configureCategory(forCenter: center)
 
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
