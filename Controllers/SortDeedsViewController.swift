@@ -33,6 +33,8 @@ class SortDeedsViewController: UIViewController {
         interfacePickerView.dataSource = myPickerView
         myPickerView.propertyThatReferencesThisViewController = self
         
+        interfacePickerView.selectRow(pickerItems.firstIndex(of: DisplayDeedsViewController.timeSection)!, inComponent: 0, animated: false)
+        
         navigationController?.navigationBar.shadowImage = UIImage()
     }
 }
