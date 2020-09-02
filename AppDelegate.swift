@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         content.categoryIdentifier = categoryIdentifier
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-
+        
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
     
         center.add(request)
@@ -81,18 +81,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if response.actionIdentifier == resetQuoteActionIdentifier {
-            let randomQuote = TextFileReader().returnRandomLineFromFile(withName: "quotes")
+            configureCategory(forCenter: center)
 
+            let randomQuote = TextFileReader().returnRandomLineFromFile(withName: "quotes")
+            
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
 
             let content = UNMutableNotificationContent()
             content.title = "Quote of the Day"
             content.body = randomQuote
             content.sound = UNNotificationSound.default
-
             content.categoryIdentifier = categoryIdentifier
-            configureCategory(forCenter: center)
-
+            
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 
             center.add(request)
