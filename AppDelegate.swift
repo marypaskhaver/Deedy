@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func configureCategory(forCenter center: UNUserNotificationCenter) {
-        let resetAction = UNNotificationAction(identifier: resetQuoteActionIdentifier, title: "Get a new quote!", options: .foreground)
+        let resetAction = UNNotificationAction(identifier: resetQuoteActionIdentifier, title: "Get a new quote!", options: .init(rawValue: 0))
         
         let category = UNNotificationCategory(identifier: categoryIdentifier, actions: [resetAction], intentIdentifiers: [], options: [])
         
