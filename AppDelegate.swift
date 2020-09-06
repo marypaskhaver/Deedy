@@ -47,25 +47,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func addNotificationToCenter(_ center: UNUserNotificationCenter) {
-        center.removeAllPendingNotificationRequests()
         center.removeAllDeliveredNotifications()
+        center.removeAllPendingNotificationRequests()
         
         configureCategory(forCenter: center)
-
-        let randomQuote = TextFileReader().returnRandomLineFromFile(withName: "quotes")
         
         var dateComponents = DateComponents()
         dateComponents.timeZone = NSTimeZone.local
         dateComponents.hour = 9 // At 9:00 every morning
 
-        let content = UNMutableNotificationContent()
-        content.title = "Quote of the Day"
-        content.body = randomQuote
-        content.sound = UNNotificationSound.default
-        content.categoryIdentifier = categoryIdentifier
-        
+        let content: UNMutableNotificationContent = getRandomQuoteNotificationContent()
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
     
         center.add(request)
@@ -79,20 +71,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         center.setNotificationCategories([category])
     }
     
+    func getRandomQuoteNotificationContent() -> UNMutableNotificationContent {
+        let randomQuote = TextFileReader().returnRandomLineFromFile(withName: "quotes")
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Quote of the Day"
+        content.body = randomQuote
+        content.sound = UNNotificationSound.default
+        content.categoryIdentifier = categoryIdentifier
+        
+        return content
+    }
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if response.actionIdentifier == resetQuoteActionIdentifier {
             configureCategory(forCenter: center)
 
-            let randomQuote = TextFileReader().returnRandomLineFromFile(withName: "quotes")
-            
+            let content: UNMutableNotificationContent = getRandomQuoteNotificationContent()
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
-
-            let content = UNMutableNotificationContent()
-            content.title = "Quote of the Day"
-            content.body = randomQuote
-            content.sound = UNNotificationSound.default
-            content.categoryIdentifier = categoryIdentifier
-            
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 
             center.add(request)
