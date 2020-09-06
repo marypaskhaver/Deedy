@@ -59,9 +59,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dateComponents.timeZone = NSTimeZone.local
         dateComponents.hour = 9 // At 9:00 every morning
         
-        // Configure notifs a week ahead of schedule
-        for day in 1..<8 {
-            dateComponents.weekday = day
+        // Configure notifs a month ahead
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month], from: calendar.startOfDay(for: DateHandler().currentDate() as Date))
+        let startOfMonth = calendar.date(from:components)!
+        let numberOfDays = calendar.range(of: .day, in: .month, for: startOfMonth)!.upperBound
+
+        for day in 1..<(numberOfDays + 1) {
+            dateComponents.day = day
             
             let content: UNMutableNotificationContent = getRandomQuoteNotificationContent()
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
@@ -69,6 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             center.add(request)
         }
+        
     }
     
     func configureCategory(forCenter center: UNUserNotificationCenter) {
