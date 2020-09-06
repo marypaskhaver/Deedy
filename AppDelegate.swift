@@ -46,9 +46,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.saveContext()
     }
     
-    func addDailyNotificationToCenter(_ center: UNUserNotificationCenter) {
+    func addDailyNotificationToCenter(_ center: UNUserNotificationCenter, removePendingRequests shouldRemoveRequests: Bool = true) {
         center.removeAllDeliveredNotifications()
-        center.removeAllPendingNotificationRequests()
+        
+        if (shouldRemoveRequests) {
+            center.removeAllPendingNotificationRequests()
+        }
         
         configureCategory(forCenter: center)
         
@@ -85,6 +88,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if response.actionIdentifier == resetQuoteActionIdentifier {
+            center.removeAllPendingNotificationRequests()
+            
             configureCategory(forCenter: center)
 
             let content: UNMutableNotificationContent = getRandomQuoteNotificationContent()
@@ -92,6 +97,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
             
             center.add(request)
+            
+            addDailyNotificationToCenter(center, removePendingRequests: false)
         }
         
         completionHandler()
