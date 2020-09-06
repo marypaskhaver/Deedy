@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             } else if settings.authorizationStatus == .denied {
 
             } else if settings.authorizationStatus == .authorized {
-                self.addNotificationToCenter(center)
+                self.addDailyNotificationToCenter(center)
             }
         })
           
@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.saveContext()
     }
     
-    func addNotificationToCenter(_ center: UNUserNotificationCenter) {
+    func addDailyNotificationToCenter(_ center: UNUserNotificationCenter) {
         center.removeAllDeliveredNotifications()
         center.removeAllPendingNotificationRequests()
         
@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let content: UNMutableNotificationContent = getRandomQuoteNotificationContent()
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-
+            
             center.add(request)
         }
         
