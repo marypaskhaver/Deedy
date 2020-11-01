@@ -27,7 +27,8 @@ class BarChartViewController: UIViewController {
         super.viewDidLoad()
         
         noDeedsDoneLabel.sizeToFit()
-        
+        noDeedsDoneLabel.textColor = self.traitCollection.userInterfaceStyle == .dark ? UIColor.white : UIColor.black
+
         deedsDone = getDeedsDoneInPastMonth()
         
         if deedsDone.count > 0 {
