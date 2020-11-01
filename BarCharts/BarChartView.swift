@@ -95,6 +95,7 @@ class BarChartView: UIView {
     // MARK: - Drawing CALayers
     private func drawTitle(xPos: CGFloat, yPos: CGFloat, title: String) -> CATextLayer {
         let textLayer = BarChartDrawer(withView: self, withBarHeight: barHeight).drawTitle(xPos: xPos, yPos: yPos, title: title)
+        textLayer.foregroundColor = (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.white.cgColor : UIColor.black.cgColor
 
         mainLayer.addSublayer(textLayer)
 
@@ -111,7 +112,8 @@ class BarChartView: UIView {
 
     private func drawTextValue(xPos: CGFloat, yPos: CGFloat, textValue: String) -> CATextLayer {
         let textLayer = BarChartDrawer(withView: self, withBarHeight: barHeight).drawTextValue(xPos: xPos, yPos: yPos, textValue: textValue)
-        
+        textLayer.foregroundColor = (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.white.cgColor : UIColor.black.cgColor
+
         mainLayer.addSublayer(textLayer)
         
         return textLayer
