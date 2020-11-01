@@ -151,18 +151,18 @@ class SettingsViewController: UIViewController {
     }
     
     func loadColorTheme() {
-        // Default values are set in Main.storyboard
-        if let rsv = defaults.object(forKey: UserDefaultsKeys.redSliderValue) {
-            redSlider.value = rsv as! Float
+        var color: UIColor = CustomColors.defaultBlue
+        
+        if let navBarColor = defaults.color(forKey: UserDefaultsKeys.navBarColor) {
+            color = navBarColor
         }
         
-        if let gsv = defaults.object(forKey: UserDefaultsKeys.greenSliderValue) {
-            greenSlider.value = gsv as! Float
-        }
-        
-        if let bsv = defaults.object(forKey: UserDefaultsKeys.blueSliderValue) {
-            blueSlider.value = bsv as! Float
-        }
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        color.getRed(&r, green: &g, blue: &b, alpha: &a)
+
+        redSlider.value = Float(r * 255)
+        blueSlider.value = Float(b * 255)
+        greenSlider.value = Float(g * 255)
                 
         navigationController?.navigationBar.barTintColor = getUIColorFromSliders()
     }
