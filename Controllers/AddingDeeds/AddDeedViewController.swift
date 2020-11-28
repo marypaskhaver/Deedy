@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddDeedViewController: UIViewController {
+class AddDeedViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var textView: TextViewForDeedEntry!
     @IBOutlet weak var invalidInputWarningLabel: UILabel!
@@ -20,13 +20,25 @@ class AddDeedViewController: UIViewController {
         invalidInputWarningLabel.isHidden = true
         
         navigationController?.navigationBar.shadowImage = UIImage()
-
+        
+        // Create "placeholder"
+        textView.text = "I am " + TextFileReader().returnRandomLineFromFile(withName: "placeholder_adjs") + " and today I..."
+        textView.textColor = UIColor.lightGray
+        textView.delegate = self
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
         
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
