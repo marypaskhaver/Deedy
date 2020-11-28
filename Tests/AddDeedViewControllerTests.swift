@@ -24,6 +24,19 @@ class AddDeedViewControllerTests: XCTestCase {
         advc = nil
     }
     
+    func testMotivationalPlaceholderShows() {
+        XCTAssertTrue(TextFileReader().returnRandomLineFromFile(withName: "placeholder_adjs") != "")
+        XCTAssertNotNil(TextFileReader().returnRandomLineFromFile(withName: "placeholder_adjs"))
+        XCTAssert(advc.textView.textColor == UIColor.lightGray)
+        XCTAssertTrue(advc.textView.text.contains("and today I..."))
+    }
+    
+    func testMotivationalPlaceholderDisappears() {
+        advc.textViewDidBeginEditing(advc.textView)
+        XCTAssert(advc.textView.text.count == 0)
+        XCTAssert(advc.textView.textColor == UIColor.black)
+    }
+    
     func testInvalidInputWarningLabelHidesWhenViewIsLoaded() {
         XCTAssertTrue(advc.invalidInputWarningLabel.isHidden)
     }
