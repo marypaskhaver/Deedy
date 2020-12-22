@@ -137,6 +137,8 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
             updateDeedsLabel()
             dataSource.saveDeeds()
             
+            // Count: # of bursts, sparks: # of sparks per burst
+            ClassicFireworkController().addFireworks(count: 2, sparks: 8, around: totalDeedsLabel)
             requestReviewIfPossible()
         } else if segue.identifier == "doneSortingSegue" {
             updateSections()
