@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import StoreKit
 
 class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
     static var timeSection: String = "Month"
@@ -135,12 +136,20 @@ class DisplayDeedsViewController: UIViewController, DeedEditedDelegateProtocol {
             
             updateDeedsLabel()
             dataSource.saveDeeds()
-
+            
+            requestReviewIfPossible()
         } else if segue.identifier == "doneSortingSegue" {
             updateSections()
             tableView.reloadData()
         }
           
+    }
+    
+    // MARK: - Requesting a Review
+    func requestReviewIfPossible() {
+        if dataSource.deeds.count % 10 == 0 {
+            SKStoreReviewController.requestReview()
+        }
     }
     
     // MARK: - Updating/Sorting Sections and Labels
