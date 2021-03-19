@@ -23,4 +23,4 @@ Features:
 
 ## Make Someone's Day Today!
 
-![Deedy App Icon](https://github.com/marypaskhaver/Deedy/blob/master/Assets.xcassets/AppIcons.appiconset/ItunesArtwork%402x.png)
+![Deedy App Icon](https://github.com/marypaskhaver/Deedy/blob/master/Good%20Deed%20Counter/Assets.xcassets/AppIcon.appiconset/iTunesArtwork%402x.png)
