@@ -1,0 +1,1114 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		20041D5F259186BD002832BE /* SparkTrajectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041D5E259186BD002832BE /* SparkTrajectory.swift */; };
+		20041D67259187E2002832BE /* CubicBezierTrajectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041D66259187E2002832BE /* CubicBezierTrajectory.swift */; };
+		20041D6C2591882F002832BE /* ClassicSparkTrajectoryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041D6B2591882F002832BE /* ClassicSparkTrajectoryFactory.swift */; };
+		20041D71259188D0002832BE /* SparkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041D70259188D0002832BE /* SparkView.swift */; };
+		20041D76259188FA002832BE /* CircleColorSparkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041D75259188FA002832BE /* CircleColorSparkView.swift */; };
+		20041D7B259189A2002832BE /* SparkTrajectoryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041D7A259189A2002832BE /* SparkTrajectoryFactory.swift */; };
+		20041D8025918B60002832BE /* SparkViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041D7F25918B60002832BE /* SparkViewFactory.swift */; };
+		20041D8525918BCE002832BE /* Firework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041D8425918BCE002832BE /* Firework.swift */; };
+		20041D8A25918D5B002832BE /* CGPoint+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041D8925918D5B002832BE /* CGPoint+Operations.swift */; };
+		20041D8F25918F82002832BE /* ClassicFirework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041D8E25918F82002832BE /* ClassicFirework.swift */; };
+		20041D9425919025002832BE /* SparkViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041D9325919025002832BE /* SparkViewAnimator.swift */; };
+		20041D992591904F002832BE /* ClassicFireworkAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041D982591904F002832BE /* ClassicFireworkAnimator.swift */; };
+		20041D9E259190A1002832BE /* ClassicFireworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041D9D259190A1002832BE /* ClassicFireworkController.swift */; };
+		20041DA32591915E002832BE /* DefaultSparkViewFactoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041DA22591915E002832BE /* DefaultSparkViewFactoryData.swift */; };
+		20105F362492E67300CD41EF /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20105F342492E67300CD41EF /* DataModel.xcdatamodeld */; };
+		20105F3A2492EBBA00CD41EF /* Deed+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20105F382492EBBA00CD41EF /* Deed+CoreDataClass.swift */; };
+		20105F3B2492EBBA00CD41EF /* Deed+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20105F392492EBBA00CD41EF /* Deed+CoreDataProperties.swift */; };
+		201749BF2422FB020034DD9F /* DisplayDeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20817CFF24143A2200D6A1FE /* DisplayDeedsViewController.swift */; };
+		201C4F022499263100599DC2 /* DailyChallenge+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201C4F012499263100599DC2 /* DailyChallenge+CoreDataProperties.swift */; };
+		201C4F042499265E00599DC2 /* DailyChallenge+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201C4F032499265E00599DC2 /* DailyChallenge+CoreDataClass.swift */; };
+		201CDB6D24BCB4D90044D691 /* ChallengesViewControllerTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201CDB6C24BCB4D90044D691 /* ChallengesViewControllerTableViewDataSource.swift */; };
+		202066D824BB3B8200123AA6 /* BarChartViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202066D724BB3B8200123AA6 /* BarChartViewControllerTests.swift */; };
+		2022A4E724A2305B00E2818B /* quotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2022A4E624A2305B00E2818B /* quotes.txt */; };
+		2022A4E924A24B2F00E2818B /* TextFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2022A4E824A24B2F00E2818B /* TextFileReader.swift */; };
+		2023D24A24BAA17100306B9B /* ColoredBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023D24924BAA17100306B9B /* ColoredBorderButton.swift */; };
+		202882B424A625B70065F110 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202882B324A625B70065F110 /* CustomColors.swift */; };
+		202882C824A634710065F110 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20105F342492E67300CD41EF /* DataModel.xcdatamodeld */; };
+		202882CA24A6398D0065F110 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202882C924A6398D0065F110 /* BackgroundView.swift */; };
+		20291A8324A8CDC000BB1A14 /* CellCustomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20291A8224A8CDC000BB1A14 /* CellCustomizer.swift */; };
+		202A281B24B4EF580041AA06 /* BarEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A281A24B4EF580041AA06 /* BarEntry.swift */; };
+		202A281D24B4EF850041AA06 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A281C24B4EF850041AA06 /* BarChartView.swift */; };
+		202A281F24B4F2D80041AA06 /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A281E24B4F2D80041AA06 /* BarChartViewController.swift */; };
+		20313F1824A4D95E002C8D2E /* WhiteRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20313F1724A4D95E002C8D2E /* WhiteRoundedView.swift */; };
+		20313F1B24A4E6AF002C8D2E /* TextViewForDeedEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20313F1A24A4E6AF002C8D2E /* TextViewForDeedEntry.swift */; };
+		20313F1D24A4EB64002C8D2E /* DeedAchievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20313F1C24A4EB64002C8D2E /* DeedAchievements.swift */; };
+		20313F1F24A4EF23002C8D2E /* StreakAchievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20313F1E24A4EF23002C8D2E /* StreakAchievements.swift */; };
+		20313F2224A4F521002C8D2E /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20313F2124A4F521002C8D2E /* TopView.swift */; };
+		2034290E249D2A8800A474F3 /* Streak+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2034290C249D2A8800A474F3 /* Streak+CoreDataClass.swift */; };
+		2034290F249D2A8800A474F3 /* Streak+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2034290D249D2A8800A474F3 /* Streak+CoreDataProperties.swift */; };
+		2034CBAD24BDE5F800A3CAC0 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2034CBAC24BDE5F800A3CAC0 /* ProgressView.swift */; };
+		2034CBAF24BDF1AE00A3CAC0 /* ChallengesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2034CBAE24BDF1AE00A3CAC0 /* ChallengesViewControllerTests.swift */; };
+		2047A61824969B76009B13D6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047A61724969B76009B13D6 /* SettingsViewController.swift */; };
+		2049639424B2A75800B1A0FA /* MockDataModelObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2049639324B2A75800B1A0FA /* MockDataModelObjects.swift */; };
+		204F0C9D2572D0A6009FE408 /* placeholder_adjs.txt in Resources */ = {isa = PBXBuildFile; fileRef = 204F0C9C2572D0A6009FE408 /* placeholder_adjs.txt */; };
+		2062C13124AA7DED0023BB06 /* DisplayDeedsViewControllerTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2062C13024AA7DED0023BB06 /* DisplayDeedsViewControllerTableViewDataSource.swift */; };
+		206D5FFA242D4E83000A3E14 /* DeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206D5FF9242D4E83000A3E14 /* DeedTableViewCell.swift */; };
+		2074484A2416FDDD00624D47 /* SortDeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207448492416FDDD00624D47 /* SortDeedsViewController.swift */; };
+		2074484E2417017000624D47 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2074484D2417017000624D47 /* PickerView.swift */; };
+		2077667B24C4974600C8913C /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077667A24C4974600C8913C /* UserDefaultsKeys.swift */; };
+		2077667D24C49DFE00C8913C /* UserDefaults+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077667C24C49DFE00C8913C /* UserDefaults+Color.swift */; };
+		20817CFC24143A2200D6A1FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20817CFB24143A2200D6A1FE /* AppDelegate.swift */; };
+		20817CFE24143A2200D6A1FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20817CFD24143A2200D6A1FE /* SceneDelegate.swift */; };
+		20817D0324143A2200D6A1FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20817D0124143A2200D6A1FE /* Main.storyboard */; };
+		20817D0524143A2300D6A1FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20817D0424143A2300D6A1FE /* Assets.xcassets */; };
+		20817D0824143A2300D6A1FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20817D0624143A2300D6A1FE /* LaunchScreen.storyboard */; };
+		20817D1324143A2400D6A1FE /* Good_Deed_CounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20817D1224143A2400D6A1FE /* Good_Deed_CounterTests.swift */; };
+		20817D1E24143A2400D6A1FE /* Good_Deed_CounterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20817D1D24143A2400D6A1FE /* Good_Deed_CounterUITests.swift */; };
+		20829CE624AFC26C007250E4 /* SortDeedsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20829CE524AFC26C007250E4 /* SortDeedsViewControllerTests.swift */; };
+		2098213C247DD8F800839E64 /* MonthSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2098213B247DD8F800839E64 /* MonthSection.swift */; };
+		2098213E247DD91A00839E64 /* YearSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2098213D247DD91A00839E64 /* YearSection.swift */; };
+		20982142247DDB9700839E64 /* AddDeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20982141247DDB9700839E64 /* AddDeedViewController.swift */; };
+		20982144247DDBBA00839E64 /* WeekSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20982143247DDBBA00839E64 /* WeekSection.swift */; };
+		20A904B624BF83E000497010 /* TutorialPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A904B524BF83E000497010 /* TutorialPageControl.swift */; };
+		20A904BA24BFA3E100497010 /* ChallengesViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A904B924BFA3E100497010 /* ChallengesViewController+TableViewDelegate.swift */; };
+		20A904BD24BFA4C900497010 /* DisplayDeedsViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A904BC24BFA4C900497010 /* DisplayDeedsViewController+TableViewDelegate.swift */; };
+		20A904C024BFA69200497010 /* DisplayDeedsViewController+SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A904BF24BFA69200497010 /* DisplayDeedsViewController+SearchBarDelegate.swift */; };
+		20A904C224BFAC3C00497010 /* TableViewModification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A904C124BFAC3C00497010 /* TableViewModification.swift */; };
+		20A904C424BFF9C300497010 /* BarChartDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A904C324BFF9C300497010 /* BarChartDrawer.swift */; };
+		20AA3DA124BB963600E83F60 /* TutorialPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AA3DA024BB963600E83F60 /* TutorialPage.swift */; };
+		20AA3DA324BB965100E83F60 /* TutorialPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20AA3DA224BB965100E83F60 /* TutorialPage.xib */; };
+		20AA3DA524BB96F500E83F60 /* TutorialScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AA3DA424BB96F500E83F60 /* TutorialScrollView.swift */; };
+		20B49FC8249AD3D100DE282B /* Achievement+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B49FC6249AD3D100DE282B /* Achievement+CoreDataClass.swift */; };
+		20B49FC9249AD3D100DE282B /* Achievement+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B49FC7249AD3D100DE282B /* Achievement+CoreDataProperties.swift */; };
+		20BFF5FD24C4EBDD002CAC4A /* DisplayDeedsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BFF5FC24C4EBDD002CAC4A /* DisplayDeedsViewControllerTests.swift */; };
+		20CFD4C424A50CF800E497F2 /* AchievementProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CFD4C324A50CF800E497F2 /* AchievementProtocol.swift */; };
+		20CFD4D124A5384F00E497F2 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CFD4D024A5384F00E497F2 /* Animations.swift */; };
+		20CFD4D324A5389700E497F2 /* TableViewCellAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CFD4D224A5389700E497F2 /* TableViewCellAnimator.swift */; };
+		20CFD4D624A541AF00E497F2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CFD4D524A541AF00E497F2 /* CoreDataManager.swift */; };
+		20CFD4D824A54DB200E497F2 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CFD4D724A54DB200E497F2 /* CoreDataManagerTests.swift */; };
+		20DC965B2498554500E912D8 /* ChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DC965A2498554500E912D8 /* ChallengesViewController.swift */; };
+		20E2B35B24C0A7F9008E394E /* DateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E2B35A24C0A7F9008E394E /* DateHandler.swift */; };
+		20E2B35D24C0B44A008E394E /* EditDeedViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E2B35C24C0B44A008E394E /* EditDeedViewControllerTests.swift */; };
+		20E2B35F24C0C255008E394E /* AddDeedViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E2B35E24C0C255008E394E /* AddDeedViewControllerTests.swift */; };
+		20E2B36324C0DCBC008E394E /* SettingsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E2B36224C0DCBC008E394E /* SettingsViewControllerTests.swift */; };
+		20E2B36524C0EAB7008E394E /* TutorialXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E2B36424C0EAB7008E394E /* TutorialXButton.swift */; };
+		20E2B36724C1155D008E394E /* TutorialSetterUpper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E2B36624C1155D008E394E /* TutorialSetterUpper.swift */; };
+		20E6E87C249A68E9000E14DC /* ChallengeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E6E87B249A68E9000E14DC /* ChallengeTableViewCell.swift */; };
+		20E8DBD4247DD88E007018AD /* TimeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8DBD3247DD88E007018AD /* TimeSection.swift */; };
+		20E8DBD6247DD8B4007018AD /* DaySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8DBD5247DD8B4007018AD /* DaySection.swift */; };
+		20EE4C43249C1D4600E3BC8A /* EditDeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EE4C42249C1D4600E3BC8A /* EditDeedViewController.swift */; };
+		20F9298F24BD5423001005C9 /* BarStyleSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9298E24BD5423001005C9 /* BarStyleSetter.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		20817D0F24143A2400D6A1FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20817CF024143A2200D6A1FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 20817CF724143A2200D6A1FE;
+			remoteInfo = "Good Deed Counter";
+		};
+		20817D1A24143A2400D6A1FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20817CF024143A2200D6A1FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 20817CF724143A2200D6A1FE;
+			remoteInfo = "Good Deed Counter";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		20041D5E259186BD002832BE /* SparkTrajectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkTrajectory.swift; sourceTree = "<group>"; };
+		20041D66259187E2002832BE /* CubicBezierTrajectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubicBezierTrajectory.swift; sourceTree = "<group>"; };
+		20041D6B2591882F002832BE /* ClassicSparkTrajectoryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicSparkTrajectoryFactory.swift; sourceTree = "<group>"; };
+		20041D70259188D0002832BE /* SparkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkView.swift; sourceTree = "<group>"; };
+		20041D75259188FA002832BE /* CircleColorSparkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleColorSparkView.swift; sourceTree = "<group>"; };
+		20041D7A259189A2002832BE /* SparkTrajectoryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkTrajectoryFactory.swift; sourceTree = "<group>"; };
+		20041D7F25918B60002832BE /* SparkViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkViewFactory.swift; sourceTree = "<group>"; };
+		20041D8425918BCE002832BE /* Firework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firework.swift; sourceTree = "<group>"; };
+		20041D8925918D5B002832BE /* CGPoint+Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Operations.swift"; sourceTree = "<group>"; };
+		20041D8E25918F82002832BE /* ClassicFirework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicFirework.swift; sourceTree = "<group>"; };
+		20041D9325919025002832BE /* SparkViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkViewAnimator.swift; sourceTree = "<group>"; };
+		20041D982591904F002832BE /* ClassicFireworkAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicFireworkAnimator.swift; sourceTree = "<group>"; };
+		20041D9D259190A1002832BE /* ClassicFireworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicFireworkController.swift; sourceTree = "<group>"; };
+		20041DA22591915E002832BE /* DefaultSparkViewFactoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSparkViewFactoryData.swift; sourceTree = "<group>"; };
+		20105F352492E67300CD41EF /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		20105F382492EBBA00CD41EF /* Deed+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deed+CoreDataClass.swift"; sourceTree = "<group>"; };
+		20105F392492EBBA00CD41EF /* Deed+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deed+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		201C4F012499263100599DC2 /* DailyChallenge+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyChallenge+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		201C4F032499265E00599DC2 /* DailyChallenge+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyChallenge+CoreDataClass.swift"; sourceTree = "<group>"; };
+		201CDB6C24BCB4D90044D691 /* ChallengesViewControllerTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesViewControllerTableViewDataSource.swift; sourceTree = "<group>"; };
+		202066D724BB3B8200123AA6 /* BarChartViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewControllerTests.swift; sourceTree = "<group>"; };
+		2022A4E624A2305B00E2818B /* quotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = quotes.txt; sourceTree = "<group>"; };
+		2022A4E824A24B2F00E2818B /* TextFileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFileReader.swift; sourceTree = "<group>"; };
+		2023D24924BAA17100306B9B /* ColoredBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredBorderButton.swift; sourceTree = "<group>"; };
+		202882B324A625B70065F110 /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		202882C924A6398D0065F110 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		20291A8224A8CDC000BB1A14 /* CellCustomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellCustomizer.swift; sourceTree = "<group>"; };
+		202A281A24B4EF580041AA06 /* BarEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarEntry.swift; sourceTree = "<group>"; };
+		202A281C24B4EF850041AA06 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		202A281E24B4F2D80041AA06 /* BarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
+		20313F1724A4D95E002C8D2E /* WhiteRoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteRoundedView.swift; sourceTree = "<group>"; };
+		20313F1A24A4E6AF002C8D2E /* TextViewForDeedEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewForDeedEntry.swift; sourceTree = "<group>"; };
+		20313F1C24A4EB64002C8D2E /* DeedAchievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeedAchievements.swift; sourceTree = "<group>"; };
+		20313F1E24A4EF23002C8D2E /* StreakAchievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakAchievements.swift; sourceTree = "<group>"; };
+		20313F2124A4F521002C8D2E /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
+		2034290C249D2A8800A474F3 /* Streak+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Streak+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2034290D249D2A8800A474F3 /* Streak+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Streak+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2034CBAC24BDE5F800A3CAC0 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		2034CBAE24BDF1AE00A3CAC0 /* ChallengesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesViewControllerTests.swift; sourceTree = "<group>"; };
+		2047A61724969B76009B13D6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		2049639324B2A75800B1A0FA /* MockDataModelObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataModelObjects.swift; sourceTree = "<group>"; };
+		204F0C9C2572D0A6009FE408 /* placeholder_adjs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = placeholder_adjs.txt; sourceTree = "<group>"; };
+		2062C13024AA7DED0023BB06 /* DisplayDeedsViewControllerTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDeedsViewControllerTableViewDataSource.swift; sourceTree = "<group>"; };
+		206D5FF9242D4E83000A3E14 /* DeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeedTableViewCell.swift; sourceTree = "<group>"; };
+		207448492416FDDD00624D47 /* SortDeedsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDeedsViewController.swift; sourceTree = "<group>"; };
+		2074484D2417017000624D47 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		2077667A24C4974600C8913C /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		2077667C24C49DFE00C8913C /* UserDefaults+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Color.swift"; sourceTree = "<group>"; };
+		20817CF824143A2200D6A1FE /* Deedy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Deedy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20817CFB24143A2200D6A1FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		20817CFD24143A2200D6A1FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		20817CFF24143A2200D6A1FE /* DisplayDeedsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDeedsViewController.swift; sourceTree = "<group>"; };
+		20817D0224143A2200D6A1FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		20817D0424143A2300D6A1FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		20817D0724143A2300D6A1FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		20817D0924143A2300D6A1FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20817D0E24143A2400D6A1FE /* Good Deed CounterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Good Deed CounterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		20817D1224143A2400D6A1FE /* Good_Deed_CounterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Good_Deed_CounterTests.swift; sourceTree = "<group>"; };
+		20817D1424143A2400D6A1FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20817D1924143A2400D6A1FE /* Good Deed CounterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Good Deed CounterUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		20817D1D24143A2400D6A1FE /* Good_Deed_CounterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Good_Deed_CounterUITests.swift; sourceTree = "<group>"; };
+		20817D1F24143A2400D6A1FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20829CE524AFC26C007250E4 /* SortDeedsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDeedsViewControllerTests.swift; sourceTree = "<group>"; };
+		2098213B247DD8F800839E64 /* MonthSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthSection.swift; sourceTree = "<group>"; };
+		2098213D247DD91A00839E64 /* YearSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearSection.swift; sourceTree = "<group>"; };
+		20982141247DDB9700839E64 /* AddDeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDeedViewController.swift; sourceTree = "<group>"; };
+		20982143247DDBBA00839E64 /* WeekSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekSection.swift; sourceTree = "<group>"; };
+		20A904B524BF83E000497010 /* TutorialPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageControl.swift; sourceTree = "<group>"; };
+		20A904B924BFA3E100497010 /* ChallengesViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChallengesViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		20A904BC24BFA4C900497010 /* DisplayDeedsViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DisplayDeedsViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		20A904BF24BFA69200497010 /* DisplayDeedsViewController+SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DisplayDeedsViewController+SearchBarDelegate.swift"; sourceTree = "<group>"; };
+		20A904C124BFAC3C00497010 /* TableViewModification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModification.swift; sourceTree = "<group>"; };
+		20A904C324BFF9C300497010 /* BarChartDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartDrawer.swift; sourceTree = "<group>"; };
+		20AA3DA024BB963600E83F60 /* TutorialPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPage.swift; sourceTree = "<group>"; };
+		20AA3DA224BB965100E83F60 /* TutorialPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialPage.xib; sourceTree = "<group>"; };
+		20AA3DA424BB96F500E83F60 /* TutorialScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialScrollView.swift; sourceTree = "<group>"; };
+		20B49FC6249AD3D100DE282B /* Achievement+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Achievement+CoreDataClass.swift"; sourceTree = "<group>"; };
+		20B49FC7249AD3D100DE282B /* Achievement+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Achievement+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		20BFF5FC24C4EBDD002CAC4A /* DisplayDeedsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDeedsViewControllerTests.swift; sourceTree = "<group>"; };
+		20CFD4C324A50CF800E497F2 /* AchievementProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementProtocol.swift; sourceTree = "<group>"; };
+		20CFD4D024A5384F00E497F2 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		20CFD4D224A5389700E497F2 /* TableViewCellAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellAnimator.swift; sourceTree = "<group>"; };
+		20CFD4D524A541AF00E497F2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		20CFD4D724A54DB200E497F2 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
+		20DC965A2498554500E912D8 /* ChallengesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesViewController.swift; sourceTree = "<group>"; };
+		20E2B35A24C0A7F9008E394E /* DateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHandler.swift; sourceTree = "<group>"; };
+		20E2B35C24C0B44A008E394E /* EditDeedViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDeedViewControllerTests.swift; sourceTree = "<group>"; };
+		20E2B35E24C0C255008E394E /* AddDeedViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeedViewControllerTests.swift; sourceTree = "<group>"; };
+		20E2B36224C0DCBC008E394E /* SettingsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTests.swift; sourceTree = "<group>"; };
+		20E2B36424C0EAB7008E394E /* TutorialXButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialXButton.swift; sourceTree = "<group>"; };
+		20E2B36624C1155D008E394E /* TutorialSetterUpper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TutorialSetterUpper.swift; path = "Good Deed Counter/Tutorial/TutorialSetterUpper.swift"; sourceTree = SOURCE_ROOT; };
+		20E6E87B249A68E9000E14DC /* ChallengeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeTableViewCell.swift; sourceTree = "<group>"; };
+		20E8DBD3247DD88E007018AD /* TimeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSection.swift; sourceTree = "<group>"; };
+		20E8DBD5247DD8B4007018AD /* DaySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySection.swift; sourceTree = "<group>"; };
+		20EE4C42249C1D4600E3BC8A /* EditDeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDeedViewController.swift; sourceTree = "<group>"; };
+		20F9298E24BD5423001005C9 /* BarStyleSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarStyleSetter.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		20817CF524143A2200D6A1FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20817D0B24143A2400D6A1FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20817D1624143A2400D6A1FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		20041D5D259186A3002832BE /* Fireworks */ = {
+			isa = PBXGroup;
+			children = (
+				2063862C25927C8700DBFBE9 /* Trajectories */,
+				2063863025927D3900DBFBE9 /* Factories */,
+				2063863825927D5F00DBFBE9 /* SparkViews */,
+				2063863C25927D8600DBFBE9 /* Types of Fireworks */,
+				2063863425927D4800DBFBE9 /* Animators */,
+				206386432592B49B00DBFBE9 /* Controllers */,
+				20041D8925918D5B002832BE /* CGPoint+Operations.swift */,
+			);
+			path = Fireworks;
+			sourceTree = "<group>";
+		};
+		20105F372492E69600CD41EF /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				2034290C249D2A8800A474F3 /* Streak+CoreDataClass.swift */,
+				2034290D249D2A8800A474F3 /* Streak+CoreDataProperties.swift */,
+				20B49FC6249AD3D100DE282B /* Achievement+CoreDataClass.swift */,
+				20B49FC7249AD3D100DE282B /* Achievement+CoreDataProperties.swift */,
+				20105F382492EBBA00CD41EF /* Deed+CoreDataClass.swift */,
+				20105F392492EBBA00CD41EF /* Deed+CoreDataProperties.swift */,
+				201C4F032499265E00599DC2 /* DailyChallenge+CoreDataClass.swift */,
+				201C4F012499263100599DC2 /* DailyChallenge+CoreDataProperties.swift */,
+				20105F342492E67300CD41EF /* DataModel.xcdatamodeld */,
+				20CFD4D524A541AF00E497F2 /* CoreDataManager.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		20156724249A6CB1005F83A5 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				20291A8224A8CDC000BB1A14 /* CellCustomizer.swift */,
+				20E6E87B249A68E9000E14DC /* ChallengeTableViewCell.swift */,
+				206D5FF9242D4E83000A3E14 /* DeedTableViewCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		201CDB6E24BCBB210044D691 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				201CDB6C24BCB4D90044D691 /* ChallengesViewControllerTableViewDataSource.swift */,
+				2062C13024AA7DED0023BB06 /* DisplayDeedsViewControllerTableViewDataSource.swift */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		2022A4EA24A24D5300E2818B /* QuoteOfTheDay */ = {
+			isa = PBXGroup;
+			children = (
+				2022A4E624A2305B00E2818B /* quotes.txt */,
+				2022A4E824A24B2F00E2818B /* TextFileReader.swift */,
+			);
+			path = QuoteOfTheDay;
+			sourceTree = "<group>";
+		};
+		202A282024B528200041AA06 /* BarCharts */ = {
+			isa = PBXGroup;
+			children = (
+				202A281C24B4EF850041AA06 /* BarChartView.swift */,
+				20A904C324BFF9C300497010 /* BarChartDrawer.swift */,
+				202A281A24B4EF580041AA06 /* BarEntry.swift */,
+			);
+			path = BarCharts;
+			sourceTree = "<group>";
+		};
+		20313F1924A4DE30002C8D2E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				202882C924A6398D0065F110 /* BackgroundView.swift */,
+				20313F2124A4F521002C8D2E /* TopView.swift */,
+				20313F1724A4D95E002C8D2E /* WhiteRoundedView.swift */,
+				20313F1A24A4E6AF002C8D2E /* TextViewForDeedEntry.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		20313F2024A4EFDD002C8D2E /* AchievementData */ = {
+			isa = PBXGroup;
+			children = (
+				20313F1C24A4EB64002C8D2E /* DeedAchievements.swift */,
+				20313F1E24A4EF23002C8D2E /* StreakAchievements.swift */,
+				20CFD4C324A50CF800E497F2 /* AchievementProtocol.swift */,
+			);
+			path = AchievementData;
+			sourceTree = "<group>";
+		};
+		204F0CA52572D477009FE408 /* AddingDeeds */ = {
+			isa = PBXGroup;
+			children = (
+				20982141247DDB9700839E64 /* AddDeedViewController.swift */,
+				204F0C9C2572D0A6009FE408 /* placeholder_adjs.txt */,
+			);
+			path = AddingDeeds;
+			sourceTree = "<group>";
+		};
+		2063862C25927C8700DBFBE9 /* Trajectories */ = {
+			isa = PBXGroup;
+			children = (
+				20041D5E259186BD002832BE /* SparkTrajectory.swift */,
+				20041D66259187E2002832BE /* CubicBezierTrajectory.swift */,
+			);
+			path = Trajectories;
+			sourceTree = "<group>";
+		};
+		2063863025927D3900DBFBE9 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				20041D6B2591882F002832BE /* ClassicSparkTrajectoryFactory.swift */,
+				20041D7A259189A2002832BE /* SparkTrajectoryFactory.swift */,
+				20041D7F25918B60002832BE /* SparkViewFactory.swift */,
+				20041DA22591915E002832BE /* DefaultSparkViewFactoryData.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
+		2063863425927D4800DBFBE9 /* Animators */ = {
+			isa = PBXGroup;
+			children = (
+				20041D9325919025002832BE /* SparkViewAnimator.swift */,
+				20041D982591904F002832BE /* ClassicFireworkAnimator.swift */,
+			);
+			path = Animators;
+			sourceTree = "<group>";
+		};
+		2063863825927D5F00DBFBE9 /* SparkViews */ = {
+			isa = PBXGroup;
+			children = (
+				20041D70259188D0002832BE /* SparkView.swift */,
+				20041D75259188FA002832BE /* CircleColorSparkView.swift */,
+			);
+			path = SparkViews;
+			sourceTree = "<group>";
+		};
+		2063863C25927D8600DBFBE9 /* Types of Fireworks */ = {
+			isa = PBXGroup;
+			children = (
+				20041D8425918BCE002832BE /* Firework.swift */,
+				20041D8E25918F82002832BE /* ClassicFirework.swift */,
+			);
+			path = "Types of Fireworks";
+			sourceTree = "<group>";
+		};
+		206386432592B49B00DBFBE9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				20041D9D259190A1002832BE /* ClassicFireworkController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2077667E24C49E5000C8913C /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				2077667A24C4974600C8913C /* UserDefaultsKeys.swift */,
+				2077667C24C49DFE00C8913C /* UserDefaults+Color.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		20817CEF24143A2200D6A1FE = {
+			isa = PBXGroup;
+			children = (
+				20817CFA24143A2200D6A1FE /* Good Deed Counter */,
+				20817D1124143A2400D6A1FE /* Good Deed CounterTests */,
+				20817D1C24143A2400D6A1FE /* Good Deed CounterUITests */,
+				20817CF924143A2200D6A1FE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		20817CF924143A2200D6A1FE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20817CF824143A2200D6A1FE /* Deedy.app */,
+				20817D0E24143A2400D6A1FE /* Good Deed CounterTests.xctest */,
+				20817D1924143A2400D6A1FE /* Good Deed CounterUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20817CFA24143A2200D6A1FE /* Good Deed Counter */ = {
+			isa = PBXGroup;
+			children = (
+				2023D24924BAA17100306B9B /* ColoredBorderButton.swift */,
+				20E2B35A24C0A7F9008E394E /* DateHandler.swift */,
+				2074484D2417017000624D47 /* PickerView.swift */,
+				202882B324A625B70065F110 /* CustomColors.swift */,
+				20A904C124BFAC3C00497010 /* TableViewModification.swift */,
+				2034CBAC24BDE5F800A3CAC0 /* ProgressView.swift */,
+				20F9298E24BD5423001005C9 /* BarStyleSetter.swift */,
+				202A282024B528200041AA06 /* BarCharts */,
+				20CFD4D424A53CC100E497F2 /* Animating */,
+				20313F2024A4EFDD002C8D2E /* AchievementData */,
+				20313F1924A4DE30002C8D2E /* Views */,
+				2022A4EA24A24D5300E2818B /* QuoteOfTheDay */,
+				20156724249A6CB1005F83A5 /* TableViewCells */,
+				2085696D247EBA3600935CFD /* Controllers */,
+				2085696C247EBA1200935CFD /* TimeSections */,
+				20817CFB24143A2200D6A1FE /* AppDelegate.swift */,
+				20105F372492E69600CD41EF /* DataModel */,
+				2077667E24C49E5000C8913C /* UserDefaults */,
+				20817CFD24143A2200D6A1FE /* SceneDelegate.swift */,
+				20817D0124143A2200D6A1FE /* Main.storyboard */,
+				20AA3DA624BBA19C00E83F60 /* Tutorial */,
+				20817D0424143A2300D6A1FE /* Assets.xcassets */,
+				20817D0624143A2300D6A1FE /* LaunchScreen.storyboard */,
+				20817D0924143A2300D6A1FE /* Info.plist */,
+			);
+			path = "Good Deed Counter";
+			sourceTree = "<group>";
+		};
+		20817D1124143A2400D6A1FE /* Good Deed CounterTests */ = {
+			isa = PBXGroup;
+			children = (
+				20817D1224143A2400D6A1FE /* Good_Deed_CounterTests.swift */,
+				20BFF5FC24C4EBDD002CAC4A /* DisplayDeedsViewControllerTests.swift */,
+				2034CBAE24BDF1AE00A3CAC0 /* ChallengesViewControllerTests.swift */,
+				20CFD4D724A54DB200E497F2 /* CoreDataManagerTests.swift */,
+				2049639324B2A75800B1A0FA /* MockDataModelObjects.swift */,
+				20817D1424143A2400D6A1FE /* Info.plist */,
+				20829CE524AFC26C007250E4 /* SortDeedsViewControllerTests.swift */,
+				202066D724BB3B8200123AA6 /* BarChartViewControllerTests.swift */,
+				20E2B35C24C0B44A008E394E /* EditDeedViewControllerTests.swift */,
+				20E2B35E24C0C255008E394E /* AddDeedViewControllerTests.swift */,
+				20E2B36224C0DCBC008E394E /* SettingsViewControllerTests.swift */,
+			);
+			path = "Good Deed CounterTests";
+			sourceTree = "<group>";
+		};
+		20817D1C24143A2400D6A1FE /* Good Deed CounterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				20817D1D24143A2400D6A1FE /* Good_Deed_CounterUITests.swift */,
+				20817D1F24143A2400D6A1FE /* Info.plist */,
+			);
+			path = "Good Deed CounterUITests";
+			sourceTree = "<group>";
+		};
+		2085696C247EBA1200935CFD /* TimeSections */ = {
+			isa = PBXGroup;
+			children = (
+				20E8DBD3247DD88E007018AD /* TimeSection.swift */,
+				20E8DBD5247DD8B4007018AD /* DaySection.swift */,
+				20982143247DDBBA00839E64 /* WeekSection.swift */,
+				2098213B247DD8F800839E64 /* MonthSection.swift */,
+				2098213D247DD91A00839E64 /* YearSection.swift */,
+			);
+			path = TimeSections;
+			sourceTree = "<group>";
+		};
+		2085696D247EBA3600935CFD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				20A904BE24BFA50A00497010 /* Delegates */,
+				201CDB6E24BCBB210044D691 /* DataSources */,
+				204F0CA52572D477009FE408 /* AddingDeeds */,
+				202A281E24B4F2D80041AA06 /* BarChartViewController.swift */,
+				20DC965A2498554500E912D8 /* ChallengesViewController.swift */,
+				20817CFF24143A2200D6A1FE /* DisplayDeedsViewController.swift */,
+				20EE4C42249C1D4600E3BC8A /* EditDeedViewController.swift */,
+				2047A61724969B76009B13D6 /* SettingsViewController.swift */,
+				207448492416FDDD00624D47 /* SortDeedsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		20A904BE24BFA50A00497010 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				20A904BF24BFA69200497010 /* DisplayDeedsViewController+SearchBarDelegate.swift */,
+				20A904BC24BFA4C900497010 /* DisplayDeedsViewController+TableViewDelegate.swift */,
+				20A904B924BFA3E100497010 /* ChallengesViewController+TableViewDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		20AA3DA624BBA19C00E83F60 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				20E2B36624C1155D008E394E /* TutorialSetterUpper.swift */,
+				20E2B36424C0EAB7008E394E /* TutorialXButton.swift */,
+				20A904B524BF83E000497010 /* TutorialPageControl.swift */,
+				20AA3DA424BB96F500E83F60 /* TutorialScrollView.swift */,
+				20AA3DA024BB963600E83F60 /* TutorialPage.swift */,
+				20AA3DA224BB965100E83F60 /* TutorialPage.xib */,
+			);
+			path = Tutorial;
+			sourceTree = "<group>";
+		};
+		20CFD4D424A53CC100E497F2 /* Animating */ = {
+			isa = PBXGroup;
+			children = (
+				20041D5D259186A3002832BE /* Fireworks */,
+				20CFD4D224A5389700E497F2 /* TableViewCellAnimator.swift */,
+				20CFD4D024A5384F00E497F2 /* Animations.swift */,
+			);
+			path = Animating;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		20817CF724143A2200D6A1FE /* Good Deed Counter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20817D2224143A2400D6A1FE /* Build configuration list for PBXNativeTarget "Good Deed Counter" */;
+			buildPhases = (
+				20817CF424143A2200D6A1FE /* Sources */,
+				20817CF524143A2200D6A1FE /* Frameworks */,
+				20817CF624143A2200D6A1FE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Good Deed Counter";
+			productName = "Good Deed Counter";
+			productReference = 20817CF824143A2200D6A1FE /* Deedy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		20817D0D24143A2400D6A1FE /* Good Deed CounterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20817D2524143A2400D6A1FE /* Build configuration list for PBXNativeTarget "Good Deed CounterTests" */;
+			buildPhases = (
+				20817D0A24143A2400D6A1FE /* Sources */,
+				20817D0B24143A2400D6A1FE /* Frameworks */,
+				20817D0C24143A2400D6A1FE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				20817D1024143A2400D6A1FE /* PBXTargetDependency */,
+			);
+			name = "Good Deed CounterTests";
+			productName = "Good Deed CounterTests";
+			productReference = 20817D0E24143A2400D6A1FE /* Good Deed CounterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		20817D1824143A2400D6A1FE /* Good Deed CounterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20817D2824143A2400D6A1FE /* Build configuration list for PBXNativeTarget "Good Deed CounterUITests" */;
+			buildPhases = (
+				20817D1524143A2400D6A1FE /* Sources */,
+				20817D1624143A2400D6A1FE /* Frameworks */,
+				20817D1724143A2400D6A1FE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				20817D1B24143A2400D6A1FE /* PBXTargetDependency */,
+			);
+			name = "Good Deed CounterUITests";
+			productName = "Good Deed CounterUITests";
+			productReference = 20817D1924143A2400D6A1FE /* Good Deed CounterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		20817CF024143A2200D6A1FE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1230;
+				ORGANIZATIONNAME = Nostaw;
+				TargetAttributes = {
+					20817CF724143A2200D6A1FE = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					20817D0D24143A2400D6A1FE = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 20817CF724143A2200D6A1FE;
+					};
+					20817D1824143A2400D6A1FE = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 20817CF724143A2200D6A1FE;
+					};
+				};
+			};
+			buildConfigurationList = 20817CF324143A2200D6A1FE /* Build configuration list for PBXProject "Good Deed Counter" */;
+			compatibilityVersion = "Xcode 11.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 20817CEF24143A2200D6A1FE;
+			productRefGroup = 20817CF924143A2200D6A1FE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				20817CF724143A2200D6A1FE /* Good Deed Counter */,
+				20817D0D24143A2400D6A1FE /* Good Deed CounterTests */,
+				20817D1824143A2400D6A1FE /* Good Deed CounterUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		20817CF624143A2200D6A1FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20AA3DA324BB965100E83F60 /* TutorialPage.xib in Resources */,
+				20817D0824143A2300D6A1FE /* LaunchScreen.storyboard in Resources */,
+				204F0C9D2572D0A6009FE408 /* placeholder_adjs.txt in Resources */,
+				2022A4E724A2305B00E2818B /* quotes.txt in Resources */,
+				20817D0524143A2300D6A1FE /* Assets.xcassets in Resources */,
+				20817D0324143A2200D6A1FE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20817D0C24143A2400D6A1FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20817D1724143A2400D6A1FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		20817CF424143A2200D6A1FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20AA3DA524BB96F500E83F60 /* TutorialScrollView.swift in Sources */,
+				20A904C424BFF9C300497010 /* BarChartDrawer.swift in Sources */,
+				202A281B24B4EF580041AA06 /* BarEntry.swift in Sources */,
+				20291A8324A8CDC000BB1A14 /* CellCustomizer.swift in Sources */,
+				20041D5F259186BD002832BE /* SparkTrajectory.swift in Sources */,
+				20AA3DA124BB963600E83F60 /* TutorialPage.swift in Sources */,
+				20E2B35B24C0A7F9008E394E /* DateHandler.swift in Sources */,
+				2077667D24C49DFE00C8913C /* UserDefaults+Color.swift in Sources */,
+				20E8DBD4247DD88E007018AD /* TimeSection.swift in Sources */,
+				20E8DBD6247DD8B4007018AD /* DaySection.swift in Sources */,
+				20105F3A2492EBBA00CD41EF /* Deed+CoreDataClass.swift in Sources */,
+				2062C13124AA7DED0023BB06 /* DisplayDeedsViewControllerTableViewDataSource.swift in Sources */,
+				20313F2224A4F521002C8D2E /* TopView.swift in Sources */,
+				20B49FC9249AD3D100DE282B /* Achievement+CoreDataProperties.swift in Sources */,
+				2077667B24C4974600C8913C /* UserDefaultsKeys.swift in Sources */,
+				20A904BA24BFA3E100497010 /* ChallengesViewController+TableViewDelegate.swift in Sources */,
+				201C4F042499265E00599DC2 /* DailyChallenge+CoreDataClass.swift in Sources */,
+				20F9298F24BD5423001005C9 /* BarStyleSetter.swift in Sources */,
+				20E2B36724C1155D008E394E /* TutorialSetterUpper.swift in Sources */,
+				20982144247DDBBA00839E64 /* WeekSection.swift in Sources */,
+				20EE4C43249C1D4600E3BC8A /* EditDeedViewController.swift in Sources */,
+				20A904C224BFAC3C00497010 /* TableViewModification.swift in Sources */,
+				201CDB6D24BCB4D90044D691 /* ChallengesViewControllerTableViewDataSource.swift in Sources */,
+				20041D9425919025002832BE /* SparkViewAnimator.swift in Sources */,
+				20313F1F24A4EF23002C8D2E /* StreakAchievements.swift in Sources */,
+				20DC965B2498554500E912D8 /* ChallengesViewController.swift in Sources */,
+				2023D24A24BAA17100306B9B /* ColoredBorderButton.swift in Sources */,
+				202A281D24B4EF850041AA06 /* BarChartView.swift in Sources */,
+				20A904C024BFA69200497010 /* DisplayDeedsViewController+SearchBarDelegate.swift in Sources */,
+				20041D67259187E2002832BE /* CubicBezierTrajectory.swift in Sources */,
+				20E2B36524C0EAB7008E394E /* TutorialXButton.swift in Sources */,
+				206D5FFA242D4E83000A3E14 /* DeedTableViewCell.swift in Sources */,
+				20105F3B2492EBBA00CD41EF /* Deed+CoreDataProperties.swift in Sources */,
+				2074484A2416FDDD00624D47 /* SortDeedsViewController.swift in Sources */,
+				202A281F24B4F2D80041AA06 /* BarChartViewController.swift in Sources */,
+				20041D8525918BCE002832BE /* Firework.swift in Sources */,
+				20041D7B259189A2002832BE /* SparkTrajectoryFactory.swift in Sources */,
+				20041DA32591915E002832BE /* DefaultSparkViewFactoryData.swift in Sources */,
+				20041D76259188FA002832BE /* CircleColorSparkView.swift in Sources */,
+				20A904B624BF83E000497010 /* TutorialPageControl.swift in Sources */,
+				20041D8025918B60002832BE /* SparkViewFactory.swift in Sources */,
+				2034290E249D2A8800A474F3 /* Streak+CoreDataClass.swift in Sources */,
+				20041D9E259190A1002832BE /* ClassicFireworkController.swift in Sources */,
+				2022A4E924A24B2F00E2818B /* TextFileReader.swift in Sources */,
+				20CFD4C424A50CF800E497F2 /* AchievementProtocol.swift in Sources */,
+				20A904BD24BFA4C900497010 /* DisplayDeedsViewController+TableViewDelegate.swift in Sources */,
+				202882CA24A6398D0065F110 /* BackgroundView.swift in Sources */,
+				20313F1824A4D95E002C8D2E /* WhiteRoundedView.swift in Sources */,
+				20105F362492E67300CD41EF /* DataModel.xcdatamodeld in Sources */,
+				20041D8A25918D5B002832BE /* CGPoint+Operations.swift in Sources */,
+				20B49FC8249AD3D100DE282B /* Achievement+CoreDataClass.swift in Sources */,
+				2074484E2417017000624D47 /* PickerView.swift in Sources */,
+				20041D71259188D0002832BE /* SparkView.swift in Sources */,
+				20CFD4D124A5384F00E497F2 /* Animations.swift in Sources */,
+				20E6E87C249A68E9000E14DC /* ChallengeTableViewCell.swift in Sources */,
+				201C4F022499263100599DC2 /* DailyChallenge+CoreDataProperties.swift in Sources */,
+				20313F1B24A4E6AF002C8D2E /* TextViewForDeedEntry.swift in Sources */,
+				20313F1D24A4EB64002C8D2E /* DeedAchievements.swift in Sources */,
+				20817CFC24143A2200D6A1FE /* AppDelegate.swift in Sources */,
+				2034290F249D2A8800A474F3 /* Streak+CoreDataProperties.swift in Sources */,
+				2098213E247DD91A00839E64 /* YearSection.swift in Sources */,
+				20041D8F25918F82002832BE /* ClassicFirework.swift in Sources */,
+				2047A61824969B76009B13D6 /* SettingsViewController.swift in Sources */,
+				201749BF2422FB020034DD9F /* DisplayDeedsViewController.swift in Sources */,
+				20041D992591904F002832BE /* ClassicFireworkAnimator.swift in Sources */,
+				20041D6C2591882F002832BE /* ClassicSparkTrajectoryFactory.swift in Sources */,
+				20CFD4D324A5389700E497F2 /* TableViewCellAnimator.swift in Sources */,
+				2034CBAD24BDE5F800A3CAC0 /* ProgressView.swift in Sources */,
+				2098213C247DD8F800839E64 /* MonthSection.swift in Sources */,
+				20817CFE24143A2200D6A1FE /* SceneDelegate.swift in Sources */,
+				20CFD4D624A541AF00E497F2 /* CoreDataManager.swift in Sources */,
+				202882B424A625B70065F110 /* CustomColors.swift in Sources */,
+				20982142247DDB9700839E64 /* AddDeedViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20817D0A24143A2400D6A1FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				202882C824A634710065F110 /* DataModel.xcdatamodeld in Sources */,
+				2034CBAF24BDF1AE00A3CAC0 /* ChallengesViewControllerTests.swift in Sources */,
+				20E2B35D24C0B44A008E394E /* EditDeedViewControllerTests.swift in Sources */,
+				20CFD4D824A54DB200E497F2 /* CoreDataManagerTests.swift in Sources */,
+				20817D1324143A2400D6A1FE /* Good_Deed_CounterTests.swift in Sources */,
+				20E2B36324C0DCBC008E394E /* SettingsViewControllerTests.swift in Sources */,
+				202066D824BB3B8200123AA6 /* BarChartViewControllerTests.swift in Sources */,
+				2049639424B2A75800B1A0FA /* MockDataModelObjects.swift in Sources */,
+				20829CE624AFC26C007250E4 /* SortDeedsViewControllerTests.swift in Sources */,
+				20BFF5FD24C4EBDD002CAC4A /* DisplayDeedsViewControllerTests.swift in Sources */,
+				20E2B35F24C0C255008E394E /* AddDeedViewControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20817D1524143A2400D6A1FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20817D1E24143A2400D6A1FE /* Good_Deed_CounterUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		20817D1024143A2400D6A1FE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 20817CF724143A2200D6A1FE /* Good Deed Counter */;
+			targetProxy = 20817D0F24143A2400D6A1FE /* PBXContainerItemProxy */;
+		};
+		20817D1B24143A2400D6A1FE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 20817CF724143A2200D6A1FE /* Good Deed Counter */;
+			targetProxy = 20817D1A24143A2400D6A1FE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		20817D0124143A2200D6A1FE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20817D0224143A2200D6A1FE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		20817D0624143A2300D6A1FE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20817D0724143A2300D6A1FE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		20817D2024143A2400D6A1FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		20817D2124143A2400D6A1FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		20817D2324143A2400D6A1FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1.2;
+				DEVELOPMENT_TEAM = 7B2325RV8T;
+				INFOPLIST_FILE = "Good Deed Counter/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.8;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nostaw.Good-Deed-Counter";
+				PRODUCT_NAME = Deedy;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		20817D2424143A2400D6A1FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1.2;
+				DEVELOPMENT_TEAM = 7B2325RV8T;
+				INFOPLIST_FILE = "Good Deed Counter/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.8;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nostaw.Good-Deed-Counter";
+				PRODUCT_NAME = Deedy;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		20817D2624143A2400D6A1FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7B2325RV8T;
+				INFOPLIST_FILE = "Good Deed CounterTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nostaw.Good-Deed-CounterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deedy.app/Deedy";
+			};
+			name = Debug;
+		};
+		20817D2724143A2400D6A1FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7B2325RV8T;
+				INFOPLIST_FILE = "Good Deed CounterTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nostaw.Good-Deed-CounterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deedy.app/Deedy";
+			};
+			name = Release;
+		};
+		20817D2924143A2400D6A1FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7B2325RV8T;
+				INFOPLIST_FILE = "Good Deed CounterUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nostaw.Good-Deed-CounterUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Good Deed Counter";
+			};
+			name = Debug;
+		};
+		20817D2A24143A2400D6A1FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7B2325RV8T;
+				INFOPLIST_FILE = "Good Deed CounterUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nostaw.Good-Deed-CounterUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Good Deed Counter";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		20817CF324143A2200D6A1FE /* Build configuration list for PBXProject "Good Deed Counter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20817D2024143A2400D6A1FE /* Debug */,
+				20817D2124143A2400D6A1FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20817D2224143A2400D6A1FE /* Build configuration list for PBXNativeTarget "Good Deed Counter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20817D2324143A2400D6A1FE /* Debug */,
+				20817D2424143A2400D6A1FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20817D2524143A2400D6A1FE /* Build configuration list for PBXNativeTarget "Good Deed CounterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20817D2624143A2400D6A1FE /* Debug */,
+				20817D2724143A2400D6A1FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20817D2824143A2400D6A1FE /* Build configuration list for PBXNativeTarget "Good Deed CounterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20817D2924143A2400D6A1FE /* Debug */,
+				20817D2A24143A2400D6A1FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		20105F342492E67300CD41EF /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				20105F352492E67300CD41EF /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 20105F352492E67300CD41EF /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 20817CF024143A2200D6A1FE /* Project object */;
+}
