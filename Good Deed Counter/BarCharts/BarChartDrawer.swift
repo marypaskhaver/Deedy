@@ -51,7 +51,7 @@ class BarChartDrawer {
         barLayer.borderWidth = 1
         barLayer.borderColor = UIColor.white.cgColor
 
-        // Set bar color to be same color as nav bar, whether a custom color was selected or not.
+        // Set bar color to be roughly same color as nav bar, whether a custom color was selected or not.
         if let navBarColor = defaults.color(forKey: UserDefaultsKeys.navBarColor) {
             changeLayerToColorFromComponents(from: navBarColor, toLayer: barLayer)
         } else {
@@ -110,7 +110,7 @@ class BarChartDrawer {
     // MARK: - Changing bar background color
     // Sets layer's background color to param color passed in, with some other calculations.
     func changeLayerToColorFromComponents(from color: UIColor, toLayer layer: CALayer) {
-        // Get hue-- HSBA values-- from current value
+        // Get hue-- HSBA values-- from param color
         var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
         color.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
         
