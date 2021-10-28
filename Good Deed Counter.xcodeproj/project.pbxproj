@@ -21,6 +21,7 @@
 		20041D992591904F002832BE /* ClassicFireworkAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041D982591904F002832BE /* ClassicFireworkAnimator.swift */; };
 		20041D9E259190A1002832BE /* ClassicFireworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041D9D259190A1002832BE /* ClassicFireworkController.swift */; };
 		20041DA32591915E002832BE /* DefaultSparkViewFactoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041DA22591915E002832BE /* DefaultSparkViewFactoryData.swift */; };
+		200DDAD3272B4A2F00AE63B3 /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200DDAD2272B4A2F00AE63B3 /* TableHeaderView.swift */; };
 		20105F362492E67300CD41EF /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20105F342492E67300CD41EF /* DataModel.xcdatamodeld */; };
 		20105F3A2492EBBA00CD41EF /* Deed+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20105F382492EBBA00CD41EF /* Deed+CoreDataClass.swift */; };
 		20105F3B2492EBBA00CD41EF /* Deed+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20105F392492EBBA00CD41EF /* Deed+CoreDataProperties.swift */; };
@@ -132,6 +133,7 @@
 		20041D982591904F002832BE /* ClassicFireworkAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicFireworkAnimator.swift; sourceTree = "<group>"; };
 		20041D9D259190A1002832BE /* ClassicFireworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicFireworkController.swift; sourceTree = "<group>"; };
 		20041DA22591915E002832BE /* DefaultSparkViewFactoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSparkViewFactoryData.swift; sourceTree = "<group>"; };
+		200DDAD2272B4A2F00AE63B3 /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
 		20105F352492E67300CD41EF /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		20105F382492EBBA00CD41EF /* Deed+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deed+CoreDataClass.swift"; sourceTree = "<group>"; };
 		20105F392492EBBA00CD41EF /* Deed+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deed+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				20313F2124A4F521002C8D2E /* TopView.swift */,
 				20313F1724A4D95E002C8D2E /* WhiteRoundedView.swift */,
 				20313F1A24A4E6AF002C8D2E /* TextViewForDeedEntry.swift */,
+				200DDAD2272B4A2F00AE63B3 /* TableHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				201749BF2422FB020034DD9F /* DisplayDeedsViewController.swift in Sources */,
 				20041D992591904F002832BE /* ClassicFireworkAnimator.swift in Sources */,
 				20041D6C2591882F002832BE /* ClassicSparkTrajectoryFactory.swift in Sources */,
+				200DDAD3272B4A2F00AE63B3 /* TableHeaderView.swift in Sources */,
 				20CFD4D324A5389700E497F2 /* TableViewCellAnimator.swift in Sources */,
 				2034CBAD24BDE5F800A3CAC0 /* ProgressView.swift in Sources */,
 				2098213C247DD8F800839E64 /* MonthSection.swift in Sources */,
