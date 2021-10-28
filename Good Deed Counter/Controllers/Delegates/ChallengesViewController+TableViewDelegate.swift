@@ -11,9 +11,7 @@ import UIKit
 extension ChallengesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.textLabel?.textAlignment = NSTextAlignment.center
-        header.textLabel?.font = headerFont
+        TableHeaderView.setTableHeaderView(forView: view, textAlign: .center)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
