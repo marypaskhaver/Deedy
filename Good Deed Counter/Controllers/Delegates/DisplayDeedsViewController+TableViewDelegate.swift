@@ -64,8 +64,7 @@ extension DisplayDeedsViewController: UITableViewDelegate {
     }
      
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.textLabel?.font = headerFont
+        TableHeaderView.setTableHeaderView(forView: view, textAlign: .left)
     }
      
      // Animate cells here
