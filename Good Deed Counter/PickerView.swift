@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Set up protocol; classes that implement this must create a pickerDidSelectRow func.
 protocol PickerViewProtocol {
     func pickerDidSelectRow(selectedRowValue: String)
 }

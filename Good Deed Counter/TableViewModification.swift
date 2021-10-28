@@ -9,6 +9,7 @@
 import UIKit
 
 class TableViewModification {
+    // Sets param tableView's rowHeight and estimatedRowHeight properties to .automaticDimension. Used to configure tableViews in DisplayDeeds and Challenges View Controllers.
     static func setRowAndEstimatedRowHeightsToAutomaticDimension(forTableView tableView: UITableView) {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension

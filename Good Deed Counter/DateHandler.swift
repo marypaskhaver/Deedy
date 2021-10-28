@@ -9,6 +9,7 @@
 import Foundation
 
 class DateHandler {
+    // Return currentDate as NSDate. Controllers have instances of this class for dependency injection / aid in unit testing.
     func currentDate() -> NSDate! {
         return NSDate()
     }
