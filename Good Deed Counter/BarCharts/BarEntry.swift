@@ -8,7 +8,11 @@
 
 import Foundation
 
+// Struct representing an entry in the monthly deeds bar chart.
 struct BarEntry {
-   let count: Int
-   let title: String
+    // Number of deeds done on a date.
+    let count: Int
+    
+    // Some date in the past month that some deeds were done on.
+    let title: String
 }

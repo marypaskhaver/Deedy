@@ -9,19 +9,20 @@
 import UIKit
 
 class BarChartView: UIView {
-    // Where the graph will be located
+    // Where the graph will be located.
     private let mainLayer: CALayer = CALayer()
     
-    // Embed in scroll view in case size of graph exceeds screen bounds
+    // Embed in scroll view in case size of graph exceeds screen bounds.
     private let scrollView: UIScrollView = UIScrollView()
 
-    // Adjust spacing and hardcoded vals
+    // Adjust spacing and hardcoded vals.
     let verticalSpaceBetweenEntries: CGFloat = 40.0
     let barHeight: CGFloat = 40.0
     let horizontalSpaceBetweenEntryComponents: CGFloat = 30.0
     var entryTooBig: Bool = false
     var largestBarXPos: CGFloat = 40.0
-    // Generate graph when data is passed in
+    
+    // Generate graph when data is passed in.
     var dataEntries: [BarEntry] = [] {
         didSet {
             largestBarXPos = getLargestBarXPos()
