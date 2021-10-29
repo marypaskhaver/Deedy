@@ -9,14 +9,14 @@
 import UIKit
 
 class ChallengeTableViewCell: UITableViewCell {
-
+    // Declare vars. Has challengeDescriptionLabel at center left and subtitleLabel at center right.
     @IBOutlet weak var challengeDescriptionLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
         
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
+        // Set background color.
         self.backgroundColor = UIColor.clear
     }
 
@@ -26,6 +26,7 @@ class ChallengeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    // If this cell represents an achievement that has been completed, set its subtitle text color to green.
     func setSubtitleTextIfAchievementCompleted(to text: String) {
         self.subtitleLabel.text = text
         self.subtitleLabel.textColor = CustomColors.successGreen

@@ -9,12 +9,13 @@
 import UIKit
 
 class DeedTableViewCell: UITableViewCell {
-    
+    // Declare vars.
     @IBOutlet weak var deedDescriptionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        // Set background color.
         self.backgroundColor = UIColor.clear
     }
             
