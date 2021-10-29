@@ -14,6 +14,7 @@ struct YearSection: TimeSection {
     static var dateFormat: String = "yyyy"
     
     static func group(deeds: [Deed]) -> [TimeSection] {
+        // For each deed in deeds, get its date and use its particular components, specifically the year it was completed, to group it with other deeds made in the same year.
         let groups = Dictionary(grouping: deeds) { (deed) -> Date in
             return year(date: deed.date!)
         }

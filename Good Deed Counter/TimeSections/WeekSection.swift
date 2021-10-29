@@ -14,6 +14,7 @@ struct WeekSection: TimeSection {
     static var dateFormat: String = "dd MMMM yyyy"
     
     static func group(deeds: [Deed]) -> [TimeSection] {
+        // For each deed in deeds, get its date and use its particular components, including and especially the week it was completed, to group it with other deeds made in the same week.
         let groups = Dictionary(grouping: deeds) { (deed) -> Date in
             return firstWeekOfMonth(date: deed.date!)
         }

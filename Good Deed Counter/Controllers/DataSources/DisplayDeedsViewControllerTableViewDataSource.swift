@@ -57,13 +57,15 @@ class DisplayDeedsViewControllerTableViewDataSource: NSObject, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        // Do not put a header on the tableView if no deeds have been completed.
         if self.sections.isEmpty {
             return nil
         }
         
         let section = sections[section]
         let date = section.date
-            
+        
+        // Usually, use the dateFormat of the TimeSection to format headers. However, if the time section is a week, instead of showing the first day of the week, preface the header w/ "Week of."
         if (DisplayDeedsViewController.timeSection == "Week") {
             return "Week of " + DisplayDeedsViewController.dateFormatter.string(from: date)
         }
@@ -72,6 +74,7 @@ class DisplayDeedsViewControllerTableViewDataSource: NSObject, UITableViewDataSo
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        // If no deeds have been completed or a tutorial is being shown, do not load any deeds; do not have any sections.
         if sections.isEmpty || isShowingTutorial {
             return 0
         }
@@ -80,6 +83,7 @@ class DisplayDeedsViewControllerTableViewDataSource: NSObject, UITableViewDataSo
     }
     
     func splitSections() {
+        // Depending on which way the user has decided to split deeds up, split the deeds with TimeSection .group methods. Each section has a deeds property (array) that holds deeds completed on that day / week / month / year-- whatever the TimeSection is.
         switch DisplayDeedsViewController.timeSection {
             case "Day":
                 sections = DaySection.group(deeds: deeds)
@@ -93,14 +97,19 @@ class DisplayDeedsViewControllerTableViewDataSource: NSObject, UITableViewDataSo
                 sections = MonthSection.group(deeds: deeds)
         }
         
+        // Sort deeds reverse-chronologically; i.e. the most recent deeds show up first and the deeds done long ago show up last.
         sections.sort { (lhs, rhs) in lhs.date > rhs.date }
     }
     
+    // Sets self.deeds to hold user's deeds, with a default request if needed.
     func loadDeeds(with request: NSFetchRequest<Deed> = Deed.fetchRequest()) {
+        // Sort fetched deeds by date.
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
-        deeds = cdm.fetchDeeds(with: request)
+        // Set self.deeds to deeds fetched with custom or default request.
+        self.deeds = cdm.fetchDeeds(with: request)
         
+        // Place deeds into sections based on their date and the user's selected timeSection (the way they wish to split them).
         splitSections()
     }
    

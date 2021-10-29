@@ -28,6 +28,7 @@ extension ChallengesViewController: UITableViewDelegate {
         animator.animate(cell: cell, at: indexPath, in: tableView)
     }
     
+    // This is for the custom TutorialScrollView the ChallengesViewController displays. Set its pageControl's currentPage properly depending on how much text gets offset each swipe.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.isDescendant(of: view.superview!) {
             let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)

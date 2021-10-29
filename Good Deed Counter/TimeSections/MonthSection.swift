@@ -14,6 +14,7 @@ struct MonthSection: TimeSection {
     static var dateFormat: String = "MMMM yyyy"
 
     static func group(deeds: [Deed]) -> [TimeSection] {
+        // For each deed in deeds, get its date and use its particular components, including and especially the month it was completed, to group it with other deeds made in the same month.
         let groups = Dictionary(grouping: deeds) { (deed) -> Date in
             return firstDayOfMonth(date: deed.date!)
         }

@@ -22,12 +22,14 @@ class ChallengesViewControllerTableViewDataSource: NSObject, UITableViewDataSour
     }
     
     func loadAchievements() {
+        // Create fetch request for achievements. Sort by title in ascending order. Because each title differs only by the number it contains in the middle of its title String, this will essentially sort them in ascending numerical order. I could probably also have sorted by each Achievement's goalNumber... Dunno why I didn't do that.
         let request: NSFetchRequest<Achievement> = Achievement.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))]
         
+        // Set achievements array to hold fetched Achievement entities from CoreData.
         achievements = cdm.fetchAchievements(with: request)
 
-        // If no achievements have been saved before
+        // If no achievements have been saved before, create Achievements and store them in CoreData and the self.achievements array.
         if (achievements.count == 0) {
             createAchievements()
         }
@@ -41,8 +43,10 @@ class ChallengesViewControllerTableViewDataSource: NSObject, UITableViewDataSour
     func addToAchievementsArray(fromDictionary titlesAndNumbers: [Dictionary<String, Int>], withIdentifier identifier: String) {
         for titleAndNumberDictionary in titlesAndNumbers {
             for (key, value) in titleAndNumberDictionary {
+                // Create new Achievement entity from each Achievement class in titlesAndNumbers and save that Achievement entity to CoreData.
                 let newAchievement = cdm.insertAchievement(title: key, identifier: identifier, goalNumber: Int32(value), isDone: false)
                 
+                // Append Achievement objects to self.achievements property.
                 achievements.append(newAchievement!)
             }
         }        
@@ -56,10 +60,13 @@ class ChallengesViewControllerTableViewDataSource: NSObject, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as! ChallengeTableViewCell
         
+        // Get the achievement this cell represents.
         let achievement = achievements[indexPath.row]
         
+        // Customize this cell's text based on the achievement it represents (ex: if achivement is done, make cell's subtitleText green instead of the usual black).
         CellCustomizer.customizeChallengeCell(cell: cell, withAchievement: achievement, view: view)
         
+        // If tutorial is showing, hide cells.
         if isShowingTutorial {
             cell.isHidden = true
         }
@@ -67,12 +74,13 @@ class ChallengesViewControllerTableViewDataSource: NSObject, UITableViewDataSour
         return cell
     }
     
+    // The title of the 1 header above the tableView in ChallengesViewController.
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Achievements"
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return isShowingTutorial ? 0 : 1
+        return 1
     }
     
 }
