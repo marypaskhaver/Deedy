@@ -13,16 +13,18 @@ class AddDeedViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textView: TextViewForDeedEntry!
     @IBOutlet weak var invalidInputWarningLabel: UILabel!
     
+    let placeholderText = "I am " + TextFileReader().returnRandomLineFromFile(withName: "placeholder_adjs") + " and today I..."
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Initially, hide invalidInputWarningLabel that shows up underneath the textView if invalid data is entered (empty text or is equal to placeholder text).
         invalidInputWarningLabel.isHidden = true
         
         navigationController?.navigationBar.shadowImage = UIImage()
         
         // Create "placeholder"
-        textView.text = "I am " + TextFileReader().returnRandomLineFromFile(withName: "placeholder_adjs") + " and today I..."
+        textView.text = placeholderText
         textView.textColor = UIColor.lightGray
         textView.delegate = self
         
@@ -50,7 +52,7 @@ class AddDeedViewController: UIViewController, UITextViewDelegate {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         // Don't perform segue if textView contains just white space and line breaks
         if (identifier == "doneAddingSegue") {
-            if (textView.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)  {
+            if (textView.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) || textView.text! == placeholderText {
                 invalidInputWarningLabel.isHidden = false
 
                 return false
