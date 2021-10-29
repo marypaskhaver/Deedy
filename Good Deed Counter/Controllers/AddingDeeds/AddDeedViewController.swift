@@ -50,9 +50,9 @@ class AddDeedViewController: UIViewController, UITextViewDelegate {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        // Don't perform segue if textView contains just white space and line breaks
+        // Don't perform segue if textView contains just white space and line breaks or if the user didn't type anything and deed is thus equal to placeholderText
         if (identifier == "doneAddingSegue") {
-            if (textView.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) || textView.text! == placeholderText {
+            if (textView.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) || textView.text!.trimmingCharacters(in: .whitespacesAndNewlines) == placeholderText {
                 invalidInputWarningLabel.isHidden = false
 
                 return false
