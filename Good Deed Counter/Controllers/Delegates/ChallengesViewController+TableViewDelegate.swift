@@ -15,6 +15,7 @@ extension ChallengesViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let headerFont = UIFont.systemFont(ofSize: 22)
         return headerFont.pointSize + 18
     }
     
