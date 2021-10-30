@@ -10,21 +10,30 @@ import UIKit
 import CoreData
 
 class ChallengesViewController: UIViewController {
+    // Handles tableView of achievements and constraining it properly if the Progress View above it disappears when the user doesn't set a daily goal.
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
 
+    // Allows user to set number of deeds they want to do per day.
     @IBOutlet weak var stepper: UIStepper!
     
+    // Shows user how many deeds they have done on the current day out of their goal amount.
     @IBOutlet weak var dailyGoalStepperLabel: UILabel!
     @IBOutlet weak var dailyGoalProgressView: ProgressView!
     
+    // Shows user the goal they set of the number of deeds they want to do per day.
     @IBOutlet weak var dailyGoalStreakLabel: UILabel!
     
     @IBOutlet weak var topView: TopView!
     @IBOutlet var backgroundView: BackgroundView!
     
+    // View that shows tutorial
     @IBOutlet weak var scrollView: TutorialScrollView!
+    
+    // Button to close tutorial / remove TutorialScrollView from screen.
     @IBOutlet weak var tutorialXButton: TutorialXButton!
+    
+    // Shows which page of the tutorial the user is currently viewing.
     @IBOutlet weak var pageControl: TutorialPageControl!
     
     var cdm = CoreDataManager()
@@ -34,8 +43,6 @@ class ChallengesViewController: UIViewController {
     var totalDeedsDone: Int = 0
     
     var dataSource: ChallengesViewControllerTableViewDataSource!
-
-    let headerFont = UIFont.systemFont(ofSize: 22)
     
     var calendar = Calendar.current
     var dateHandler = DateHandler()
