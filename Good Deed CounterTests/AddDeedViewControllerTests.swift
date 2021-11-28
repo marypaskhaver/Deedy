@@ -34,7 +34,6 @@ class AddDeedViewControllerTests: XCTestCase {
     func testMotivationalPlaceholderDisappears() {
         advc.textViewDidBeginEditing(advc.textView)
         XCTAssert(advc.textView.text.count == 0)
-        XCTAssert(advc.textView.textColor == UIColor.black)
     }
     
     func testInvalidInputWarningLabelHidesWhenViewIsLoaded() {
