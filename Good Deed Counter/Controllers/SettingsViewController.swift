@@ -13,7 +13,8 @@ let defaults = UserDefaults.standard
 class SettingsViewController: UIViewController {
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
-    @IBOutlet weak var blueSlider: UISlider! 
+    @IBOutlet weak var blueSlider: UISlider!
+    
     @IBOutlet weak var resetButton: ColoredBorderButton!
     @IBOutlet weak var reviewTutorialButton: ColoredBorderButton!
     
@@ -24,11 +25,14 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var scrollView: TutorialScrollView!
     @IBOutlet weak var tutorialXButton: TutorialXButton!
     
+    @IBOutlet weak var topView: TopView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadColorTheme()
         hideTutorialItems(bool: true)
+        topView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 92)
     }
     
     func hideTutorialItems(bool: Bool) {
@@ -59,15 +63,15 @@ class SettingsViewController: UIViewController {
     }
 
     @IBAction func redSliderChanged(_ sender: UISlider) {
-        navigationController?.navigationBar.barTintColor = getUIColorFromSliders()
+        changeAppColorTheme(toColor: getUIColorFromSliders())
     }
     
     @IBAction func greenSliderChanged(_ sender: UISlider) {
-        navigationController?.navigationBar.barTintColor = getUIColorFromSliders()
+        changeAppColorTheme(toColor: getUIColorFromSliders())
     }
     
     @IBAction func blueSliderChanged(_ sender: UISlider) {
-        navigationController?.navigationBar.barTintColor = getUIColorFromSliders()
+        changeAppColorTheme(toColor: getUIColorFromSliders())
     }
     
     @IBAction func reviewTutorialButtonPressed(_ sender: UIButton) {
@@ -85,9 +89,7 @@ class SettingsViewController: UIViewController {
     
     func getUIColorFromSliders() -> UIColor {
         let color = UIColor(red: CGFloat(redSlider.value / 255.0), green: CGFloat(greenSlider.value / 255.0), blue: CGFloat(blueSlider.value / 255.0), alpha: CGFloat(1.0))
-    
-        changeAppColorTheme(toColor: color)
-        
+            
         return color
     }
     
@@ -95,25 +97,36 @@ class SettingsViewController: UIViewController {
         var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
         CustomColors.defaultBlue.getRed(&r, green: &g, blue: &b, alpha: &a)
 
-        redSlider.value = Float(r * 255)
-        greenSlider.value = Float(g * 255)
-        blueSlider.value = Float(b * 255)
-        
-        changeAppColorTheme(toColor: getUIColorFromSliders())
+        redSlider.setValue(Float(r * 255), animated: true)
+        blueSlider.setValue(Float(b * 255), animated: true)
+        greenSlider.setValue(Float(g * 255), animated: true)
+
+        changeAppColorTheme(toColor: CustomColors.defaultBlue)
     }
     
     func changeAppColorTheme(toColor color: UIColor) {
         changeNavBarColorToColor(color: color)
         changeTextColorIfNeeded()
-        resetButton.setBorderColor()
-        reviewTutorialButton.setBorderColor()
+        
+        // Get hue-- HSBA values-- from param color
+        var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        color.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
+
+        // If the brightness of the color param is > 0.75, set topView's backgroundColor to it. Otherwise, set it to almost the same color, but with a higher brightness level.
+        if b > 0.75 {
+            topView.backgroundColor = UIColor(hue: h, saturation: s, brightness: b, alpha: a)
+        } else {
+            topView.backgroundColor = UIColor(hue: h, saturation: s, brightness: b * 1.8, alpha: a)
+        }
+
+        resetButton.setBorderColor(to: topView.backgroundColor?.cgColor ?? CustomColors.defaultBlue.cgColor)
+        reviewTutorialButton.setBorderColor(to: topView.backgroundColor?.cgColor ?? CustomColors.defaultBlue.cgColor)
+        
         saveColorTheme()
     }
     
     // MARK: - Change app color theme
     func changeNavBarColorToColor(color: UIColor) {
-        navigationController?.navigationBar.barTintColor = color
-        UINavigationBar.appearance().barTintColor = color
         SettingsViewController.navBarColor = color
     }
     
@@ -142,10 +155,6 @@ class SettingsViewController: UIViewController {
     
     // MARK: - Model Manipulation Methods
     func saveColorTheme() {
-        defaults.set(redSlider.value, forKey: UserDefaultsKeys.redSliderValue)
-        defaults.set(greenSlider.value, forKey: UserDefaultsKeys.greenSliderValue)
-        defaults.set(blueSlider.value, forKey: UserDefaultsKeys.blueSliderValue)
-        
         defaults.set(SettingsViewController.navBarColor, forKey: UserDefaultsKeys.navBarColor)
         defaults.set(SettingsViewController.navBarTextColor, forKey: UserDefaultsKeys.navBarTextColor)
     }
@@ -159,11 +168,11 @@ class SettingsViewController: UIViewController {
         
         var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
         color.getRed(&r, green: &g, blue: &b, alpha: &a)
-
-        redSlider.value = Float(r * 255)
-        blueSlider.value = Float(b * 255)
-        greenSlider.value = Float(g * 255)
-                
-        navigationController?.navigationBar.barTintColor = getUIColorFromSliders()
+        
+        redSlider.setValue(Float(r * 255), animated: true)
+        blueSlider.setValue(Float(b * 255), animated: true)
+        greenSlider.setValue(Float(g * 255), animated: true)
+        
+        changeAppColorTheme(toColor: getUIColorFromSliders())
     }
 }
