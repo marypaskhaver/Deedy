@@ -2,7 +2,7 @@
 
 In the wake of recent unrest, it can be hard to feel positive. 
 
-That makes it imperative, as Fred Rogers said, to “look for the helpers”. To know there are “so many caring people in this world”.
+That makes it imperative, as Fred Rogers said, to “look for the helpers.” To know there are “so many caring people in this world."
 
 Deedy invites you not just to look for helpers, but to be one. Try it out. Make Someone’s Day Today.
 
