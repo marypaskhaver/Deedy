@@ -39,6 +39,9 @@ class EditDeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Prevent user from swiping it down
+        self.isModalInPresentation = true
 
         if let navBarColor = defaults.color(forKey: UserDefaultsKeys.navBarColor) {
             topView.backgroundColor = navBarColor
