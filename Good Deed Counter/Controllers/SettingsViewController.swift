@@ -32,7 +32,7 @@ class SettingsViewController: UIViewController {
         
         loadColorTheme()
         hideTutorialItems(bool: true)
-        topView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 92)
+        topView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 0.1 * UIScreen.main.bounds.height)
     }
     
     func hideTutorialItems(bool: Bool) {
@@ -108,17 +108,8 @@ class SettingsViewController: UIViewController {
         changeNavBarColorToColor(color: color)
         changeTextColorIfNeeded()
         
-        // Get hue-- HSBA values-- from param color
-        var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-        color.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-
-        // If the brightness of the color param is > 0.75, set topView's backgroundColor to it. Otherwise, set it to almost the same color, but with a higher brightness level.
-        if b > 0.75 {
-            topView.backgroundColor = UIColor(hue: h, saturation: s, brightness: b, alpha: a)
-        } else {
-            topView.backgroundColor = UIColor(hue: h, saturation: s, brightness: b * 1.8, alpha: a)
-        }
-
+        topView.backgroundColor = color
+        
         resetButton.setBorderColor(to: topView.backgroundColor?.cgColor ?? CustomColors.defaultBlue.cgColor)
         reviewTutorialButton.setBorderColor(to: topView.backgroundColor?.cgColor ?? CustomColors.defaultBlue.cgColor)
         
@@ -128,6 +119,7 @@ class SettingsViewController: UIViewController {
     // MARK: - Change app color theme
     func changeNavBarColorToColor(color: UIColor) {
         SettingsViewController.navBarColor = color
+        UINavigationBar.appearance().barTintColor = color
     }
     
     func changeTextColorIfNeeded() {
