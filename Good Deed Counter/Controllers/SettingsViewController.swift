@@ -32,7 +32,16 @@ class SettingsViewController: UIViewController {
         
         loadColorTheme()
         hideTutorialItems(bool: true)
-        topView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 0.1 * UIScreen.main.bounds.height)
+        
+        var height = self.navigationController?.navigationBar.frame.height ?? 88.0
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            height += 24
+        } else if UIDevice.current.userInterfaceIdiom == .phone {
+            height += 20
+        }
+        
+        topView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: height)
     }
     
     func hideTutorialItems(bool: Bool) {
