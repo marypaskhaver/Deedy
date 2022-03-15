@@ -24,14 +24,12 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var scrollView: TutorialScrollView!
     @IBOutlet weak var tutorialXButton: TutorialXButton!
-    
-    @IBOutlet weak var topView: TopView!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadColorTheme()
-        hideTutorialItems(bool: true)        
+        hideTutorialItems(bool: true)
     }
     
     func hideTutorialItems(bool: Bool) {
@@ -107,10 +105,10 @@ class SettingsViewController: UIViewController {
         changeNavBarColorToColor(color: color)
         changeTextColorIfNeeded()
         
-        topView.backgroundColor = color
-        
-        resetButton.setBorderColor(to: topView.backgroundColor?.cgColor ?? CustomColors.defaultBlue.cgColor)
-        reviewTutorialButton.setBorderColor(to: topView.backgroundColor?.cgColor ?? CustomColors.defaultBlue.cgColor)
+        self.navigationController?.navigationBar.backgroundColor = color
+
+        resetButton.setBorderColor(to: color.cgColor)
+        reviewTutorialButton.setBorderColor(to: color.cgColor)
         
         saveColorTheme()
     }
@@ -133,7 +131,7 @@ class SettingsViewController: UIViewController {
         
     func changeNavBarTextAndItemsToColor(color: UIColor) {
         // Change this nav bar's text color
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
         
         // Change all nav bars' text color
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
