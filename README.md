@@ -6,8 +6,6 @@ That makes it imperative, as Fred Rogers said, to “look for the helpers.” To
 
 Deedy invites you not just to look for helpers, but to be one. Try it out. Make Someone’s Day Today.
 
-You can find it on the App Store [here](https://apps.apple.com/us/app/id1523913427).
-
 Features:
 - Track your good deeds
 - Sort deeds by date
